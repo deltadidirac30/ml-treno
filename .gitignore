@@ -1,0 +1,30 @@
+# macOS
+.DS_Store
+.AppleDouble
+.LSOverride
+
+# Julia
+*.jl.swp
+*.jl.swo
+*~
+.julia/
+
+# Generated data
+data_generated/
+results/*.bson
+results/*.csv
+results/*.md
+
+# Editor
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+
+# IDE / Local settings
+.claude/
