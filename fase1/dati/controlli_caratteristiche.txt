@@ -1,0 +1,64 @@
+caratteristiche di 1024 tratte in 2.3 s
+
+[b1] controllo con i fattori del design (solo verifica)
+  L: max |L_km - design L_km| = 0.0005 km (L intero in metri nei file)
+  fermate intermedie = n_stops del design: 1024/1024
+  vlim_max = v_max_kmh del design: 1024/1024
+  numero di limiti = n_vlim_segments: 1024/1024
+  pendenza media dalla tratta (‰) contro slope_mean del design: max scarto 9.773e-04
+
+[b2] identità esatte tra caratteristiche (sulle 1024 tratte)
+  slope_int_abs = slope_int_pos + slope_int_neg                  max |scarto| = 4.547e-13 (scala 2.066e+03)
+  stops_sum_v2_segweighted = stops_sum_v2                        max |scarto| = 0.000e+00 (scala 1.176e+06)
+  stops_spacing_mean = L/(n_fermate+1)                           max |scarto| = 1.776e-15 (scala 1.988e+02)
+  stops_density = n_fermate/L                                    max |scarto| = 0.000e+00 (scala 3.262e-01)
+  slope_int_pos - slope_int_neg = quota(L) - quota(0)            max |scarto| = 9.095e-13 (scala 1.922e+03)
+  cross_int_p_v = cross_mean_p_v * L                             max |scarto| = 5.821e-11 (scala 2.893e+05)
+  vlim_frac_low + mid + high = 1                                 max |scarto| = 2.220e-16 (scala 8.718e-01)
+
+[b3] caratteristiche costanti sulle 1024: 
+
+[b4] coppie con |correlazione| >= 0,98 (Pearson o Spearman): 4 (ridondanze.csv)
+  stops_sum_v2                 stops_sum_v2_segweighted     P +1.0000  S +1.0000
+  tempo_limiti_ar_s            din_durata_ar_s              P +0.9895  S +0.9921
+  slope_std_pos                slope_std_sq_pos             P +0.9380  S +0.9898
+  stops_density                stops_spacing_mean           P -0.5878  S -0.9911
+
+[b5] lunghezza media dei tratti a pendenza costante [km]
+  DoE: min 0.502, mediana 1.504, max 199.151
+  Calabria           177.5500
+  Canavese           0.0760
+  Firenze            0.3008
+  Firenze-BRoute     0.3008
+  Sulmona-Carpinone  0.4233
+
+[f1] tratte reali contro il dominio delle 1024 tratte DoE
+  Calabria: 0 caratteristiche fuori dall'intervallo DoE su 73
+  Canavese: 0 caratteristiche fuori dall'intervallo DoE su 73
+  Firenze: 0 caratteristiche fuori dall'intervallo DoE su 73
+  Firenze-BRoute: 0 caratteristiche fuori dall'intervallo DoE su 73
+  Sulmona-Carpinone: 12 caratteristiche fuori dall'intervallo DoE su 73
+      slope_std_all                      19.354  (DoE 0 … 7.9973; fuori di +142.0% dell'intervallo)
+      slope_mean_pos                     21.886  (DoE 0 … 12.093; fuori di +81.0% dell'intervallo)
+      slope_rms                           19.52  (DoE 0 … 12.551; fuori di +55.5% dell'intervallo)
+      cross_var_p_v                  2.3705e+06  (DoE 0 … 1.528e+06; fuori di +55.1% dell'intervallo)
+      slope_mean_neg                    -17.247  (DoE -11.443 … 0; fuori di -50.7% dell'intervallo)
+      slope_std_sq_pos                   259.47  (DoE 0 … 186.68; fuori di +39.0% dell'intervallo)
+      bin_p_2                            25.103  (DoE -17.076 … 18.353; fuori di +19.1% dell'intervallo)
+      bin_p_3                            23.233  (DoE -18.676 … 18.217; fuori di +13.6% dell'intervallo)
+      bin_p_1                            21.313  (DoE -14.38 … 18.111; fuori di +9.9% dell'intervallo)
+      slope_std_pos                      7.3269  (DoE 0 … 6.8444; fuori di +7.0% dell'intervallo)
+      bin_p_6                           -19.337  (DoE -17.467 … 17.174; fuori di -5.4% dell'intervallo)
+      slope_std_neg                      7.7142  (DoE 0 … 7.4189; fuori di +4.0% dell'intervallo)
+  insieme 'proposto_profilo' (66 caratteristiche): distanza dal vicino tra DoE: mediana 3.90, p95 5.72, max 9.28
+      Calabria           vicino route_000677 a 2.91 (percentile 14.6 delle distanze DoE)
+      Canavese           vicino route_000234 a 5.38 (percentile 90.1 delle distanze DoE)
+      Firenze            vicino route_000580 a 6.03 (percentile 96.6 delle distanze DoE)
+      Firenze-BRoute     vicino route_000580 a 6.03 (percentile 96.6 delle distanze DoE)
+      Sulmona-Carpinone  vicino route_000924 a 15.35 (percentile 100.0 delle distanze DoE)
+  insieme 'proposto_profilo_din' (69 caratteristiche): distanza dal vicino tra DoE: mediana 3.98, p95 5.83, max 9.29
+      Calabria           vicino route_000677 a 2.97 (percentile 14.1 delle distanze DoE)
+      Canavese           vicino route_000234 a 5.46 (percentile 90.7 delle distanze DoE)
+      Firenze            vicino route_000580 a 6.04 (percentile 96.2 delle distanze DoE)
+      Firenze-BRoute     vicino route_000580 a 6.04 (percentile 96.2 delle distanze DoE)
+      Sulmona-Carpinone  vicino route_000924 a 15.39 (percentile 100.0 delle distanze DoE)

@@ -1,0 +1,19 @@
+config.txt NOMAD: modello=corretta soglia_cambio_carico=1.0000000000000001e-09 D3=true D4=pnom_dal_picco D5=nessuna D6=true conteggio_carico=cicli_equivalenti ausiliari_fc=sempre_5pc m_min_fc=0.029999999999999999 perdita_fine_vita_fc=0.20000000000000001 tempi_sostituzioni=a_fine_vita soglia_fine_orizzonte=1 sola_batteria=n_libero f_degrado_fc=0.51692531382982454 ore_max_fc=25000 D12=true D18=true peso_a_carico=1950 …
+ConfigModello usata: ConfigModello(:corretta, :cicli_equivalenti, 1.0e-9, :sempre_5pc, true, :pnom_dal_picco, :nessuna, true, 0.03, 0.2, :a_fine_vita, 1.0, 0.5169253138298245, 25000.0, true, true)
+2048 valutazioni in 5.5 s con 8 thread
+
+[c] ottimi di riferimento
+  provenienza: Dict("vecchio" => 251, "pari" => 86, "nomad_pb" => 687)
+  NOMAD meglio del vecchio di oltre lo 0,1%: 113; peggio di oltre lo 0,1%: 23
+  regime del riferimento: Dict("ibrido" => 630, "sola_batteria" => 394)
+  cambi di regime tra le due campagne: 14
+
+[d] verifica del costo rivalutato contro le campagne (soglia 1e-9 relativo)
+  violazioni: 0
+  NOMAD: scarto relativo massimo 0.000e+00 (uguali al bit: 1024/1024)
+  vecchio (costo di campagna a 12 cifre, punto a 12 cifre): scarto relativo massimo 3.902e-12
+  stato nell'ottimo: ["completed"]  penalità: [0.0]
+  costo ricostruito dalle grandezze: scarto relativo massimo 2.063e-16; sostituzioni diverse: 0
+  somma delle voci contro il costo: scarto relativo massimo 6.369e-16
+  D15: coda simulata 227, fattibile 2, sostituzione saltata 2
+  vita FC al tetto di 25000 h: 0

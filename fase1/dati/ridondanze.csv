@@ -1,0 +1,5 @@
+a,b,pearson,spearman
+stops_sum_v2,stops_sum_v2_segweighted,1.0,0.9999999999999998
+tempo_limiti_ar_s,din_durata_ar_s,0.9895356629800547,0.9921217187611757
+slope_std_pos,slope_std_sq_pos,0.9380356772993578,0.9897960513375293
+stops_density,stops_spacing_mean,-0.5878061568224927,-0.9910780031828909

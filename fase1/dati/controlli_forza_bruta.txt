@@ -1,0 +1,15 @@
+forza bruta su 4 tratte in 249 s di parete (4 thread), commit c47dc175a0c5f96752d649b217aa354cb45027df
+Sulmona-Carpinone  forza bruta m 0.146875 n 0.578808 costo 3.7703426009 (11724 valutazioni, 248 s, fattibile true); verità attuale 3.6034447130 (nomad_pb): scarto +4.6316%
+                     miglior sola batteria: m 0 n NaN costo NaN (+NaN% sulla verità attuale); miglior ibrido: m 0.146875 n 0.578808 costo 3.7703426009 (+4.632%)
+Calabria           forza bruta m 0.322061 n 0.765308 costo 3.9558754282 (12636 valutazioni, 173 s, fattibile true); verità attuale 3.9557377822 (nomad_pb): scarto +0.0035%
+                     miglior sola batteria: m 0 n NaN costo NaN (+NaN% sulla verità attuale); miglior ibrido: m 0.322061 n 0.765308 costo 3.9558754282 (+0.003%)
+Firenze            forza bruta m 0.030000 n 0.873388 costo 2.3671173458 (10284 valutazioni, 198 s, fattibile true); verità attuale 2.3654216533 (nomad_pb): scarto +0.0717%
+                     miglior sola batteria: m 0 n NaN costo NaN (+NaN% sulla verità attuale); miglior ibrido: m 0.030000 n 0.873388 costo 2.3671173458 (+0.072%)
+Canavese           forza bruta m 0.000000 n 0.682057 costo 2.8298965720 (10184 valutazioni, 168 s, fattibile true); verità attuale 2.8298965720 (vecchio): scarto +0.0000%
+                     miglior sola batteria: m 0 n 0.682057 costo 2.8298965720 (+0.000% sulla verità attuale); miglior ibrido: m 0.030000 n 0.940000 costo 3.3098694175 (+16.961%)
+
+[griglia locale] passo 0,0005, m* ± 0,01 (m ≥ 0,03 se ibrido; m = 0 fisso se sola batteria), n* ± 0,02
+  Sulmona-Carpinone  3240 punti, fattibili 193; migliore m 0.11327 n 0.61810 costo 3.6034447130 (+0.0000% sulla verità 3.6034447130). Forza bruta: 104 punti a sola batteria valutati, fattibili 0
+  Calabria           3321 punti, fattibili 768; migliore m 0.32206 n 0.76521 costo 3.9557377822 (+0.0000% sulla verità 3.9557377822). Forza bruta: 104 punti a sola batteria valutati, fattibili 0
+  Firenze            1701 punti, fattibili 909; migliore m 0.03008 n 0.87248 costo 2.3654216533 (+0.0000% sulla verità 2.3654216533). Forza bruta: 151 punti a sola batteria valutati, fattibili 0
+  Canavese           81 punti, fattibili 41; migliore m 0.00000 n 0.68206 costo 2.8298965720 (+0.0000% sulla verità 2.8298965720). Forza bruta: 300 punti a sola batteria valutati, fattibili 204

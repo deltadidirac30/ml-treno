@@ -1,0 +1,31 @@
+configurazione del modello identica alle campagne DoE: modello=corretta soglia_cambio_carico=1.0000000000000001e-09 D3=true D4=pnom_dal_picco D5=nessuna D6=true conteggio_carico=cicli_equivalenti ausiliari_fc=sempre_5pc m_min_fc=0.029999999999999999 perdita_fine_vita_fc=0.20000000000000001 tempi_sostituzioni=a_fine_vita soglia_fine_orizzonte=1 sola_batteria=n_libero f_degrado_fc=0.51692531382982454 ore_max_fc=25000 D12=true D18=true peso_a_carico=195000
+  Calabria           NOMAD       rivalutato 3.9557377821876893 campagna 3.9557377821876893 rel 0.00e+00 completed
+  Calabria           vecchio     rivalutato 3.9558533103930094 campagna 3.9558533103930094 rel 0.00e+00 completed
+  Calabria           forza_bruta rivalutato 3.9558754281995281 (forza bruta 3.9558754281995281) completed
+  Calabria           costo ricostruito dalle grandezze: rel 1.12e-16
+  Canavese           NOMAD       rivalutato 2.8298987911149376 campagna 2.8298987911149376 rel 0.00e+00 completed
+  Canavese           vecchio     rivalutato 2.829896572032025 campagna 2.829896572032025 rel 0.00e+00 completed
+  Canavese           forza_bruta rivalutato 2.829896572032025 (forza bruta 2.829896572032025) completed
+  Canavese           costo ricostruito dalle grandezze: rel 0.00e+00
+  Firenze            NOMAD       rivalutato 2.3654216532532506 campagna 2.3654216532532506 rel 0.00e+00 completed
+  Firenze            vecchio     rivalutato 2.3671173458257391 campagna 2.3671173458257391 rel 0.00e+00 completed
+  Firenze            forza_bruta rivalutato 2.3671173458257391 (forza bruta 2.3671173458257391) completed
+  Firenze            costo ricostruito dalle grandezze: rel 0.00e+00
+  Firenze-BRoute     NOMAD       rivalutato 2.3654216532532506 campagna 2.3654216532532506 rel 0.00e+00 completed
+  Firenze-BRoute     vecchio     rivalutato 2.3671173458257391 campagna 2.3671173458257391 rel 0.00e+00 completed
+  Firenze-BRoute     forza_bruta rivalutato 2.3671173458257391 (forza bruta 2.3671173458257391) completed
+  Firenze-BRoute     costo ricostruito dalle grandezze: rel 0.00e+00
+  Sulmona-Carpinone  NOMAD       rivalutato 3.6034447130289138 campagna 3.6034447130289138 rel 0.00e+00 completed
+  Sulmona-Carpinone  vecchio     rivalutato 3.7703426008949519 campagna 3.7703426008949519 rel 0.00e+00 completed
+  Sulmona-Carpinone  forza_bruta rivalutato 3.7703426008949519 (forza bruta 3.7703426008949519) completed
+  Sulmona-Carpinone  costo ricostruito dalle grandezze: rel 0.00e+00
+
+5×9 DataFrame
+ Row │ tratta             semplificata  provenienza          m_star     n_star    costo_star  guadagno_forza_bruta_pct  scarto_nomad_pct  scarto_vecchio_pct
+     │ DataStri…          Bool          String               Float64    Float64   Float64     Float64                   Float64           Float64
+─────┼───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+   1 │ Calabria                   true  nomad_pb             0.32206    0.765211     3.95574                       0.0        0.0                 0.00292052
+   2 │ Canavese                  false  vecchio=forza_bruta  0.0        0.682057     2.8299                        0.0        7.84157e-5          0.0
+   3 │ Firenze                   false  nomad_pb             0.0300775  0.872484     2.36542                       0.0        0.0                 0.0716867
+   4 │ Firenze-BRoute            false  nomad_pb             0.0300775  0.872484     2.36542                       0.0        0.0                 0.0716867
+   5 │ Sulmona-Carpinone         false  nomad_pb             0.113271   0.618102     3.60344                       0.0        0.0                 4.63162
