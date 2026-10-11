@@ -1,0 +1,23 @@
+insieme,bersaglio,addestramento,iperparametri
+p69,regime,1024,prof=5;giri=600
+p69,m_star,629,prof=5;giri=600
+p69,n_star_ibride,629,prof=5;giri=600
+p69,n_star_batteria,395,prof=5;giri=600
+p69,H2_viaggio_kg,629,prof=3;giri=600
+p69,serbatoio_H2_kg,629,prof=5;giri=600
+p69,E_ricarica_viaggio_kWh,1024,prof=3;giri=600
+p69,durata_viaggio_s,1024,prof=5;giri=200
+p69,vita_batt_viaggi,1024,prof=5;giri=200
+p69,vita_FC_viaggi,629,prof=5;giri=600
+p69,costo (processo gaussiano),1024,ARD-SE a massima verosimiglianza
+p66,regime,1024,prof=5;giri=600
+p66,m_star,629,prof=5;giri=600
+p66,n_star_ibride,629,prof=5;giri=600
+p66,n_star_batteria,395,prof=5;giri=200
+p66,H2_viaggio_kg,629,prof=5;giri=600
+p66,serbatoio_H2_kg,629,prof=5;giri=600
+p66,E_ricarica_viaggio_kWh,1024,prof=5;giri=600
+p66,durata_viaggio_s,1024,prof=5;giri=600
+p66,vita_batt_viaggi,1024,prof=3;giri=600
+p66,vita_FC_viaggi,629,prof=5;giri=600
+p66,costo (processo gaussiano),1024,ARD-SE a massima verosimiglianza

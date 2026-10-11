@@ -1,0 +1,12 @@
+7 rifiniture in 14.0 s
+7×12 DataFrame
+ Row │ insieme  tratta    partenza      m0         n0        fattibile0  causa0     prima_fattibile  m_fin      n_fin     fattibile_fin  costo_fin
+     │ String   String    String        Float64    Float64   Bool        String     Int64            Float64    Float64   Bool           Float64
+─────┼──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+   1 │ p69      Calabria  previsto      0.36298    0.66842         true                           1  0.322562   0.76742            true     3.96015
+   2 │ p69      Canavese  previsto      0.0        0.620481       false  SOC                      2  0.0        0.682061           true     2.82992
+   3 │ p69      Firenze   previsto      0.0        0.719931       false  SOC+massa                0  0.0        0.729931          false  1002.19
+   4 │ p66      Calabria  previsto      0.336966   0.690719       false  SOC                      2  0.322216   0.766374           true     3.95718
+   5 │ p66      Canavese  previsto      0.0        0.662323       false  SOC                      2  0.0        0.682063           true     2.82992
+   6 │ p66      Firenze   previsto      0.0        0.729167       false  SOC+massa               17  0.03013    0.893167           true     2.37212
+   7 │ p69      Firenze   altro_regime  0.0466771  0.877471        true                           1  0.0302393  0.872858           true     2.36661

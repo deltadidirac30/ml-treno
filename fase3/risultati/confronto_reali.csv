@@ -1,0 +1,121 @@
+insieme,tratta,grandezza,unita,vero,surrogato,err_surrogato,simulatore,err_simulatore
+p69,Calabria,regime,"",ibrido,ibrido,uguale,ibrido,uguale
+p69,Calabria,m,"",0.3221,0.3630,+12.7%,0.3226,+0.2%
+p69,Calabria,n,"",0.7652,0.6684,-12.6%,0.7674,+0.3%
+p69,Calabria,P_nom FC,kW,634.1,714.7,+12.7%,635.1,+0.2%
+p69,Calabria,C_batt,kWh,2640.2,1988.8,-24.7%,2643.3,+0.1%
+p69,Calabria,serbatoio H2,kg,178.7,191.7,+7.2%,179.1,+0.2%
+p69,Calabria,costo totale,€/km,3.956,4.280,+8.2%,3.960,+0.1%
+p69,Calabria,CAPEX_FC_EUR_km,€/km,0.0540,0.0609,+12.7%,0.0541,+0.2%
+p69,Calabria,CAPEX_batt_EUR_km,€/km,0.0749,0.0565,-24.7%,0.0750,+0.1%
+p69,Calabria,CAPEX_tank_EUR_km,€/km,0.0271,0.0291,+7.2%,0.0272,+0.2%
+p69,Calabria,OPEX_batt_rech_EUR_km_att,€/km,0.8476,0.8592,+1.4%,0.8469,-0.1%
+p69,Calabria,OPEX_H2_rech_EUR_km_att,€/km,2.655,2.957,+11.3%,2.660,+0.2%
+p69,Calabria,OPEX_mant_FC_EUR_km_att,€/km,0.0147,0.0165,+12.7%,0.0147,+0.2%
+p69,Calabria,OPEX_mant_batt_EUR_km_att,€/km,0.0204,0.0153,-24.7%,0.0204,+0.1%
+p69,Calabria,OPEX_mant_tank_EUR_km_att,€/km,0.0074,0.0079,+7.2%,0.0074,+0.2%
+p69,Calabria,cost_repl_FC_EUR_km_att,€/km,0.2168,0.2490,+14.8%,0.2172,+0.2%
+p69,Calabria,cost_repl_batt_EUR_km_att,€/km,0.0374,0.0293,-21.6%,0.0374,-0.0%
+p69,Calabria,sostituzioni FC,"",6.000,6.000,+0.0%,6.000,+0.0%
+p69,Calabria,sostituzioni batteria,"",1.000,1.000,+0.0%,1.000,+0.0%
+p69,Calabria,costo previsto dal processo gaussiano,€/km,3.956,3.920,-0.9%,"",""
+p69,Canavese,regime,"",sola_batteria,sola_batteria,uguale,sola_batteria,uguale
+p69,Canavese,m,"",0.0000,0.0000,0,0.0000,0
+p69,Canavese,n,"",0.6821,0.6205,-9.0%,0.6821,+0.0%
+p69,Canavese,P_nom FC,kW,0.0000,0.0000,0,0.0000,0
+p69,Canavese,C_batt,kWh,768.8,698.2,-9.2%,768.8,+0.0%
+p69,Canavese,serbatoio H2,kg,0.0000,0.0000,0,0.0000,0
+p69,Canavese,costo totale,€/km,2.830,2.737,-3.3%,2.830,+0.0%
+p69,Canavese,CAPEX_FC_EUR_km,€/km,0.0000,0.0000,0,0.0000,0
+p69,Canavese,CAPEX_batt_EUR_km,€/km,0.0470,0.0427,-9.2%,0.0470,+0.0%
+p69,Canavese,CAPEX_tank_EUR_km,€/km,0.0000,0.0000,0,0.0000,0
+p69,Canavese,OPEX_batt_rech_EUR_km_att,€/km,2.644,2.570,-2.8%,2.645,+0.0%
+p69,Canavese,OPEX_H2_rech_EUR_km_att,€/km,0.0000,0.0000,0,0.0000,0
+p69,Canavese,OPEX_mant_FC_EUR_km_att,€/km,0.0000,0.0000,0,0.0000,0
+p69,Canavese,OPEX_mant_batt_EUR_km_att,€/km,0.0128,0.0116,-9.2%,0.0128,+0.0%
+p69,Canavese,OPEX_mant_tank_EUR_km_att,€/km,0.0000,0.0000,0,0.0000,0
+p69,Canavese,cost_repl_FC_EUR_km_att,€/km,0.0000,0.0000,0,0.0000,0
+p69,Canavese,cost_repl_batt_EUR_km_att,€/km,0.1257,0.1124,-10.5%,0.1257,+0.0%
+p69,Canavese,sostituzioni FC,"",0.0000,0.0000,0,0.0000,0
+p69,Canavese,sostituzioni batteria,"",4.000,4.000,+0.0%,4.000,+0.0%
+p69,Canavese,costo previsto dal processo gaussiano,€/km,2.830,2.806,-0.8%,"",""
+p69,Firenze,regime,"",ibrido,sola_batteria,diverso,non fattibile,diverso
+p69,Firenze,m,"",0.0301,0.0000,-100.0%,—,—
+p69,Firenze,n,"",0.8725,0.7199,-17.5%,—,—
+p69,Firenze,P_nom FC,kW,59.220,0.0000,-100.0%,—,—
+p69,Firenze,C_batt,kWh,3033.8,3261.6,+7.5%,—,—
+p69,Firenze,serbatoio H2,kg,11.597,0.0000,-100.0%,—,—
+p69,Firenze,costo totale,€/km,2.365,1.981,-16.3%,—,—
+p69,Firenze,CAPEX_FC_EUR_km,€/km,0.0048,0.0000,-100.0%,—,—
+p69,Firenze,CAPEX_batt_EUR_km,€/km,0.0817,0.0878,+7.5%,—,—
+p69,Firenze,CAPEX_tank_EUR_km,€/km,0.0017,0.0000,-100.0%,—,—
+p69,Firenze,OPEX_batt_rech_EUR_km_att,€/km,1.848,1.813,-1.9%,—,—
+p69,Firenze,OPEX_H2_rech_EUR_km_att,€/km,0.3272,0.0000,-100.0%,—,—
+p69,Firenze,OPEX_mant_FC_EUR_km_att,€/km,0.0013,0.0000,-100.0%,—,—
+p69,Firenze,OPEX_mant_batt_EUR_km_att,€/km,0.0222,0.0239,+7.5%,—,—
+p69,Firenze,OPEX_mant_tank_EUR_km_att,€/km,0.0005,0.0000,-100.0%,—,—
+p69,Firenze,cost_repl_FC_EUR_km_att,€/km,0.0258,0.0000,-100.0%,—,—
+p69,Firenze,cost_repl_batt_EUR_km_att,€/km,0.0522,0.0559,+7.0%,—,—
+p69,Firenze,sostituzioni FC,"",8.000,0.0000,-100.0%,—,—
+p69,Firenze,sostituzioni batteria,"",1.000,1.000,+0.0%,—,—
+p69,Firenze,costo previsto dal processo gaussiano,€/km,2.365,2.330,-1.5%,"",""
+p66,Calabria,regime,"",ibrido,ibrido,uguale,ibrido,uguale
+p66,Calabria,m,"",0.3221,0.3370,+4.6%,0.3222,+0.0%
+p66,Calabria,n,"",0.7652,0.6907,-9.7%,0.7664,+0.2%
+p66,Calabria,P_nom FC,kW,634.1,663.5,+4.6%,634.4,+0.0%
+p66,Calabria,C_batt,kWh,2640.2,2261.6,-14.3%,2642.8,+0.1%
+p66,Calabria,serbatoio H2,kg,178.7,180.4,+0.9%,178.8,+0.0%
+p66,Calabria,costo totale,€/km,3.956,3.899,-1.4%,3.957,+0.0%
+p66,Calabria,CAPEX_FC_EUR_km,€/km,0.0540,0.0565,+4.6%,0.0540,+0.0%
+p66,Calabria,CAPEX_batt_EUR_km,€/km,0.0749,0.0642,-14.3%,0.0750,+0.1%
+p66,Calabria,CAPEX_tank_EUR_km,€/km,0.0271,0.0274,+0.9%,0.0272,+0.0%
+p66,Calabria,OPEX_batt_rech_EUR_km_att,€/km,0.8476,0.8336,-1.6%,0.8479,+0.0%
+p66,Calabria,OPEX_H2_rech_EUR_km_att,€/km,2.655,2.613,-1.6%,2.656,+0.0%
+p66,Calabria,OPEX_mant_FC_EUR_km_att,€/km,0.0147,0.0154,+4.6%,0.0147,+0.0%
+p66,Calabria,OPEX_mant_batt_EUR_km_att,€/km,0.0204,0.0174,-14.3%,0.0204,+0.1%
+p66,Calabria,OPEX_mant_tank_EUR_km_att,€/km,0.0074,0.0074,+0.9%,0.0074,+0.0%
+p66,Calabria,cost_repl_FC_EUR_km_att,€/km,0.2168,0.2323,+7.1%,0.2169,+0.0%
+p66,Calabria,cost_repl_batt_EUR_km_att,€/km,0.0374,0.0313,-16.2%,0.0374,+0.0%
+p66,Calabria,sostituzioni FC,"",6.000,6.000,+0.0%,6.000,+0.0%
+p66,Calabria,sostituzioni batteria,"",1.000,1.000,+0.0%,1.000,+0.0%
+p66,Calabria,costo previsto dal processo gaussiano,€/km,3.956,3.864,-2.3%,"",""
+p66,Canavese,regime,"",sola_batteria,sola_batteria,uguale,sola_batteria,uguale
+p66,Canavese,m,"",0.0000,0.0000,0,0.0000,0
+p66,Canavese,n,"",0.6821,0.6623,-2.9%,0.6821,+0.0%
+p66,Canavese,P_nom FC,kW,0.0000,0.0000,0,0.0000,0
+p66,Canavese,C_batt,kWh,768.8,746.0,-3.0%,768.8,+0.0%
+p66,Canavese,serbatoio H2,kg,0.0000,0.0000,0,0.0000,0
+p66,Canavese,costo totale,€/km,2.830,2.752,-2.7%,2.830,+0.0%
+p66,Canavese,CAPEX_FC_EUR_km,€/km,0.0000,0.0000,0,0.0000,0
+p66,Canavese,CAPEX_batt_EUR_km,€/km,0.0470,0.0456,-3.0%,0.0470,+0.0%
+p66,Canavese,CAPEX_tank_EUR_km,€/km,0.0000,0.0000,0,0.0000,0
+p66,Canavese,OPEX_batt_rech_EUR_km_att,€/km,2.644,2.576,-2.6%,2.645,+0.0%
+p66,Canavese,OPEX_H2_rech_EUR_km_att,€/km,0.0000,0.0000,0,0.0000,0
+p66,Canavese,OPEX_mant_FC_EUR_km_att,€/km,0.0000,0.0000,0,0.0000,0
+p66,Canavese,OPEX_mant_batt_EUR_km_att,€/km,0.0128,0.0124,-3.0%,0.0128,+0.0%
+p66,Canavese,OPEX_mant_tank_EUR_km_att,€/km,0.0000,0.0000,0,0.0000,0
+p66,Canavese,cost_repl_FC_EUR_km_att,€/km,0.0000,0.0000,0,0.0000,0
+p66,Canavese,cost_repl_batt_EUR_km_att,€/km,0.1257,0.1186,-5.6%,0.1257,+0.0%
+p66,Canavese,sostituzioni FC,"",0.0000,0.0000,0,0.0000,0
+p66,Canavese,sostituzioni batteria,"",4.000,4.000,+0.0%,4.000,+0.0%
+p66,Canavese,costo previsto dal processo gaussiano,€/km,2.830,2.853,+0.8%,"",""
+p66,Firenze,regime,"",ibrido,sola_batteria,diverso,ibrido,uguale
+p66,Firenze,m,"",0.0301,0.0000,-100.0%,0.0301,+0.2%
+p66,Firenze,n,"",0.8725,0.7292,-16.4%,0.8932,+2.4%
+p66,Firenze,P_nom FC,kW,59.220,0.0000,-100.0%,59.323,+0.2%
+p66,Firenze,C_batt,kWh,3033.8,3308.6,+9.1%,3105.2,+2.4%
+p66,Firenze,serbatoio H2,kg,11.597,0.0000,-100.0%,11.705,+0.9%
+p66,Firenze,costo totale,€/km,2.365,1.841,-22.2%,2.372,+0.3%
+p66,Firenze,CAPEX_FC_EUR_km,€/km,0.0048,0.0000,-100.0%,0.0048,+0.2%
+p66,Firenze,CAPEX_batt_EUR_km,€/km,0.0817,0.0891,+9.1%,0.0836,+2.4%
+p66,Firenze,CAPEX_tank_EUR_km,€/km,0.0017,0.0000,-100.0%,0.0017,+0.9%
+p66,Firenze,OPEX_batt_rech_EUR_km_att,€/km,1.848,1.671,-9.6%,1.850,+0.1%
+p66,Firenze,OPEX_H2_rech_EUR_km_att,€/km,0.3272,0.0000,-100.0%,0.3313,+1.2%
+p66,Firenze,OPEX_mant_FC_EUR_km_att,€/km,0.0013,0.0000,-100.0%,0.0013,+0.2%
+p66,Firenze,OPEX_mant_batt_EUR_km_att,€/km,0.0222,0.0242,+9.1%,0.0227,+2.4%
+p66,Firenze,OPEX_mant_tank_EUR_km_att,€/km,0.0005,0.0000,-100.0%,0.0005,+0.9%
+p66,Firenze,cost_repl_FC_EUR_km_att,€/km,0.0258,0.0000,-100.0%,0.0235,-9.0%
+p66,Firenze,cost_repl_batt_EUR_km_att,€/km,0.0522,0.0571,+9.4%,0.0530,+1.5%
+p66,Firenze,sostituzioni FC,"",8.000,0.0000,-100.0%,7.000,-12.5%
+p66,Firenze,sostituzioni batteria,"",1.000,1.000,+0.0%,1.000,+0.0%
+p66,Firenze,costo previsto dal processo gaussiano,€/km,2.365,2.258,-4.6%,"",""
