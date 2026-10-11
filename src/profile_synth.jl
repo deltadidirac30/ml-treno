@@ -18,7 +18,8 @@ using Statistics    # For mean() function
 
 
 # Include the templates file (real Italian railway routes)
-include("templates.jl")
+# @__DIR__ ensures this works regardless of where Julia is launched from
+include(joinpath(@__DIR__, "templates.jl"))
 
 
 # ============================================================================

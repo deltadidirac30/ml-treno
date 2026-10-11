@@ -28,3 +28,10 @@ __pycache__/
 
 # IDE / Local settings
 .claude/
+
+# Dati e uscite grandi o generati, fuori dal repository
+data_profiles/
+outputs/
+info_tratta/
+train-powertrain-matlab-optmz/
+conversazione chat.md

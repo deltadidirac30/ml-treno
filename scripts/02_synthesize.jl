@@ -1,109 +1,91 @@
 # ============================================================================
-# This script synthesizes driving profiles for each row in the dataset.
-# 
-# What it does:
-#   1. Reads the raw_rows.csv file (created by 01_ingest.jl)
-#   2. For each row, synthesizes a complete driving profile containing:
-#      - Route length (L)
-#      - Slope profile along the route (p)
-#      - Speed limit segments (vlim_segments)
-#      - Stop positions (stops)
-#   3. Saves all profiles to a JLD2 file (faster than CSV for binary data)
-# 
-# The synthesis uses the seed from each row to ensure reproducibility:
-#   - Same row -> same seed -> same random profile
+# 02_synthesize.jl: Load driving profiles from data_profiles/
+#
+# Replaces synthetic generation with real measured profiles.
+# For each row in raw_rows.csv, looks up the matching profile folder based on
+# (explicit_param, explicit_value) and reads slope.csv, vlim.csv, stops.csv.
+#
+# Mapping explicit_param → subfolder in data_profiles/:
+#   "n_stops"        → sensitivity_stops/{value}/
+#   "L_km"           → sensitivity_length/{value}/
+#   "slope_permille" → sensitivity_slope/{value}/
+#   "v_max_kmh"      → sensitivity_vel/{value}/
+#   "template_id"    → real_routes/{value}/
+#
+# Subfolder name = string(Int(round(explicit_value)))  e.g. 50, 3, 10, 80, 1
+#
+# Each profile folder must contain:
+#   slope.csv  — columns: posizione_m, pendenza_permille
+#   vlim.csv   — columns: start_km, end_km, v_max_kmh
+#   stops.csv  — column:  fermata_km
 # ============================================================================
 
-# Activate the project's Julia environment (load packages from Project.toml)
 using Pkg; Pkg.activate(joinpath(@__DIR__, ".."))
 
+using CSV, DataFrames, JLD2
 
-# Import required packages
-using CSV           # For reading the input CSV file
-using DataFrames    # For working with tabular data
-using JLD2          # For saving the output (binary format, fast)
-using Random        # For random number generation (MersenneTwister)
+const PARAM_TO_SUBDIR = Dict(
+    "n_stops"        => "sensitivity_stops",
+    "L_km"           => "sensitivity_length",
+    "slope_permille" => "sensitivity_slope",
+    "v_max_kmh"      => "sensitivity_vel",
+    "template_id"    => "real_routes",
+)
 
+function load_profile(profiles_root::String, explicit_param::String, explicit_value::Float64)::NamedTuple
+    subdir   = PARAM_TO_SUBDIR[explicit_param]
+    val_name = string(Int(round(explicit_value)))
+    dir      = joinpath(profiles_root, subdir, val_name)
 
-# Include the profile synthesis module
-# This contains the functions that generate driving profiles
-# (synthesize_row, synthesize_slope, synthesize_vlim, synthesize_stops, etc.)
-include(joinpath(@__DIR__, "..", "src", "profile_synth.jl"))
-
-
-# ============================================================================
-# The main function that orchestrates the profile synthesis
-# ============================================================================
-function main()
-    
-    # Define the path to the raw data (output from 01_ingest.jl)
-    raw_rows_path = joinpath(@__DIR__, "..", "data_generated", "raw_rows.csv")
-    
-    
-    # Check if the raw data file exists
-    # If not, print an error message and exit (can't continue without the data)
-    if !isfile(raw_rows_path)
-        println("Error: raw_rows.csv not found at $raw_rows_path")
-        println("Please run scripts/01_ynthesize.jl first.")
-        exit(1)
+    if !isdir(dir)
+        error("Profile folder not found: $dir\n  (param=$explicit_param, value=$explicit_value)")
     end
-    
-    
-    # Read the raw data from the CSV file into a DataFrame
-    # This gives us a table with columns: P_nom_fc, C_batt, H2_cons, etc.
-    df = CSV.read(raw_rows_path, DataFrame)
-    
-    
-    # Define the output path for the synthesized profiles
-    profiles_path = joinpath(@__DIR__, "..", "data_generated", "profiles.jld2")
-    
-    
-    # Get the number of rows in the dataset
-    N = nrow(df)
-    println("Synthesizing profiles for $N rows...")
-    
-    
-    # Create a dictionary to store all synthesized profiles
-    # Key = row index (1, 2, 3, ...)
-    # Value = NamedTuple with (L, p, vlim_segments, stops)
-    profile_data = Dict{Int, NamedTuple}()
-    
-    
-    # Loop through each row in the dataset
-    for row_idx in 1:N
-        
-        # Get the current row from the DataFrame
-        # df[row_idx, :] extracts all columns for that row
-        row = df[row_idx, :]
-        
-        
-        # Call synthesize_row from profile_synth.jl
-        # This generates a complete driving profile for this row
-        # Uses the row's seed to ensure reproducibility
-        synthesized = synthesize_row(row)
-        
-        
-        # Store the synthesized profile in our dictionary
-        profile_data[row_idx] = synthesized
-        
-        
-        # Print progress every 500 rows
-        if row_idx % 500 == 0
-            println("  Processed $row_idx / $N rows")
-        end
+
+    p = Float64.(CSV.read(joinpath(dir, "slope.csv"), DataFrame).pendenza_permille)
+
+    v_df = CSV.read(joinpath(dir, "vlim.csv"), DataFrame)
+    vlim_segments = [(Float64(r.start_km), Float64(r.end_km), Float64(r.v_max_kmh))
+                     for r in eachrow(v_df)]
+
+    stops_df = CSV.read(joinpath(dir, "stops.csv"), DataFrame)
+    stops    = nrow(stops_df) > 0 ? Float64.(stops_df.fermata_km) : Float64[]
+
+    L = vlim_segments[end][2]
+
+    expected_len = round(Int, L * 1000) + 1
+    if abs(length(p) - expected_len) > 2
+        @warn "Profile $subdir/$val_name: slope has $(length(p)) points, expected $expected_len for L=$(L) km."
     end
-    
-    
-    # Save all profiles to a JLD2 file
-    # This is much faster than CSV for large amounts of binary data
-    # The file will contain a dictionary: "profile_data" -> Dict of profiles
-    JLD2.save(profiles_path, "profile_data", profile_data)
-    
-    
-    # Print completion message
-    println("\nSynthesized $N profiles to $profiles_path")
+
+    return (L=L, p=p, vlim_segments=vlim_segments, stops=stops)
 end
 
+function main()
+    raw_rows_path  = joinpath(@__DIR__, "..", "data_generated", "raw_rows.csv")
+    profiles_path  = joinpath(@__DIR__, "..", "data_generated", "profiles.jld2")
+    profiles_root  = joinpath(@__DIR__, "..", "data_profiles")
 
-# Run the main function when the script is executed
+    if !isfile(raw_rows_path)
+        println("Error: raw_rows.csv not found. Run scripts/01_ingest.jl first.")
+        exit(1)
+    end
+
+    df = CSV.read(raw_rows_path, DataFrame)
+    N  = nrow(df)
+    println("Loading profiles for $N rows from data_profiles/ ...")
+
+    profile_data = Dict{Int, NamedTuple}()
+
+    for row_idx in 1:N
+        row = df[row_idx, :]
+        profile_data[row_idx] = load_profile(profiles_root,
+                                              String(row.explicit_param),
+                                              Float64(row.explicit_value))
+        row_idx % 500 == 0 && println("  $row_idx / $N")
+    end
+
+    JLD2.save(profiles_path, "profile_data", profile_data)
+    println("\nSaved $N profiles → $profiles_path")
+end
+
 main()

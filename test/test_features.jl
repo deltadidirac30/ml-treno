@@ -1,5 +1,3 @@
-using Pkg; Pkg.activate(joinpath(@__DIR__, ".."))
-
 using Test
 using Statistics
 
@@ -70,7 +68,7 @@ include(joinpath(@__DIR__, "..", "src", "features.jl"))
         @test all(isfinite, out)
         @test out[8] ≈ 10.0
         @test out[5] ≈ 0.0
-        @test out[6] ≈ 100.0
+        @test out[6] ≈ 1000.01  # sum(fill(10,100_001)) * 1e-3 = 10 * 100001 * 0.001
     end
 
     @testset "p ≡ -10 negative" begin
@@ -172,8 +170,8 @@ include(joinpath(@__DIR__, "..", "src", "features.jl"))
             C_batt = 50.0,
         )
         @test all(isfinite, out)
-        @test out[22] ≈ 160.0
-        @test out[23] ≈ 60.0
+        @test out[21] ≈ 160.0  # vlim_max is at index 21
+        @test out[22] ≈ 60.0   # vlim_min is at index 22
     end
 
     @testset "cross features with stops" begin
