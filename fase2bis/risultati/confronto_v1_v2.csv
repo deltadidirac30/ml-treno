@@ -1,0 +1,64 @@
+metrica,v1,v2
+gb p69 secca: errore di regime %,1.50390625,1.34765625
+gb p69 secca: non fattibili %,54.53125,55.83984374999999
+gb p69 secca: rimpianto mediana %,0.7433358324412686,0.7531038036771903
+gb p69 secca: rimpianto p95 %,7.447289729998227,6.248044164359788
+gb p69 secca: non fattibili % (ibride),70.22222222222221,71.60572337042925
+gb p69 secca: rimpianto mediana % (ibride),2.7188751385719265,2.5157866195823337
+gb p69 secca: rimpianto p95 % (ibride),8.64760825167587,6.9277919432466195
+gb p69 secca: non fattibili % (sola batteria),29.441624365482234,30.734177215189874
+gb p69 secca: rimpianto mediana % (sola batteria),0.42251663133839096,0.44169333776133307
+gb p69 secca: rimpianto p95 % (sola batteria),1.4860394953158995,1.4514439380723614
+gb p66 secca: errore di regime %,2.20703125,1.8359375
+gb p66 secca: non fattibili %,58.73046875,59.23828125
+gb p66 secca: rimpianto mediana %,0.8378778205941221,0.9190126654202987
+gb p66 secca: rimpianto p95 %,11.97979652226969,11.084748934958142
+gb p66 secca: non fattibili % (ibride),73.74603174603175,73.76788553259142
+gb p66 secca: rimpianto mediana % (ibride),3.693577983718268,3.813311221204846
+gb p66 secca: rimpianto p95 % (ibride),13.379852130373926,11.726312078982426
+gb p66 secca: non fattibili % (sola batteria),34.72081218274112,36.10126582278481
+gb p66 secca: rimpianto mediana % (sola batteria),0.5381283228090928,0.5610497808815036
+gb p66 secca: rimpianto p95 % (sola batteria),1.6884093587927904,1.9507421214988143
+gb p69 + NOMAD-PB 50: non fattibili %,0.1953125,0.09765625
+gb p69 + NOMAD-PB 50: rimpianto mediana %,0.37295572650525033,0.3614908322939735
+gb p69 + NOMAD-PB 50: rimpianto p95 %,7.7708317138740215,8.087348043296425
+"gb p69 + NOMAD-PB 50: entro 0,25% e fattibili %",43.5546875,43.65234375
+gb p69 + NOMAD-PB 50: rimpianto mediana % (ibride),1.1931694345912427,1.0863162600834113
+gb p69 + NOMAD-PB 50: rimpianto p95 % (ibride),8.937495036688068,9.067826623583926
+gb p69 + NOMAD-PB 50: rimpianto mediana % (sola batteria),0.06261946955280051,0.07481747418355976
+gb p69 + NOMAD-PB 50: rimpianto p95 % (sola batteria),0.32689762793795013,0.2978970955187516
+gb p69 + NOMAD-PB 100: non fattibili %,0.09765625,0.09765625
+gb p69 + NOMAD-PB 100: rimpianto mediana %,0.11639486277297377,0.12103883118498844
+gb p69 + NOMAD-PB 100: rimpianto p95 %,1.78889619107936,2.285518443316048
+"gb p69 + NOMAD-PB 100: entro 0,25% e fattibili %",65.91796875,66.11328125
+gb p69 + NOMAD-PB 100: rimpianto mediana % (ibride),0.27795082044492275,0.2805024210929725
+gb p69 + NOMAD-PB 100: rimpianto p95 % (ibride),2.4787193392108464,2.8682881735097236
+gb p69 + NOMAD-PB 100: rimpianto mediana % (sola batteria),0.009090128386752178,0.01434989484213778
+gb p69 + NOMAD-PB 100: rimpianto p95 % (sola batteria),0.1037016503472387,0.1293239755679368
+gb p69 + NOMAD-PB 200: non fattibili %,NaN,0.09765625
+gb p69 + NOMAD-PB 200: rimpianto mediana %,NaN,0.017734451925493087
+gb p69 + NOMAD-PB 200: rimpianto p95 %,NaN,0.7662866743580649
+"gb p69 + NOMAD-PB 200: entro 0,25% e fattibili %",NaN,90.4296875
+gb p69 + NOMAD-PB 200: rimpianto mediana % (ibride),NaN,0.05127390090545259
+gb p69 + NOMAD-PB 200: rimpianto p95 % (ibride),NaN,1.6967596667466882
+gb p69 + NOMAD-PB 200: rimpianto mediana % (sola batteria),NaN,3.567478694537139e-5
+gb p69 + NOMAD-PB 200: rimpianto p95 % (sola batteria),NaN,0.06730239496326733
+campagna NOMAD-PB: rimpianto mediana %,0.0,0.0
+campagna NOMAD-PB: rimpianto p95 %,0.03892341200001649,0.11320462712327028
+campagna vecchio ottimizzatore: rimpianto mediana %,0.00210121555032793,0.009692476058402295
+campagna vecchio ottimizzatore: rimpianto p95 %,1.0298246772934145,2.4998419934604903
+costo diretto gp p69: |errore| mediana %,1.1470498442346377,1.0872408879382456
+costo diretto gp p69: |errore| p95 %,4.311938244791528,4.182440103239447
+costo diretto nn p69: |errore| mediana %,NaN,2.1947375807294947
+costo diretto nn p69: |errore| p95 %,NaN,7.361682940718943
+costo diretto gb p69: |errore| mediana %,2.8424604878956594,2.8505934883608752
+costo diretto gb p69: |errore| p95 %,9.071535254773936,8.863499411421419
+costo diretto gp p66: |errore| mediana %,1.6972283716955083,1.6824473002822304
+costo diretto gp p66: |errore| p95 %,6.059128537324026,6.018338762718481
+costo diretto nn p66: |errore| mediana %,NaN,2.556594884436608
+costo diretto nn p66: |errore| p95 %,NaN,9.049284525071174
+costo diretto gb p66: |errore| mediana %,3.2453692036288952,3.223903249662441
+costo diretto gb p66: |errore| p95 %,10.879929736511299,10.598657324699627
+H2_viaggio_kg gb p69: |errore| mediana %,4.895336762026547,4.80975159691035
+vita_FC_ore gb p69: |errore| mediana %,3.1432084686074058,2.7511787132205257
+E_ricarica_viaggio_kWh gb p69: |errore| mediana %,3.416453629301086,2.136425352189036

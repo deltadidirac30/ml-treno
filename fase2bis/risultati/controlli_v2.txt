@@ -1,0 +1,58 @@
+rivalutazione dei 1024 punti v2 in 3 s
+violazioni (costo diverso dal candidato, stato o penalità): 0
+stato: ["completed"]  penalità: [0.0]
+costo ricostruito dalle grandezze: scarto relativo massimo 2.188e-16; sostituzioni diverse: 0
+somma delle voci contro il costo: scarto relativo massimo 6.369e-16
+
+tratte che cambiano (v2 contro v1): 163; > 0,1%: 35; > 1%: 18; > 5%: 7; massimo 18.50% (route_000801)
+senza i punti della fase 2 (v1 + P1–P4): 140; > 0,1%: 30; > 1%: 16; > 5%: 6; massimo 18.38%
+provenienza v2: Pair{DataStrings.DataString, Int64}["P1" => 29, "P2" => 8, "P3" => 48, "P4" => 8, "fase2" => 55, "griglia_locale" => 15, "v1_nomad" => 654, "v1_vecchio" => 207]
+provenienza delle tratte migliorate di oltre lo 0,1%: Pair{DataStrings.DataString, Int64}["P1" => 4, "P3" => 8, "fase2" => 8, "griglia_locale" => 15]
+provenienza delle tratte migliorate di oltre lo 1%: Pair{DataStrings.DataString, Int64}["P3" => 4, "fase2" => 1, "griglia_locale" => 13]
+cambi di regime: 1 (ibrido → sola batteria 1, sola batteria → ibrido 0)
+  route_000477 ibrido → sola_batteria: m 0.0301 → 0.0000, n 0.9472 → 0.7477, 5.581% (fase2)
+posizione del nuovo ottimo nelle tratte migliorate di oltre lo 0,1%:
+  a sinistra di D20 (entro 0,01): 13
+  altrove: 7
+  sola batteria: 15
+posizione del nuovo ottimo nelle tratte migliorate di oltre lo 1%:
+  a sinistra di D20 (entro 0,01): 13
+  altrove: 4
+  sola batteria: 1
+
+tratte migliorate di oltre lo 0,1% (ordinate):
+  route_000801 18.502% griglia_locale v1 (ibrido) m 0.6953 n 0.0087 → v2 m 0.1111 n 0.9871 [a sinistra di D20 (entro 0,01)]
+  route_000259  7.231% griglia_locale v1 (ibrido) m 0.1992 n 0.6680 → v2 m 0.1186 n 0.7286 [a sinistra di D20 (entro 0,01)]
+  route_000989  6.126% griglia_locale v1 (ibrido) m 0.1731 n 0.6902 → v2 m 0.1095 n 0.7397 [a sinistra di D20 (entro 0,01)]
+  route_000477  5.581% fase2          v1 (ibrido) m 0.0301 n 0.9472 → v2 m 0.0000 n 0.7477 [sola batteria]
+  route_000443  5.505% P3             v1 (ibrido) m 0.1857 n 0.6702 → v2 m 0.1146 n 0.7201 [a sinistra di D20 (entro 0,01)]
+  route_000020  5.114% griglia_locale v1 (ibrido) m 0.1657 n 0.6499 → v2 m 0.1161 n 0.7285 [a sinistra di D20 (entro 0,01)]
+  route_000939  5.112% griglia_locale v1 (ibrido) m 0.1801 n 0.7015 → v2 m 0.1160 n 0.7475 [a sinistra di D20 (entro 0,01)]
+  route_000086  4.866% griglia_locale v1 (ibrido) m 0.1776 n 0.6523 → v2 m 0.1192 n 0.7189 [a sinistra di D20 (entro 0,01)]
+  route_000240  4.734% griglia_locale v1 (ibrido) m 0.5008 n 0.0500 → v2 m 0.2270 n 0.5262 [altrove]
+  route_000262  4.552% P3             v1 (ibrido) m 0.1734 n 0.6764 → v2 m 0.1150 n 0.7244 [a sinistra di D20 (entro 0,01)]
+  route_000614  3.578% P3             v1 (ibrido) m 0.1593 n 0.6288 → v2 m 0.1151 n 0.7010 [a sinistra di D20 (entro 0,01)]
+  route_000668  3.233% P3             v1 (ibrido) m 0.1408 n 0.5469 → v2 m 0.1157 n 0.6769 [a sinistra di D20 (entro 0,01)]
+  route_000620  3.168% griglia_locale v1 (ibrido) m 0.1409 n 0.5392 → v2 m 0.1107 n 0.7503 [a sinistra di D20 (entro 0,01)]
+  route_000388  3.032% griglia_locale v1 (ibrido) m 0.1368 n 0.6404 → v2 m 0.1080 n 0.7359 [altrove]
+  route_000654  2.563% griglia_locale v1 (ibrido) m 0.1458 n 0.7235 → v2 m 0.1145 n 0.7660 [a sinistra di D20 (entro 0,01)]
+  route_000211  1.694% griglia_locale v1 (ibrido) m 0.2734 n 0.7321 → v2 m 0.2479 n 0.7082 [altrove]
+  route_000120  1.466% griglia_locale v1 (ibrido) m 0.1246 n 0.6595 → v2 m 0.1136 n 0.7437 [a sinistra di D20 (entro 0,01)]
+  route_001008  1.288% griglia_locale v1 (ibrido) m 0.6270 n 0.0622 → v2 m 0.3995 n 0.2260 [altrove]
+  route_000376  0.287% fase2          v1 (ibrido) m 0.5795 n 0.0492 → v2 m 0.3141 n 0.3274 [altrove]
+  route_000738  0.256% P3             v1 (sola_batteria) m 0.0000 n 0.6911 → v2 m 0.0000 n 0.6649 [sola batteria]
+  route_000930  0.252% fase2          v1 (sola_batteria) m 0.0000 n 0.6438 → v2 m 0.0000 n 0.6318 [sola batteria]
+  route_000095  0.207% griglia_locale v1 (sola_batteria) m 0.0000 n 0.5249 → v2 m 0.0000 n 0.5565 [sola batteria]
+  route_000447  0.185% P3             v1 (sola_batteria) m 0.0000 n 0.6529 → v2 m 0.0000 n 0.6512 [sola batteria]
+  route_000610  0.183% P3             v1 (sola_batteria) m 0.0000 n 0.8406 → v2 m 0.0000 n 0.8135 [sola batteria]
+  route_000354  0.177% fase2          v1 (sola_batteria) m 0.0000 n 0.7188 → v2 m 0.0000 n 0.6752 [sola batteria]
+  route_000287  0.174% P1             v1 (sola_batteria) m 0.0000 n 0.6432 → v2 m 0.0000 n 0.6632 [sola batteria]
+  route_000191  0.148% fase2          v1 (sola_batteria) m 0.0000 n 0.7143 → v2 m 0.0000 n 0.6902 [sola batteria]
+  route_000415  0.147% P1             v1 (sola_batteria) m 0.0000 n 0.7750 → v2 m 0.0000 n 0.7544 [sola batteria]
+  route_000080  0.142% griglia_locale v1 (ibrido) m 0.2568 n 0.3113 → v2 m 0.2560 n 0.3118 [altrove]
+  route_000223  0.120% P1             v1 (sola_batteria) m 0.0000 n 0.7063 → v2 m 0.0000 n 0.6893 [sola batteria]
+  route_000402  0.116% fase2          v1 (sola_batteria) m 0.0000 n 0.6750 → v2 m 0.0000 n 0.6675 [sola batteria]
+  route_000406  0.111% P3             v1 (sola_batteria) m 0.0000 n 0.6852 → v2 m 0.0000 n 0.6782 [sola batteria]
+  route_000326  0.110% P1             v1 (sola_batteria) m 0.0000 n 0.6967 → v2 m 0.0000 n 0.6959 [sola batteria]
+  route_000536  0.102% fase2          v1 (ibrido) m 0.3581 n 0.2404 → v2 m 0.3550 n 0.2401 [altrove]
+  route_000386  0.101% fase2          v1 (sola_batteria) m 0.0000 n 0.7031 → v2 m 0.0000 n 0.6887 [sola batteria]

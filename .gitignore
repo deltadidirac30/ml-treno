@@ -40,3 +40,4 @@ fase1/dati/uscite_*.csv
 fase2/risultati/sim_cv.csv
 fase2/risultati/cv/
 fase2/risultati/log_0[34]*.txt
+fase2bis/dati/dataset_doe_v2.csv

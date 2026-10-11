@@ -1,0 +1,40 @@
+tratte da confermare: 35
+giro: 35 tratte, 131139 punti, 233 s
+giro: 1 tratte, 6561 punti, 245 s
+griglie e isole valutate in 263 s
+griglia meglio del candidato in 15 tratte su 35; massimo 4.2730%; mediana 0.0000%; più di un giro: 1
+  route_000020 P2     m 0.1191 n 0.7360  +4.339% su v1 | griglia: 1 giri,  174/ 6561 fattibili, +0.8111% in m 0.1161 n 0.7285 | isola: a n 0.7285 m 0.1161–0.1195, larghezza 0.0035
+  route_000080 P1     m 0.2560 n 0.3113  +0.139% su v1 | griglia: 1 giri, 1434/ 6561 fattibili, +0.0027% in m 0.2560 n 0.3118 | isola: —
+  route_000086 P3     m 0.1192 n 0.7194  +4.834% su v1 | griglia: 1 giri,    2/ 6561 fattibili, +0.0338% in m 0.1192 n 0.7189 | isola: a n 0.7189 m 0.1192–0.1195, larghezza 0.0004
+  route_000095 P2     m 0.0000 n 0.5570  +0.119% su v1 | griglia: 1 giri,   81/   81 fattibili, +0.0882% in m 0.0000 n 0.5565 | isola: —
+  route_000120 P2     m 0.1136 n 0.7442  +1.441% su v1 | griglia: 1 giri,  376/ 6561 fattibili, +0.0249% in m 0.1136 n 0.7437 | isola: a n 0.7437 m 0.1136–0.1136, larghezza 0.0001
+  route_000191 fase2  m 0.0000 n 0.6902  +0.148% su v1 | griglia: 1 giri,   55/   81 fattibili, +0.0000% | isola: —
+  route_000211 P3     m 0.2499 n 0.7092  +1.557% su v1 | griglia: 1 giri,   44/ 6561 fattibili, +0.1399% in m 0.2479 n 0.7082 | isola: —
+  route_000223 P1     m 0.0000 n 0.6893  +0.120% su v1 | griglia: 1 giri,   81/   81 fattibili, +0.0000% | isola: —
+  route_000240 fase2  m 0.2475 n 0.5207  +0.482% su v1 | griglia: 2 giri, 6562/13122 fattibili, +4.2730% in m 0.2270 n 0.5262 | isola: —
+  route_000259 P3     m 0.1186 n 0.7291  +7.203% su v1 | griglia: 1 giri,    8/ 6561 fattibili, +0.0307% in m 0.1186 n 0.7286 | isola: a n 0.7286 m 0.1186–0.1195, larghezza 0.0010
+  route_000262 P3     m 0.1150 n 0.7244  +4.552% su v1 | griglia: 1 giri,  129/ 6561 fattibili, +0.0000% | isola: a n 0.7244 m 0.1150–0.1150, larghezza 0.0001
+  route_000287 P1     m 0.0000 n 0.6632  +0.174% su v1 | griglia: 1 giri,   81/   81 fattibili, +0.0000% | isola: —
+  route_000326 P1     m 0.0000 n 0.6959  +0.110% su v1 | griglia: 1 giri,   66/   81 fattibili, +0.0000% | isola: —
+  route_000354 fase2  m 0.0000 n 0.6752  +0.177% su v1 | griglia: 1 giri,   81/   81 fattibili, +0.0000% | isola: —
+  route_000376 fase2  m 0.3141 n 0.3274  +0.287% su v1 | griglia: 1 giri, 1207/ 6561 fattibili, +0.0000% | isola: —
+  route_000386 fase2  m 0.0000 n 0.6887  +0.101% su v1 | griglia: 1 giri,   62/   81 fattibili, +0.0000% | isola: —
+  route_000388 P3     m 0.1080 n 0.7374  +2.993% su v1 | griglia: 1 giri,  975/ 6561 fattibili, +0.0406% in m 0.1080 n 0.7359 | isola: —
+  route_000402 fase2  m 0.0000 n 0.6675  +0.116% su v1 | griglia: 1 giri,   62/   81 fattibili, +0.0000% | isola: —
+  route_000406 P3     m 0.0000 n 0.6782  +0.111% su v1 | griglia: 1 giri,   81/   81 fattibili, +0.0000% | isola: —
+  route_000415 P1     m 0.0000 n 0.7544  +0.147% su v1 | griglia: 1 giri,   81/   81 fattibili, +0.0000% | isola: —
+  route_000443 P3     m 0.1146 n 0.7201  +5.505% su v1 | griglia: 1 giri,  139/ 6561 fattibili, +0.0000% | isola: a n 0.7201 m 0.1144–0.1194, larghezza 0.0051
+  route_000447 P3     m 0.0000 n 0.6512  +0.185% su v1 | griglia: 1 giri,   81/   81 fattibili, +0.0000% | isola: —
+  route_000477 fase2  m 0.0000 n 0.7477  +5.581% su v1 | griglia: 1 giri,    4/   81 fattibili, +0.0000% | isola: —
+  route_000536 fase2  m 0.3550 n 0.2401  +0.102% su v1 | griglia: 1 giri, 1063/ 6561 fattibili, +0.0000% | isola: —
+  route_000610 P3     m 0.0000 n 0.8135  +0.183% su v1 | griglia: 1 giri,   81/   81 fattibili, +0.0000% | isola: —
+  route_000614 P3     m 0.1151 n 0.7010  +3.578% su v1 | griglia: 1 giri,  100/ 6561 fattibili, +0.0000% | isola: a n 0.7010 m 0.1151–0.1194, larghezza 0.0044
+  route_000620 P3     m 0.1107 n 0.7508  +3.146% su v1 | griglia: 1 giri,  139/ 6561 fattibili, +0.0237% in m 0.1107 n 0.7503 | isola: a n 0.7503 m 0.1107–0.1112, larghezza 0.0006
+  route_000654 P2     m 0.1180 n 0.7640  +1.835% su v1 | griglia: 1 giri,  152/ 6561 fattibili, +0.7425% in m 0.1145 n 0.7660 | isola: a n 0.7660 m 0.1145–0.1145, larghezza 0.0001
+  route_000668 P3     m 0.1157 n 0.6769  +3.233% su v1 | griglia: 1 giri,  190/ 6561 fattibili, +0.0000% | isola: a n 0.6769 m 0.1157–0.1195, larghezza 0.0039
+  route_000738 P3     m 0.0000 n 0.6649  +0.256% su v1 | griglia: 1 giri,   81/   81 fattibili, +0.0000% | isola: —
+  route_000801 fase2  m 0.1111 n 0.9876  +18.480% su v1 | griglia: 1 giri,  727/ 5265 fattibili, +0.0272% in m 0.1111 n 0.9871 | isola: a n 0.9871 m 0.1111–0.1112, larghezza 0.0002
+  route_000930 fase2  m 0.0000 n 0.6318  +0.252% su v1 | griglia: 1 giri,   81/   81 fattibili, +0.0000% | isola: —
+  route_000939 P2     m 0.1160 n 0.7480  +5.079% su v1 | griglia: 1 giri,  115/ 6561 fattibili, +0.0339% in m 0.1160 n 0.7475 | isola: a n 0.7475 m 0.1159–0.1195, larghezza 0.0037
+  route_000989 P3     m 0.1100 n 0.7382  +6.013% su v1 | griglia: 1 giri,  657/ 6561 fattibili, +0.1205% in m 0.1095 n 0.7397 | isola: a n 0.7397 m 0.1095–0.1195, larghezza 0.0101
+  route_001008 P3     m 0.4120 n 0.2240  +0.362% su v1 | griglia: 1 giri, 2287/ 6561 fattibili, +0.9286% in m 0.3995 n 0.2260 | isola: —
