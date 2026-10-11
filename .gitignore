@@ -35,3 +35,8 @@ outputs/
 info_tratta/
 train-powertrain-matlab-optmz/
 conversazione chat.md
+fase1/dati/caratteristiche_*.csv
+fase1/dati/uscite_*.csv
+fase2/risultati/sim_cv.csv
+fase2/risultati/cv/
+fase2/risultati/log_0[34]*.txt

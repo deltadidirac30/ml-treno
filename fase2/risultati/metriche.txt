@@ -1,0 +1,75 @@
+(a) previsione secca, 5 ripetizioni × 1024 tratte (ogni tratta 5 volte); rimpianto sui fattibili; 'utili' = fattibili con rimpianto ≤ 0,25%
+  p66  nulla       tutte         err.regime  38.5% (I→B   0, B→I 1970) | non fatt.  63.7% [63.3–64.2] SOC  53.7 massa  31.7 D3  0.0 altro 0.0 | rimpianto med 58.375% [57.804–58.906] p90  86.39 p95  95.29 max  120.84 | ≤0,25%   0.0% dei fatt., utili   0.0%
+  p66  nulla       ibride        err.regime   0.0% (I→B   0, B→I   0) | non fatt.  76.2% [75.6–77.0] SOC  60.0 massa  51.6 D3  0.0 altro 0.0 | rimpianto med 29.346% [28.849–30.298] p90  53.81 p95  58.00 max   67.83 | ≤0,25%   0.0% dei fatt., utili   0.0%
+  p66  nulla       sola_batteria err.regime 100.0% (I→B   0, B→I 1970) | non fatt.  43.7% [43.1–44.9] SOC  43.7 massa   0.0 D3  0.0 altro 0.0 | rimpianto med 71.933% [71.341–73.166] p90  93.53 p95 101.33 max  120.84 | ≤0,25%   0.0% dei fatt., utili   0.0%
+  p69  nulla       tutte         err.regime  38.5% (I→B   0, B→I 1970) | non fatt.  63.7% [63.3–64.2] SOC  53.7 massa  31.7 D3  0.0 altro 0.0 | rimpianto med 58.375% [57.804–58.906] p90  86.39 p95  95.29 max  120.84 | ≤0,25%   0.0% dei fatt., utili   0.0%
+  p69  nulla       ibride        err.regime   0.0% (I→B   0, B→I   0) | non fatt.  76.2% [75.6–77.0] SOC  60.0 massa  51.6 D3  0.0 altro 0.0 | rimpianto med 29.346% [28.849–30.298] p90  53.81 p95  58.00 max   67.83 | ≤0,25%   0.0% dei fatt., utili   0.0%
+  p69  nulla       sola_batteria err.regime 100.0% (I→B   0, B→I 1970) | non fatt.  43.7% [43.1–44.9] SOC  43.7 massa   0.0 D3  0.0 altro 0.0 | rimpianto med 71.933% [71.341–73.166] p90  93.53 p95 101.33 max  120.84 | ≤0,25%   0.0% dei fatt., utili   0.0%
+  p66  mediana+gb  tutte         err.regime   2.2% (I→B  40, B→I  73) | non fatt.  62.9% [62.5–63.4] SOC  52.2 massa  32.6 D3  0.0 altro 0.0 | rimpianto med  1.245% [1.222–1.289] p90  45.19 p95  56.17 max   85.69 | ≤0,25%  10.9% dei fatt., utili   4.0%
+  p66  mediana+gb  ibride        err.regime   1.3% (I→B  40, B→I   0) | non fatt.  76.5% [75.7–77.3] SOC  59.7 massa  52.3 D3  0.0 altro 0.0 | rimpianto med 28.996% [28.126–30.119] p90  53.80 p95  58.01 max   67.83 | ≤0,25%   0.0% dei fatt., utili   0.0%
+  p66  mediana+gb  sola_batteria err.regime   3.7% (I→B   0, B→I  73) | non fatt.  41.2% [40.9–41.4] SOC  40.1 massa   1.1 D3  0.0 altro 0.0 | rimpianto med  0.666% [0.644–0.682] p90   1.49 p95   1.95 max   85.69 | ≤0,25%  17.8% dei fatt., utili  10.5%
+  p69  mediana+gb  tutte         err.regime   1.5% (I→B  30, B→I  47) | non fatt.  63.0% [62.5–63.5] SOC  52.5 massa  32.3 D3  0.0 altro 0.0 | rimpianto med  1.223% [1.215–1.237] p90  43.46 p95  54.36 max   85.69 | ≤0,25%  11.2% dei fatt., utili   4.1%
+  p69  mediana+gb  ibride        err.regime   1.0% (I→B  30, B→I   0) | non fatt.  76.5% [75.9–77.5] SOC  60.0 massa  52.0 D3  0.0 altro 0.0 | rimpianto med 28.974% [27.875–29.919] p90  54.01 p95  58.01 max   67.83 | ≤0,25%   0.0% dei fatt., utili   0.0%
+  p69  mediana+gb  sola_batteria err.regime   2.4% (I→B   0, B→I  47) | non fatt.  41.4% [41.1–41.6] SOC  40.6 massa   0.8 D3  0.0 altro 0.0 | rimpianto med  0.656% [0.640–0.677] p90   1.44 p95   1.84 max   85.69 | ≤0,25%  18.4% dei fatt., utili  10.8%
+  p66  nn1         tutte         err.regime  14.4% (I→B 306, B→I 433) | non fatt.  61.9% [61.5–62.3] SOC  48.2 massa  33.4 D3  0.0 altro 0.0 | rimpianto med  2.188% [1.827–2.746] p90  32.69 p95  44.55 max   92.80 | ≤0,25%   9.3% dei fatt., utili   3.6%
+  p66  nn1         ibride        err.regime   9.7% (I→B 306, B→I   0) | non fatt.  78.3% [77.5–79.0] SOC  56.4 massa  54.0 D3  0.0 altro 0.0 | rimpianto med  9.130% [8.933–9.832] p90  30.10 p95  39.86 max   64.80 | ≤0,25%   2.2% dei fatt., utili   0.5%
+  p66  nn1         sola_batteria err.regime  22.0% (I→B   0, B→I 433) | non fatt.  35.6% [34.5–36.3] SOC  35.1 massa   0.5 D3  0.0 altro 0.0 | rimpianto med  1.074% [1.019–1.093] p90  33.15 p95  55.63 max   92.80 | ≤0,25%  13.2% dei fatt., utili   8.5%
+  p69  nn1         tutte         err.regime  12.4% (I→B 292, B→I 343) | non fatt.  62.1% [61.4–62.6] SOC  47.9 massa  33.6 D3  0.0 altro 0.0 | rimpianto med  1.737% [1.558–1.857] p90  26.12 p95  40.00 max   79.65 | ≤0,25%   9.8% dei fatt., utili   3.7%
+  p69  nn1         ibride        err.regime   9.3% (I→B 292, B→I   0) | non fatt.  78.5% [77.3–79.5] SOC  55.7 massa  54.3 D3  0.0 altro 0.0 | rimpianto med  8.680% [7.914–8.933] p90  28.31 p95  37.45 max   59.98 | ≤0,25%   2.2% dei fatt., utili   0.5%
+  p69  nn1         sola_batteria err.regime  17.4% (I→B   0, B→I 343) | non fatt.  35.9% [34.3–36.8] SOC  35.4 massa   0.6 D3  0.0 altro 0.0 | rimpianto med  0.996% [0.939–1.030] p90  24.15 p95  41.05 max   79.65 | ≤0,25%  13.9% dei fatt., utili   8.9%
+  p66  knn         tutte         err.regime  11.5% (I→B 198, B→I 391) | non fatt.  66.1% [65.0–66.8] SOC  56.0 massa  33.5 D3  0.0 altro 0.0 | rimpianto med  1.482% [1.289–1.599] p90  33.71 p95  42.43 max  100.51 | ≤0,25%   7.8% dei fatt., utili   2.7%
+  p66  knn         ibride        err.regime   6.3% (I→B 198, B→I   0) | non fatt.  82.8% [81.3–84.6] SOC  66.5 massa  54.2 D3  0.0 altro 0.0 | rimpianto med 10.527% [10.069–13.061] p90  25.18 p95  29.49 max   55.32 | ≤0,25%   0.0% dei fatt., utili   0.0%
+  p66  knn         sola_batteria err.regime  19.8% (I→B   0, B→I 391) | non fatt.  39.5% [37.3–41.1] SOC  39.2 massa   0.3 D3  0.0 altro 0.0 | rimpianto med  0.898% [0.852–0.975] p90  37.90 p95  45.26 max  100.51 | ≤0,25%  11.4% dei fatt., utili   6.9%
+  p69  knn         tutte         err.regime   9.3% (I→B 188, B→I 288) | non fatt.  65.3% [64.2–66.1] SOC  53.6 massa  34.1 D3  0.0 altro 0.0 | rimpianto med  1.335% [1.260–1.525] p90  28.55 p95  36.32 max   76.53 | ≤0,25%   8.6% dei fatt., utili   3.0%
+  p69  knn         ibride        err.regime   6.0% (I→B 188, B→I   0) | non fatt.  81.3% [80.2–82.4] SOC  62.7 massa  55.1 D3  0.0 altro 0.0 | rimpianto med  8.806% [7.725–9.729] p90  23.06 p95  26.32 max   49.54 | ≤0,25%   0.0% dei fatt., utili   0.0%
+  p69  knn         sola_batteria err.regime  14.6% (I→B   0, B→I 288) | non fatt.  39.6% [38.6–40.6] SOC  39.1 massa   0.5 D3  0.0 altro 0.0 | rimpianto med  0.815% [0.800–0.830] p90  33.03 p95  39.96 max   76.53 | ≤0,25%  12.9% dei fatt., utili   7.8%
+  p66  rf          tutte         err.regime   2.4% (I→B  39, B→I  86) | non fatt.  61.0% [60.6–61.9] SOC  48.0 massa  29.3 D3  0.0 altro 0.0 | rimpianto med  0.989% [0.969–1.023] p90  14.51 p95  19.02 max   38.31 | ≤0,25%  11.2% dei fatt., utili   4.4%
+  p66  rf          ibride        err.regime   1.2% (I→B  39, B→I   0) | non fatt.  76.2% [75.4–77.6] SOC  55.3 massa  47.4 D3  0.0 altro 0.0 | rimpianto med  7.595% [7.294–8.294] p90  16.93 p95  19.55 max   28.64 | ≤0,25%   0.4% dei fatt., utili   0.1%
+  p66  rf          sola_batteria err.regime   4.4% (I→B   0, B→I  86) | non fatt.  36.6% [36.0–37.3] SOC  36.2 massa   0.4 D3  0.0 altro 0.0 | rimpianto med  0.608% [0.589–0.623] p90   1.29 p95  18.03 max   38.31 | ≤0,25%  17.7% dei fatt., utili  11.2%
+  p69  rf          tutte         err.regime   1.6% (I→B  22, B→I  58) | non fatt.  55.8% [55.5–56.6] SOC  43.0 massa  23.2 D3  0.0 altro 0.0 | rimpianto med  1.027% [1.005–1.062] p90   7.89 p95  11.13 max   28.66 | ≤0,25%  11.9% dei fatt., utili   5.3%
+  p69  rf          ibride        err.regime   0.7% (I→B  22, B→I   0) | non fatt.  69.0% [68.4–69.8] SOC  48.4 massa  37.5 D3  0.0 altro 0.0 | rimpianto med  4.146% [4.068–4.258] p90   9.20 p95  11.31 max   22.90 | ≤0,25%   0.5% dei fatt., utili   0.2%
+  p69  rf          sola_batteria err.regime   2.9% (I→B   0, B→I  58) | non fatt.  34.8% [34.0–35.5] SOC  34.5 massa   0.3 D3  0.0 altro 0.0 | rimpianto med  0.570% [0.551–0.592] p90   1.18 p95   1.88 max   28.66 | ≤0,25%  20.5% dei fatt., utili  13.4%
+  p66  gb          tutte         err.regime   2.2% (I→B  40, B→I  73) | non fatt.  58.7% [58.0–59.6] SOC  45.0 massa  27.3 D3  0.0 altro 0.0 | rimpianto med  0.838% [0.772–0.920] p90   8.19 p95  11.98 max   60.76 | ≤0,25%  12.7% dei fatt., utili   5.3%
+  p66  gb          ibride        err.regime   1.3% (I→B  40, B→I   0) | non fatt.  73.7% [73.2–74.4] SOC  51.9 massa  43.8 D3  0.0 altro 0.0 | rimpianto med  3.694% [3.550–3.964] p90  10.60 p95  13.38 max   60.76 | ≤0,25%   2.4% dei fatt., utili   0.6%
+  p66  gb          sola_batteria err.regime   3.7% (I→B   0, B→I  73) | non fatt.  34.7% [33.8–36.3] SOC  33.8 massa   0.9 D3  0.0 altro 0.0 | rimpianto med  0.538% [0.499–0.551] p90   1.20 p95   1.69 max   24.48 | ≤0,25%  19.4% dei fatt., utili  12.6%
+  p69  gb          tutte         err.regime   1.5% (I→B  30, B→I  47) | non fatt.  54.5% [53.0–55.6] SOC  40.4 massa  25.1 D3  0.0 altro 0.0 | rimpianto med  0.743% [0.706–0.771] p90   5.07 p95   7.45 max   26.39 | ≤0,25%  17.2% dei fatt., utili   7.8%
+  p69  gb          ibride        err.regime   1.0% (I→B  30, B→I   0) | non fatt.  70.2% [68.4–71.9] SOC  47.7 massa  40.3 D3  0.0 altro 0.0 | rimpianto med  2.719% [2.587–3.271] p90   6.92 p95   8.65 max   26.39 | ≤0,25%   2.5% dei fatt., utili   0.7%
+  p69  gb          sola_batteria err.regime   2.4% (I→B   0, B→I  47) | non fatt.  29.4% [28.4–30.2] SOC  28.7 massa   0.8 D3  0.0 altro 0.0 | rimpianto med  0.423% [0.401–0.444] p90   1.07 p95   1.49 max   22.39 | ≤0,25%  27.2% dei fatt., utili  19.2%
+
+(c) costo €/km previsto direttamente: |errore relativo|
+  p66  mediana  tutte         mediana 39.43%  p95 108.52%  max 171.20%  (distorsione mediana +0.35%)
+  p66  mediana  ibride        mediana 36.48%  p95  64.77%  max 121.57%  (distorsione mediana -27.66%)
+  p66  mediana  sola_batteria mediana 47.85%  p95 131.35%  max 171.20%  (distorsione mediana +47.85%)
+  p66  nn1      tutte         mediana 15.25%  p95  63.88%  max 180.25%  (distorsione mediana +0.24%)
+  p66  nn1      ibride        mediana 15.76%  p95  57.11%  max 134.59%  (distorsione mediana -2.41%)
+  p66  nn1      sola_batteria mediana 14.56%  p95  72.36%  max 180.25%  (distorsione mediana +3.68%)
+  p66  knn      tutte         mediana 12.95%  p95  40.49%  max 105.74%  (distorsione mediana -0.25%)
+  p66  knn      ibride        mediana 12.04%  p95  32.78%  max  86.83%  (distorsione mediana -5.85%)
+  p66  knn      sola_batteria mediana 14.77%  p95  50.80%  max 105.74%  (distorsione mediana +10.94%)
+  p66  rf       tutte         mediana  5.23%  p95  15.89%  max  30.92%  (distorsione mediana +0.10%)
+  p66  rf       ibride        mediana  4.53%  p95  14.33%  max  30.92%  (distorsione mediana -1.65%)
+  p66  rf       sola_batteria mediana  7.04%  p95  16.77%  max  26.04%  (distorsione mediana +3.82%)
+  p66  gb       tutte         mediana  3.25%  p95  10.88%  max  30.35%  (distorsione mediana +0.21%)
+  p66  gb       ibride        mediana  3.09%  p95  10.87%  max  30.35%  (distorsione mediana -0.20%)
+  p66  gb       sola_batteria mediana  3.55%  p95  10.91%  max  25.69%  (distorsione mediana +1.12%)
+  p66  gp       tutte         mediana  1.70%  p95   6.06%  max  34.66%  (distorsione mediana -0.05%)
+  p66  gp       ibride        mediana  1.71%  p95   6.26%  max  34.66%  (distorsione mediana -0.24%)
+  p66  gp       sola_batteria mediana  1.68%  p95   5.82%  max  13.70%  (distorsione mediana +0.23%)
+  p69  mediana  tutte         mediana 39.43%  p95 108.52%  max 171.20%  (distorsione mediana +0.35%)
+  p69  mediana  ibride        mediana 36.48%  p95  64.77%  max 121.57%  (distorsione mediana -27.66%)
+  p69  mediana  sola_batteria mediana 47.85%  p95 131.35%  max 171.20%  (distorsione mediana +47.85%)
+  p69  nn1      tutte         mediana 14.49%  p95  53.82%  max 160.68%  (distorsione mediana -0.17%)
+  p69  nn1      ibride        mediana 14.87%  p95  51.69%  max 113.45%  (distorsione mediana -2.44%)
+  p69  nn1      sola_batteria mediana 13.89%  p95  60.07%  max 160.68%  (distorsione mediana +3.19%)
+  p69  knn      tutte         mediana 11.77%  p95  35.26%  max  98.00%  (distorsione mediana -0.72%)
+  p69  knn      ibride        mediana 11.02%  p95  29.12%  max  77.19%  (distorsione mediana -5.25%)
+  p69  knn      sola_batteria mediana 13.21%  p95  44.07%  max  98.00%  (distorsione mediana +8.51%)
+  p69  rf       tutte         mediana  4.50%  p95  13.27%  max  24.66%  (distorsione mediana +0.12%)
+  p69  rf       ibride        mediana  3.81%  p95  10.81%  max  22.03%  (distorsione mediana -0.90%)
+  p69  rf       sola_batteria mediana  5.87%  p95  15.43%  max  24.66%  (distorsione mediana +2.69%)
+  p69  gb       tutte         mediana  2.84%  p95   9.07%  max  28.68%  (distorsione mediana +0.13%)
+  p69  gb       ibride        mediana  2.61%  p95   8.52%  max  28.68%  (distorsione mediana -0.26%)
+  p69  gb       sola_batteria mediana  3.28%  p95   9.56%  max  19.03%  (distorsione mediana +0.90%)
+  p69  gp       tutte         mediana  1.15%  p95   4.31%  max  20.33%  (distorsione mediana -0.02%)
+  p69  gp       ibride        mediana  1.27%  p95   4.52%  max  20.33%  (distorsione mediana -0.13%)
+  p69  gp       sola_batteria mediana  0.99%  p95   4.17%  max   7.71%  (distorsione mediana +0.13%)

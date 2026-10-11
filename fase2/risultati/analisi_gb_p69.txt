@@ -1,0 +1,31 @@
+famiglia gb, insieme p69, costo con gp
+
+(1) importanza per permutazione: aumento relativo della perdita (Brier per il regime, errore quadratico medio altrimenti)
+  regime — gruppi: dinamica +30.43, lunghezza +1.90, tempo_limiti +1.12, fermate +0.31, bin_velocita +0.19, bin_pendenza +0.05, incrociate +0.02, pendenza -0.02, limiti_velocita -0.03
+           prime 10: din_E_trazione_ar_kWh +15.827, L_km +1.707, tempo_limiti_ar_s +0.905, din_durata_ar_s +0.884, n_fermate +0.124, bin_v_4 +0.094, cross_stops_v_seg +0.041, bin_p_4 +0.039, stops_spacing_std +0.038, din_E_frenatura_ar_kWh +0.025
+  m_ibride — gruppi: dinamica +12.60, bin_velocita +0.81, lunghezza +0.67, limiti_velocita +0.49, pendenza +0.37, fermate +0.31, incrociate +0.28, bin_pendenza +0.22, tempo_limiti +0.05
+             prime 10: din_E_trazione_ar_kWh +13.199, L_km +0.717, stops_sum_v2 +0.282, vlim_mean +0.193, slope_int_pos +0.145, bin_v_2 +0.091, dislivello_m +0.077, cross_brake_energy_signed +0.077, bin_v_1 +0.067, vlim_min +0.056
+  n_ibride — gruppi: dinamica +28.72, fermate +0.55, lunghezza +0.11, limiti_velocita +0.10, pendenza +0.06, bin_pendenza +0.05, tempo_limiti +0.03, bin_velocita +0.01, incrociate -0.00
+             prime 10: din_E_trazione_ar_kWh +7.890, din_E_frenatura_ar_kWh +6.433, stops_sum_v2 +0.221, din_durata_ar_s +0.195, L_km +0.159, n_fermate +0.104, slope_int_pos +0.030, stops_std_v +0.028, tempo_limiti_ar_s +0.023, bin_p_2 +0.018
+  n_sola_batteria — gruppi: dinamica +1.81, lunghezza +0.91, pendenza +0.39, tempo_limiti +0.21, bin_velocita +0.14, limiti_velocita +0.11, fermate +0.07, incrociate +0.06, bin_pendenza +0.03
+                    prime 10: din_durata_ar_s +1.649, L_km +0.928, slope_rms +0.321, tempo_limiti_ar_s +0.192, din_E_frenatura_ar_kWh +0.169, din_E_trazione_ar_kWh +0.066, vlim_sum_abs_dv2 +0.060, stops_density +0.040, bin_v_4 +0.040, stops_std_v +0.025
+  costo — gruppi: dinamica +1552.67, lunghezza +447.80, fermate +75.86, tempo_limiti +66.37, limiti_velocita +6.97, pendenza +1.60, incrociate +0.39, bin_pendenza +0.10, bin_velocita +0.08
+          prime 10: din_E_trazione_ar_kWh +1698.742, L_km +443.605, din_E_frenatura_ar_kWh +145.882, tempo_limiti_ar_s +68.285, din_durata_ar_s +65.388, stops_density +46.829, n_fermate +11.221, vlim_mean +6.424, slope_int_neg +0.999, dislivello_m +0.817
+
+(2) curva di apprendimento (ripetizione 1, stessi fold di prova)
+  training  256: err. regime  3.0%, non fattibili  58.8%, rimpianto mediana 0.915% p95 13.18%, costo diretto mediana 1.64% p95 6.13%
+  training  512: err. regime  2.0%, non fattibili  57.6%, rimpianto mediana 0.777% p95 8.90%, costo diretto mediana 1.27% p95 5.38%
+  training  768: err. regime  1.4%, non fattibili  56.3%, rimpianto mediana 0.715% p95 7.06%, costo diretto mediana 1.13% p95 4.40%
+  training  819: err. regime  1.2%, non fattibili  55.4%, rimpianto mediana 0.684% p95 6.65%, costo diretto mediana 1.13% p95 4.28%
+
+(3) errori per categoria dell'ottimo vero (gb, p69, 5 ripetizioni)
+  limite di massa (≥ 99,9% di 29 250 kg)                                              419 tratte | err. regime   0.0% | non fatt.  75.0% (SOC  50.5, massa  45.4) | rimpianto med 3.093% p95 8.55%
+  limite di SOC (SOC* < 0,2005)                                                       648 tratte | err. regime   1.1% | non fatt.  64.8% (SOC  44.8, massa  35.9) | rimpianto med 1.644% p95 8.36%
+  sotto entrambi i limiti                                                             380 tratte | err. regime   0.0% | non fatt.  75.6% (SOC  50.1, massa  47.4) | rimpianto med 2.960% p95 8.25%
+  lontano da entrambi i limiti                                                        337 tratte | err. regime   2.4% | non fatt.  33.0% (SOC  30.2, massa   4.2) | rimpianto med 0.487% p95 4.03%
+  vicino a D20 (|m* − 0,1195| < 0,01)                                                  17 tratte | err. regime   0.0% | non fatt.  84.7% (SOC  40.0, massa  61.2) | rimpianto med 4.958% p95 23.70%
+  vicino a m_min (0,03 < m* < 0,04)                                                    63 tratte | err. regime   9.5% | non fatt.  44.4% (SOC  35.6, massa  11.4) | rimpianto med 2.552% p95 9.22%
+  vicino a un salto dei viaggi al giorno (|frazione(36000/durata) − 0,5| < 0,05)      115 tratte | err. regime   0.9% | non fatt.  55.8% (SOC  38.4, massa  28.3) | rimpianto med 0.582% p95 6.18%
+  ibride                                                                              630 tratte | err. regime   1.0% | non fatt.  70.2% (SOC  47.7, massa  40.3) | rimpianto med 2.719% p95 8.65%
+  sola batteria                                                                       394 tratte | err. regime   2.4% | non fatt.  29.4% (SOC  28.7, massa   0.8) | rimpianto med 0.423% p95 1.49%
+  tutte                                                                              1024 tratte | err. regime   1.5% | non fatt.  54.5% (SOC  40.4, massa  25.1) | rimpianto med 0.743% p95 7.45%
