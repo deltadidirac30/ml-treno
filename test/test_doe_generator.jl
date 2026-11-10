@@ -65,8 +65,8 @@ end
         @test config.L_min <= row.L_km <= config.L_max
         @test abs(row.slope_mean * row.L_km) <=
               config.elevation_abs_max_m + 1e-8
-        @test abs(row.slope_mean) + 3 * row.slope_std <=
-              config.slope_abs_limit + 1e-8
+        @test row.slope_mean^2 + row.slope_std^2 <=
+              config.slope_abs_limit^2
         if row.is_flat
             @test row.slope_segment_length_mean_km == 0
         else
@@ -96,8 +96,8 @@ end
         @test config.L_min <= row.L_km <= config.L_max
         @test abs(row.slope_mean * row.L_km) <=
               config.elevation_abs_max_m + 1e-8
-        @test abs(row.slope_mean) + 3 * row.slope_std <=
-              config.slope_abs_limit + 1e-8
+        @test row.slope_mean^2 + row.slope_std^2 <=
+              config.slope_abs_limit^2
         @test row.n_stops <=
               floor(Int, row.L_km / config.stop_min_spacing_km) - 1
         @test row.n_vlim_segments <=
@@ -152,10 +152,11 @@ end
                   config.slope_segment_min_km - 1e-8
             @test length(segment_lengths_km) >= 2
             @test !all(==(segment_lengths_km[1]), segment_lengths_km)
-            @test isapprox(
-                mean(segment_lengths_km),
-                row.slope_segment_length_mean_km;
-                rtol=0.15,
+            @test length(segment_lengths_km) == slope_segment_count(
+                round(Int, row.L_km * 1000),
+                row.slope_segment_length_mean_km,
+                row.slope_std;
+                config,
             )
         end
 
@@ -175,5 +176,53 @@ end
         @test maximum(s[3] for s in segments) == row.v_max_kmh
         @test all(segments[i][3] != segments[i+1][3]
                   for i in 1:length(segments)-1)
+        @test all(s -> s[3] >= config.speed_min_kmh &&
+                       mod(s[3], config.speed_step_kmh) == 0, segments)
+        vmean = sum((s[2] - s[1]) * s[3] for s in segments) / row.L_km
+        @test abs(vmean - (row.v_max_kmh - row.speed_restriction_index *
+                  (row.v_max_kmh - config.speed_min_kmh))) <=
+              config.speed_mean_tolerance_kmh + 1e-9
+
+        gaps = diff(stops_with_ends)
+        if row.n_stops >= 2 && row.stop_spacing_cv > 0
+            @test isapprox(std(gaps) / mean(gaps), row.stop_spacing_cv;
+                           rtol=1e-6)
+        end
+    end
+end
+
+@testset "Extreme routes of the extended DoE" begin
+    config = DOEConfig()
+    base = (route_id=1, profile_seed=UInt32(12345), is_flat=false,
+            no_stops=false, constant_speed=false, L_km=60.0,
+            slope_mean=0.0, slope_std=8.0,
+            slope_segment_length_mean_km=1.5, stop_spacing_cv=0.4,
+            n_stops=10, v_max_kmh=130.0, speed_restriction_index=0.3,
+            n_vlim_segments=6)
+    cases = [
+        merge(base, (L_km=5.0, n_stops=2, stop_spacing_cv=0.5,
+                     n_vlim_segments=2, slope_segment_length_mean_km=3.5,
+                     v_max_kmh=160.0, speed_restriction_index=1.0)),
+        merge(base, (L_km=300.0, n_stops=150, stop_spacing_cv=1.0,
+                     n_vlim_segments=76, slope_mean=20.0, slope_std=20.0,
+                     v_max_kmh=60.0, speed_restriction_index=1.0)),
+        merge(base, (L_km=120.0, slope_mean=-20.0, slope_std=20.0,
+                     slope_segment_length_mean_km=0.5, n_stops=60,
+                     v_max_kmh=155.0, speed_restriction_index=0.95,
+                     n_vlim_segments=2)),
+    ]
+    for row in cases, seed in UInt32[1, 77, 4242]
+        r = merge(row, (profile_seed=seed,))
+        profile = generate_route(r; config)
+        @test maximum(abs, profile.p) <= config.slope_abs_limit + 1e-9
+        @test isapprox(mean(profile.p), r.slope_mean; atol=1e-9)
+        @test isapprox(std(profile.p), r.slope_std; rtol=1e-9)
+        stops = vcat(0.0, profile.stops, r.L_km)
+        @test minimum(diff(stops)) >= config.stop_min_spacing_km - 1e-8
+        seg = profile.vlim_segments
+        @test all(s -> s[2] - s[1] >= config.speed_min_segment_km - 1e-8, seg)
+        vmean = sum((s[2] - s[1]) * s[3] for s in seg) / r.L_km
+        @test abs(vmean - (r.v_max_kmh - r.speed_restriction_index *
+                  (r.v_max_kmh - config.speed_min_kmh))) <= 5 + 1e-9
     end
 end

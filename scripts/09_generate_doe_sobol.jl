@@ -34,13 +34,14 @@ function _write_metadata(
         println(io, "- Ultimo `route_id`: `$last_index`")
         println(io, "- Numero di tratte: `$n`")
         println(io, "- Profili completi generati: `$profiles_generated`")
-        println(io, "- Generatore pendenza: a tratti costanti, versione 2")
-        println(
-            io,
-            "- Quarto fattore: `slope_segment_length_mean_km`",
-        )
-        println(io, "- Lunghezza minima segmento di pendenza: `0.5 km`")
-        println(io, "- Limite dislivello netto geometrico: `±7000 m`")
+        println(io, "- Generatore: limiti del 10/11/2026 (DOEConfig), tratte con build_doe_route del preconfiguratore MATLAB (doe-matlab-v3)")
+        c = DOEConfig()
+        println(io, "- Lunghezza: `$(c.L_min)–$(c.L_max) km`")
+        println(io, "- Pendenza media: `±$(c.slope_mean_abs_max) ‰`, deviazione standard `0–$(c.slope_std_max) ‰`, |pendenza| ≤ `$(c.slope_abs_limit) ‰`")
+        println(io, "- Lunghezza media dei segmenti di pendenza: `$(c.slope_segment_mean_min_km)–$(c.slope_segment_mean_max_km) km` (log-uniforme), minimo `$(c.slope_segment_min_km) km`")
+        println(io, "- Fermate: `0–$(c.stop_density_max)` per km, CV `0–$(c.stop_spacing_cv_max)`, distanza minima `$(c.stop_min_spacing_km) km`")
+        println(io, "- Velocità massima: `$(first(c.speed_classes))–$(last(c.speed_classes)) km/h` a passi di `$(c.speed_step_kmh)`; limiti da `$(c.speed_min_kmh) km/h`")
+        println(io, "- Indice di restrizione: `0–$(c.speed_restriction_max)` rispetto a `$(c.speed_min_kmh) km/h`; cambi di limite `0–$(c.speed_change_density_max)` per km; tratto minimo `$(c.speed_min_segment_km) km`")
         println(io)
         println(
             io,

@@ -8,32 +8,42 @@ export DOEConfig
 export latin_hypercube, sample_doe
 export sobol_sequence, scrambled_sobol, sample_doe_sobol
 export generate_slope, generate_stops, generate_vlim, generate_route
-export estimate_correlation_length, profile_metrics
+export estimate_correlation_length, profile_metrics, slope_segment_count
 
+# Limiti del DoE (10/11/2026), allargati per coprire le 166 linee non
+# elettrificate della rete. Gli stessi vincoli sono nel generatore MATLAB
+# (funzioni_preconfiguratore/doe_generator_settings.m del preconfiguratore).
 Base.@kwdef struct DOEConfig
-    L_min::Float64 = 15.0
-    L_max::Float64 = 200.0
+    L_min::Float64 = 5.0
+    L_max::Float64 = 300.0
 
-    slope_mean_abs_max::Float64 = 10.0
-    slope_std_max::Float64 = 8.0
+    slope_mean_abs_max::Float64 = 20.0
+    slope_std_max::Float64 = 20.0
     slope_segment_mean_min_km::Float64 = 0.5
     slope_segment_mean_max_km::Float64 = 3.5
     slope_segment_min_km::Float64 = 0.5
     slope_segment_length_cv::Float64 = 0.60
-    slope_abs_limit::Float64 = 35.0
-    elevation_abs_max_m::Float64 = 7_000.0
+    slope_abs_limit::Float64 = 40.0
+    elevation_abs_max_m::Float64 = 12_000.0
+    # profili oltre ±slope_abs_limit compressi con limit*tanh(p/limit) e
+    # riportati a media e deviazione richieste (al massimo tante iterazioni)
+    slope_squash_iterations::Int = 100
 
-    stop_density_max::Float64 = 0.32
-    stop_spacing_cv_max::Float64 = 0.70
-    stop_min_spacing_km::Float64 = 1.5
+    stop_density_max::Float64 = 0.5
+    stop_spacing_cv_max::Float64 = 1.5
+    stop_min_spacing_km::Float64 = 0.2
 
-    speed_classes::Vector{Float64} =
-        Float64[80, 90, 100, 110, 120, 130, 140, 150, 160]
-    speed_min_kmh::Float64 = 60.0
-    speed_restriction_max::Float64 = 0.60
-    speed_change_density_max::Float64 = 0.15
-    speed_min_segment_km::Float64 = 2.0
+    # fino a 160 km/h: velocità massima del treno simulato (Hitachi Blues)
+    speed_classes::Vector{Float64} = collect(60.0:5.0:160.0)
+    # limite più basso dei tratti e riferimento dell'indice di restrizione:
+    # velocità media obiettivo = v_max - indice*(v_max - speed_min_kmh)
+    speed_min_kmh::Float64 = 30.0
+    speed_step_kmh::Float64 = 5.0
+    speed_restriction_max::Float64 = 1.0
+    speed_change_density_max::Float64 = 0.25
+    speed_min_segment_km::Float64 = 0.05
     speed_segment_cv::Float64 = 0.40
+    speed_mean_tolerance_kmh::Float64 = 5.0
 
     flat_fraction::Float64 = 0.10
     no_stops_fraction::Float64 = 0.10
@@ -245,6 +255,73 @@ function _log_lerp(lo::Real, hi::Real, u::Real)
     return exp(_lerp(log(lo), log(hi), u))
 end
 
+# Quantile della normale standard (Acklam, errore relativo < 1.2e-9): basta
+# per la forma delle distanze tra fermate, senza dipendenze in più.
+function _norminv(p::Float64)
+    0.0 < p < 1.0 || throw(ArgumentError("p must be in (0, 1)"))
+    a = (-3.969683028665376e+01, 2.209460984245205e+02, -2.759285104469687e+02,
+         1.383577518672690e+02, -3.066479806614716e+01, 2.506628277459239e+00)
+    b = (-5.447609879822406e+01, 1.615858368580409e+02, -1.556989798598866e+02,
+         6.680131188771972e+01, -1.328068155288572e+01)
+    c = (-7.784894002430293e-03, -3.223964580411365e-01, -2.400758277161838e+00,
+         -2.549732539343734e+00, 4.374664141464968e+00, 2.938163982698783e+00)
+    d = (7.784695709041462e-03, 3.224671290700398e-01, 2.445134137142996e+00,
+         3.754408661907416e+00)
+    plow = 0.02425
+    if p < plow
+        q = sqrt(-2 * log(p))
+        return (((((c[1]*q + c[2])*q + c[3])*q + c[4])*q + c[5])*q + c[6]) /
+               ((((d[1]*q + d[2])*q + d[3])*q + d[4])*q + 1)
+    elseif p > 1 - plow
+        q = sqrt(-2 * log(1 - p))
+        return -(((((c[1]*q + c[2])*q + c[3])*q + c[4])*q + c[5])*q + c[6]) /
+                ((((d[1]*q + d[2])*q + d[3])*q + d[4])*q + 1)
+    end
+    q = p - 0.5
+    r = q * q
+    return (((((a[1]*r + a[2])*r + a[3])*r + a[4])*r + a[5])*r + a[6]) * q /
+           (((((b[1]*r + b[2])*r + b[3])*r + b[4])*r + b[5])*r + 1)
+end
+
+# Forma delle distanze tra fermate (non mescolata): quantili di una
+# lognormale di parametro σ, a media 0 e deviazione 1. Asimmetrica (pochi
+# intervalli lunghi, molti brevi), così CV alti restano compatibili con la
+# distanza minima. Uguale a standardized_lognormal del MATLAB.
+function _lognormal_shape(n::Int, σ::Float64)
+    (n < 2 || σ <= 0) && return zeros(Float64, n)
+    q = [exp(σ * _norminv((i - 0.5) / n)) for i in 1:n]
+    z = q .- mean(q)
+    return z ./ std(z)
+end
+
+_negative_extent(n::Int, σ::Float64) = max(0.0, -minimum(_lognormal_shape(n, σ)))
+
+# Parametro della forma: quello della lognormale con CV = cv; se così la
+# distanza minima non è rispettata (cv * estensione negativa > room), forma
+# più asimmetrica fino a σ = 8 (oltre, il CV viene ridotto). Come
+# lognormal_sigma del MATLAB.
+function _lognormal_sigma(n::Int, cv::Float64, room::Float64)
+    (n < 2 || cv <= 0) && return 0.0
+    σ = sqrt(log1p(cv^2))
+    cv * _negative_extent(n, σ) <= room && return σ
+    lo, hi = σ, 8.0
+    cv * _negative_extent(n, hi) > room && return hi
+    for _ in 1:60
+        mid = (lo + hi) / 2
+        cv * _negative_extent(n, mid) <= room ? (hi = mid) : (lo = mid)
+    end
+    return hi
+end
+
+# CV massimo delle distanze tra fermate compatibile con la distanza minima,
+# per k intervalli di lunghezza media mean_gap: con la forma più asimmetrica
+# (σ = 8) e un margine rispetto al generatore (0,998 contro 0,999).
+function _feasible_stop_cv(k::Int, mean_gap::Float64, config::DOEConfig)
+    room = 0.998 * max(0.0, 1.0 - config.stop_min_spacing_km / mean_gap)
+    return min(config.stop_spacing_cv_max,
+               room / max(_negative_extent(k, 8.0), 1e-12))
+end
+
 function _special_rows(rng::AbstractRNG, n::Int, fraction::Float64)
     count = clamp(round(Int, fraction * n), 0, n)
     count == 0 && return Set{Int}()
@@ -283,10 +360,13 @@ function _rows_from_unit_design(
             slope_segment_mean = 0.0
         else
             slope_std = _lerp(0.0, config.slope_std_max, design[i, 3])
+            # il generatore comprime i profili entro ±slope_abs_limit
+            # mantenendo media e deviazione: serve mean² + std² < limit²
+            # (con margine; nei limiti attuali non è mai attivo)
             mean_cap = min(
                 config.slope_mean_abs_max,
                 config.elevation_abs_max_m / L,
-                max(0.0, config.slope_abs_limit - 3.0 * slope_std),
+                sqrt(max(0.0, (0.95 * config.slope_abs_limit)^2 - slope_std^2)),
             )
             slope_mean = _lerp(-mean_cap, mean_cap, design[i, 2])
             segment_mean_hi = min(config.slope_segment_mean_max_km, L)
@@ -309,11 +389,11 @@ function _rows_from_unit_design(
         if n_stops <= 1
             stop_cv = 0.0
         else
-            mean_gap = L / (n_stops + 1)
-            feasible_cv = 0.95 *
-                max(0.0, 1.0 - config.stop_min_spacing_km / mean_gap) /
-                sqrt(2.0)
-            cv_hi = min(config.stop_spacing_cv_max, feasible_cv)
+            cv_hi = _feasible_stop_cv(
+                n_stops + 1,
+                L / (n_stops + 1),
+                config,
+            )
             stop_cv = _lerp(0.0, cv_hi, design[i, 6])
         end
 
@@ -341,7 +421,7 @@ function _rows_from_unit_design(
             n_speed_segments = clamp(n_speed_segments, 2, max_segments)
 
             minimum_restriction =
-                10.0 * config.speed_min_segment_km *
+                config.speed_step_kmh * config.speed_min_segment_km *
                 floor(Int, n_speed_segments / 2) /
                 (L * (v_max - config.speed_min_kmh))
             restriction_lo =
@@ -498,7 +578,7 @@ function generate_slope(row; config::DOEConfig=DOEConfig())::Vector{Float64}
     segment_lengths_m = _random_slope_segment_lengths_m(
         length_rng,
         L_m,
-        target_segment_mean;
+        slope_segment_count(L_m, target_segment_mean, σ; config);
         config,
     )
     n_segments = length(segment_lengths_m)
@@ -508,6 +588,13 @@ function generate_slope(row; config::DOEConfig=DOEConfig())::Vector{Float64}
     end
 
     for attempt in 0:31
+        if attempt > 0 && attempt % 4 == 0
+            # few segments (short routes) with a high std may make the
+            # bounds unreachable: draw new segment lengths every 4 attempts
+            segment_lengths_m = _random_slope_segment_lengths_m(
+                length_rng, L_m, n_segments; config,
+            )
+        end
         rng = _component_rng(
             UInt32(row.profile_seed),
             xor(0x51a7e201, UInt32(attempt)),
@@ -542,6 +629,8 @@ function generate_slope(row; config::DOEConfig=DOEConfig())::Vector{Float64}
         z ./= z_std
 
         p = μ .+ σ .* z
+        p = _squash_to_limit(p, μ, σ, config.slope_abs_limit,
+            config.slope_squash_iterations)
         bounded =
             minimum(p) >= -config.slope_abs_limit - 1e-9 &&
             maximum(p) <= config.slope_abs_limit + 1e-9
@@ -551,31 +640,67 @@ function generate_slope(row; config::DOEConfig=DOEConfig())::Vector{Float64}
     error("Unable to generate a bounded slope profile for route $(row.route_id)")
 end
 
+"""
+    slope_segment_count(L_m, target_mean_km, σ; config=DOEConfig())
+
+Number of constant-slope segments (same rule as doe_slope_segment_count.m):
+round(L / mean length) within 1 and floor(L / minimum length), at least two
+when σ > 0 and the route can hold them (short routes, from 5 km), and never a
+partition made only of minimum-length segments.
+"""
+function slope_segment_count(
+    L_m::Int,
+    target_mean_km::Float64,
+    σ::Float64;
+    config::DOEConfig=DOEConfig(),
+)::Int
+    minimum_m = round(Int, 1000.0 * config.slope_segment_min_km)
+    maximum_segments = max(1, fld(L_m, minimum_m))
+    n_segments = clamp(
+        round(Int, L_m / (1000.0 * target_mean_km)),
+        1,
+        maximum_segments,
+    )
+    if σ > 1e-12 && n_segments < 2 && maximum_segments >= 2
+        n_segments = 2
+    end
+    # If the route would be partitioned into identical minimum-length
+    # segments, use one segment less so that spatial variability remains
+    # possible without violating the lower bound.
+    if n_segments > 1 && L_m == n_segments * minimum_m
+        n_segments -= 1
+    end
+    return n_segments
+end
+
+# Compress values beyond ±limit with limit*tanh(p/limit) and restore the
+# requested mean and standard deviation, until the whole profile is within
+# the limit (same as squash_to_limit in generate_doe_slope.m). Monotone:
+# different segments stay different.
+function _squash_to_limit(p::Vector{Float64}, μ::Float64, σ::Float64,
+                          limit::Float64, max_iterations::Int)
+    x = p
+    for _ in 1:max_iterations
+        maximum(abs, x) <= limit && return x
+        y = limit .* tanh.(x ./ limit)
+        y .-= mean(y)
+        s = std(y)
+        s <= 1e-12 && return x
+        x = μ .+ σ .* y ./ s
+    end
+    return x
+end
+
 function _random_slope_segment_lengths_m(
     rng::AbstractRNG,
     L_m::Int,
-    target_mean_km::Float64;
+    n_segments::Int;
     config::DOEConfig,
 )::Vector{Int}
     minimum_m = round(Int, 1000.0 * config.slope_segment_min_km)
     minimum_m > 0 || throw(ArgumentError("minimum segment length must be positive"))
     L_m >= minimum_m ||
         throw(ArgumentError("route is shorter than the minimum slope segment"))
-
-    maximum_segments = max(1, fld(L_m, minimum_m))
-    target_mean_m = 1000.0 * target_mean_km
-    n_segments = clamp(
-        round(Int, L_m / target_mean_m),
-        1,
-        maximum_segments,
-    )
-
-    # If the route would be partitioned into identical minimum-length
-    # segments, use one segment less so that spatial variability remains
-    # possible without violating the 500 m lower bound.
-    if n_segments > 1 && L_m == n_segments * minimum_m
-        n_segments -= 1
-    end
 
     remaining_m = L_m - n_segments * minimum_m
     remaining_m == 0 && return fill(minimum_m, n_segments)
@@ -632,9 +757,11 @@ function generate_stops(row; config::DOEConfig=DOEConfig())::Vector{Float64}
     k = n_stops + 1
     mean_gap = row.L_km / k
     rng = _component_rng(UInt32(row.profile_seed), 0x570f5001)
-    z = _standardized_cosine(rng, k)
-
     target_cv = Float64(row.stop_spacing_cv)
+    room = 0.999 * (1.0 - config.stop_min_spacing_km / mean_gap)
+    z = _lognormal_shape(k, _lognormal_sigma(k, target_cv, room))
+    target_cv > 0 && shuffle!(rng, z)
+
     if target_cv > 0
         negative_extent = max(0.0, -minimum(z))
         feasible_cv = negative_extent == 0 ? target_cv :
@@ -736,6 +863,31 @@ function _speed_sequence(
     return best
 end
 
+# If the length-weighted mean stays more than `tolerance` from the target
+# (high restriction with few segments), shorten by the same factor the
+# segments on the wrong side of the target and lengthen the others, never
+# below `minimum_km` (same as adjust_lengths_for_mean in the MATLAB).
+function _adjust_lengths_for_mean(lengths::Vector{Float64},
+        speeds::Vector{Float64}, target::Float64, minimum_km::Float64,
+        tolerance::Float64)
+    total = sum(lengths)
+    current = sum(lengths .* speeds) / total
+    abs(current - target) <= tolerance && return lengths
+    side = current > target ? speeds .> target : speeds .< target
+    (all(side) || !any(side)) && return lengths
+    l_side = sum(lengths[side]); l_other = sum(lengths[.!side])
+    s_side = sum(lengths[side] .* speeds[side])
+    s_other = sum(lengths[.!side] .* speeds[.!side])
+    mean_at_1 = (s_side + s_other) / total
+    mean_at_0 = s_other * (1 + l_side / l_other) / total
+    a = (target - mean_at_0) / (mean_at_1 - mean_at_0)
+    a = min(1.0, max(a, minimum_km / minimum(lengths[side])))
+    out = copy(lengths)
+    out[side] .*= a
+    out[.!side] .*= 1 + (1 - a) * l_side / l_other
+    return out
+end
+
 """
     generate_vlim(row; config=DOEConfig())
 
@@ -766,13 +918,15 @@ function generate_vlim(row; config::DOEConfig=DOEConfig())
     minimum(lengths) >= config.speed_min_segment_km - 1e-8 ||
         error("Minimum speed-segment length violated for route $(row.route_id)")
 
-    classes = collect(config.speed_min_kmh:10.0:vmax)
+    classes = collect(config.speed_min_kmh:config.speed_step_kmh:vmax)
     last(classes) == vmax || push!(classes, vmax)
     sort!(unique!(classes))
 
     target_mean = vmax -
         row.speed_restriction_index * (vmax - config.speed_min_kmh)
     speeds = _speed_sequence(rng, lengths, classes, target_mean)
+    lengths = _adjust_lengths_for_mean(lengths, speeds, target_mean,
+        config.speed_min_segment_km, config.speed_mean_tolerance_kmh)
 
     segments = Tuple{Float64,Float64,Float64}[]
     start_km = 0.0

@@ -1,3 +1,5 @@
+> **Nota (10/11/2026).** Questo documento descrive il DoE precedente (1024 tratte, seed 20260723), usato nelle fasi 1–3. I limiti attuali del generatore (`src/doe_generator.jl`) sono cambiati: vedi `METODOLOGIA_DOE.md` nella cartella `tratte/tratte_doe` del preconfiguratore MATLAB.
+
 # Generazione del DoE di tratte ferroviarie fittizie
 
 ## Obiettivo
