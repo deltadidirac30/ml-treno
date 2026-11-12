@@ -9,10 +9,15 @@ export latin_hypercube, sample_doe
 export sobol_sequence, scrambled_sobol, sample_doe_sobol
 export generate_slope, generate_stops, generate_vlim, generate_route
 export estimate_correlation_length, profile_metrics, slope_segment_count
+export max_stops, round_trip_features, estimate_round_trip_h
 
 # Limiti del DoE (10/11/2026), allargati per coprire le 166 linee non
 # elettrificate della rete. Gli stessi vincoli sono nel generatore MATLAB
 # (funzioni_preconfiguratore/doe_generator_settings.m del preconfiguratore).
+# Revisione D27 (11/11/2026), sulle linee reali (tratte_rete/riepilogo.csv):
+# indice di restrizione 0-0,6; al più 30 fermate di sola andata, capolinea
+# compresi, e al più 0,6 fermate per km capolinea compresi; andata e ritorno
+# entro 12 h (stima della durata calibrata sulla dinamica, L accorciata).
 Base.@kwdef struct DOEConfig
     L_min::Float64 = 5.0
     L_max::Float64 = 300.0
@@ -29,7 +34,11 @@ Base.@kwdef struct DOEConfig
     # riportati a media e deviazione richieste (al massimo tante iterazioni)
     slope_squash_iterations::Int = 100
 
-    stop_density_max::Float64 = 0.5
+    # fermate di sola andata, capolinea compresi: al più stop_count_max e al
+    # più stop_density_max per km (n_stops + 2 <= floor(stop_density_max*L));
+    # n_stops = round(u_5 * max_stops(L)), uniforme tra 0 e il massimo
+    stop_count_max::Int = 30
+    stop_density_max::Float64 = 0.6
     stop_spacing_cv_max::Float64 = 1.5
     stop_min_spacing_km::Float64 = 0.2
 
@@ -39,7 +48,7 @@ Base.@kwdef struct DOEConfig
     # velocità media obiettivo = v_max - indice*(v_max - speed_min_kmh)
     speed_min_kmh::Float64 = 30.0
     speed_step_kmh::Float64 = 5.0
-    speed_restriction_max::Float64 = 1.0
+    speed_restriction_max::Float64 = 0.6
     speed_change_density_max::Float64 = 0.25
     speed_min_segment_km::Float64 = 0.05
     speed_segment_cv::Float64 = 0.40
@@ -48,6 +57,26 @@ Base.@kwdef struct DOEConfig
     flat_fraction::Float64 = 0.10
     no_stops_fraction::Float64 = 0.10
     constant_speed_fraction::Float64 = 0.10
+
+    # durata dell'andata e ritorno simulata: al più round_trip_max_h, altrimenti
+    # L si accorcia (velocità e fermate restano distribuite come sono). Stima
+    # (estimate_round_trip_h): soste di dwell_s, capolinea di terminus_s, tempo
+    # ai limiti per duration_alpha e kappa secondi per m/s di velocità a ogni
+    # partenza e arrivo; tutto per (1 + duration_margin). Coefficienti calibrati
+    # sulla dinamica del preconfiguratore (D26, D27, treno di 255 t).
+    # Calibrazione (11/11/2026, report_natanti/D27.md del repo train-powertrain):
+    # 512 tratte esportate dal MATLAB (le 384 più lunghe e 128 a caso), dinamica
+    # con D26 e D27 a 255 t, minimi quadrati: alpha 0,99567, kappa 1,1303. Il
+    # profilo dei limiti di Julia non è quello di build_doe_route (stesso
+    # algoritmo, estrazioni diverse): vera/stimata fino a 1,114 sopra le 9 h,
+    # da cui il margine del 12% (scelta dell'utente: circa il 3% delle tratte
+    # accorciate invece dell'1,4% strettamente necessario).
+    round_trip_max_h::Float64 = 12.0
+    dwell_s::Float64 = 120.0
+    terminus_s::Float64 = 300.0
+    duration_alpha::Float64 = 0.9957
+    duration_kappa_s_per_ms::Float64 = 1.130
+    duration_margin::Float64 = 0.12
 end
 
 """
@@ -322,6 +351,50 @@ function _feasible_stop_cv(k::Int, mean_gap::Float64, config::DOEConfig)
                room / max(_negative_extent(k, 8.0), 1e-12))
 end
 
+"""
+    max_stops(L, config)
+
+Fermate intermedie massime per una linea di `L` km: al più `stop_count_max`
+fermate di sola andata e `stop_density_max` per km, capolinea compresi, e la
+distanza minima `stop_min_spacing_km`.
+"""
+max_stops(L::Real, config::DOEConfig=DOEConfig()) = max(0, min(
+    config.stop_count_max - 2,
+    floor(Int, config.stop_density_max * L) - 2,
+    floor(Int, L / config.stop_min_spacing_km) - 1))
+
+"""
+    round_trip_features(row; config)
+
+Grandezze della stima della durata sul profilo generato (`generate_vlim`,
+`generate_stops`): tempo ai limiti di sola andata [s] e somma delle velocità
+limite [m/s] a ogni partenza e arrivo (origine, fermate due volte, capolinea).
+"""
+function round_trip_features(row; config::DOEConfig=DOEConfig())
+    segments = generate_vlim(row; config)
+    t_limits = sum((e - s) / v for (s, e, v) in segments) * 3600.0
+    v_at(x) = segments[clamp(searchsortedlast(first.(segments), x), 1, length(segments))][3] / 3.6
+    stops = generate_stops(row; config)
+    sum_v = v_at(0.0) + v_at(row.L_km - 1e-9) + 2.0 * sum(v_at.(stops); init=0.0)
+    return (t_limits_s=t_limits, sum_v_ms=sum_v)
+end
+
+"""
+    estimate_round_trip_h(row; config)
+
+Durata stimata dell'andata e ritorno simulata [h]: due volte il tempo ai limiti
+per `duration_alpha`, le soste intermedie (`dwell_s`, andata e ritorno), il
+capolinea (`terminus_s`), `duration_kappa_s_per_ms` secondi per m/s a ogni
+partenza e arrivo, il tutto per (1 + `duration_margin`).
+"""
+function estimate_round_trip_h(row; config::DOEConfig=DOEConfig())
+    f = round_trip_features(row; config)
+    T = 2.0 * config.duration_alpha * f.t_limits_s +
+        2.0 * config.dwell_s * row.n_stops + config.terminus_s +
+        2.0 * config.duration_kappa_s_per_ms * f.sum_v_ms
+    return T * (1.0 + config.duration_margin) / 3600.0
+end
+
 function _special_rows(rng::AbstractRNG, n::Int, fraction::Float64)
     count = clamp(round(Int, fraction * n), 0, n)
     count == 0 && return Set{Int}()
@@ -351,7 +424,32 @@ function _rows_from_unit_design(
     rows = NamedTuple[]
 
     for i in 1:n
-        L = _lerp(config.L_min, config.L_max, design[i, 1])
+        L_requested = _lerp(config.L_min, config.L_max, design[i, 1])
+        row = _row_from_unit(design, i, L_requested, route_ids, profile_seeds,
+            flat_flags, no_stop_flags, constant_speed_flags; config)
+        # andata e ritorno entro round_trip_max_h: si accorcia L con gli stessi
+        # fattori unitari (densità di fermate e cambi, indice, v_max invariati)
+        L = L_requested
+        T = estimate_round_trip_h(row; config)
+        iterations = 0
+        while T > config.round_trip_max_h && L > config.L_min
+            iterations += 1
+            iterations <= 100 || error("route $(route_ids[i]): L non converge")
+            L = max(config.L_min, L * min(0.995, config.round_trip_max_h / T))
+            row = _row_from_unit(design, i, L, route_ids, profile_seeds,
+                flat_flags, no_stop_flags, constant_speed_flags; config)
+            T = estimate_round_trip_h(row; config)
+        end
+        T <= config.round_trip_max_h ||
+            error("route $(route_ids[i]): durata stimata $(T) h anche a L minima")
+        push!(rows, merge(row, (L_km_requested=L_requested,
+            shortened=L < L_requested, round_trip_estimate_h=T)))
+    end
+    return rows
+end
+
+function _row_from_unit(design, i, L, route_ids, profile_seeds, flat_flags,
+        no_stop_flags, constant_speed_flags; config::DOEConfig)
 
         is_flat = flat_flags[i]
         if is_flat
@@ -378,12 +476,11 @@ function _rows_from_unit_design(
         end
 
         no_stops = no_stop_flags[i]
+        n_max = max_stops(L, config)
         stop_density_requested =
-            no_stops ? 0.0 :
-            _lerp(0.0, config.stop_density_max, design[i, 5])
-        n_stops = no_stops ? 0 : round(Int, stop_density_requested * L)
-        max_stops = max(0, floor(Int, L / config.stop_min_spacing_km) - 1)
-        n_stops = min(n_stops, max_stops)
+            no_stops || n_max == 0 ? 0.0 : design[i, 5] * n_max / L
+        n_stops = no_stops ? 0 :
+            min(round(Int, stop_density_requested * L), n_max)
         stop_density = n_stops / L
 
         if n_stops <= 1
@@ -435,7 +532,7 @@ function _rows_from_unit_design(
 
         speed_density = (n_speed_segments - 1) / L
 
-        push!(rows, (
+        return (
             route_id=route_ids[i],
             profile_seed=UInt32(profile_seeds[i]),
             is_flat=is_flat,
@@ -454,9 +551,7 @@ function _rows_from_unit_design(
             speed_change_density_requested=speed_density_requested,
             speed_change_density=speed_density,
             n_vlim_segments=n_speed_segments,
-        ))
-    end
-    return rows
+        )
 end
 
 """

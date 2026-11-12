@@ -100,6 +100,9 @@ end
               config.slope_abs_limit^2
         @test row.n_stops <=
               floor(Int, row.L_km / config.stop_min_spacing_km) - 1
+        @test row.n_stops <= max_stops(row.L_km, config)
+        @test row.speed_restriction_index <= config.speed_restriction_max
+        @test row.round_trip_estimate_h <= config.round_trip_max_h
         @test row.n_vlim_segments <=
               floor(Int, row.L_km / config.speed_min_segment_km)
         @test row.v_max_kmh in config.speed_classes
@@ -225,4 +228,39 @@ end
         @test abs(vmean - (r.v_max_kmh - r.speed_restriction_index *
                   (r.v_max_kmh - config.speed_min_kmh))) <= 5 + 1e-9
     end
+end
+
+@testset "Revisione dell'11/11/2026: fermate, indice, andata e ritorno entro 12 h" begin
+    config = DOEConfig()
+    # al più 30 fermate di sola andata e 0,6 per km, capolinea compresi; distanza minima 0,2 km
+    @test max_stops(5.0, config) == 1
+    @test max_stops(20.0, config) == 10
+    @test max_stops(50.0, config) == 28
+    @test max_stops(300.0, config) == 28
+    @test max_stops(4.9, DOEConfig(stop_density_max = 10.0)) == floor(Int, 4.9 / 0.2) - 1
+
+    rows = sample_doe_sobol(2048; seed=20261110, config)
+    @test all(r -> r.n_stops <= max_stops(r.L_km, config), rows)
+    @test all(r -> r.n_stops + 2 <= config.stop_count_max, rows)
+    @test all(r -> r.n_stops == 0 || r.n_stops + 2 <= floor(Int, config.stop_density_max * r.L_km), rows)
+    @test all(r -> r.speed_restriction_index <= config.speed_restriction_max, rows)
+    # durata stimata entro 12 h; le tratte accorciate hanno L più corta di quella campionata
+    @test all(r -> r.round_trip_estimate_h <= config.round_trip_max_h, rows)
+    @test all(r -> r.round_trip_estimate_h ≈ estimate_round_trip_h(r; config), rows)
+    @test all(r -> r.shortened == (r.L_km < r.L_km_requested), rows)
+    @test all(r -> r.shortened || r.L_km == r.L_km_requested, rows)
+    quota = count(r -> r.shortened, rows) / length(rows)
+    @test 0.01 <= quota <= 0.06
+    # fermate uniformi tra 0 e il massimo, non ammassate sul massimo
+    x = [r.n_stops / max_stops(r.L_km, config) for r in rows if !r.no_stops && max_stops(r.L_km, config) >= 20]
+    @test 0.45 <= sum(x) / length(x) <= 0.55
+    @test count(==(1.0), x) / length(x) < 0.1
+    # senza accorciamento (durata massima infinita) le righe non accorciate sono le stesse
+    libere = sample_doe_sobol(2048; seed=20261110, config=DOEConfig(round_trip_max_h=Inf))
+    @test all(rows[i].L_km == libere[i].L_km && rows[i].n_stops == libere[i].n_stops
+              for i in eachindex(rows) if !rows[i].shortened)
+    # stima: soste e capolinea entrano linearmente
+    r = rows[findfirst(r -> r.n_stops > 0, rows)]
+    @test estimate_round_trip_h(merge(r, (n_stops = r.n_stops,)); config=DOEConfig(duration_margin=0.0)) * 3600 >=
+          config.terminus_s + 2 * config.dwell_s * r.n_stops
 end

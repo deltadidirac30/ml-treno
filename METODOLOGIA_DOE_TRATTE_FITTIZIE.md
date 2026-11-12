@@ -1,4 +1,6 @@
 > **Nota (10/11/2026).** Questo documento descrive il DoE precedente (1024 tratte, seed 20260723), usato nelle fasi 1–3. I limiti attuali del generatore (`src/doe_generator.jl`) sono cambiati: vedi `METODOLOGIA_DOE.md` nella cartella `tratte/tratte_doe` del preconfiguratore MATLAB.
+>
+> **Nota (11/11/2026).** Limiti rivisti sulle linee reali: indice di restrizione 0–0,6; al più 30 fermate e 0,6 per km capolinea compresi, con n_stops uniforme tra 0 e il massimo per la lunghezza (`max_stops`); andata e ritorno entro 12 h, con una stima della durata calibrata sulla dinamica (`estimate_round_trip_h`, margine del 12%) e L accorciata quando serve (3,5% delle tratte). Dettagli e calibrazione in `METODOLOGIA_DOE.md` del preconfiguratore e in `report_natanti/D27.md` del repo train-powertrain.
 
 # Generazione del DoE di tratte ferroviarie fittizie
 
