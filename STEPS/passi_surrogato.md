@@ -1,0 +1,69 @@
+# Il surrogato, passo per passo
+
+Il surrogato è un modello che impara dagli esempi. Gli mostriamo milioni di casi già simulati (tratta, m, n → risultati del simulatore), e lui impara a indovinare i risultati di casi nuovi in una frazione di millisecondo invece che in decine di millisecondi.
+
+Dati: campagna P9_D28_16384, cioè 16384 tratte DoE × 288 coppie (m, n), andata e ritorno: 4,7 milioni di casi simulati sul PC Windows.
+
+## Passo 1: descrivere le tratte con dei numeri (gli ingressi)
+
+13/11/2026. Report: `fase5/REPORT_FASE5_INGRESSI.md`.
+
+- **Le tratte sono quelle della campagna.** Lo zip copiato dal PC è integro. Su tutte le 16384 tratte tornano l'impronta della pendenza, la lunghezza, le fermate, la velocità massima e il numero di limiti.
+- **Rivalutazione sul Mac.** 256 casi rifatti sul Mac con lo stesso percorso della campagna danno gli stessi esiti. Le grandezze continue differiscono al più di 3·10⁻¹² della loro scala: è la differenza di macchina tra PC e Mac (FMA). Tolleranza relativa accettata il 13/11.
+- **Gli ingressi.** Su ogni tratta ci sono le 66 caratteristiche della fase 1, con lo stesso codice: lunghezza, salite, limiti, fermate, durata minima teorica… Nessun valore mancante.
+- **Il DoE nuovo è molto più largo della fase 1:** pendenze fino a ±40‰, lunghezze da 5 a 300 km, limiti da 30 km/h.
+- **Dominio.** Le tratte reali (Calabria, Canavese, Firenze) sono tutte dentro il campo coperto dalle tratte DoE. Delle 166 linee della rete, 123 sono dentro e 43 escono di poco: al più 2 caratteristiche su 66, soprattutto pendenze massime e numero di fermate.
+- **Decisioni:**
+  - Sulmona–Carpinone resta in `tratte_reali` ma non si usa;
+  - `vlim_mean` (che è la media dei 10 `bin_v`) si tiene;
+  - `fc_non_erogata_kWh` è uno zero numerico e non serve al surrogato.
+
+## Passo 2: la tabella di addestramento
+
+13/11/2026. Report: `fase6/REPORT_FASE6_TABELLA.md`.
+
+- **Una riga per caso simulato:** 4 718 523 righe, cioè tutti i casi meno le 69 righe in errore del simulatore. Ogni riga ha le 66 caratteristiche della tratta, m e n, le grandezze da indovinare, l'esito e il costo veri.
+- **Divisione per tratta**, sui 16 gruppi Sobol da 1024 tratte:
+  - addestramento: 12 gruppi, 12 288 tratte;
+  - validazione: 2 gruppi, 2048 tratte;
+  - test: 2 gruppi, 2048 tratte, da guardare una sola volta alla fine.
+
+  Nessuna tratta sta in due gruppi, e i tre gruppi si somigliano in tutto (esiti, caratteristiche, grandezze).
+- **Tratte segnalate:** 2366, 14664 (righe in errore) e 13258 (oltre 12 h). Restano nella tabella, segnate da una colonna, per poterle escludere dopo.
+- **Regola D3 a posteriori**, idea del 13/11: il surrogato prevede tutto su ogni caso, e lo scarto si decide dopo con "C-rate di scarica > 20 → scartato". La regola ritrova il 99,56% degli scarti e non scarta mai un caso buono.
+- Il consumo di idrogeno manca nei casi scartati, quindi si impara solo sui casi completati.
+
+## Passo 3: primo modello su una sola grandezza (la durata del viaggio)
+
+13/11/2026. Report: `fase7/REPORT_FASE7_DURATA.md`.
+
+Il passo 3 è fatto: il boosting impara la durata del viaggio con un errore mediano dello 0,65% su 2048 tratte mai viste, contro il 4% del modello più semplice. In tutto sono serviti circa 11 minuti di calcolo.
+
+I risultati sulla validazione (589 824 casi):
+
+| modello | errore mediano | 95° percentile | caso peggiore |
+|---|---:|---:|---:|
+| A: costante × durata minima teorica | 4,1% | 17% | 30% |
+| B: lineare (durata minima, m, n) | 4,2% | 29% | 137% |
+| C: boosting, 2048 tratte di addestramento | 1,37% | 5,3% | 23% |
+| D: boosting, 12 288 tratte di addestramento | 0,65% | 2,8% | 21% |
+
+Cosa ci dicono i numeri:
+1. Il boosting aggiunge molto. Nel grafico "previsto contro vero" il modello semplice fa delle righe orizzontali, perché non vede che il treno pesa di più con m e n. Il boosting sta sulla diagonale.
+2. Il numero di tratte conta più delle impostazioni. Con 6 volte più tratte l'errore si dimezza. Cambiare profondità degli alberi e velocità di apprendimento sposta molto meno.
+3. Il modello sbaglia la tratta, non m e n. L'errore è piatto in m e in n e quasi costante dentro una tratta. Il modello impara bene l'effetto del peso del treno, ma stima male la durata di base di alcune tratte nuove.
+4. Le tratte corte sono le più difficili. Sotto i 25 km l'errore mediano è il 2%, con un massimo del 21%. Sopra i 200 km è lo 0,46%.
+5. C'è margine per migliorare. Il rumore numerico della durata vale lo 0,01%, quindi il modello è 65 volte sopra il minimo possibile. Sulle tratte che ha già visto sbaglia lo 0,13%, su quelle nuove lo 0,65%: il limite è generalizzare a tratte nuove.
+6. È veloce: circa 70 µs a caso su un thread, contro 25–50 ms di una simulazione, quindi circa 500 volte più veloce.
+
+Le importanze: il modello usa soprattutto la durata minima teorica (77%) e la lunghezza (15%), poi velocità media, fermate e dislivello.
+
+Il grafico dell'importanza era uscito con le etichette sull'asse sbagliato. L'ho ridisegnato dai dati salvati, senza rifare il calcolo. Ho anche rilanciato tutto una seconda volta: i numeri sono identici, perché il modello è deterministico con il seme.
+
+Per il confronto con quello che stai studiando:
+- la combinazione migliore ha alberi bassi (profondità 6) e passo piccolo (0,05), ed è sul bordo della griglia provata: valori ancora più piccoli potrebbero andare meglio;
+- l'arresto anticipato si è fermato a 3055 alberi, ma la curva era già quasi piatta da 1500.
+
+Prima di passare alle altre grandezze proporrei una piccola prova. Invece della durata in secondi, il modello impara il rapporto durata / durata minima teorica, che vale circa 1,06. Agli alberi resta da imparare solo una correzione, e tratte corte e lunghe pesano allo stesso modo. È il rimedio più probabile ai punti 3 e 4, e costa circa 10 minuti di calcolo.
+
+Figure e scheda sono in ml_treno/fase7 (REPORT_FASE7_DURATA.md, figure/). Ho fatto il commit locale (ace10fc): ml_treno ha 2 commit da pushare, quando me lo dici.
