@@ -1,0 +1,37 @@
+fase7/03_durata_rapporto.jl  2026-11-13T16:13:08.430  thread: 8  julia 1.12.5  EvoTrees 0.19.0
+rapporto r = durata / durata minima: addestramento da 1.0012 a 1.5013, mediana 1.0738; validazione da 1.0018 a 1.5159
+  dispersione di r: deviazione standard 0.0888 (relativa alla mediana 8.27%)
+
+[1] boosting su r, griglia sullo sviluppo (nbins 255, rowsample 0.8, colsample 0.8, L2 1.0, fino a 4000 alberi, arresto dopo 50)
+  prof 4 eta 0.05: 4000 alberi,  50.2 s | RMSE 141.4 s, MAE 90.5 s, errore % mediana 0.357 p95 2.073 max 9.77
+  prof 4 eta 0.10: 1166 alberi,  16.1 s | RMSE 152.0 s, MAE 97.9 s, errore % mediana 0.399 p95 2.178 max 8.54
+  prof 6 eta 0.05: 1105 alberi,  21.7 s | RMSE 147.5 s, MAE 90.0 s, errore % mediana 0.343 p95 2.211 max 11.05
+  prof 6 eta 0.10: 1466 alberi,  30.0 s | RMSE 155.7 s, MAE 94.8 s, errore % mediana 0.360 p95 2.251 max 9.36
+  prof 8 eta 0.05: 1022 alberi,  36.9 s | RMSE 173.9 s, MAE 100.9 s, errore % mediana 0.359 p95 2.536 max 9.25
+  prof 8 eta 0.10:  320 alberi,  13.6 s | RMSE 178.6 s, MAE 106.6 s, errore % mediana 0.405 p95 2.700 max 10.04
+  migliore (RMSE di r sulla validazione): profondità 4, eta 0.05 (4000 alberi)
+
+[2] E: boosting su r, configurazione migliore, tutto l'addestramento (12288 tratte)
+  3998 alberi, 391.0 s
+
+[3] validazione (2048 tratte mai viste, 589 824 casi)
+  A costante × durata minima             MAE  918.5 s  RMSE 1264.1 s  bias -283.2 s | errore %: mediana 4.124  p95 17.383  p99 23.810  max 29.90
+  D boosting sulla durata [s]            MAE  133.9 s  RMSE  181.0 s  bias   +2.7 s | errore %: mediana 0.651  p95 2.764  p99 4.893  max 21.00
+  E boosting sul rapporto r              MAE   56.5 s  RMSE   82.0 s  bias   +1.9 s | errore %: mediana 0.245  p95 1.283  p99 2.209  max 4.87
+  E sull'addestramento (campione)        MAE   34.3 s  RMSE   47.4 s  bias   -0.0 s | errore %: mediana 0.161  p95 0.579  p99 0.847  max 2.24   ← E sui dati che ha visto
+  errore % per fascia di lunghezza (D → E):
+    L   0– 25 km: mediana 2.056 → 0.503, p95 7.063 → 2.378, max 21.00 →  4.38
+    L  25– 50 km: mediana 1.142 → 0.342, p95 3.693 → 1.724, max  8.65 →  4.12
+    L  50–100 km: mediana 0.782 → 0.292, p95 2.720 → 1.279, max  5.51 →  2.50
+    L 100–200 km: mediana 0.646 → 0.223, p95 2.176 → 1.132, max  3.82 →  4.87
+    L 200–301 km: mediana 0.461 → 0.196, p95 1.658 → 0.975, max  5.00 →  2.64
+  per tratta, errore % medio: mediana 0.640 → 0.250, p95 2.702 → 1.245, max 17.97 → 4.16; tratte migliorate 1539 su 2048
+  quota dell'errore quadratico relativo che è costante nella tratta: D 98.5%, E 95.8%
+  le 5 tratte peggiori per E: 6228 (D 2.68% → E 4.16%, L 112 km), 12169 (D 1.17% → E 3.71%, L 6 km), 6913 (D 2.66% → E 3.53%, L 46 km), 11513 (D 0.40% → E 3.53%, L 39 km), 12280 (D 4.55% → E 3.26%, L 10 km)
+  importanza di E, prime 10: x_stops_mean_v 0.330, x_vlim_mean 0.185, x_stops_density 0.173, x_stops_sum_v2 0.077, x_L_km 0.047, x_slope_rms 0.033, x_bin_v_4 0.032, x_tempo_limiti_ar_s 0.027, x_cross_mean_p_v 0.022, x_cross_var_p_v 0.014
+
+[4] figure
+  fig_rapporto_fasce.png, fig_rapporto_distribuzione.png, fig_rapporto_curve.png
+
+tempo totale: 608.9 s
+julia -t 8 --project=fase7 fase7/03_durata_rapporto.jl  3548,22s user 55,90s system 589% cpu 10:11,13 total

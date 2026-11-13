@@ -67,3 +67,26 @@ Per il confronto con quello che stai studiando:
 Prima di passare alle altre grandezze proporrei una piccola prova. Invece della durata in secondi, il modello impara il rapporto durata / durata minima teorica, che vale circa 1,06. Agli alberi resta da imparare solo una correzione, e tratte corte e lunghe pesano allo stesso modo. È il rimedio più probabile ai punti 3 e 4, e costa circa 10 minuti di calcolo.
 
 Figure e scheda sono in ml_treno/fase7 (REPORT_FASE7_DURATA.md, figure/). Ho fatto il commit locale (ace10fc): ml_treno ha 2 commit da pushare, quando me lo dici.
+
+## Passo 3b: la durata come rapporto durata / durata minima
+
+13/11/2026. Report: `fase7/REPORT_FASE7_DURATA.md`, sezione "Passo 3b".
+
+**L'idea.** Invece della durata in secondi, il modello impara il rapporto r = durata / durata minima teorica, cioè di quanto la durata vera supera quella con il treno sempre ai limiti di velocità. r vale da 1,00 a 1,52, tipicamente 1,07. La durata si ricava moltiplicando r̂ per la durata minima.
+
+**Il risultato:** un grande miglioramento, a parità di dati e di algoritmo.
+
+| modello | errore mediano | 95° percentile | caso peggiore |
+|---|---:|---:|---:|
+| D: boosting sulla durata in secondi | 0,65% | 2,8% | 21% |
+| E: boosting sul rapporto | **0,25%** | **1,3%** | **4,9%** |
+
+**Cosa ci dicono i numeri:**
+1. **L'obiettivo giusto conta più dei dati.** Con solo 2048 tratte il rapporto (0,36%) fa già meglio della durata in secondi con 12 288 tratte (0,65%).
+2. **Le tratte corte migliorano di più:** sotto i 25 km l'errore mediano passa dal 2,1% allo 0,5%, il caso peggiore dal 21% al 4,4%. Con il rapporto tutte le tratte pesano allo stesso modo nell'addestramento.
+3. **Il modello generalizza meglio:** sulle tratte viste sbaglia lo 0,16%, su quelle nuove lo 0,25%. Con D la differenza era molto più grande (0,13% contro 0,65%).
+4. **Il modello ora "guarda" la fisica giusta.** Le caratteristiche più usate sono la velocità alle fermate, la velocità media e la densità delle fermate: il tempo perso rispetto alla durata minima viene da accelerazioni e frenate.
+5. **L'errore resta soprattutto "di tratta"** (96%): dentro una tratta il modello segue bene l'effetto di m e n.
+6. **C'è ancora un po' di margine:** la combinazione migliore (alberi di profondità 4) è di nuovo sul bordo della griglia, e il modello si è fermato al tetto di 4000 alberi con l'errore che scendeva ancora piano.
+
+**Lezione per le altre grandezze:** quando c'è una scala fisica naturale, conviene far imparare al modello una grandezza relativa o adimensionale, non il valore assoluto.

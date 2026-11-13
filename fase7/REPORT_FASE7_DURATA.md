@@ -106,3 +106,63 @@ Le 5 tratte con l'errore medio più alto sono tutte corte (5–21 km): 11849 (18
 2. **Le tratte corte** pesano poco nella perdita quadratica in secondi: per questo hanno l'errore relativo più alto. L'obiettivo relativo del punto 1 aiuterebbe anche qui.
 3. **La griglia va allargata verso alberi più bassi e passi più piccoli** (profondità 4, eta 0,02), sui dati completi.
 4. **Gradini in m e n.** Qui non si vedono, perché l'errore è piatto in m e n, ma vanno controllati quando cercheremo l'ottimo su una griglia fitta.
+
+## Passo 3b: la durata come rapporto (`03_durata_rapporto.jl`, `risultati/03_rapporto.txt`)
+
+Comando: `julia -t 8 --project=fase7 fase7/03_durata_rapporto.jl > $L/log_03.txt 2>&1` (≈ 10 min).
+
+**Cosa cambia.** Il modello impara r = durata / durata minima teorica (`x_tempo_limiti_ar_s`) invece della durata in secondi. La durata prevista è r̂ × durata minima.
+- r va da 1,001 a 1,52, con mediana 1,074.
+- Con la perdita quadratica su r l'errore pesa in proporzione: tratte corte e lunghe contano allo stesso modo.
+- Tutto il resto è come per D: dati, impostazioni fisse, arresto anticipato.
+- La griglia sullo sviluppo è profondità 4, 6, 8 × eta 0,05 e 0,1, scelta sull'errore di r in validazione.
+
+**Griglia sullo sviluppo** (2048 tratte):
+
+| profondità | eta | alberi | errore % mediano | p95 | max |
+|---:|---:|---:|---:|---:|---:|
+| **4** | **0,05** | 4000 (tetto) | **0,357** | **2,07** | 9,8 |
+| 4 | 0,1 | 1166 | 0,399 | 2,18 | 8,5 |
+| 6 | 0,05 | 1105 | 0,343 | 2,21 | 11,1 |
+| 6 | 0,1 | 1466 | 0,360 | 2,25 | 9,4 |
+| 8 | 0,05 | 1022 | 0,359 | 2,54 | 9,3 |
+| 8 | 0,1 | 320 | 0,405 | 2,70 | 10,0 |
+
+Già con 2048 tratte il rapporto (0,36% di errore mediano) batte D, che ne usa 12 288 (0,65%): l'obiettivo giusto conta più di 6 volte più dati.
+
+**E: profondità 4, eta 0,05, su tutto l'addestramento.** 3998 alberi in 6,5 minuti. Sulla validazione:
+
+| modello | errore % mediano | p95 | p99 | max | errore medio [s] | RMSE [s] |
+|---|---:|---:|---:|---:|---:|---:|
+| A: costante × durata minima | 4,12 | 17,4 | 23,8 | 29,9 | 919 | 1264 |
+| D: boosting sulla durata [s] | 0,651 | 2,76 | 4,89 | 21,0 | 134 | 181 |
+| **E: boosting sul rapporto** | **0,245** | **1,28** | **2,21** | **4,87** | **57** | **82** |
+| E sulle tratte di addestramento | 0,161 | 0,58 | 0,85 | 2,24 | 34 | 47 |
+
+- **Migliora in ogni fascia di lunghezza**, soprattutto sulle tratte corte:
+
+  | L | mediana D → E | p95 D → E | max D → E |
+  |---|---|---|---|
+  | 5–25 km | 2,06 → 0,50 | 7,1 → 2,4 | 21,0 → 4,4 |
+  | 25–50 km | 1,14 → 0,34 | 3,7 → 1,7 | 8,7 → 4,1 |
+  | 50–100 km | 0,78 → 0,29 | 2,7 → 1,3 | 5,5 → 2,5 |
+  | 100–200 km | 0,65 → 0,22 | 2,2 → 1,1 | 3,8 → 4,9 |
+  | 200–300 km | 0,46 → 0,20 | 1,7 → 1,0 | 5,0 → 2,6 |
+
+- **Per tratta.** Errore medio sulle 288 coppie: mediana 0,64% → 0,25%, massimo 18% → 4,2%. 1539 tratte su 2048 migliorano. Alcune peggiorano: la 11513 passa dallo 0,40% al 3,5%.
+- **L'errore resta "di tratta":** la parte costante nella tratta è il 96% dell'errore quadratico relativo (era il 98,5% con D).
+- **Meno sovradattamento:** sulle tratte viste 0,16%, su quelle nuove 0,25% (con D era 0,13% contro 0,65%).
+- **L'importanza cambia:**
+  - prima vengono `x_stops_mean_v` 0,33, `x_vlim_mean` 0,19, `x_stops_density` 0,17, `x_stops_sum_v2` 0,08, poi lunghezza, pendenza e limiti;
+  - la durata minima conta poco (0,03), perché è già nel denominatore;
+  - il rapporto dipende soprattutto da quanto si perde in accelerazioni e frenate alle fermate rispetto alla velocità.
+- **Ancora sul bordo.** La migliore è la profondità più bassa provata (4), e E si ferma al tetto di 4000 alberi con la curva che scende ancora piano (`figure/fig_rapporto_curve.png`). Più alberi o eta più piccolo possono dare ancora un po'.
+
+**Figure:**
+- `fig_rapporto_fasce.png`: errore di D ed E contro la lunghezza;
+- `fig_rapporto_distribuzione.png`: distribuzione dell'errore;
+- `fig_rapporto_curve.png`: curve di apprendimento.
+
+Predizioni in `ml_treno_dati/fase7/durata_validazione_rapporto.arrow`, modello in `durata_E.bson`.
+
+**Conclusione per le altre grandezze:** conviene imparare un obiettivo adimensionale o relativo, quando esiste una scala fisica naturale (per la durata, la durata minima teorica).

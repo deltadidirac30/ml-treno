@@ -1,0 +1,5 @@
+modello,MAE_s,RMSE_s,bias_s,err_pct_mediana,err_pct_p95,err_pct_p99,err_pct_max
+A costante × durata minima,918.52,1264.06,-283.168,4.12379,17.3827,23.8098,29.8998
+D boosting sulla durata [s],133.879,180.986,2.70745,0.651311,2.76377,4.89273,21.0025
+E boosting sul rapporto r,56.4796,82.0358,1.90804,0.24489,1.28275,2.20908,4.87094
+E sull'addestramento (campione),34.2904,47.4177,-0.0258989,0.160566,0.578854,0.846964,2.24247
