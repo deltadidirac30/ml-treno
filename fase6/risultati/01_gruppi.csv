@@ -1,0 +1,17 @@
+gruppo,route_da,route_a,insieme
+1,1,1024,addestramento
+2,1025,2048,addestramento
+3,2049,3072,addestramento
+4,3073,4096,addestramento
+5,4097,5120,addestramento
+6,5121,6144,addestramento
+7,6145,7168,validazione
+8,7169,8192,addestramento
+9,8193,9216,addestramento
+10,9217,10240,addestramento
+11,10241,11264,addestramento
+12,11265,12288,validazione
+13,12289,13312,addestramento
+14,13313,14336,addestramento
+15,14337,15360,test
+16,15361,16384,test

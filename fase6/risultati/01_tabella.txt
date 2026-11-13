@@ -1,0 +1,80 @@
+fase6/01_tabella.jl  2026-11-13T15:27:59.961  thread: 8  julia 1.12.5
+
+[1] divisione per tratta, seme 20261113 (Xoshiro, randperm dei 16 gruppi): 
+  addestramento gruppi 1, 2, 3, 4, 5, 6, 8, 9, 10, 11, 13, 14
+  validazione   gruppi 7, 12
+  test          gruppi 15, 16
+
+[2] colonne: tratta, coppia, gruppo, insieme, segnalata, m, n, 66 x_, y_ (durata_viaggio_s, massa_serbatoio_kg, H2_cons_kg, SOC_end, scarica_s, vita_batt_cicli_viaggi, vita_FC_viaggi, vita_FC_f1_ore, C_rate_scarica_max), stato, d3, tipo_esito, D28, SOC_end_ricavato, costo, total_cost_EUR_km
+  gruppo  1 (addestramento): 294912 righe, 1024 tratte
+  gruppo  2 (addestramento): 294912 righe, 1024 tratte
+  gruppo  3 (addestramento): 294907 righe, 1024 tratte
+  gruppo  4 (addestramento): 294912 righe, 1024 tratte
+  gruppo  5 (addestramento): 294912 righe, 1024 tratte
+  gruppo  6 (addestramento): 294912 righe, 1024 tratte
+  gruppo  7 (validazione): 294912 righe, 1024 tratte
+  gruppo  8 (addestramento): 294912 righe, 1024 tratte
+  gruppo  9 (addestramento): 294912 righe, 1024 tratte
+  gruppo 10 (addestramento): 294912 righe, 1024 tratte
+  gruppo 11 (addestramento): 294912 righe, 1024 tratte
+  gruppo 12 (validazione): 294912 righe, 1024 tratte
+  gruppo 13 (addestramento): 294912 righe, 1024 tratte
+  gruppo 14 (addestramento): 294912 righe, 1024 tratte
+  gruppo 15 (test): 294848 righe, 1024 tratte
+  gruppo 16 (test): 294912 righe, 1024 tratte
+  righe tolte (stato = error): 69
+  SOC_end ricavato da vincolo_soc_pt, controllo sulle 4620434 completed: max |scarto| 2.22e-16
+
+[3] scrittura (zstd, un record batch per gruppo) in /Users/kairos/Documents/lavoro/ml_treno_dati/P9_D28_16384/tabella
+  addestramento.arrow  472.8 MiB, 7.2 s
+  validazione.arrow   78.7 MiB, 0.6 s
+  test.arrow       78.8 MiB, 0.6 s
+
+[4] controlli sui file riletti
+  righe: addestramento 3.538.939, validazione 589.824, test 589.760; totale 4.718.523 (attese 4.718.523)
+  tratte: addestramento 12288, validazione 2048, test 2048; in comune tra due insiemi: 0
+  addestramento tratte con un numero di righe diverso da 288: [(2366, 283)]; (tratta, coppia) uniche: true
+  validazione   tratte con un numero di righe diverso da 288: Tuple{Int64, Int64}[]; (tratta, coppia) uniche: true
+  test          tratte con un numero di righe diverso da 288: [(14664, 224)]; (tratta, coppia) uniche: true
+  caratteristiche uguali al bit a caratteristiche.arrow: true
+  NaN / +Inf nelle colonne y_ (completed | rejected), su tutti gli insiemi:
+    durata_viaggio_s         completed: NaN       0, Inf       0 (di cui a m = 0: 0) | rejected: NaN      0, Inf      0
+    massa_serbatoio_kg       completed: NaN       0, Inf       0 (di cui a m = 0: 0) | rejected: NaN      0, Inf      0
+    H2_cons_kg               completed: NaN       0, Inf       0 (di cui a m = 0: 0) | rejected: NaN  98089, Inf      0
+    SOC_end                  completed: NaN       0, Inf       0 (di cui a m = 0: 0) | rejected: NaN      0, Inf      0
+    scarica_s                completed: NaN       0, Inf       0 (di cui a m = 0: 0) | rejected: NaN      0, Inf      0
+    vita_batt_cicli_viaggi   completed: NaN       0, Inf       0 (di cui a m = 0: 0) | rejected: NaN      0, Inf      0
+    vita_FC_viaggi           completed: NaN       0, Inf  491527 (di cui a m = 0: 491527) | rejected: NaN      0, Inf  32755
+    vita_FC_f1_ore           completed: NaN       0, Inf  491527 (di cui a m = 0: 491527) | rejected: NaN      0, Inf  32755
+    C_rate_scarica_max       completed: NaN       0, Inf       0 (di cui a m = 0: 0) | rejected: NaN      0, Inf      0
+  NaN/Inf nelle 66 caratteristiche: 0
+
+[5] regola D3 a posteriori: rejected (D3) contro C_rate_scarica_max > 20
+  addestramento  D3 e C>20:  73247 | D3 e C≤20:  326 | non D3 e C>20: 0 | non D3 e C≤20:  3465366  → D3 ritrovati 99.56%
+  validazione    D3 e C>20:  12201 | D3 e C≤20:   54 | non D3 e C>20: 0 | non D3 e C≤20:   577569  → D3 ritrovati 99.56%
+  test           D3 e C>20:  12209 | D3 e C≤20:   52 | non D3 e C>20: 0 | non D3 e C≤20:   577499  → D3 ritrovati 99.58%
+
+[6] gli insiemi si somigliano?
+  addestramento  completed 97.92%, rejected D3 2.08%, fattibili 42.67%, D28 0.325%; tratte con migliore a sola batteria 25.8%
+  validazione    completed 97.92%, rejected D3 2.08%, fattibili 43.03%, D28 0.358%; tratte con migliore a sola batteria 25.7%
+  test           completed 97.92%, rejected D3 2.08%, fattibili 42.43%, D28 0.318%; tratte con migliore a sola batteria 24.9%
+  caratteristiche (KS tra tratte, contro l'addestramento): max validazione 0.0293 (x_stops_std_v), max test 0.0235 (x_vlim_sum_dv_neg_sq); soglia al 99% per campioni casuali 0.0389
+  caratteristiche oltre la soglia: validazione 0, test 0
+    y_durata_viaggio_s         KS validazione 0.0119, test 0.0103; mediane add/val/test 1.774e+04 / 1.787e+04 / 1.776e+04
+    y_massa_serbatoio_kg       KS validazione 0.0045, test 0.0041; mediane add/val/test 2366 / 2379 / 2385
+    y_H2_cons_kg               KS validazione 0.0046, test 0.0041; mediane add/val/test 103.7 / 104.2 / 104.5
+    y_SOC_end                  KS validazione 0.0052, test 0.0041; mediane add/val/test 0.4138 / 0.4111 / 0.4113
+    y_scarica_s                KS validazione 0.0036, test 0.0018; mediane add/val/test 0 / 0 / 0
+    y_vita_batt_cicli_viaggi   KS validazione 0.0028, test 0.0036; mediane add/val/test 4701 / 4695 / 4684
+    y_vita_FC_viaggi           KS validazione 0.0061, test 0.0076; mediane add/val/test 1690 / 1690 / 1705
+    y_vita_FC_f1_ore           KS validazione 0.0054, test 0.0052; mediane add/val/test 4146 / 4159 / 4156
+    y_C_rate_scarica_max       KS validazione 0.0005, test 0.0005; mediane add/val/test 1.07 / 1.07 / 1.071
+    x_L_km                     mediane add/val/test 152.5 / 152.5 / 152.5 (KS 0.0033 / 0.0041)
+    x_slope_rms                mediane add/val/test 15.05 / 15.01 / 14.98 (KS 0.0188 / 0.0092)
+    x_n_fermate                mediane add/val/test 11 / 11 / 11 (KS 0.0101 / 0.0076)
+    x_vlim_mean                mediane add/val/test 84.34 / 84.33 / 84.45 (KS 0.0078 / 0.0094)
+    x_dislivello_m             mediane add/val/test 1006 / 970.4 / 1002 (KS 0.0208 / 0.0072)
+  tratte segnalate per insieme: 2366 (addestramento), 14664 (test), 13258 (addestramento)
+
+tempo totale: 29.7 s
+anomalie: nessuna
