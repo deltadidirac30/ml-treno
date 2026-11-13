@@ -90,3 +90,36 @@ Figure e scheda sono in ml_treno/fase7 (REPORT_FASE7_DURATA.md, figure/). Ho fat
 6. **C'è ancora un po' di margine:** la combinazione migliore (alberi di profondità 4) è di nuovo sul bordo della griglia, e il modello si è fermato al tetto di 4000 alberi con l'errore che scendeva ancora piano.
 
 **Lezione per le altre grandezze:** quando c'è una scala fisica naturale, conviene far imparare al modello una grandezza relativa o adimensionale, non il valore assoluto.
+
+## Passo 4: le altre grandezze
+
+13/11/2026. Report: `fase8/REPORT_FASE8_GRANDEZZE.md`.
+
+**Cosa abbiamo fatto.** La stessa ricetta della durata, sulle altre 7 grandezze. Per ognuna il modello impara una versione con la sua scala fisica:
+- serbatoio e idrogeno per km;
+- vite e C-rate in logaritmo;
+- il SOC così com'è;
+- la scarica come sì/no.
+
+Il confronto semplice è la mediana di ogni coppia (m, n), che non guarda la tratta. Circa 49 minuti di calcolo.
+
+**I risultati** (errori su 2048 tratte mai viste):
+
+| grandezza | confronto semplice (mediana) | boosting: mediana | boosting: 95° percentile |
+|---|---:|---:|---:|
+| massa del serbatoio | 19,8% | 3,3% | 14,6% |
+| idrogeno consumato | 19,8% | 3,4% | 14,5% |
+| SOC finale (errore assoluto) | 0,142 | 0,031 | 0,156 |
+| scarica (sì/no) | 82,6% giusta | 98,8% giusta | — |
+| vita della batteria | 42% | 3,7% | 14,4% |
+| vita della fuel cell | 14,4% | 2,5% | 8,3% |
+| C-rate di scarica | 0,42% | 0,68% | 4,3% |
+
+**Cosa ci dicono i numeri:**
+1. **Il boosting migliora tutto di 5–10 volte** rispetto al confronto semplice. Fa eccezione il C-rate in mediana: dipende quasi solo da n, e la mediana della coppia lo indovina già. Il boosting migliora però molto i casi difficili (95° percentile: 4,3% contro 15%).
+2. **La tua regola D3 a posteriori funziona anche con il C-rate previsto:** è giusta nel 99,986% dei casi. Su 12 255 scarti veri ne perde 59 e ne aggiunge 22.
+3. **Il vincolo SOC ≥ 0,2** è previsto giusto nel 97,5% dei casi. Il SOC è la grandezza più difficile: ha scalini e valori accumulati a 0 e a 0,9.
+4. **I modelli sono "corti", non "sovradattati".** Tutti si fermano al tetto di 3000 alberi, e sbagliano quasi uguale sulle tratte viste e su quelle nuove. Con più capacità possono migliorare ancora.
+5. **Qui l'errore dipende da m e n**, al contrario della durata: queste grandezze cambiano a scatti in (m, n), soprattutto alle soglie della logica di controllo (D25) e tra sola batteria e ibrido.
+
+**Un incidente.** Il primo lancio è rimasto bloccato 20 minuti per un errore nello script (un calcolo ripetuto mezzo milione di volte). L'ho fermato, corretto e rilanciato; i risultati sono del secondo lancio.

@@ -1,0 +1,100 @@
+fase8/01_grandezze.jl  2026-11-13T16:52:14.148  thread: 8  julia 1.12.5  EvoTrees 0.19.0
+grandezze: massa_serbatoio, H2_cons, SOC_end, scarica, vita_batt, vita_FC, C_rate
+boosting: profondità 6, eta 0.10, nbins 255, rowsample 0.8, colsample 0.8, L2 1.0, fino a 3000 alberi, arresto dopo 50
+dati: addestramento 3538939 righe, validazione 589824 righe (17.4 s)
+
+══ massa_serbatoio (y_massa_serbatoio_kg; righe ibride; obiettivo per_km)
+  righe: addestramento 3145724, validazione 524288; valori: min 16.25, mediana 2727, max 1.305e+04
+  3000 alberi, 406.8 s
+  mediana della coppia         MAE 691.9 kg | errore %: mediana 19.83  p95 77.89  p99 177.1  max 1624
+  boosting                     MAE 119.5 kg | errore %: mediana 3.334  p95 14.6  p99 28.91  max 600.6
+  boosting sull'addestramento  MAE 101.9 kg | errore %: mediana 2.79  p95 12.15  p99 23.12  max 598.7
+  quota dell'errore (nello spazio dell'obiettivo) costante nella tratta: 19.9%
+  errore % del boosting per fascia di lunghezza (mediana / p95):  0–25 km 6.8 / 26.6;  25–100 km 4.17 / 18;  100–200 km 3.13 / 12.6;  200–301 km 2.74 / 9.76
+  importanza, prime 6: m 0.554, x_stops_density 0.146, x_slope_rms 0.042, x_slope_mean_pos 0.035, x_stops_sum_v2 0.028, x_stops_sum_abs_p 0.027
+  tempo per questa grandezza: 418.5 s
+
+══ H2_cons (y_H2_cons_kg; righe ibride_completed; obiettivo per_km)
+  righe: addestramento 3096719, validazione 516125; valori: min 0.7149, mediana 120.4, max 577.7
+  3000 alberi, 368.5 s
+  mediana della coppia         MAE 30.64 kg | errore %: mediana 19.79  p95 78.47  p99 182.3  max 1622
+  boosting                     MAE 5.321 kg | errore %: mediana 3.386  p95 14.5  p99 28.33  max 562
+  boosting sull'addestramento  MAE 4.456 kg | errore %: mediana 2.762  p95 11.78  p99 22.66  max 461
+  quota dell'errore (nello spazio dell'obiettivo) costante nella tratta: 21.3%
+  errore % del boosting per fascia di lunghezza (mediana / p95):  0–25 km 6.53 / 24.7;  25–100 km 4.24 / 18.1;  100–200 km 3.19 / 12.7;  200–301 km 2.76 / 9.82
+  importanza, prime 6: m 0.548, x_stops_density 0.167, x_stops_sum_abs_p 0.044, x_slope_rms 0.043, x_slope_mean_pos 0.036, n 0.026
+  tempo per questa grandezza: 375.1 s
+
+══ SOC_end (y_SOC_end; righe tutte; obiettivo nessuna)
+  righe: addestramento 3538939, validazione 589824; valori: min 0, mediana 0.4029, max 0.9001
+  3000 alberi, 400.7 s
+  mediana della coppia         MAE 0.1801 - | errore assoluto: mediana 0.1424  p95 0.5004  p99 0.7054  max 0.891
+  boosting                     MAE 0.04861 - | errore assoluto: mediana 0.03138  p95 0.1562  p99 0.2479  max 0.5764
+  boosting sull'addestramento  MAE 0.04419 - | errore assoluto: mediana 0.02858  p95 0.1424  p99 0.2233  max 0.4961
+  quota dell'errore (nello spazio dell'obiettivo) costante nella tratta: 5.6%
+  errore assoluto del boosting per fascia di lunghezza (mediana / p95):  0–25 km 0.0233 / 0.0976;  25–100 km 0.0337 / 0.148;  100–200 km 0.0329 / 0.163;  200–301 km 0.0303 / 0.164
+  vincolo SOC finale ≥ 0,2 dal valore previsto: giusto 0.9746; dato fattibile ma è sotto 8481, dato sotto ma è fattibile 6492 (sotto davvero 189646)
+    lontano dal limite (|SOC − 0,2| > 0,02, 98.3% dei casi): giusto 0.98159
+  importanza, prime 6: m 0.476, x_cross_mean_p_v 0.069, n 0.068, x_L_km 0.052, x_bin_p_1 0.045, x_dislivello_m 0.041
+  tempo per questa grandezza: 408.8 s
+
+══ scarica (y_scarica_s; righe tutte; obiettivo classe)
+  righe: addestramento 3538939, validazione 589824; valori: min 0, mediana 0, max 4.015e+04
+  2997 alberi, 486.1 s
+  mediana della coppia         accuratezza 0.8264, Brier 0.1182, falsi positivi 57946, falsi negativi 44425 (positivi 238383)
+  boosting                     accuratezza 0.9881, Brier 0.0087, falsi positivi 3667, falsi negativi 3371 (positivi 238383)
+  boosting sull'addestramento  accuratezza 0.9943, Brier 0.0052, falsi positivi 775, falsi negativi 922 (positivi 122747)
+  calibrazione (fascia di p prevista: casi, frequenza vera):
+    [0.0, 0.1):  338021, 0.001
+    [0.1, 0.2):    4916, 0.113
+    [0.2, 0.3):    3155, 0.189
+    [0.3, 0.4):    2598, 0.307
+    [0.4, 0.5):    2455, 0.386
+    [0.5, 0.6):    2472, 0.518
+    [0.6, 0.7):    2490, 0.624
+    [0.7, 0.8):    3049, 0.770
+    [0.8, 0.9):    4595, 0.886
+    [0.9, 1.0):  226073, 0.999
+  importanza, prime 6: m 0.465, n 0.154, x_dislivello_m 0.099, x_L_km 0.098, x_stops_sum_v2 0.023, x_vlim_mean 0.022
+  tempo per questa grandezza: 495.1 s
+
+══ vita_batt (y_vita_batt_cicli_viaggi; righe tutte; obiettivo log)
+  righe: addestramento 3538939, validazione 589824; valori: min 6.591, mediana 4585, max 4.284e+05
+  2999 alberi, 400.1 s
+  mediana della coppia         MAE 4918 viaggi | errore %: mediana 42.04  p95 113.1  p99 162.1  max 522
+  boosting                     MAE 560.3 viaggi | errore %: mediana 3.659  p95 14.43  p99 25.81  max 205.4
+  boosting sull'addestramento  MAE 402.6 viaggi | errore %: mediana 2.955  p95 12.09  p99 21.77  max 205.4
+  quota dell'errore (nello spazio dell'obiettivo) costante nella tratta: 11.5%
+  errore % del boosting per fascia di lunghezza (mediana / p95):  0–25 km 5.9 / 19.5;  25–100 km 4.16 / 15.6;  100–200 km 3.46 / 13.5;  200–301 km 3.23 / 12.5
+  importanza, prime 6: n 0.551, x_L_km 0.187, m 0.100, x_tempo_limiti_ar_s 0.088, x_stops_sum_v2 0.019, x_dislivello_m 0.012
+  tempo per questa grandezza: 408.0 s
+
+══ vita_FC (y_vita_FC_f1_ore; righe ibride; obiettivo log)
+  righe: addestramento 3145724, validazione 524288; valori: min 850.4, mediana 4157, max 1.696e+04
+  3000 alberi, 361.5 s
+  mediana della coppia         MAE 773.8 h | errore %: mediana 14.42  p95 83.04  p99 202.1  max 495
+  boosting                     MAE 126.5 h | errore %: mediana 2.481  p95 8.344  p99 12.35  max 43.54
+  boosting sull'addestramento  MAE 98.53 h | errore %: mediana 1.901  p95 6.482  p99 9.63  max 39.65
+  quota dell'errore (nello spazio dell'obiettivo) costante nella tratta: 29.7%
+  errore % del boosting per fascia di lunghezza (mediana / p95):  0–25 km 2.6 / 7.69;  25–100 km 2.68 / 8.63;  100–200 km 2.48 / 8.52;  200–301 km 2.32 / 8.05
+  importanza, prime 6: x_tempo_limiti_ar_s 0.501, x_L_km 0.166, m 0.107, x_slope_sign_changes_per_km 0.046, n 0.038, x_vlim_changes_per_km 0.028
+  tempo per questa grandezza: 368.9 s
+
+══ C_rate (y_C_rate_scarica_max; righe tutte; obiettivo log)
+  righe: addestramento 3538939, validazione 589824; valori: min 0.3128, mediana 1.089, max 103.5
+  3000 alberi, 406.4 s
+  mediana della coppia         MAE 0.08057 - | errore %: mediana 0.4241  p95 14.99  p99 16.99  max 98.7
+  boosting                     MAE 0.05132 - | errore %: mediana 0.6758  p95 4.343  p99 6.585  max 84.64
+  boosting sull'addestramento  MAE 0.04675 - | errore %: mediana 0.661  p95 4.207  p99 6.22  max 52.93
+  quota dell'errore (nello spazio dell'obiettivo) costante nella tratta: 1.4%
+  errore % del boosting per fascia di lunghezza (mediana / p95):  0–25 km 0.607 / 4.27;  25–100 km 0.757 / 4.77;  100–200 km 0.712 / 4.42;  200–301 km 0.604 / 3.84
+  regola D3 (C-rate previsto > 20) contro D3 vero: giusto 0.99986; D3 mancati 59, scarti in più 22 (D3 veri 12255)
+    con il C-rate vero la regola sbaglia 54 casi: il resto è errore del modello
+  importanza, prime 6: n 0.893, m 0.105, x_L_km 0.001, x_dislivello_m 0.000, x_stops_sum_v2 0.000, x_tempo_limiti_ar_s 0.000
+  tempo per questa grandezza: 413.6 s
+
+[figure]
+  fig_previsto_vero.png
+  fig_scarica_calibrazione.png
+
+tempo totale: 2919.5 s
