@@ -1,0 +1,23 @@
+fase8/02_decisioni.jl  2026-11-13T17:50:41.780  thread: 8
+caricate 4718592 righe in 3.9 s
+tratte con almeno una coppia fattibile: 16384 / 16384
+
+[1] tratte segnalate
+  route  2366 (addestramento): righe 288, errori 5, fattibili 61; migliore coppia 208 (m 0.5449, n 0.2716) costo 5.8804 €/km, durata 8.89 h
+  route 14664 (test): righe 288, errori 64, fattibili 171; migliore coppia 173 (m 0.0000, n 0.5011) costo 2.7369 €/km, durata 2.21 h
+  route 13258 (addestramento): righe 288, errori 0, fattibili 82; migliore coppia 95 (m 0.2276, n 0.6221) costo 4.8601 €/km, durata 12.35 h
+  13258: fattibili oltre 12 h 82 su 82; la migliore è oltre 12 h: true
+  14664: coppie in errore 64; fra le migliori di tutte le tratte, quante cadono su quelle coppie: 3562 / 16384
+
+[2] energia di ricarica negativa (SOC finale oltre lo 0,8 iniziale): credito nel costo
+  righe fattibili con E_ricarica < 0: 289813 (14.4% delle fattibili)
+  tratte con la migliore a E_ricarica < 0: 1706; credito sul costo della migliore: mediana 0.81%, p95 2.43%, max 4.14%
+  controllo su una riga: costo_da_grandezze 9.66402457305901, registro 9.66402457305901
+  azzerando il credito: la migliore cambia in 431 tratte; il costo della migliore sale in 1706 tratte, di al più 4.14% (mediana fra quelle 0.65%)
+    dove cambia: |Δm| mediana 0.110, |Δn| mediana 0.238; cambi di regime 0
+
+[3] batterie che durano poco
+  vita della batteria nella migliore: < 1 anno 96 tratte, < 2 anni 318, < 5 anni 3407; mediana 7.6 anni; sostituzioni nella migliore: max 53
+  righe fattibili con vita < 1 anno: 19752 (0.98% delle fattibili)
+  escludendo i progetti con vita < 1 anni: tratte senza più coppie fattibili 0; la migliore cambia in 96 tratte (costo +1.30% di mediana, max +4.18%)
+  escludendo i progetti con vita < 2 anni: tratte senza più coppie fattibili 0; la migliore cambia in 318 tratte (costo +0.51% di mediana, max +4.72%)
