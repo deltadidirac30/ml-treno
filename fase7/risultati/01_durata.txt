@@ -1,0 +1,48 @@
+fase7/01_durata.jl  2026-11-13T15:48:59.443  thread: 8  julia 1.12.5  EvoTrees 0.19.0
+addestramento 3538939 righe (12288 tratte); sviluppo = gruppi (1, 2): 589824 righe (2048 tratte); validazione 589824 righe (2048 tratte)
+durata: da 745 a 44596 s, mediana 17735 s (4.93 h); NaN/Inf: 0
+
+[0] rumore della durata dentro la tratta (validazione, polinomio di 2° grado in m, n per tratta)
+  scarto: RMSE 3.5 s, |scarto| p95 7.2 s, max 65.6 s; in %: mediana 0.010, p95 0.048
+
+[1] modelli semplici (stimati su tutto l'addestramento)
+  A: durata = 1.06264 × tempo_limiti_ar_s
+  B: coefficienti [1, T, T·m, T·n, m, n] = 1048.6, 1.0094, 0.0016755, 0.0023084, 44.98, 148.92
+  A costante × durata minima         MAE   918.5 s  RMSE  1264.1 s  bias -283.2 s | errore %: mediana 4.124  p95 17.383  p99 23.810  max 29.90
+  B lineare (T, T·m, T·n, m, n)      MAE   866.0 s  RMSE  1130.1 s  bias  -15.0 s | errore %: mediana 4.248  p95 29.155  p99 70.663  max 137.23
+
+[2] boosting, griglia sullo sviluppo (nbins 255, rowsample 0.8, colsample 0.8, L2 1.0, fino a 4000 alberi, arresto dopo 50 senza miglioramenti sulla validazione)
+  prof  6 eta 0.05: 1216 alberi,  29.1 s | RMSE 374.0 s, MAE 277.9 s, errore % mediana 1.366 p95 5.322
+  prof  6 eta 0.10:  551 alberi,  14.9 s | RMSE 457.1 s, MAE 342.9 s, errore % mediana 1.687 p95 6.629
+  prof  8 eta 0.05:  644 alberi,  26.5 s | RMSE 443.0 s, MAE 319.1 s, errore % mediana 1.513 p95 6.312
+  prof  8 eta 0.10:  583 alberi,  25.3 s | RMSE 544.4 s, MAE 396.6 s, errore % mediana 1.915 p95 7.488
+  prof 10 eta 0.05:  520 alberi,  37.1 s | RMSE 525.1 s, MAE 380.2 s, errore % mediana 1.835 p95 7.457
+  prof 10 eta 0.10:  361 alberi,  25.6 s | RMSE 621.8 s, MAE 452.2 s, errore % mediana 2.124 p95 9.291
+  migliore sulla validazione: profondità 6, eta 0.05 (1216 alberi)
+
+[3] boosting sulla configurazione migliore, tutto l'addestramento (12288 tratte)
+  3055 alberi, 409.2 s
+
+[4] risultati sulla validazione (2048 tratte mai viste, 589 824 casi)
+  A costante × durata minima         MAE   918.5 s  RMSE  1264.1 s  bias -283.2 s | errore %: mediana 4.124  p95 17.383  p99 23.810  max 29.90
+  B lineare (T, T·m, T·n, m, n)      MAE   866.0 s  RMSE  1130.1 s  bias  -15.0 s | errore %: mediana 4.248  p95 29.155  p99 70.663  max 137.23
+  C boosting, sviluppo (2048 tratte) MAE   277.9 s  RMSE   374.0 s  bias  +17.7 s | errore %: mediana 1.366  p95 5.322  p99 8.616  max 23.20
+  D boosting, addestramento (12288)  MAE   133.9 s  RMSE   181.0 s  bias   +2.7 s | errore %: mediana 0.651  p95 2.764  p99 4.893  max 21.00
+  D sull'addestramento (campione)    MAE    27.1 s  RMSE    35.3 s  bias   +0.0 s | errore %: mediana 0.135  p95 0.649  p99 1.277  max 5.14   ← stesso modello D sui dati che ha visto: confronto per il sovradattamento
+  tempo di previsione del modello D: 5.00 s per 589824 casi = 8.48 µs a caso (8 thread)
+  per tratta (D): errore % medio sulle 288 coppie: mediana 0.640, p95 2.702, max 17.971; errore massimo nella tratta: mediana 0.896, p95 3.231, max 21.00
+  le 5 tratte con l'errore medio più alto: 11849 (17.97%, L 12 km), 11384 (14.38%, L 6 km), 6665 (9.96%, L 9 km), 6537 (9.34%, L 5 km), 12009 (8.29%, L 21 km)
+  errore % (D) per fascia di lunghezza:
+    L   0– 25 km:  40032 casi, mediana 2.056, p95 7.063, max 21.00
+    L  25– 50 km:  50112 casi, mediana 1.142, p95 3.693, max 8.65
+    L  50–100 km:  99648 casi, mediana 0.782, p95 2.720, max 5.51
+    L 100–200 km: 202176 casi, mediana 0.646, p95 2.176, max 3.82
+    L 200–301 km: 197856 casi, mediana 0.461, p95 1.658, max 5.00
+  sola batteria (m = 0): mediana 0.646, p95 2.783 | ibride: mediana 0.652, p95 2.761
+  importanza (guadagno, normalizzata), prime 10: x_tempo_limiti_ar_s 0.765, x_L_km 0.148, x_vlim_mean 0.033, x_n_fermate 0.022, x_dislivello_m 0.010, x_stops_sum_v2 0.006, x_stops_density 0.004, x_vlim_frac_low 0.003, x_cross_mean_p_v 0.002, x_cross_up_lowv 0.002
+  modello D salvato in /Users/kairos/Documents/lavoro/ml_treno_dati/fase7/durata_D.bson
+
+[5] figure
+  fig_previsto_vero.png, fig_errore_fasce.png, fig_distribuzione_errore.png, fig_curve_apprendimento.png, fig_importanza.png
+
+tempo totale: 663.9 s
