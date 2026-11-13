@@ -316,10 +316,51 @@ c.route_id, c.x_L_km, c.x_slope_rms   # c.route_id[i] == i; si unisce ai blocchi
    - oppure togliere un `bin_v`.
 
    Non ho tolto nulla: `caratteristiche.arrow` ha le 66 approvate.
-4. **Il dominio è cambiato molto rispetto alla fase 1.** Le statistiche e le soglie della fase 1 (normalizzazioni, dominio delle tratte reali, distanze dal vicino) non valgono più. Sulmona-Carpinone era fuori dominio in 12 caratteristiche (pendenze fino a 21,9‰): con pendenze DoE fino a ±40‰ è probabilmente dentro. Il controllo di dominio delle 5 tratte reali va rifatto sulle 16384 (non fatto qui).
+4. **Il dominio è cambiato molto rispetto alla fase 1.** Le statistiche e le soglie della fase 1 (normalizzazioni, distanze dal vicino) non valgono più. Il controllo di dominio delle tratte reali e della rete è rifatto sulle 16384 nel §Dominio. Sulmona-Carpinone è esclusa su tua richiesta, ma in `tratte_rete` non c'è (domanda 11).
 5. **Impronte del design nel manifest calcolate sul file CRLF.** Non è un errore, ma chi confronta l'impronta del manifest con il file sul Mac trova un valore diverso. Conviene scriverlo nella documentazione del DoE, o calcolare l'impronta sul testo normalizzato a LF.
 6. **Zip con `\` come separatore.** `unzip` (Info-ZIP) lo riconosce e converte. Non è detto che altri strumenti facciano lo stesso: alcuni estraggono file piatti con `\` nel nome. Per i prossimi zip dal PC conviene `tar -a -cf archivio.zip cartella` (il `tar` di Windows), e in ogni caso ricontrollare i nomi con `zipinfo -1` prima di estrarre, come fa `00_zip.sh`.
 7. **Pendenza media e design:** scarto fino a 6·10⁻³ ‰ sulle tratte corte (in fase 1 al più 10⁻³). È trascurabile, ma il controllo della fase 1 ("≤ 1e-3") qui non passerebbe. Nello script la soglia di anomalia è 10⁻² ‰, scelta da me.
 8. **Le 3 `din_`** (variante della fase 1) non sono calcolate. Servono la dinamica di riferimento, circa 5 ms per tratta; si possono aggiungere se si vuole confrontare la variante.
 9. **Tratte 2366 e 14664** (errori D29 in fase 4): hanno le caratteristiche come le altre. Resta aperta la decisione della fase 4 (domanda 6): escluderle dall'addestramento, o escludere solo le righe in errore.
 10. **`ml_treno` ha modifiche non committate** estranee alla fase 5 (`results/plots`, `fase3/…`, `PROPOSTA_COMMIT.md`): non le ho toccate. Il commit contiene solo i file di `fase5/`.
+11. **Sulmona-Carpinone non è in `tratte_rete`.** Mi hai chiesto di eliminarla da `tratte_reali` perché la versione corretta sarebbe in `tratte_rete`. Ma lì non c'è nessuna cartella con Carpinone, nessuna stazione con quel nome (né nella versione del 10/11 né in quella del 13/11), e nemmeno in `mappa_rete_completa.html`. La linea più vicina è L'Aquila–Sulmona (60 km). Per questo l'ho solo esclusa dal controllo e **non ho cancellato nulla**. Se va eliminata comunque, le copie sono in `train-powertrain/tratte_reali` e in `correzioni-modello/…/tratte/tratte_reali`. Compare anche nei test e nei report: D26, P0, P5, fase 1, fase 3.
+12. **`tratte_rete` di `correzioni-modello` ha modifiche non committate.** Tutte le 166 linee sono state rigenerate il 13/11 da una nuova `mappa_rete_completa.html` (sha256 `89d92e4cc754…` contro `b712408848d9…` del 10/11), e cambiano i dati, non solo i commenti. Il DoE è stato rivisto sulla versione del 10/11, archiviata in `dati_rete/archivio/tratte_rete_20261110`. Non ho toccato nulla; il controllo di dominio è fatto su entrambe.
+
+## Dominio: tratte reali e linee della rete (`03_dominio.jl`, `risultati/03_dominio.txt`)
+
+Comando: `julia -t 8 --project=fase5 fase5/03_dominio.jl > $L/log_03.txt 2>&1` (≈ 11 s).
+
+**Metodo.** Per ogni tratta si calcolano le 66 caratteristiche con lo stesso codice, lette con `leggi_tratte_reali(; cartella)` come il runner (`cartella_reali=`). Poi:
+- le caratteristiche fuori dall'intervallo [min, max] delle 16384 tratte DoE, e di quanto, in percentuale dell'ampiezza;
+- la distanza dal vicino DoE più prossimo (66 caratteristiche standardizzate con media e deviazione delle 16384) e il suo percentile tra le distanze dal vicino delle tratte DoE (mediana 2,86, p99 5,70, massimo 7,82).
+
+Le caratteristiche sono in `~/Documents/lavoro/ml_treno_dati/fase5_dominio/caratteristiche_{reali,rete_20261110,rete_20261113}.arrow`.
+
+**Tratte reali** (Calabria, Canavese, Firenze; Firenze-BRoute è identica a Firenze; Sulmona-Carpinone esclusa): **tutte dentro tutti gli intervalli DoE**.
+
+| tratta | L | distanza dal vicino (percentile tra le DoE) |
+|---|---:|---:|
+| Calabria (piatta, semplificata) | 177,6 km | 1,01 (1,3) |
+| Canavese | 16,5 km | 3,07 (58,9) |
+| Firenze | 93,6 km | 3,77 (81,3) |
+
+In fase 1 Firenze e Canavese erano ai margini della nuvola (percentili 97 e 90): ora stanno dentro.
+
+**Linee della rete** (166 cartelle lette, L da 6,9 a 276 km; le due versioni danno quasi lo stesso quadro):
+
+| | rete del 10/11 | rete del 13/11 |
+|---|---:|---:|
+| dentro tutti gli intervalli DoE | 123 | 123 |
+| fuori in 1–3 caratteristiche (mai più di 2) | 43 | 43 |
+| distanza dal vicino: mediana (percentile) | 3,58 (76,7) | 3,67 (78,9) |
+| oltre il p99 delle DoE / oltre il massimo DoE | 5 / 0 | 6 / 0 |
+
+**Cosa esce.** Escono solo 6 caratteristiche, e sempre di poco:
+- **pendenza massima e minima metro per metro** (20–21 linee), oltre ±40‰: Sicilia sud-orientale, Sardegna, L'Aquila–Terni (+37% dell'intervallo), Caltagirone–Catania. È la caratteristica sensibile alla risoluzione dell'altimetria già segnalata in fase 1. Ventimiglia–Limone passa da +61% (10/11) a +2% (13/11): era un picco della vecchia altimetria;
+- **`slope_sign_changes_per_km`** (8–9 linee, fino a +28%): profili molto frastagliati (lago d'Iseo, Pavia–Vercelli, Siracusa–Rosolini);
+- **`n_fermate`** (7 linee): il DoE ha al più 28 fermate intermedie, contro le 34–38 delle linee sarde lunghe (Cagliari–Porto Torres +36%, Cagliari–Olbia +29%, Sassari–Cagliari +21%), Reggio–Catanzaro, Edolo–Brescia, Bolzano–Bassano;
+- `slope_std_all` (Marradi–Borgo S. Lorenzo, +9%) e `slope_std_sq_pos` (L'Aquila–Terni, +13–15%).
+
+Le 3 linee sarde lunghe sono anche le più lontane dalla nuvola (percentile 99,6–99,9), ma restano sotto la distanza massima tra tratte DoE.
+
+**Rete del 10/11 contro 13/11.** Tutte le 166 linee hanno dati diversi. Lo scarto massimo per linea, rispetto all'ampiezza DoE, ha mediana 7%. Cambiano soprattutto le caratteristiche di forma fine della pendenza: `slope_sign_changes_per_km` in 80 linee, `stops_frac_on_slope` in 33.

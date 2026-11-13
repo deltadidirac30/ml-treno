@@ -1,0 +1,120 @@
+fase5/03_dominio.jl  2026-11-13T15:10:30.371  thread: 8  TrainPowertrain 7c9115a1877dda0142eeb08fe25dc810bd93a544
+DoE: distanza dal vicino (66 standardizzate): mediana 2.86, p95 4.72, p99 5.70, max 7.82 (1.2 s)
+
+tratte reali in /Users/kairos/Documents/lavoro/train-powertrain/tratte_reali: Calabria, Canavese, Firenze, Firenze-BRoute, Sulmona-Carpinone  → esclusa Sulmona-Carpinone (richiesta del 13/11)
+Firenze-BRoute identica a Firenze (stessa impronta di tutti i dati): si salta
+
+══ reali: 3 tratte, lette 3; L da 16.5 a 177.6 km
+  dentro tutti gli intervalli DoE: 3 / 3; fuori in 1-3 caratteristiche: 0; in più di 3: 0
+  distanza dal vicino DoE: mediana 3.07, max 3.77; percentile tra le DoE: mediana 58.9, oltre il p99 0, oltre il massimo DoE 0
+  tratte fuori (o reali), ordinate per numero di caratteristiche fuori:
+    Firenze                                  L   93.6 km  fuori  0 (max   0.0%)  vicino route  3784 a 3.77 (perc.  81.3)  
+    Canavese                                 L   16.5 km  fuori  0 (max   0.0%)  vicino route 13656 a 3.07 (perc.  58.9)  
+    Calabria                                 L  177.6 km  fuori  0 (max   0.0%)  vicino route  3715 a 1.01 (perc.   1.3)  
+
+══ rete_20261110: 166 tratte, lette 166; L da 6.9 a 276.1 km
+  dentro tutti gli intervalli DoE: 123 / 166; fuori in 1-3 caratteristiche: 43; in più di 3: 0
+  distanza dal vicino DoE: mediana 3.58, max 6.82; percentile tra le DoE: mediana 76.7, oltre il p99 5, oltre il massimo DoE 0
+  tratte fuori (o reali), ordinate per numero di caratteristiche fuori:
+    Cagliari-Porto_Torres_Marittima          L  271.9 km  fuori  2 (max  35.7%)  vicino route  4386 a 6.82 (perc.  99.9)  n_fermate(+36%) slope_min(-19%)
+    Sassari-Cagliari                         L  252.6 km  fuori  2 (max  25.1%)  vicino route  7083 a 6.43 (perc.  99.7)  slope_max(+25%) n_fermate(+21%)
+    Cagliari-Olbia_Terranova                 L  276.1 km  fuori  2 (max  28.6%)  vicino route 15618 a 6.15 (perc.  99.6)  n_fermate(+29%) slope_min(-19%)
+    Caltagirone-Catania_Centrale             L   89.2 km  fuori  2 (max  20.0%)  vicino route  8989 a 5.78 (perc.  99.2)  slope_max(+20%) slope_min(-16%)
+    LAquila-Terni                            L  103.2 km  fuori  2 (max  36.8%)  vicino route  8989 a 5.48 (perc.  98.5)  slope_max(+37%) slope_std_sq_pos(+15%)
+    Ragusa-Modica                            L   19.5 km  fuori  2 (max  10.6%)  vicino route 14077 a 5.27 (perc.  97.9)  slope_max(+11%) slope_min(-11%)
+    Marradi-Borgo_S_Lorenzo                  L   32.0 km  fuori  2 (max   8.6%)  vicino route  2825 a 5.25 (perc.  97.9)  slope_std_all(+9%) slope_min(-0%)
+    Vittoria-Modica                          L   60.5 km  fuori  2 (max  13.8%)  vicino route 14960 a 4.96 (perc.  96.6)  slope_min(-14%) slope_max(+11%)
+    Modica-Caltanissetta_Xirbi               L  206.8 km  fuori  2 (max  10.6%)  vicino route 12167 a 4.40 (perc.  92.2)  slope_max(+11%) slope_min(-11%)
+    Siracusa-Donnafugata                     L  130.8 km  fuori  2 (max  18.0%)  vicino route  5286 a 4.31 (perc.  91.1)  slope_min(-18%) slope_max(+15%)
+    Modica-Gela                              L   89.7 km  fuori  2 (max  10.6%)  vicino route  8989 a 4.28 (perc.  90.8)  slope_max(+11%) slope_min(-11%)
+    Olbia_Terranova-Golfo_Aranci             L   21.7 km  fuori  2 (max   7.4%)  vicino route  8609 a 4.02 (perc.  86.6)  slope_min(-7%) slope_max(+4%)
+    Siracusa-Ragusa                          L  111.2 km  fuori  2 (max  18.0%)  vicino route  5286 a 3.89 (perc.  84.0)  slope_min(-18%) slope_max(+15%)
+    Siracusa-Vittoria                        L  152.2 km  fuori  2 (max  14.7%)  vicino route  5286 a 3.61 (perc.  77.4)  slope_min(-15%) slope_max(+11%)
+    Gela-Siracusa                            L  181.4 km  fuori  2 (max  13.7%)  vicino route  8811 a 3.10 (perc.  60.2)  slope_max(+14%) slope_min(-11%)
+    Bolzano-Bassano_del_Grappa               L  151.2 km  fuori  1 (max  10.7%)  vicino route 14892 a 5.64 (perc.  98.9)  n_fermate(+11%)
+    Ventimiglia-Limone                       L   66.8 km  fuori  1 (max  60.5%)  vicino route 12036 a 5.38 (perc.  98.2)  slope_max(+61%)
+    Faenza-Borgo_S_Lorenzo                   L   66.3 km  fuori  1 (max   0.2%)  vicino route 14280 a 5.30 (perc.  98.0)  slope_min(-0%)
+    Firenze_S_Maria_Novella-Marradi          L   66.3 km  fuori  1 (max   0.4%)  vicino route  9380 a 5.29 (perc.  97.9)  slope_max(+0%)
+    Lamezia_Terme_Centrale-Catanzaro_Lido    L   43.2 km  fuori  1 (max   6.7%)  vicino route 12580 a 4.65 (perc.  94.5)  slope_max(+7%)
+    Faenza-Firenze_S_Maria_Novella           L  100.7 km  fuori  1 (max   0.2%)  vicino route 13540 a 4.57 (perc.  94.0)  slope_min(-0%)
+    Firenze_S_Maria_Novella-Ravenna          L  134.1 km  fuori  1 (max   0.4%)  vicino route  1926 a 4.55 (perc.  93.7)  slope_max(+0%)
+    Modica-Augusta                           L  118.6 km  fuori  1 (max   6.9%)  vicino route  9877 a 4.49 (perc.  93.2)  slope_sign_changes_per_km(+7%)
+    Pisogne-Rovato_Fn                        L   36.4 km  fuori  1 (max  22.5%)  vicino route   760 a 4.46 (perc.  92.9)  slope_sign_changes_per_km(+22%)
+    Oristano-Porto_Torres_Marittima          L  178.9 km  fuori  1 (max  21.7%)  vicino route 15892 a 4.41 (perc.  92.3)  slope_min(-22%)
+    Ozieri_Chilivani-Porto_Torres_Marittima  L   65.9 km  fuori  1 (max   2.6%)  vicino route  1397 a 4.39 (perc.  92.0)  slope_min(-3%)
+    Reggio_di_Calabria_Centrale-Catanzaro_Lido L  177.6 km  fuori  1 (max  21.4%)  vicino route  8732 a 4.18 (perc.  89.1)  n_fermate(+21%)
+    Soverato-Reggio_di_Calabria_Centrale     L  159.3 km  fuori  1 (max  10.7%)  vicino route  8413 a 4.12 (perc.  88.3)  n_fermate(+11%)
+    Iseo-Edolo                               L   77.0 km  fuori  1 (max   5.4%)  vicino route 11584 a 4.12 (perc.  88.3)  slope_sign_changes_per_km(+5%)
+    BARI_CENTRO-PUTIGNANO-L1                 L   43.8 km  fuori  1 (max   6.0%)  vicino route   400 a 4.06 (perc.  87.2)  slope_max(+6%)
+    Crotone-Lamezia_Terme_Centrale           L  102.9 km  fuori  1 (max   7.1%)  vicino route  1053 a 4.01 (perc.  86.5)  slope_min(-7%)
+    Sassari-Oristano                         L  159.6 km  fuori  1 (max  21.8%)  vicino route 15892 a 4.01 (perc.  86.5)  slope_max(+22%)
+    Oristano-Olbia_Terranova                 L  183.1 km  fuori  1 (max  18.4%)  vicino route 15892 a 3.95 (perc.  85.3)  slope_min(-18%)
+    FRANCAVILLA_FONTANA-MARTINA_FRANCA-L2    L   40.8 km  fuori  1 (max   1.7%)  vicino route  8816 a 3.92 (perc.  84.8)  slope_max(+2%)
+    Brescia-Marone-Zone                      L   35.7 km  fuori  1 (max   5.2%)  vicino route 11936 a 3.92 (perc.  84.7)  slope_sign_changes_per_km(+5%)
+    Pisogne-Brescia                          L   45.3 km  fuori  1 (max   5.2%)  vicino route  9037 a 3.69 (perc.  79.4)  slope_sign_changes_per_km(+5%)
+    Pavia-Vercelli                           L   64.9 km  fuori  1 (max  23.4%)  vicino route  2249 a 3.64 (perc.  78.3)  slope_sign_changes_per_km(+23%)
+    Macomer-Olbia_Terranova                  L  123.4 km  fuori  1 (max  18.4%)  vicino route 11509 a 3.60 (perc.  77.3)  slope_min(-18%)
+    RUTIGLIANO-PUTIGNANO-L1                  L   25.8 km  fuori  1 (max   6.0%)  vicino route  8816 a 3.46 (perc.  73.2)  slope_max(+6%)
+    Edolo-Brescia                            L  100.6 km  fuori  1 (max  14.3%)  vicino route  9037 a 3.27 (perc.  66.6)  n_fermate(+14%)
+    Siracusa-Rosolini                        L   47.7 km  fuori  1 (max   6.2%)  vicino route   889 a 3.21 (perc.  64.5)  slope_sign_changes_per_km(+6%)
+    Breno-Brescia                            L   70.0 km  fuori  1 (max   0.0%)  vicino route  9037 a 3.15 (perc.  62.2)  slope_sign_changes_per_km(+0%)
+    Vercelli-Mortara                         L   27.5 km  fuori  1 (max   6.9%)  vicino route  2249 a 2.49 (perc.  33.1)  slope_sign_changes_per_km(+7%)
+  caratteristiche fuori, numero di tratte: slope_max 20, slope_min 20, slope_sign_changes_per_km 9, n_fermate 7, slope_std_all 1, slope_std_sq_pos 1
+
+══ rete_20261113: 166 tratte, lette 166; L da 6.9 a 276.1 km
+  dentro tutti gli intervalli DoE: 123 / 166; fuori in 1-3 caratteristiche: 43; in più di 3: 0
+  distanza dal vicino DoE: mediana 3.67, max 6.86; percentile tra le DoE: mediana 78.9, oltre il p99 6, oltre il massimo DoE 0
+  tratte fuori (o reali), ordinate per numero di caratteristiche fuori:
+    Cagliari-Porto_Torres_Marittima          L  271.9 km  fuori  2 (max  35.7%)  vicino route  4386 a 6.86 (perc.  99.9)  n_fermate(+36%) slope_min(-19%)
+    Sassari-Cagliari                         L  252.6 km  fuori  2 (max  21.4%)  vicino route 12306 a 6.37 (perc.  99.7)  n_fermate(+21%) slope_max(+18%)
+    Cagliari-Olbia_Terranova                 L  276.1 km  fuori  2 (max  28.6%)  vicino route  6726 a 6.16 (perc.  99.6)  n_fermate(+29%) slope_min(-19%)
+    Caltagirone-Catania_Centrale             L   89.2 km  fuori  2 (max  20.0%)  vicino route  8989 a 5.82 (perc.  99.2)  slope_max(+20%) slope_min(-13%)
+    LAquila-Terni                            L  103.2 km  fuori  2 (max  36.8%)  vicino route  8989 a 5.43 (perc.  98.4)  slope_max(+37%) slope_std_sq_pos(+13%)
+    Ragusa-Modica                            L   19.5 km  fuori  2 (max  10.6%)  vicino route 14077 a 5.31 (perc.  98.0)  slope_max(+11%) slope_min(-11%)
+    Marradi-Borgo_S_Lorenzo                  L   32.0 km  fuori  2 (max   9.3%)  vicino route  2825 a 5.30 (perc.  98.0)  slope_std_all(+9%) slope_min(-0%)
+    Vittoria-Modica                          L   60.5 km  fuori  2 (max  10.8%)  vicino route 14960 a 5.01 (perc.  96.9)  slope_max(+11%) slope_min(-11%)
+    Modica-Caltanissetta_Xirbi               L  206.8 km  fuori  2 (max  10.6%)  vicino route 12167 a 4.43 (perc.  92.7)  slope_max(+11%) slope_min(-11%)
+    Modica-Gela                              L   89.7 km  fuori  2 (max  10.6%)  vicino route  8989 a 4.32 (perc.  91.3)  slope_max(+11%) slope_min(-11%)
+    Siracusa-Donnafugata                     L  130.8 km  fuori  2 (max  14.8%)  vicino route  5286 a 4.27 (perc.  90.6)  slope_max(+15%) slope_min(-15%)
+    Olbia_Terranova-Golfo_Aranci             L   21.7 km  fuori  2 (max   4.2%)  vicino route  8609 a 4.08 (perc.  87.5)  slope_max(+4%) slope_min(-4%)
+    Siracusa-Ragusa                          L  111.2 km  fuori  2 (max  14.8%)  vicino route  5286 a 3.87 (perc.  83.6)  slope_max(+15%) slope_min(-15%)
+    Siracusa-Vittoria                        L  152.2 km  fuori  2 (max  14.8%)  vicino route  5286 a 3.64 (perc.  78.2)  slope_max(+15%) slope_min(-15%)
+    Gela-Siracusa                            L  181.4 km  fuori  2 (max  10.6%)  vicino route  8811 a 3.09 (perc.  59.4)  slope_max(+11%) slope_min(-11%)
+    Roma_Tiburtina-Rieti                     L  131.5 km  fuori  1 (max  16.7%)  vicino route  6117 a 6.57 (perc.  99.8)  slope_min(-17%)
+    Bolzano-Bassano_del_Grappa               L  151.2 km  fuori  1 (max  10.7%)  vicino route 14892 a 5.81 (perc.  99.2)  n_fermate(+11%)
+    Faenza-Borgo_S_Lorenzo                   L   66.3 km  fuori  1 (max   0.2%)  vicino route 14280 a 5.43 (perc.  98.4)  slope_min(-0%)
+    Firenze_S_Maria_Novella-Marradi          L   66.3 km  fuori  1 (max   0.4%)  vicino route  9380 a 5.23 (perc.  97.8)  slope_max(+0%)
+    Lamezia_Terme_Centrale-Catanzaro_Lido    L   43.2 km  fuori  1 (max   3.4%)  vicino route 15593 a 4.69 (perc.  94.7)  slope_max(+3%)
+    Ozieri_Chilivani-Porto_Torres_Marittima  L   65.9 km  fuori  1 (max   2.6%)  vicino route  1397 a 4.64 (perc.  94.4)  slope_min(-3%)
+    Faenza-Firenze_S_Maria_Novella           L  100.7 km  fuori  1 (max   0.2%)  vicino route 13540 a 4.57 (perc.  94.0)  slope_min(-0%)
+    Ventimiglia-Limone                       L   66.8 km  fuori  1 (max   1.5%)  vicino route 14524 a 4.55 (perc.  93.6)  slope_max(+2%)
+    Pisogne-Rovato_Fn                        L   36.4 km  fuori  1 (max  28.0%)  vicino route   760 a 4.54 (perc.  93.5)  slope_sign_changes_per_km(+28%)
+    Firenze_S_Maria_Novella-Ravenna          L  134.1 km  fuori  1 (max   0.4%)  vicino route  1926 a 4.47 (perc.  93.0)  slope_max(+0%)
+    Reggio_di_Calabria_Centrale-Catanzaro_Lido L  177.6 km  fuori  1 (max  21.4%)  vicino route  8732 a 4.41 (perc.  92.4)  n_fermate(+21%)
+    Oristano-Porto_Torres_Marittima          L  178.9 km  fuori  1 (max  18.4%)  vicino route 15892 a 4.37 (perc.  91.9)  slope_min(-18%)
+    Iseo-Edolo                               L   77.0 km  fuori  1 (max   5.4%)  vicino route 11584 a 4.11 (perc.  88.0)  slope_sign_changes_per_km(+5%)
+    Brescia-Marone-Zone                      L   35.7 km  fuori  1 (max  10.9%)  vicino route 11936 a 4.04 (perc.  87.0)  slope_sign_changes_per_km(+11%)
+    Soverato-Reggio_di_Calabria_Centrale     L  159.3 km  fuori  1 (max  10.7%)  vicino route  8413 a 3.98 (perc.  85.9)  n_fermate(+11%)
+    Crotone-Lamezia_Terme_Centrale           L  102.9 km  fuori  1 (max   3.8%)  vicino route  1053 a 3.97 (perc.  85.8)  slope_min(-4%)
+    Oristano-Olbia_Terranova                 L  183.1 km  fuori  1 (max  18.4%)  vicino route 15892 a 3.95 (perc.  85.2)  slope_min(-18%)
+    Sassari-Oristano                         L  159.6 km  fuori  1 (max  18.5%)  vicino route 15892 a 3.94 (perc.  85.1)  slope_max(+18%)
+    Pisogne-Brescia                          L   45.3 km  fuori  1 (max  14.2%)  vicino route  9037 a 3.93 (perc.  85.1)  slope_sign_changes_per_km(+14%)
+    BARI_CENTRO-PUTIGNANO-L1                 L   43.8 km  fuori  1 (max   6.0%)  vicino route  3592 a 3.75 (perc.  80.9)  slope_max(+6%)
+    Siracusa-Rosolini                        L   47.7 km  fuori  1 (max  18.9%)  vicino route   889 a 3.69 (perc.  79.5)  slope_sign_changes_per_km(+19%)
+    Pavia-Vercelli                           L   64.9 km  fuori  1 (max  23.4%)  vicino route  2249 a 3.65 (perc.  78.3)  slope_sign_changes_per_km(+23%)
+    Macomer-Olbia_Terranova                  L  123.4 km  fuori  1 (max  18.4%)  vicino route  6005 a 3.58 (perc.  76.6)  slope_min(-18%)
+    RUTIGLIANO-PUTIGNANO-L1                  L   25.8 km  fuori  1 (max   6.0%)  vicino route  8816 a 3.46 (perc.  72.9)  slope_max(+6%)
+    Sale_Marasino-Brescia                    L   32.3 km  fuori  1 (max   3.7%)  vicino route 11936 a 3.45 (perc.  72.8)  slope_sign_changes_per_km(+4%)
+    Edolo-Brescia                            L  100.6 km  fuori  1 (max  14.3%)  vicino route  9037 a 3.31 (perc.  68.0)  n_fermate(+14%)
+    Breno-Brescia                            L   70.0 km  fuori  1 (max   8.7%)  vicino route  9037 a 3.30 (perc.  67.8)  slope_sign_changes_per_km(+9%)
+    FRANCAVILLA_FONTANA-MARTINA_FRANCA-L2    L   40.8 km  fuori  1 (max   4.7%)  vicino route  6436 a 3.24 (perc.  65.6)  slope_max(+5%)
+  caratteristiche fuori, numero di tratte: slope_min 21, slope_max 20, slope_sign_changes_per_km 8, n_fermate 7, slope_std_all 1, slope_std_sq_pos 1
+
+══ rete del 10/11 contro rete del 13/11 (stesse cartelle)
+  cartelle: 10/11 166, 13/11 166, comuni 166; solo 10/11: Set{String}(); solo 13/11: Set{String}()
+  tratte con dati diversi (impronta): 166; con caratteristiche diverse: 166
+  scarto massimo per tratta / ampiezza DoE: mediana 7.39e-02, max 5.90e-01 (Ventimiglia-Limone)
+  caratteristica con lo scarto massimo, per tratta: slope_sign_changes_per_km 80, slope_std_neg 10, stops_frac_on_slope 33, slope_std_pos 3, cross_brake_energy_signed 11, slope_L_up_frac 4, slope_max 10, slope_mean_neg 1, slope_min 10, slope_max_run_up_km 1, bin_p_4 1, stops_mean_p 1, slope_std_sq_pos 1
+
+fatto: 2026-11-13T15:10:40.133
+julia -t 8 --project=fase5 fase5/03_dominio.jl  20,91s user 0,65s system 196% cpu 10,953 total
