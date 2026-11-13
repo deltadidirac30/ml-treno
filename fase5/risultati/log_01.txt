@@ -1,0 +1,115 @@
+fase5/01_tratte.jl  2026-11-13T14:58:27.917  thread: 8  julia 1.12.5
+TrainPowertrain: /Users/kairos/Documents/lavoro/train-powertrain/julia/src/TrainPowertrain.jl  commit 7c9115a1877dda0142eeb08fe25dc810bd93a544
+
+[1a.1] manifest /Users/kairos/Documents/lavoro/ml_treno_dati/tratte_doe_16384/manifest.csv
+  righe: 16388; di commento: 3 (righe 1, 2, 10244); intestazioni+dati: 16385
+  #1: # Tratte DoE generate dal MATLAB (build_doe_route, generatore doe-matlab-v3, C:\Users\utente locale\Desktop\Emanuele\lavoro\train-powertrain\train-powertrain-ma …
+  #2: # design: C:\Users\utente locale\Desktop\Emanuele\lavoro\train-powertrain\train-powertrain-matlab-correzioni-modello\Codice_PRECONFIGURATORE_generale\tratte\tra …
+  #10244: # route 10241-16384 accodate 2026-11-12 22:39, MATLAB 23.2.0.2599560 (R2023b) Update 8; design: C:\Users\utente locale\Desktop\Emanuele\lavoro\train-powertrain\ …
+  intestazione: route_id,L_m,n_fermate_intermedie,n_limiti,v_max_kmh,generatore,sha256_pendenza
+  intestazioni nel manifest: 1 (attesa 1)
+  righe di dati: 16384; route_id = 1..16384 nell'ordine: true; distinti: 16384; campi per riga: [7]
+  generatore: Dict{SubString{String}, Int64}("doe-matlab-v3" => 16384)
+  righe di dati prima del commento di accodamento: 10240 (route 1..10240)
+
+[1a.2] impronte del design citate nel manifest contro i file del repo MATLAB
+  design_000001_010240.csv: sha256 sul Mac (LF) b73b689a35ca8a63c314b45b108670b46f608adebd3e05fc9c137bdbba83cdbc; con fine riga CRLF 92c475cf3a2ace5779a29f47c59a76d50d99294fdab0b7317d232beda56bf102
+     nel manifest: 92c475cf3a2ace5779a29f47c59a76d50d99294fdab0b7317d232beda56bf102  → uguale al file con CRLF (stesso contenuto, fine riga di Windows)
+  design_000001_016384.csv: sha256 sul Mac (LF) e00a742cac306ae66ba0d7c5a14f650d9eb3c4dd692e96e87d6fd40127a6043c; con fine riga CRLF 777c2b181aa3c4a0f6aa0e7534c12aa46239c52485328f6ffd63a265927b2a27
+     nel manifest: 777c2b181aa3c4a0f6aa0e7534c12aa46239c52485328f6ffd63a265927b2a27  → uguale al file con CRLF (stesso contenuto, fine riga di Windows)
+  prime 10241 righe (intestazione + 10240) del design da 16384 == design da 10240: true
+
+[1a.3] design /Users/kairos/Documents/lavoro/train-powertrain/train-powertrain-matlab-correzioni-modello/Codice_PRECONFIGURATORE_generale/tratte/tratte_doe/design_000001_016384.csv
+  righe: 16384; route_id = 1..16384: true
+  colonne uguali (isequal, al bit) a tratte.arrow della fase 4: 21 su 21
+  tratte con errore_D29 in tratte.arrow: [2366, 14664]
+
+[1a.4] tratte lette a blocchi di 256 con leggi_tratte_materializzate (impronta contro il manifest)
+  blocco  8/64: lettura cumulata 2.7 s
+  blocco 16/64: lettura cumulata 4.7 s
+  blocco 24/64: lettura cumulata 6.7 s
+  blocco 32/64: lettura cumulata 8.7 s
+  blocco 40/64: lettura cumulata 10.7 s
+  blocco 48/64: lettura cumulata 12.6 s
+  blocco 56/64: lettura cumulata 14.6 s
+  blocco 64/64: lettura cumulata 16.6 s
+  lettura delle 16384 tratte (con l'impronta): 16.6 s, 1.01 ms per tratta
+  tratte lette: 16384 (l'impronta della pendenza coincide con il manifest in tutte: altrimenti errore)
+  2·L/1000 === km_viaggio del registro (un solo valore per tratta): 16384 / 16384
+    righe del registro con km_viaggio per tratta: min 224, max 288; tratte con < 288 righe: [(2366, 283), (14664, 224)]
+  fermate, v_max, numero di limiti == design: 16384 / 16384
+  L, fermate, limiti, v_max, impronta == manifest: 16384 / 16384
+  struttura (L intero, pendenza L+1 valori, stazioni 0..L, limiti, soste 120/300 s, route_id in tratta_scalari): 16384 / 16384
+  L − 1000·L_km del design: da -0.5000 a 0.5000 m (L è intero in metri)
+  [1a] tempo: 85.0 s
+
+[1b] rivalutazione di un campione con lo stesso percorso della campagna
+  coppie a m = 0: 32; nella prima fascia D25 [0,03; 0,0957): 15
+  seme 20261113 (Xoshiro): 64 tratte × 4 coppie (elenco in 01_campione.csv)
+  route: 482 668 736 988 1074 1198 1479 1482 2113 2701 2908 2948 3229 3811 3834 3920 4311 4313 4746 4978 5192 5359 5599 5852 6676 6783 7086 7141 7620 7633 8028 8043 8375 8448 8558 8631 9286 9339 9655 10144 10726 10927 11042 11169 11289 11649 12024 12046 12349 12577 12664 12667 13506 13942 14059 14179 14391 14607 14773 15045 15666 15857 15862 16254
+  256 valutazioni in 2.6 s di parete (7.1 s con letture e scritture)
+  config.txt: 1 distinto nella campagna, 1 qui; uguali carattere per carattere: true
+    modello=corretta soglia_cambio_carico=1.0000000000000001e-09 D3=true D4=pnom_dal_picco D5=nessuna D6=true conteggio_carico=cicli_equivalenti ausiliari_fc=sempre_5pc m_min_fc=0.029999999999999999 perdita_fine_vita_fc=0.20000000000000001 tempi_sostituzioni=a_fine_vita soglia_fine_orizzonte=0 valore_residuo=true definizione_n=energia_riferimento sola_batteria=n_libero f_degrado_fc=0.51692531382982454 ore_max_fc=25000 D12=true D26=true D27=true D28=true D18=true massa_molare_H2=2.016 pci_unico=true degrado_batteria=wang T_cella_batteria=30 vita_calendariale_batteria_anni=15 peso_a_carico=195000
+  righe confrontate: 256 (attese 256); colonne numeriche confrontate: 86 (tutte tranne tempo_s)
+  stato, tipo_esito, motivo, storage_non_convergente, caso uguali: 256 / 256
+  stati: Dict("completed" => 245, "rejected" => 11); tipo_esito: Dict("piccola" => 169, "pesante" => 21, "mista" => 5, "fattibile" => 61)
+  righe con tutte le colonne numeriche al bit (=== , NaN compresi): 0 / 256
+  colonne non al bit (righe, ULP massimi):
+    E_trazione_kWh                      256 righe, max 2902 ULP
+    batt_non_erogata_kWh                256 righe, max 8852642426215604770 ULP
+    E_scambiata_kWh                     253 righe, max 1526 ULP
+    vita_batt_cicli_viaggi              253 righe, max 4669 ULP
+    E_frenatura_disponibile_kWh         252 righe, max 990 ULP
+    vita_batt_cicli_anni                251 righe, max 4969 ULP
+    E_frenatura_recuperata_kWh          251 righe, max 990 ULP
+    residuo_kWh                         244 righe, max 8861958166758293504 ULP
+    vita_batt_viaggi                    242 righe, max 4669 ULP
+    vita_batt_anni                      240 righe, max 4969 ULP
+    valore_residuo_batt_EUR_km          240 righe, max 2580672 ULP
+    C_rate_scarica_max                  235 righe, max 67851 ULP
+    I_stringa_scarica_max_A             235 righe, max 84814 ULP
+    cost_repl_batt_EUR_km_att           234 righe, max 1496 ULP
+    total_cost_EUR_km                   234 righe, max 924 ULP
+    SOC_end                             218 righe, max 31512 ULP
+    vincolo_soc_pt                      215 righe, max 14116 ULP
+    E_ricarica_rete_kWh                 198 righe, max 73773 ULP
+    frenata_dissipata_kWh               189 righe, max 1741391855916592 ULP
+    OPEX_batt_rech_EUR_km_att           188 righe, max 88189 ULP
+    C_rate_carica_max                   165 righe, max 16378 ULP
+    SOC_massimo                          91 righe, max 2141 ULP
+    SOC_minimo                           86 righe, max 9724 ULP
+    H2_cons_kg                           71 righe, max 162 ULP
+    H2_serbatoio_kg                      70 righe, max 222 ULP
+    costo                                70 righe, max 520 ULP
+    OPEX_mant_tank_EUR_km_att            70 righe, max 191 ULP
+    CAPEX_tank_EUR_km                    70 righe, max 281 ULP
+    massa_serbatoio_kg                   70 righe, max 253 ULP
+    OPEX_H2_rech_EUR_km_att              70 righe, max 197 ULP
+    E_FC_kWh                             68 righe, max 167 ULP
+    dV_cicli_carico_uV                   60 righe, max 16821 ULP
+    massa_propulsione_kg                 53 righe, max 101 ULP
+    fc_non_erogata_kWh                   51 righe, max 8740786316784097326 ULP
+    vita_FC_ore                          50 righe, max 1992 ULP
+    vita_FC_viaggi                       50 righe, max 1981 ULP
+    vincolo_peso_t                       49 righe, max 2097 ULP
+    vita_FC_anni                         49 righe, max 1390 ULP
+    vita_FC_f1_ore                       48 righe, max 2060 ULP
+    valore_residuo_FC_EUR_km             48 righe, max 175436 ULP
+    tau_FC_anni                          47 righe, max 86016 ULP
+    cost_repl_FC_EUR_km_att              44 righe, max 601 ULP
+    massa_treno_kg                       24 righe, max 4 ULP
+    vincolo_d3                            9 righe, max 33 ULP
+  ULP massimi su tutte le righe e colonne: 8861958166758293504 (gli ULP enormi vengono da colonne vicine a zero: residuo_kWh, batt_non_erogata_kWh, …)
+
+  criterio accettato: testo uguale; discrete al bit; NaN/Inf negli stessi posti; continue |Δ|/scala ≤ 1.0e-10
+  colonne discrete al bit: 18 / 18; colonne con NaN/Inf negli stessi posti: 86 / 86
+  colonne continue: max |Δ|/scala = 2.292e-03 (fc_non_erogata_kWh); colonne al bit in tutte le righe: 42 / 86
+  colonne fuori criterio: fc_non_erogata_kWh  (01_criterio.csv)
+  ANOMALIA: colonne fuori dal criterio accettato: fc_non_erogata_kWh
+
+ESITO 1b: NON COINCIDONO secondo il criterio accettato: vedi sopra
+
+tempo totale: 97.6 s
+anomalie: 
+  - colonne fuori dal criterio accettato: fc_non_erogata_kWh
+julia -t 8 --project=fase5 fase5/01_tratte.jl  156,69s user 5,19s system 163% cpu 1:38,91 total

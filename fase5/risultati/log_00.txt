@@ -1,0 +1,13 @@
+47398236 byte
+voci OK: 81921
+No errors detected in compressed data of /Users/kairos/Documents/lavoro/train-powertrain/campagne/tratte_doe_16384.zip.
+81921 files, 65943374 bytes uncompressed, 33111156 bytes compressed:  49.8%
+file 81921, byte 65943374
+voci con '..': 0
+121ec556beebb529b3763d0c344e43ad72ee1cc32879338150ebe73874c1dbb1  /Users/kairos/Documents/lavoro/train-powertrain/campagne/tratte_doe_16384.zip
+warning:  /Users/kairos/Documents/lavoro/train-powertrain/campagne/tratte_doe_16384.zip appears to use backslashes as path separators
+file estratti:    81921
+byte estratti: 65943374
+nomi con '\': 0
+cartelle route:    16384
+zsh fase5/00_zip.sh  1,83s user 11,21s system 97% cpu 13,352 total

@@ -1,0 +1,120 @@
+fase5/02_caratteristiche.jl  2026-11-13T14:54:37.395  thread: 8  julia 1.12.5
+TrainPowertrain: /Users/kairos/Documents/lavoro/train-powertrain/julia/src/TrainPowertrain.jl  commit 7c9115a1877dda0142eeb08fe25dc810bd93a544
+codice: fase1/caratteristiche.jl sha256 87f527447a3e9b2223490111bbf45ae1a5bb5abc6044718a930e2a2381372569; src/features.jl sha256 75ab72e78dab108007ecd92827863a3b0e46143a5733c46916f8af131213cd78
+66 caratteristiche, stesso ordine e nomi delle colonne x_ di fase1/dati/dataset_doe.csv (senza din_): true
+
+[2.0] controllo del codice: le 1024 tratte della fase 1 (tratte_doe_matlab) contro fase1/dati/caratteristiche_doe.csv
+  tratte: 1024; valori diversi al bit (dal CSV a 17 cifre): 0 su 71680; scarto relativo massimo 0.0
+
+[2.1] calcolo sulle 16384 tratte, blocchi di 256, 8 thread
+  blocco  8/64: lettura 2.6 s, calcolo 2.6 s (cumulati)
+  blocco 16/64: lettura 4.9 s, calcolo 5.1 s (cumulati)
+  blocco 24/64: lettura 7.3 s, calcolo 7.6 s (cumulati)
+  blocco 32/64: lettura 10.0 s, calcolo 10.2 s (cumulati)
+  blocco 40/64: lettura 12.7 s, calcolo 12.9 s (cumulati)
+  blocco 48/64: lettura 15.3 s, calcolo 15.6 s (cumulati)
+  blocco 56/64: lettura 18.0 s, calcolo 18.3 s (cumulati)
+  blocco 64/64: lettura 20.7 s, calcolo 20.9 s (cumulati)
+  parete: lettura 20.7 s (1.26 ms/tratta), calcolo 20.9 s (1.28 ms/tratta con 8 thread), totale 43.4 s
+  tempo di calcolo per tratta su un thread: mediana 4.96 ms, media 9.50 ms, p99 44.43 ms, massimo 75.01 ms
+  correlazione tempo–L: 0.56; tempo/L mediano 0.034 ms/km
+
+[2.2] scritto /Users/kairos/Documents/lavoro/ml_treno_dati/P9_D28_16384/arrow/caratteristiche.arrow (8728858 byte), 16384 righe × 67 colonne; riletto uguale: true
+
+[2.3] NaN: 0; Inf: 0 (su 1081344 valori)
+  costanti sulle 16384:  (nessuna = vuoto)
+
+[2.4] intervalli contro le 1024 tratte della fase 1 (fase1/dati/caratteristiche_doe.csv)
+  caratteristiche con almeno una tratta fuori dall'intervallo della fase 1: 58 su 66
+  tratte con almeno una caratteristica fuori: 15395 su 16384
+  x_cross_thermal_fatigue        fase1 [0           1.768e+06]  ora [0           1.561e+07]  sotto     0 (  0.0% intervallo) sopra  3864 ( 782.9%)
+  x_cross_up_lowv                fase1 [0               975.2]  ora [0                7196]  sotto     0 (  0.0% intervallo) sopra  3064 ( 638.0%)
+  x_cross_var_p_v                fase1 [0           1.528e+06]  ora [0           1.021e+07]  sotto     0 (  0.0% intervallo) sopra  3994 ( 568.4%)
+  x_stops_spacing_std            fase1 [0               31.46]  ora [0               142.5]  sotto     0 (  0.0% intervallo) sopra   947 ( 353.0%)
+  x_cross_Ldn_v                  fase1 [-2.786e+05          0]  ora [-1.057e+06          0]  sotto  1993 (279.3% intervallo) sopra     0 (   0.0%)
+  x_vlim_sum_dv_neg_sq           fase1 [0             2.2e+04]  ora [0           8.165e+04]  sotto     0 (  0.0% intervallo) sopra   179 ( 271.1%)
+  x_cross_Lup_v                  fase1 [0           2.974e+05]  ora [0           1.086e+06]  sotto     0 (  0.0% intervallo) sopra  1753 ( 265.3%)
+  x_slope_std_sq_pos             fase1 [0               186.7]  ora [0               666.2]  sotto     0 (  0.0% intervallo) sopra  5650 ( 256.9%)
+  x_cross_abs_p_highv            fase1 [0                2066]  ora [0                7135]  sotto     0 (  0.0% intervallo) sopra  1670 ( 245.3%)
+  x_slope_int_pos                fase1 [0                1922]  ora [0                6528]  sotto     0 (  0.0% intervallo) sopra  2894 ( 239.6%)
+  x_slope_int_neg                fase1 [0                1951]  ora [0                6517]  sotto     0 (  0.0% intervallo) sopra  2837 ( 234.1%)
+  x_vlim_sum_dv_pos_sq           fase1 [0            2.25e+04]  ora [0            7.38e+04]  sotto     0 (  0.0% intervallo) sopra   166 ( 228.0%)
+  x_dislivello_m                 fase1 [0                1919]  ora [0                5963]  sotto     0 (  0.0% intervallo) sopra  4736 ( 210.7%)
+  x_slope_mean_pos               fase1 [0               12.09]  ora [0               36.46]  sotto     0 (  0.0% intervallo) sopra  6058 ( 201.5%)
+  x_slope_mean_neg               fase1 [-11.44              0]  ora [-33.65              0]  sotto  6517 (194.0% intervallo) sopra     0 (   0.0%)
+  x_slope_std_all                fase1 [0               7.997]  ora [0                  20]  sotto     0 (  0.0% intervallo) sopra  8841 ( 150.1%)
+  x_bin_p_1                      fase1 [-14.38          18.11]  ora [-39.96           39.9]  sotto  2280 ( 78.7% intervallo) sopra  1147 (  67.1%)
+  x_bin_p_9                      fase1 [-17.38          15.86]  ora [-39.74          39.35]  sotto  1360 ( 67.3% intervallo) sopra  1804 (  70.6%)
+  x_slope_std_pos                fase1 [0               6.844]  ora [0               16.25]  sotto     0 (  0.0% intervallo) sopra  5720 ( 137.4%)
+  x_slope_std_neg                fase1 [0               7.419]  ora [0               17.26]  sotto     0 (  0.0% intervallo) sopra  5038 ( 132.7%)
+  x_vlim_sum_abs_dv2             fase1 [0           2.207e+05]  ora [0           5.022e+05]  sotto     0 (  0.0% intervallo) sopra   119 ( 127.5%)
+  x_bin_p_6                      fase1 [-17.47          17.17]  ora [-39.23          39.58]  sotto  1341 ( 62.8% intervallo) sopra  1395 (  64.7%)
+  x_stops_mean_p                 fase1 [-16             18.66]  ora [-39.34          38.39]  sotto  1490 ( 67.3% intervallo) sopra   721 (  56.9%)
+  x_slope_rms                    fase1 [0               12.55]  ora [0               28.13]  sotto     0 (  0.0% intervallo) sopra 10196 ( 124.1%)
+  x_bin_p_5                      fase1 [-17.28          18.06]  ora [-39.23          39.66]  sotto  1420 ( 62.1% intervallo) sopra  1140 (  61.1%)
+  x_bin_p_2                      fase1 [-17.08          18.35]  ora [-38.58          39.01]  sotto  1429 ( 60.7% intervallo) sopra  1105 (  58.3%)
+  x_bin_p_7                      fase1 [-21.86          15.17]  ora [-39.98          39.12]  sotto   465 ( 48.9% intervallo) sopra  2025 (  64.7%)
+  x_cross_mean_p_v               fase1 [-1508            1503]  ora [-3171            3135]  sotto  1149 ( 55.2% intervallo) sopra  1166 (  54.2%)
+  x_bin_p_8                      fase1 [-18.09          19.31]  ora [-39.98          36.83]  sotto  1139 ( 58.5% intervallo) sopra   852 (  46.8%)
+  x_bin_p_10                     fase1 [-17.56             21]  ora [-39.74          39.38]  sotto  1321 ( 57.5% intervallo) sopra   544 (  47.7%)
+  x_bin_p_3                      fase1 [-18.68          18.22]  ora [-38.13          36.06]  sotto  1001 ( 52.7% intervallo) sopra  1113 (  48.4%)
+  x_bin_p_4                      fase1 [-16.52          21.61]  ora [-36.67          38.76]  sotto  1615 ( 52.8% intervallo) sopra   455 (  45.0%)
+  x_vlim_changes_per_km          fase1 [0              0.1616]  ora [0              0.3137]  sotto     0 (  0.0% intervallo) sopra  5395 (  94.1%)
+  x_stops_density                fase1 [0              0.3262]  ora [0              0.5575]  sotto     0 (  0.0% intervallo) sopra  1078 (  70.9%)
+  x_slope_min                    fase1 [-27.98          9.242]  ora [-40             19.73]  sotto  5311 ( 32.3% intervallo) sopra   515 (  28.2%)
+  x_L_km                         fase1 [15.02           199.9]  ora [5.01              300]  sotto   556 (  5.4% intervallo) sopra  5504 (  54.2%)
+  x_slope_max                    fase1 [-9.531           28.4]  ora [-19.47             40]  sotto   499 ( 26.2% intervallo) sopra  5157 (  30.6%)
+  x_stops_std_v                  fase1 [0                49.3]  ora [0               74.25]  sotto     0 (  0.0% intervallo) sopra    38 (  50.6%)
+  x_slope_max_run_up_km          fase1 [0               199.9]  ora [0               299.6]  sotto     0 (  0.0% intervallo) sopra   574 (  49.9%)
+  x_stops_sum_abs_p              fase1 [0               525.8]  ora [0               779.6]  sotto     0 (  0.0% intervallo) sopra   180 (  48.2%)
+  x_vlim_std                     fase1 [0               43.16]  ora [0               59.95]  sotto     0 (  0.0% intervallo) sopra    58 (  38.9%)
+  x_tempo_limiti_ar_s            fase1 [1091        3.342e+04]  ora [560.3       4.268e+04]  sotto   117 (  1.6% intervallo) sopra  1130 (  28.6%)
+  x_bin_v_3                      fase1 [60                160]  ora [30                160]  sotto  2789 ( 30.0% intervallo) sopra     3 (   0.0%)
+  x_vlim_min                     fase1 [60                160]  ora [30                160]  sotto  6676 ( 30.0% intervallo) sopra     0 (   0.0%)
+  x_bin_v_1                      fase1 [60                160]  ora [30                160]  sotto  2684 ( 30.0% intervallo) sopra     0 (   0.0%)
+  x_bin_v_2                      fase1 [60                160]  ora [30                160]  sotto  2844 ( 30.0% intervallo) sopra     0 (   0.0%)
+  x_bin_v_6                      fase1 [60                160]  ora [30                160]  sotto  2877 ( 30.0% intervallo) sopra     0 (   0.0%)
+  x_bin_v_7                      fase1 [60                160]  ora [30                160]  sotto  2839 ( 30.0% intervallo) sopra     0 (   0.0%)
+  x_bin_v_8                      fase1 [60                160]  ora [30                160]  sotto  2843 ( 30.0% intervallo) sopra     0 (   0.0%)
+  x_bin_v_9                      fase1 [60                160]  ora [30                160]  sotto  2802 ( 30.0% intervallo) sopra     0 (   0.0%)
+  x_bin_v_10                     fase1 [60                160]  ora [30                160]  sotto  2673 ( 30.0% intervallo) sopra     0 (   0.0%)
+  x_bin_v_4                      fase1 [60                160]  ora [30                160]  sotto  2854 ( 30.0% intervallo) sopra     0 (   0.0%)
+  x_bin_v_5                      fase1 [60                160]  ora [30                160]  sotto  2878 ( 30.0% intervallo) sopra     0 (   0.0%)
+  x_vlim_mean                    fase1 [67.17             160]  ora [40.76             160]  sotto  4291 ( 28.5% intervallo) sopra     1 (   0.0%)
+  x_vlim_max                     fase1 [80                160]  ora [60                160]  sotto  3121 ( 25.0% intervallo) sopra     0 (   0.0%)
+  x_slope_sign_changes_per_km    fase1 [0              0.8031]  ora [0              0.9862]  sotto     0 (  0.0% intervallo) sopra    33 (  22.8%)
+  x_vlim_frac_low                fase1 [0              0.8718]  ora [0                   1]  sotto     0 (  0.0% intervallo) sopra  4349 (  14.7%)
+  x_cross_stops_v_seg            fase1 [0           1.171e+06]  ora [0           1.183e+06]  sotto     0 (  0.0% intervallo) sopra     1 (   1.1%)
+
+[2.5] coerenza con i fattori del design (solo verifica: i fattori non sono ingressi)
+  L: max |x_L_km − L_km del design| = 0.000500 km (L intero in metri)
+  2·x_L_km === km_viaggio del registro: 16384 / 16384; |2·x_L_km − km_viaggio| max 0.0
+  x_n_fermate == n_stops: 16384 / 16384
+  x_vlim_max == v_max_kmh: 16384 / 16384
+  numero di limiti (vlim_changes_per_km·L + 1) == n_vlim_segments: 16384 / 16384
+  pendenza media (slope_int_pos − slope_int_neg)/L [‰] contro slope_mean: max scarto 6.080e-03 ‰, mediana 3.575e-05; con L del design 5.516e-03
+    peggiore: route 3977, -9.037060 contro -9.030980 ‰ (L 6.136 km)
+  x_stops_density contro stop_density: max scarto 1.800e-05 1/km (n/L con L in metri interi contro L_km del design)
+
+[2.6] identità esatte tra caratteristiche (come fase 1 [b2]) sulle 16384
+  slope_int_abs = slope_int_pos + slope_int_neg           max |scarto| = 1.819e-12 (scala 7.278e+03)
+  stops_sum_v2_segweighted = stops_sum_v2                 max |scarto| = 0.000e+00 (scala 6.912e+05)
+  stops_spacing_mean = L/(n_fermate+1)                    max |scarto| = 1.421e-14 (scala 2.997e+02)
+  stops_density = n_fermate/L                             max |scarto| = 0.000e+00 (scala 5.575e-01)
+  slope_int_pos - slope_int_neg = quota(L) - quota(0)     max |scarto| = 5.002e-12 (scala 6.528e+03)
+  cross_int_p_v = cross_mean_p_v * L                      max |scarto| = 1.164e-10 (scala 8.860e+05)
+  vlim_frac_low + mid + high = 1                          max |scarto| = 2.220e-16 (scala 1.000e+00)
+  (i primi 4 lati sinistri non sono tra le 66; le 3 identità dentro le 66: stops_density, quota, vlim_frac)
+  coppie di colonne identiche tra le 66: nessuna
+  coppie con |correlazione| ≥ 0,98 (Pearson o Spearman, ranghi senza correzione dei pari): 1
+    slope_std_pos                slope_std_sq_pos             P +0.9541  S +0.9903
+  valori singolari della matrice standardizzata: max 4.996e+02, i 4 più piccoli 1.234e+01, 8.610e+00, 8.808e-13, 1.296e-13
+  dipendenze lineari esatte (valori singolari < 1e-8·max): 2
+
+[2.7] tratte segnalate in fase 4: errore_D29 (2366, 14664) (caratteristiche calcolate come le altre)
+  route 2366: L 224.134 km, fermate 13, v_max 100, dislivello 3733.7 m
+  route 14664: L 37.075 km, fermate 9, v_max 70, dislivello 329.5 m
+
+tempo totale: 57.3 s
+anomalie: nessuna
+julia -t 8 --project=fase5 fase5/02_caratteristiche.jl  228,11s user 6,68s system 368% cpu 1:03,75 total
