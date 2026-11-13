@@ -1,0 +1,13 @@
+  coppie_quote.png
+  costo_fattibili.png
+  distribuzioni.png
+  migliore_vs_design.png
+  regime_migliore.png
+  regolarita_H2_cons_kg.png
+  regolarita_E_ricarica_rete_kWh.png
+  regolarita_SOC_end.png
+  regolarita_num_repl_FC.png
+  regolarita_num_repl_batt.png
+  regolarita_total_cost_EUR_km.png
+  durata_massa.png
+  d28_coppie.png

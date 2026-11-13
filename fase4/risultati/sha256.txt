@@ -1,0 +1,4 @@
+e8adba51005f9cb144803d63b255fa8809c6a729d1315dba796c9bee6b771167  /Users/kairos/Documents/lavoro/train-powertrain/campagne/registri_P9_D28_16384.zip
+real 7,14
+user 4,62
+sys 0,69

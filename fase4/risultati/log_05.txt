@@ -1,0 +1,6 @@
+# Ultimo bit del costo ricostruito (2026-11-13T10:27:54.563, Julia 1.12.5, apple-m4)
+1,04^15 con pow_body di Julia (FMA su questa macchina): 1.8009435055069165; con pow_body a muladd non fusi: 1.8009435055069167
+completed: 4.620.434
+con pow_body a muladd non fusi: costo_totale !== total_cost_EUR_km in 0 righe; costo !== costo in 0 righe
+(con pow_body di Julia su questa macchina: 4374 e 1241, passi 1 e 2)
+julia -t 8 --project=fase4 fase4/05_ultimo_bit.jl  25,47s user 1,32s system 395% cpu 6,767 total

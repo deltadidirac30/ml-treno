@@ -1,0 +1,91 @@
+blocco 09: scrittura 9.2 s, verifica 10.9 s, 97.771 MiB → 26.168 MiB
+blocco 41: scrittura 9.2 s, verifica 10.9 s, 97.791 MiB → 26.194 MiB
+blocco 33: scrittura 9.2 s, verifica 10.9 s, 97.726 MiB → 26.131 MiB
+blocco 01: scrittura 9.2 s, verifica 10.9 s, 97.764 MiB → 26.197 MiB
+blocco 25: scrittura 9.2 s, verifica 10.9 s, 97.778 MiB → 26.161 MiB
+blocco 57: scrittura 9.2 s, verifica 10.9 s, 97.766 MiB → 26.170 MiB
+blocco 49: scrittura 9.2 s, verifica 10.9 s, 97.750 MiB → 26.176 MiB
+blocco 17: scrittura 9.2 s, verifica 10.9 s, 97.753 MiB → 26.169 MiB
+blocco 10: scrittura 6.9 s, verifica 9.7 s, 97.731 MiB → 26.162 MiB
+blocco 50: scrittura 7.1 s, verifica 10.3 s, 97.833 MiB → 26.195 MiB
+blocco 34: scrittura 7.1 s, verifica 10.4 s, 97.768 MiB → 26.173 MiB
+blocco 26: scrittura 7.2 s, verifica 10.6 s, 97.685 MiB → 26.151 MiB
+blocco 58: scrittura 7.2 s, verifica 10.6 s, 97.661 MiB → 26.159 MiB
+blocco 18: scrittura 7.2 s, verifica 10.8 s, 97.707 MiB → 26.157 MiB
+blocco 42: scrittura 7.2 s, verifica 10.8 s, 97.771 MiB → 26.161 MiB
+blocco 02: scrittura 7.2 s, verifica 10.9 s, 97.719 MiB → 26.163 MiB
+blocco 11: scrittura 2.1 s, verifica 11.0 s, 97.773 MiB → 26.150 MiB
+blocco 51: scrittura 5.3 s, verifica 10.5 s, 97.744 MiB → 26.138 MiB
+blocco 35: scrittura 6.1 s, verifica 10.4 s, 97.781 MiB → 26.154 MiB
+blocco 27: scrittura 6.5 s, verifica 10.5 s, 97.783 MiB → 26.161 MiB
+blocco 59: scrittura 6.6 s, verifica 10.7 s, 97.704 MiB → 26.169 MiB
+blocco 19: scrittura 6.6 s, verifica 10.9 s, 97.715 MiB → 26.170 MiB
+blocco 43: scrittura 6.7 s, verifica 11.2 s, 97.752 MiB → 26.174 MiB
+blocco 03: scrittura 6.6 s, verifica 11.2 s, 97.751 MiB → 26.177 MiB
+blocco 12: scrittura 4.5 s, verifica 11.3 s, 97.715 MiB → 26.175 MiB
+blocco 52: scrittura 4.2 s, verifica 10.8 s, 97.742 MiB → 26.158 MiB
+blocco 36: scrittura 4.5 s, verifica 10.8 s, 97.768 MiB → 26.147 MiB
+blocco 28: scrittura 5.4 s, verifica 10.8 s, 97.651 MiB → 26.151 MiB
+blocco 60: scrittura 5.9 s, verifica 10.9 s, 97.708 MiB → 26.156 MiB
+blocco 20: scrittura 6.3 s, verifica 11.4 s, 97.782 MiB → 26.166 MiB
+blocco 04: scrittura 6.0 s, verifica 11.6 s, 97.774 MiB → 26.191 MiB
+blocco 44: scrittura 6.1 s, verifica 11.7 s, 97.736 MiB → 26.172 MiB
+blocco 13: scrittura 4.4 s, verifica 11.6 s, 97.745 MiB → 26.166 MiB
+blocco 53: scrittura 4.8 s, verifica 11.3 s, 97.686 MiB → 26.161 MiB
+blocco 37: scrittura 4.6 s, verifica 11.4 s, 97.676 MiB → 26.159 MiB
+blocco 29: scrittura 4.9 s, verifica 11.2 s, 97.740 MiB → 26.163 MiB
+blocco 61: scrittura 5.1 s, verifica 11.3 s, 97.713 MiB → 26.172 MiB
+blocco 21: scrittura 5.7 s, verifica 11.5 s, 97.739 MiB → 26.172 MiB
+blocco 45: scrittura 5.6 s, verifica 11.8 s, 97.753 MiB → 26.172 MiB
+blocco 05: scrittura 6.0 s, verifica 11.8 s, 97.716 MiB → 26.174 MiB
+blocco 14: scrittura 5.0 s, verifica 11.7 s, 97.718 MiB → 26.182 MiB
+blocco 54: scrittura 4.9 s, verifica 11.2 s, 97.784 MiB → 26.171 MiB
+blocco 38: scrittura 5.1 s, verifica 11.2 s, 97.792 MiB → 26.170 MiB
+blocco 30: scrittura 4.9 s, verifica 11.1 s, 97.711 MiB → 26.146 MiB
+blocco 62: scrittura 4.9 s, verifica 11.2 s, 97.727 MiB → 26.164 MiB
+blocco 22: scrittura 5.2 s, verifica 11.4 s, 97.782 MiB → 26.192 MiB
+blocco 46: scrittura 5.4 s, verifica 11.5 s, 97.654 MiB → 26.135 MiB
+blocco 06: scrittura 5.5 s, verifica 11.6 s, 97.733 MiB → 26.163 MiB
+blocco 15: scrittura 4.8 s, verifica 11.5 s, 97.776 MiB → 26.166 MiB
+blocco 55: scrittura 4.8 s, verifica 11.3 s, 97.762 MiB → 26.195 MiB
+blocco 39: scrittura 5.0 s, verifica 11.3 s, 97.763 MiB → 26.180 MiB
+blocco 31: scrittura 5.3 s, verifica 11.2 s, 97.781 MiB → 26.175 MiB
+blocco 63: scrittura 4.9 s, verifica 11.1 s, 97.745 MiB → 26.178 MiB
+blocco 23: scrittura 5.0 s, verifica 11.5 s, 97.697 MiB → 26.159 MiB
+blocco 47: scrittura 5.5 s, verifica 11.9 s, 97.740 MiB → 26.157 MiB
+blocco 07: scrittura 5.5 s, verifica 11.8 s, 97.735 MiB → 26.141 MiB
+blocco 16: scrittura 4.5 s, verifica 11.5 s, 97.739 MiB → 26.177 MiB
+blocco 56: scrittura 4.7 s, verifica 10.8 s, 97.763 MiB → 26.162 MiB
+blocco 40: scrittura 4.9 s, verifica 10.2 s, 97.756 MiB → 26.173 MiB
+blocco 32: scrittura 4.9 s, verifica 9.1 s, 97.684 MiB → 26.139 MiB
+blocco 64: scrittura 5.1 s, verifica 8.7 s, 97.711 MiB → 26.167 MiB
+blocco 24: scrittura 4.5 s, verifica 6.6 s, 97.720 MiB → 26.158 MiB
+blocco 48: scrittura 5.3 s, verifica 4.6 s, 97.709 MiB → 26.161 MiB
+blocco 08: scrittura 5.1 s, verifica 4.5 s, 97.732 MiB → 26.169 MiB
+# Passo 2: formato Arrow (2026-11-13T10:23:33.728, 8 thread)
+
+conversione + verifica dei 64 blocchi: 136.0 s
+schema dei blocchi (93 colonne): tratta::Int32, coppia::Int16, m::Float64, n::Float64, stato::Int8, motivo::Int16, costo::Float64, P_nom_fc_kW::Float64, C_batt_kWh::Float64, H2_cons_kg::Float64, SOC_end::Float64, CAPEX_FC_EUR_km::Float64, CAPEX_batt_EUR_km::Float64, CAPEX_tank_EUR_km::Float64, OPEX_batt_rech_EUR_km_att::Float64, OPEX_H2_rech_EUR_km_att::Float64, OPEX_mant_FC_EUR_km_att::Float64, OPEX_mant_batt_EUR_km_att::Float64, OPEX_mant_tank_EUR_km_att::Float64, cost_repl_FC_EUR_km_att::Float64, cost_repl_batt_EUR_km_att::Float64, total_cost_EUR_km::Float64, num_repl_FC::Float64, num_repl_batt::Float64, residuo_kWh::Float64, fc_non_erogata_kWh::Float64, batt_non_erogata_kWh::Float64, ausiliari_fc_idling_kWh::Float64, frenata_dissipata_kWh::Float64, E_scambiata_kWh::Float64, vita_FC_ore::Float64, vita_FC_tetto::Float64, tempo_s::Float64, m_richiesta::Float64, P_max_FC_kW::Float64, n_celle_FC::Float64, n_stringhe_batteria::Float64, E_ref_kWh::Float64, H2_serbatoio_kg::Float64, massa_FC_kg::Float64, massa_batteria_kg::Float64, massa_serbatoio_kg::Float64, massa_propulsione_kg::Float64, massa_treno_kg::Float64, limite_massa_propulsione_kg::Float64, durata_viaggio_s::Float64, km_viaggio::Float64, n_viaggi_giorno::Float64, n_viaggi_anno::Float64, km_anno::Float64, E_trazione_kWh::Float64, E_frenatura_disponibile_kWh::Float64, E_frenatura_recuperata_kWh::Float64, E_ricarica_rete_kWh::Float64, E_FC_kWh::Float64, ore_FC_viaggio_h::Float64, t_FC_erogazione_s::Float64, accensioni_FC::Float64, SOC_iniziale::Float64, SOC_minimo::Float64, SOC_massimo::Float64, scarica_s::Float64, C_rate_scarica_max::Float64, C_rate_carica_max::Float64, I_stringa_scarica_max_A::Float64, vita_batt_cicli_viaggi::Float64, vita_batt_cicli_anni::Float64, vita_batt_calendario_anni::Float64, vita_batt_viaggi::Float64, vita_batt_anni::Float64, vita_batt_limite_calendario::Float64, vita_FC_f1_ore::Float64, vita_FC_viaggi::Float64, vita_FC_anni::Float64, f_degrado_FC::Float64, ore_max_FC::Float64, dV_accensioni_uV::Float64, dV_idling_uV::Float64, dV_cicli_carico_uV::Float64, dV_alto_carico_uV::Float64, delta_V_max_V::Float64, vincolo_peso_t::Float64, vincolo_soc_pt::Float64, vincolo_scarica_100s::Float64, vincolo_d3::Float64, tipo_esito::Int8, sostituzione_FC_saltata::Float64, tau_FC_anni::Float64, H2_coda_kg::Float64, valore_residuo_FC_EUR_km::Float64, valore_residuo_batt_EUR_km::Float64, storage_iterazioni::Float64, storage_non_convergente::Union{Missing, Bool}
+
+## Viaggio di ritorno (Arrow riletto contro il testo del CSV)
+colonne con valori diversi (=== sul Float64 letto con parse, NaN compresi; codici decodificati): nessuna
+(questo comprende: il testo di ogni campo numerico si rigenera uguale con %.17g, tempo_s con %.6f; caso si ricostruisce da tratta, m, n; direzione è sempre andata&ritorno)
+metadati del file riletti uguali: 64/64
+costo_da_grandezze dall'Arrow, completed: 4.620.434 righe; costo_totale !== total_cost_EUR_km: 4374 (dal CSV, passo 1: 4374); costo !== costo: 1241 (passo 1: 1241)
+stesse righe diverse per blocco del passo 1: true
+
+## coppie.arrow e tratte.arrow
+coppie: righe 1-256 = coppie_campionamento(256), 257-288 = coppie_soglie(16) (TrainPowertrain): true
+coppie per intervallo D25 (0: m=0, 1..4 tra m_min, le soglie e 1): [32, 15, 18, 20, 203]
+tratte.arrow: 16384 righe, colonne route_id, profile_seed, is_flat, no_stops, constant_speed, L_km, slope_mean, slope_std, slope_segment_length_mean_km, stop_density_requested, stop_density, stop_spacing_cv, n_stops, v_max_kmh, speed_restriction_index, speed_change_density_requested, speed_change_density, n_vlim_segments, L_km_requested, shortened, round_trip_estimate_h, blocco, errore_D29, senza_coppie_fattibili
+tratte con errori (errore_D29): [2366, 14664]; tratte senza coppie fattibili: 0
+
+## Dimensioni, tempi, memoria
+CSV (64 registri): 6.109 GiB; Arrow zstd (64 blocchi): 1.635 GiB (26.8% del CSV)
+blocco Arrow: da 26.131 MiB a 26.197 MiB
+coppie.arrow 9.752 KiB, tratte.arrow 2.157 MiB, dizionari.arrow 12.549 KiB
+zip di partenza 2.376 GiB
+lettura di un blocco in memoria (Arrow.Table + collect di tutte le colonne, decompressione zstd): 0.08 s (prima lettura, con compilazione: 0.34 s)
+lettura di tutti i 64 blocchi in memoria (un thread): 4.1 s; solo Arrow.Table (colonne pigre): 2.6 s
+memoria di un blocco in Julia: 49.785 MiB; di tutto il dataset: 3.112 GiB
+julia -t 8 --project=fase4 fase4/02_arrow.jl  568,65s user 372,55s system 622% cpu 2:31,10 total

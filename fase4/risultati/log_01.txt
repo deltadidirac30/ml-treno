@@ -1,0 +1,290 @@
+blocco 17: 73728 righe, 13.9 s (thread 6)
+blocco 41: 73728 righe, 14.1 s (thread 8)
+blocco 33: 73728 righe, 14.1 s (thread 3)
+blocco 57: 73728 righe, 14.2 s (thread 7)
+blocco 49: 73728 righe, 14.2 s (thread 4)
+blocco 01: 73728 righe, 14.3 s (thread 5)
+blocco 25: 73728 righe, 14.3 s (thread 9)
+blocco 09: 73728 righe, 14.5 s (thread 2)
+blocco 18: 73728 righe, 12.2 s (thread 6)
+blocco 34: 73728 righe, 13.7 s (thread 3)
+blocco 02: 73728 righe, 13.9 s (thread 5)
+blocco 50: 73728 righe, 14.2 s (thread 4)
+blocco 26: 73728 righe, 14.2 s (thread 9)
+blocco 58: 73728 righe, 14.4 s (thread 7)
+blocco 42: 73728 righe, 14.6 s (thread 8)
+blocco 10: 73728 righe, 14.4 s (thread 2)
+blocco 19: 73728 righe, 12.8 s (thread 6)
+blocco 35: 73728 righe, 12.9 s (thread 3)
+blocco 03: 73728 righe, 13.2 s (thread 5)
+blocco 27: 73728 righe, 14.1 s (thread 9)
+blocco 51: 73728 righe, 14.2 s (thread 4)
+blocco 43: 73728 righe, 14.0 s (thread 8)
+blocco 59: 73728 righe, 14.2 s (thread 7)
+blocco 11: 73728 righe, 14.4 s (thread 2)
+blocco 20: 73728 righe, 12.3 s (thread 6)
+blocco 36: 73728 righe, 13.1 s (thread 3)
+blocco 04: 73728 righe, 13.2 s (thread 5)
+blocco 52: 73728 righe, 13.8 s (thread 4)
+blocco 28: 73728 righe, 14.0 s (thread 9)
+blocco 44: 73728 righe, 14.2 s (thread 8)
+blocco 60: 73728 righe, 14.1 s (thread 7)
+blocco 12: 73728 righe, 14.1 s (thread 2)
+blocco 21: 73728 righe, 13.5 s (thread 6)
+blocco 37: 73728 righe, 13.3 s (thread 3)
+blocco 05: 73728 righe, 13.2 s (thread 5)
+blocco 53: 73728 righe, 13.9 s (thread 4)
+blocco 29: 73728 righe, 13.9 s (thread 9)
+blocco 61: 73728 righe, 13.7 s (thread 7)
+blocco 45: 73728 righe, 13.9 s (thread 8)
+blocco 13: 73728 righe, 14.2 s (thread 2)
+blocco 22: 73728 righe, 13.5 s (thread 6)
+blocco 38: 73728 righe, 13.2 s (thread 3)
+blocco 06: 73728 righe, 13.4 s (thread 5)
+blocco 54: 73728 righe, 14.4 s (thread 4)
+blocco 30: 73728 righe, 14.8 s (thread 9)
+blocco 62: 73728 righe, 14.7 s (thread 7)
+blocco 46: 73728 righe, 14.7 s (thread 8)
+blocco 14: 73728 righe, 14.3 s (thread 2)
+blocco 23: 73728 righe, 13.8 s (thread 6)
+blocco 39: 73728 righe, 13.4 s (thread 3)
+blocco 07: 73728 righe, 13.2 s (thread 5)
+blocco 55: 73728 righe, 13.6 s (thread 4)
+blocco 31: 73728 righe, 13.9 s (thread 9)
+blocco 63: 73728 righe, 13.8 s (thread 7)
+blocco 47: 73728 righe, 13.9 s (thread 8)
+blocco 15: 73728 righe, 14.0 s (thread 2)
+blocco 24: 73728 righe, 13.6 s (thread 6)
+blocco 40: 73728 righe, 13.5 s (thread 3)
+blocco 08: 73728 righe, 13.0 s (thread 5)
+blocco 56: 73728 righe, 11.0 s (thread 4)
+blocco 32: 73728 righe, 10.5 s (thread 9)
+blocco 48: 73728 righe, 10.2 s (thread 8)
+blocco 64: 73728 righe, 10.5 s (thread 7)
+blocco 16: 73728 righe, 9.8 s (thread 2)
+# Passo 1: integrità dei registri P9_D28_16384 (2026-11-13T10:20:06.767, 8 thread, 110.3 s)
+
+## Intestazioni, righe, config
+intestazioni = INTESTAZIONE_REGISTRO di Campagna.jl: 64/64; colonne: 95
+intestazioni distinte: 1
+righe per blocco: [73728] (attese 73728); totale 4.718.592
+righe con numero di campi ≠ 95: 0
+campi numerici non leggibili: nessuno
+config.txt distinti: 1; uguale alla descrizione di ConfigModello() + peso_a_carico=195000: true
+config.txt: modello=corretta soglia_cambio_carico=1.0000000000000001e-09 D3=true D4=pnom_dal_picco D5=nessuna D6=true conteggio_carico=cicli_equivalenti ausiliari_fc=sempre_5pc m_min_fc=0.029999999999999999 perdita_fine_vita_fc=0.20000000000000001 tempi_sostituzioni=a_fine_vita soglia_fine_orizzonte=0 valore_residuo=true definizione_n=energia_riferimento sola_batteria=n_libero f_degrado_fc=0.51692531382982454 ore_max_fc=25000 D12=true D26=true D27=true D28=true D18=true massa_molare_H2=2.016 pci_unico=true degrado_batteria=wang T_cella_batteria=30 vita_calendariale_batteria_anni=15 peso_a_carico=195000
+
+## Tratte e coppie
+tratta in formato route_XXXXXX: 4.718.592; direzione ≠ andata&ritorno: 0
+caso ≠ "<tratta>_ar_m%.6g_n%.6g": 0
+(m, n) non uguali al bit a una coppia di campionamento_288.csv: 0
+m_richiesta !== m: 0
+celle (tratta, coppia): 0 occorrenze 0, 1 occorrenza 4718592, >1 0; fuori indice 0
+blocchi con route = (k−1)·256+1 … k·256: 64/64
+coppie distinte per (m, n): 288; m = 0: 32 (righe 1-256: 32); 0 < m < m_min: 0
+
+## Stato, tipo_esito, costo dei non completati (totali)
+  completed  fattibile  costo=—       2.014.193  42.686%
+  completed  piccola    costo=—       1.797.608  38.096%
+  completed  pesante    costo=—         683.708  14.490%
+  completed  mista      costo=—         124.925  2.648%
+  rejected   piccola    costo=20000      98.089  2.079%
+  error      errore     costo=10000          69  0.001%
+  completed   4.620.434  97.920%
+  rejected       98.089  2.079%
+  error              69  0.001%
+motivi (72 distinti):
+  4.620.434  (vuoto)
+    98.089  batteria sottodimensionata: potenza richiesta oltre il massimo erogabile in scarica
+         0  n = 0 escluso: treno solo fuel cell non ammesso.
+         1  DOE:D26FrenataImpossibile: D26: fermata 13 non raggiungibile frenando entro -0.8 m/s^2 e nessun passo precedente da cui frenare (s = 218415.9400536815 m)
+         1  DOE:D26FrenataImpossibile: D26: fermata 13 non raggiungibile frenando entro -0.8 m/s^2 e nessun passo precedente da cui frenare (s = 218416.0487789894 m)
+         1  DOE:D26FrenataImpossibile: D26: fermata 13 non raggiungibile frenando entro -0.8 m/s^2 e nessun passo precedente da cui frenare (s = 218417.7920407228 m)
+         1  DOE:D26FrenataImpossibile: D26: fermata 13 non raggiungibile frenando entro -0.8 m/s^2 e nessun passo precedente da cui frenare (s = 218417.9447962591 m)
+         1  DOE:D26FrenataImpossibile: D26: fermata 13 non raggiungibile frenando entro -0.8 m/s^2 e nessun passo precedente da cui frenare (s = 218418.2476554728 m)
+         1  DOE:D26FrenataImpossibile: D26: fermata 17 non raggiungibile frenando entro -0.8 m/s^2 e nessun passo precedente da cui frenare (s = 61351.25255479167 m)
+         1  DOE:D26FrenataImpossibile: D26: fermata 17 non raggiungibile frenando entro -0.8 m/s^2 e nessun passo precedente da cui frenare (s = 61351.26193268803 m)
+         1  DOE:D26FrenataImpossibile: D26: fermata 17 non raggiungibile frenando entro -0.8 m/s^2 e nessun passo precedente da cui frenare (s = 61351.270263418955 m)
+         1  DOE:D26FrenataImpossibile: D26: fermata 17 non raggiungibile frenando entro -0.8 m/s^2 e nessun passo precedente da cui frenare (s = 61351.36463440726 m)
+         1  DOE:D26FrenataImpossibile: D26: fermata 17 non raggiungibile frenando entro -0.8 m/s^2 e nessun passo precedente da cui frenare (s = 61351.36974324867 m)
+         1  DOE:D26FrenataImpossibile: D26: fermata 17 non raggiungibile frenando entro -0.8 m/s^2 e nessun passo precedente da cui frenare (s = 61351.42918598029 m)
+         1  DOE:D26FrenataImpossibile: D26: fermata 17 non raggiungibile frenando entro -0.8 m/s^2 e nessun passo precedente da cui frenare (s = 61351.42990674573 m)
+         1  DOE:D26FrenataImpossibile: D26: fermata 17 non raggiungibile frenando entro -0.8 m/s^2 e nessun passo precedente da cui frenare (s = 61351.43030147282 m)
+         1  DOE:D26FrenataImpossibile: D26: fermata 17 non raggiungibile frenando entro -0.8 m/s^2 e nessun passo precedente da cui frenare (s = 61351.513099244235 m)
+         1  DOE:D26FrenataImpossibile: D26: fermata 17 non raggiungibile frenando entro -0.8 m/s^2 e nessun passo precedente da cui frenare (s = 61351.544817732116 m)
+         1  DOE:D26FrenataImpossibile: D26: fermata 17 non raggiungibile frenando entro -0.8 m/s^2 e nessun passo precedente da cui frenare (s = 61351.63988676852 m)
+         1  DOE:D26FrenataImpossibile: D26: fermata 17 non raggiungibile frenando entro -0.8 m/s^2 e nessun passo precedente da cui frenare (s = 61351.6518272367 m)
+         1  DOE:D26FrenataImpossibile: D26: fermata 17 non raggiungibile frenando entro -0.8 m/s^2 e nessun passo precedente da cui frenare (s = 61351.72870840606 m)
+         1  DOE:D26FrenataImpossibile: D26: fermata 17 non raggiungibile frenando entro -0.8 m/s^2 e nessun passo precedente da cui frenare (s = 61351.737834032094 m)
+         1  DOE:D26FrenataImpossibile: D26: fermata 17 non raggiungibile frenando entro -0.8 m/s^2 e nessun passo precedente da cui frenare (s = 61351.766425452675 m)
+         1  DOE:D26FrenataImpossibile: D26: fermata 17 non raggiungibile frenando entro -0.8 m/s^2 e nessun passo precedente da cui frenare (s = 61351.77159358517 m)
+         1  DOE:D26FrenataImpossibile: D26: fermata 17 non raggiungibile frenando entro -0.8 m/s^2 e nessun passo precedente da cui frenare (s = 61351.77248550378 m)
+         1  DOE:D26FrenataImpossibile: D26: fermata 17 non raggiungibile frenando entro -0.8 m/s^2 e nessun passo precedente da cui frenare (s = 61351.788529646976 m)
+         1  DOE:D26FrenataImpossibile: D26: fermata 17 non raggiungibile frenando entro -0.8 m/s^2 e nessun passo precedente da cui frenare (s = 61354.13679407266 m)
+         1  DOE:D26FrenataImpossibile: D26: fermata 17 non raggiungibile frenando entro -0.8 m/s^2 e nessun passo precedente da cui frenare (s = 61354.77332971811 m)
+         1  DOE:D26FrenataImpossibile: D26: fermata 17 non raggiungibile frenando entro -0.8 m/s^2 e nessun passo precedente da cui frenare (s = 61354.80109588004 m)
+         1  DOE:D26FrenataImpossibile: D26: fermata 17 non raggiungibile frenando entro -0.8 m/s^2 e nessun passo precedente da cui frenare (s = 61354.88686174471 m)
+         1  DOE:D26FrenataImpossibile: D26: fermata 17 non raggiungibile frenando entro -0.8 m/s^2 e nessun passo precedente da cui frenare (s = 61355.00049839972 m)
+         1  DOE:D26FrenataImpossibile: D26: fermata 17 non raggiungibile frenando entro -0.8 m/s^2 e nessun passo precedente da cui frenare (s = 61358.42565382505 m)
+         1  DOE:D26FrenataImpossibile: D26: fermata 17 non raggiungibile frenando entro -0.8 m/s^2 e nessun passo precedente da cui frenare (s = 61358.4454599764 m)
+         1  DOE:D26FrenataImpossibile: D26: fermata 17 non raggiungibile frenando entro -0.8 m/s^2 e nessun passo precedente da cui frenare (s = 61358.47583296642 m)
+         1  DOE:D26FrenataImpossibile: D26: fermata 17 non raggiungibile frenando entro -0.8 m/s^2 e nessun passo precedente da cui frenare (s = 61358.48085665468 m)
+         1  DOE:D26FrenataImpossibile: D26: fermata 17 non raggiungibile frenando entro -0.8 m/s^2 e nessun passo precedente da cui frenare (s = 61358.48500824653 m)
+         1  DOE:D26FrenataImpossibile: D26: fermata 17 non raggiungibile frenando entro -0.8 m/s^2 e nessun passo precedente da cui frenare (s = 61358.48763833924 m)
+         1  DOE:D26FrenataImpossibile: D26: fermata 17 non raggiungibile frenando entro -0.8 m/s^2 e nessun passo precedente da cui frenare (s = 61358.532571519565 m)
+         1  DOE:D26FrenataImpossibile: D26: fermata 17 non raggiungibile frenando entro -0.8 m/s^2 e nessun passo precedente da cui frenare (s = 61358.59271771126 m)
+         1  DOE:D26FrenataImpossibile: D26: fermata 17 non raggiungibile frenando entro -0.8 m/s^2 e nessun passo precedente da cui frenare (s = 61358.62169774613 m)
+         1  DOE:D26FrenataImpossibile: D26: fermata 17 non raggiungibile frenando entro -0.8 m/s^2 e nessun passo precedente da cui frenare (s = 61358.6374881987 m)
+         1  DOE:D26FrenataImpossibile: D26: fermata 17 non raggiungibile frenando entro -0.8 m/s^2 e nessun passo precedente da cui frenare (s = 61358.69687699829 m)
+         1  DOE:D26FrenataImpossibile: D26: fermata 17 non raggiungibile frenando entro -0.8 m/s^2 e nessun passo precedente da cui frenare (s = 61358.79162880887 m)
+         1  DOE:D26FrenataImpossibile: D26: fermata 17 non raggiungibile frenando entro -0.8 m/s^2 e nessun passo precedente da cui frenare (s = 61358.81842328837 m)
+         1  DOE:D26FrenataImpossibile: D26: fermata 17 non raggiungibile frenando entro -0.8 m/s^2 e nessun passo precedente da cui frenare (s = 61358.85445573391 m)
+         1  DOE:D26FrenataImpossibile: D26: fermata 17 non raggiungibile frenando entro -0.8 m/s^2 e nessun passo precedente da cui frenare (s = 61358.86771637581 m)
+         1  DOE:D26FrenataImpossibile: D26: fermata 17 non raggiungibile frenando entro -0.8 m/s^2 e nessun passo precedente da cui frenare (s = 61358.91260800148 m)
+         1  DOE:D26FrenataImpossibile: D26: fermata 17 non raggiungibile frenando entro -0.8 m/s^2 e nessun passo precedente da cui frenare (s = 61358.99046110336 m)
+         1  DOE:D26FrenataImpossibile: D26: fermata 17 non raggiungibile frenando entro -0.8 m/s^2 e nessun passo precedente da cui frenare (s = 61359.06733247335 m)
+         1  DOE:D26FrenataImpossibile: D26: fermata 17 non raggiungibile frenando entro -0.8 m/s^2 e nessun passo precedente da cui frenare (s = 61359.08898018181 m)
+         1  DOE:D26FrenataImpossibile: D26: fermata 17 non raggiungibile frenando entro -0.8 m/s^2 e nessun passo precedente da cui frenare (s = 61359.1492664354 m)
+         1  DOE:D26FrenataImpossibile: D26: fermata 17 non raggiungibile frenando entro -0.8 m/s^2 e nessun passo precedente da cui frenare (s = 61359.15047475667 m)
+         1  DOE:D26FrenataImpossibile: D26: fermata 17 non raggiungibile frenando entro -0.8 m/s^2 e nessun passo precedente da cui frenare (s = 61359.209719910024 m)
+         1  DOE:D26FrenataImpossibile: D26: fermata 17 non raggiungibile frenando entro -0.8 m/s^2 e nessun passo precedente da cui frenare (s = 61359.32965478159 m)
+         1  DOE:D26FrenataImpossibile: D26: fermata 17 non raggiungibile frenando entro -0.8 m/s^2 e nessun passo precedente da cui frenare (s = 61359.331129863196 m)
+         1  DOE:D26FrenataImpossibile: D26: fermata 17 non raggiungibile frenando entro -0.8 m/s^2 e nessun passo precedente da cui frenare (s = 61359.39131751787 m)
+         1  DOE:D26FrenataImpossibile: D26: fermata 17 non raggiungibile frenando entro -0.8 m/s^2 e nessun passo precedente da cui frenare (s = 61359.39774268587 m)
+         1  DOE:D26FrenataImpossibile: D26: fermata 17 non raggiungibile frenando entro -0.8 m/s^2 e nessun passo precedente da cui frenare (s = 61361.77633866018 m)
+         1  DOE:D26FrenataImpossibile: D26: fermata 17 non raggiungibile frenando entro -0.8 m/s^2 e nessun passo precedente da cui frenare (s = 61361.780058703436 m)
+         1  DOE:D26FrenataImpossibile: D26: fermata 17 non raggiungibile frenando entro -0.8 m/s^2 e nessun passo precedente da cui frenare (s = 61361.800145822395 m)
+         1  DOE:D26FrenataImpossibile: D26: fermata 17 non raggiungibile frenando entro -0.8 m/s^2 e nessun passo precedente da cui frenare (s = 61361.83619769053 m)
+         1  DOE:D26FrenataImpossibile: D26: fermata 17 non raggiungibile frenando entro -0.8 m/s^2 e nessun passo precedente da cui frenare (s = 61361.883249712984 m)
+         1  DOE:D26FrenataImpossibile: D26: fermata 17 non raggiungibile frenando entro -0.8 m/s^2 e nessun passo precedente da cui frenare (s = 61361.88668853206 m)
+         1  DOE:D26FrenataImpossibile: D26: fermata 17 non raggiungibile frenando entro -0.8 m/s^2 e nessun passo precedente da cui frenare (s = 61361.93135700542 m)
+         1  DOE:D26FrenataImpossibile: D26: fermata 17 non raggiungibile frenando entro -0.8 m/s^2 e nessun passo precedente da cui frenare (s = 61361.95354464042 m)
+         1  DOE:D26FrenataImpossibile: D26: fermata 17 non raggiungibile frenando entro -0.8 m/s^2 e nessun passo precedente da cui frenare (s = 61361.98950166193 m)
+         1  DOE:D26FrenataImpossibile: D26: fermata 17 non raggiungibile frenando entro -0.8 m/s^2 e nessun passo precedente da cui frenare (s = 61361.99332728967 m)
+         1  DOE:D26FrenataImpossibile: D26: fermata 17 non raggiungibile frenando entro -0.8 m/s^2 e nessun passo precedente da cui frenare (s = 61362.068178346126 m)
+         1  DOE:D26FrenataImpossibile: D26: fermata 17 non raggiungibile frenando entro -0.8 m/s^2 e nessun passo precedente da cui frenare (s = 61362.10790251908 m)
+         1  DOE:D26FrenataImpossibile: D26: fermata 17 non raggiungibile frenando entro -0.8 m/s^2 e nessun passo precedente da cui frenare (s = 61362.17715472719 m)
+         1  DOE:D26FrenataImpossibile: D26: fermata 17 non raggiungibile frenando entro -0.8 m/s^2 e nessun passo precedente da cui frenare (s = 61362.18381305815 m)
+         1  DOE:D26FrenataImpossibile: D26: fermata 17 non raggiungibile frenando entro -0.8 m/s^2 e nessun passo precedente da cui frenare (s = 61362.203610982884 m)
+storage_non_convergente per stato:
+  ("completed", "false") => 4.604.943
+  ("completed", "true") => 15.491
+  ("error", "NaN") => 69
+  ("rejected", "false") => 98.089
+
+## Errori: confronto con errori_P9_D28_16384.csv
+righe nel file: 69; colonne del file: 95, intestazione = registro: true
+righe di errore nei registri: 69
+stessi casi: true; righe identiche campo per campo: 69
+tratte con errori: ["route_002366" => 5, "route_014664" => 64]
+prefissi dei motivi di errore: SubString{String}["DOE"]
+
+## Penalità sulle completed
+costo − total_cost_EUR_km (arrotondato): 0: 2.014.193, 1000: 683.708, 3000: 435.284, 4000: 43.443, 5000: 77.800, 6000: 16.673, 8000: 1.284.524, 9000: 64.809
+fuori da {0,1000,3000,4000,5000,6000,8000,9000} (o non intero entro 1e-6): 0
+costo !== total_cost_EUR_km + penalità dai vincoli (1000·[peso_t>0] + 3000·[scarica_100s>0] + 5000·[soc_pt>0]): 0
+penalità ≠ quella dei vincoli: 0
+vincoli > 0 ≠ grandezze fisiche (massa > limite, |scarica_s| > 1e-6, SOC_end < 0,2): 0
+tipo_esito ≠ quello atteso dai vincoli: 0
+
+## Costo ricostruito: costo_da_grandezze(riga_registro_dict(riga); cfg = ConfigModello()) sulle completed
+righe completed: 4.620.434
+costo_totale !== total_cost_EUR_km: 4374; scarto massimo 3.552713678800501e-15 (relativo 4.069264646570226e-16)
+costo_totale: distanza massima in ULP 3
+costo (con penalità) !== costo del registro: 1241
+diagnostica (cost_repl_batt_EUR_km_att): righe con batteria limitata dal calendario e ≥ 1 sostituzione (t = 15 anni, 1,04^15 a esponente intero): 377.094
+  voce diversa dal registro: 238.323, di cui tra quelle righe: 238.323
+  ricalcolo a mano con la potenza di questa macchina === voce di costo_da_grandezze: 238.323
+  ricalcolo con pow_body a muladd NON fusi === colonna del registro: 238.323
+  righe con costo_totale diverso, tutte tra queste: false (3864 su 4374)
+voci di cost_details diverse dalla colonna (isequal) su 24 voci: cost_repl_batt_EUR_km_att: 238323 (max 5.551115123125783e-17); total_cost_EUR_km: 4374 (max 3.552713678800501e-15)
+
+## NaN / +Inf / −Inf per colonna e gruppo (righe per gruppo: completed m=0 491.527, completed ibrido 4.128.907, rejected m=0 32.755, rejected ibrido 65.334, error 69)
+colonna                        | completed m=0              | completed ibrido           | rejected m=0               | rejected ibrido            | error                     
+P_nom_fc_kW                    |                            |                            | tutte NaN                  | tutte NaN                  | tutte NaN                 
+C_batt_kWh                     |                            |                            | tutte NaN                  | tutte NaN                  | tutte NaN                 
+H2_cons_kg                     |                            |                            | tutte NaN                  | tutte NaN                  | tutte NaN                 
+SOC_end                        |                            |                            | tutte NaN                  | tutte NaN                  | tutte NaN                 
+CAPEX_FC_EUR_km                |                            |                            | tutte NaN                  | tutte NaN                  | tutte NaN                 
+CAPEX_batt_EUR_km              |                            |                            | tutte NaN                  | tutte NaN                  | tutte NaN                 
+CAPEX_tank_EUR_km              |                            |                            | tutte NaN                  | tutte NaN                  | tutte NaN                 
+OPEX_batt_rech_EUR_km_att      |                            |                            | tutte NaN                  | tutte NaN                  | tutte NaN                 
+OPEX_H2_rech_EUR_km_att        |                            |                            | tutte NaN                  | tutte NaN                  | tutte NaN                 
+OPEX_mant_FC_EUR_km_att        |                            |                            | tutte NaN                  | tutte NaN                  | tutte NaN                 
+OPEX_mant_batt_EUR_km_att      |                            |                            | tutte NaN                  | tutte NaN                  | tutte NaN                 
+OPEX_mant_tank_EUR_km_att      |                            |                            | tutte NaN                  | tutte NaN                  | tutte NaN                 
+cost_repl_FC_EUR_km_att        |                            |                            | tutte NaN                  | tutte NaN                  | tutte NaN                 
+cost_repl_batt_EUR_km_att      |                            |                            | tutte NaN                  | tutte NaN                  | tutte NaN                 
+total_cost_EUR_km              |                            |                            | tutte NaN                  | tutte NaN                  | tutte NaN                 
+num_repl_FC                    |                            |                            | tutte NaN                  | tutte NaN                  | tutte NaN                 
+num_repl_batt                  |                            |                            | tutte NaN                  | tutte NaN                  | tutte NaN                 
+residuo_kWh                    |                            |                            |                            |                            | tutte NaN                 
+fc_non_erogata_kWh             |                            |                            |                            |                            | tutte NaN                 
+batt_non_erogata_kWh           |                            |                            |                            |                            | tutte NaN                 
+ausiliari_fc_idling_kWh        |                            |                            |                            |                            | tutte NaN                 
+frenata_dissipata_kWh          |                            |                            |                            |                            | tutte NaN                 
+E_scambiata_kWh                |                            |                            |                            |                            | tutte NaN                 
+vita_FC_ore                    | +Inf 491.527               |                            | tutte NaN                  | tutte NaN                  | tutte NaN                 
+vita_FC_tetto                  |                            |                            | tutte NaN                  | tutte NaN                  | tutte NaN                 
+P_max_FC_kW                    |                            |                            |                            |                            | tutte NaN                 
+n_celle_FC                     |                            |                            |                            |                            | tutte NaN                 
+n_stringhe_batteria            |                            |                            |                            |                            | tutte NaN                 
+E_ref_kWh                      |                            |                            |                            |                            | tutte NaN                 
+H2_serbatoio_kg                |                            |                            |                            |                            | tutte NaN                 
+massa_FC_kg                    |                            |                            |                            |                            | tutte NaN                 
+massa_batteria_kg              |                            |                            |                            |                            | tutte NaN                 
+massa_serbatoio_kg             |                            |                            |                            |                            | tutte NaN                 
+massa_propulsione_kg           |                            |                            |                            |                            | tutte NaN                 
+massa_treno_kg                 |                            |                            |                            |                            | tutte NaN                 
+limite_massa_propulsione_kg    |                            |                            |                            |                            | tutte NaN                 
+durata_viaggio_s               |                            |                            |                            |                            | tutte NaN                 
+km_viaggio                     |                            |                            |                            |                            | tutte NaN                 
+n_viaggi_giorno                |                            |                            |                            |                            | tutte NaN                 
+n_viaggi_anno                  |                            |                            |                            |                            | tutte NaN                 
+km_anno                        |                            |                            |                            |                            | tutte NaN                 
+E_trazione_kWh                 |                            |                            |                            |                            | tutte NaN                 
+E_frenatura_disponibile_kWh    |                            |                            |                            |                            | tutte NaN                 
+E_frenatura_recuperata_kWh     |                            |                            |                            |                            | tutte NaN                 
+E_ricarica_rete_kWh            |                            |                            |                            |                            | tutte NaN                 
+E_FC_kWh                       |                            |                            |                            |                            | tutte NaN                 
+ore_FC_viaggio_h               |                            |                            |                            |                            | tutte NaN                 
+t_FC_erogazione_s              |                            |                            |                            |                            | tutte NaN                 
+accensioni_FC                  |                            |                            |                            |                            | tutte NaN                 
+SOC_iniziale                   |                            |                            |                            |                            | tutte NaN                 
+SOC_minimo                     |                            |                            |                            |                            | tutte NaN                 
+SOC_massimo                    |                            |                            |                            |                            | tutte NaN                 
+scarica_s                      |                            |                            |                            |                            | tutte NaN                 
+C_rate_scarica_max             |                            |                            |                            |                            | tutte NaN                 
+C_rate_carica_max              |                            |                            |                            |                            | tutte NaN                 
+I_stringa_scarica_max_A        |                            |                            |                            |                            | tutte NaN                 
+vita_batt_cicli_viaggi         |                            |                            |                            |                            | tutte NaN                 
+vita_batt_cicli_anni           |                            |                            |                            |                            | tutte NaN                 
+vita_batt_calendario_anni      |                            |                            |                            |                            | tutte NaN                 
+vita_batt_viaggi               |                            |                            |                            |                            | tutte NaN                 
+vita_batt_anni                 |                            |                            |                            |                            | tutte NaN                 
+vita_batt_limite_calendario    |                            |                            |                            |                            | tutte NaN                 
+vita_FC_f1_ore                 | +Inf 491.527               |                            | +Inf 32.755                |                            | tutte NaN                 
+vita_FC_viaggi                 | +Inf 491.527               |                            | +Inf 32.755                |                            | tutte NaN                 
+vita_FC_anni                   | +Inf 491.527               |                            | +Inf 32.755                |                            | tutte NaN                 
+f_degrado_FC                   |                            |                            |                            |                            | tutte NaN                 
+ore_max_FC                     |                            |                            |                            |                            | tutte NaN                 
+dV_accensioni_uV               |                            |                            |                            |                            | tutte NaN                 
+dV_idling_uV                   |                            |                            |                            |                            | tutte NaN                 
+dV_cicli_carico_uV             |                            |                            |                            |                            | tutte NaN                 
+dV_alto_carico_uV              |                            |                            |                            |                            | tutte NaN                 
+delta_V_max_V                  |                            |                            |                            |                            | tutte NaN                 
+vincolo_peso_t                 |                            |                            |                            |                            | tutte NaN                 
+vincolo_soc_pt                 |                            |                            |                            |                            | tutte NaN                 
+vincolo_scarica_100s           |                            |                            |                            |                            | tutte NaN                 
+vincolo_d3                     |                            |                            |                            |                            | tutte NaN                 
+sostituzione_FC_saltata        |                            |                            |                            |                            | tutte NaN                 
+tau_FC_anni                    | tutte NaN                  |                            | tutte NaN                  |                            | tutte NaN                 
+H2_coda_kg                     | tutte NaN                  | tutte NaN                  | tutte NaN                  | tutte NaN                  | tutte NaN                 
+valore_residuo_FC_EUR_km       |                            |                            |                            |                            | tutte NaN                 
+valore_residuo_batt_EUR_km     |                            |                            |                            |                            | tutte NaN                 
+storage_iterazioni             |                            |                            |                            |                            | tutte NaN                 
+colonne numeriche senza NaN né Inf in nessun gruppo: m, n, costo, tempo_s, m_richiesta
+
+## Tempi della campagna
+prima riga scritta 2026-11-12T23:17:07, ultima 2026-11-13T04:14:38
+somma di tempo_s (CPU per valutazione): 68.5 h; media 52.3 ms
+julia -t 8 --project=fase4 fase4/01_integrita.jl  406,20s user 385,50s system 673% cpu 1:57,61 total

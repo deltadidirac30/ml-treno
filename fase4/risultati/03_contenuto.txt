@@ -1,0 +1,242 @@
+# Passo 3: contenuto del dataset P9_D28_16384 (2026-11-13T10:26:43.592, 8 thread)
+righe 4.718.592: completed 4.620.434, fattibili 2.014.193, rejected 98.089, error 69
+
+## 1. Colonne numeriche: costante, funzione della sola coppia, della sola tratta o di entrambe (completed, tolleranza relativa 1.0e-12)
+colonna                        classe               min         max  non fin. maxΔ coppia maxΔ tratta medΔ tratta p99Δ tratta
+m                              solo coppia            0       0.996         0           0           1           1           1
+n                              solo coppia       0.0134       0.996         0           0       0.987       0.975       0.987
+costo                          entrambe            1.13    9.01e+03         0           1           1           1           1
+P_nom_fc_kW                    solo coppia            0    1.96e+03         0           0           1           1           1
+C_batt_kWh                     solo coppia         44.9    3.16e+03         0           0       0.986       0.975       0.986
+H2_cons_kg                     entrambe               0         578         0       0.998           1           1           1
+SOC_end                        entrambe               0         0.9         0           1           1       0.996           1
+CAPEX_FC_EUR_km                entrambe               0       0.646         0       0.893           1           1           1
+CAPEX_batt_EUR_km              entrambe        0.000738       0.347         0       0.893       0.988       0.975       0.986
+CAPEX_tank_EUR_km              entrambe               0        0.15         0       0.997           1           1           1
+OPEX_batt_rech_EUR_km_att      entrambe           -2.15        4.87         0        1.99        1.94        1.05        1.38
+OPEX_H2_rech_EUR_km_att        entrambe               0        11.6         0       0.981           1           1           1
+OPEX_mant_FC_EUR_km_att        entrambe               0       0.176         0       0.893           1           1           1
+OPEX_mant_batt_EUR_km_att      entrambe        0.000201      0.0944         0       0.893       0.988       0.975       0.986
+OPEX_mant_tank_EUR_km_att      entrambe               0      0.0408         0       0.997           1           1           1
+cost_repl_FC_EUR_km_att        entrambe               0        9.19         0       0.979           1           1           1
+cost_repl_batt_EUR_km_att      entrambe         0.00141         1.6         0       0.997       0.997       0.923       0.985
+total_cost_EUR_km              entrambe           0.133        18.5         0       0.974        0.98       0.934       0.972
+num_repl_FC                    entrambe               0         210         0       0.981           1           1           1
+num_repl_batt                  entrambe               1         515         0       0.997       0.998       0.992       0.998
+residuo_kWh                    entrambe        -2.6e+03    2.63e-09         0           1           1           1           1
+fc_non_erogata_kWh             entrambe       -1.54e-12    9.78e-13         0        1.98           2        1.48        1.84
+batt_non_erogata_kWh           entrambe       -4.86e-12     4.9e-12         0           2           2        1.85           2
+ausiliari_fc_idling_kWh        entrambe               0         958         0           1           1           1           1
+frenata_dissipata_kWh          entrambe               0    1.82e+03         0           1           1           1           1
+E_scambiata_kWh                entrambe             106    1.29e+04         0       0.991       0.142      0.0981       0.129
+vita_FC_ore                    entrambe             374     2.5e+04   491.527       0.972         Inf         Inf         Inf
+vita_FC_tetto                  entrambe               0           1         0           1           1           0           0
+tempo_s                        entrambe               0        2.84         0           1           1       0.995           1
+m_richiesta                    solo coppia            0       0.996         0           0           1           1           1
+P_max_FC_kW                    solo coppia            0    2.18e+03         0           0           1           1           1
+n_celle_FC                     solo coppia            0    6.23e+03         0           0           1           1           1
+n_stringhe_batteria            solo coppia           12         845         0           0       0.986       0.975       0.986
+E_ref_kWh                      costante        3.18e+03    3.18e+03         0           0           0           0           0
+H2_serbatoio_kg                entrambe               0         718         0       0.998           1           1           1
+massa_FC_kg                    solo coppia            0    5.09e+03         0           0           1           1           1
+massa_batteria_kg              solo coppia          414    2.92e+04         0           0       0.986       0.975       0.986
+massa_serbatoio_kg             entrambe               0    1.31e+04         0       0.998           1           1           1
+massa_propulsione_kg           entrambe        1.31e+03    4.59e+04         0       0.722       0.967        0.93       0.939
+massa_treno_kg                 entrambe        1.96e+05    2.41e+05         0      0.0607       0.179       0.149       0.171
+limite_massa_propulsione_kg    costante        2.92e+04    2.92e+04         0           0           0           0           0
+durata_viaggio_s               entrambe             740    4.46e+04         0       0.983      0.0833     0.00989      0.0569
+km_viaggio                     solo tratta           10         600         0       0.983           0           0           0
+n_viaggi_giorno                entrambe               1          49         0        0.98         0.5           0         0.5
+n_viaggi_anno                  entrambe             365    1.79e+04         0        0.98         0.5           0         0.5
+km_anno                        entrambe         6.7e+04    6.24e+05         0       0.893         0.5           0         0.5
+E_trazione_kWh                 entrambe            30.9    6.01e+03         0       0.994        0.17       0.134        0.16
+E_frenatura_disponibile_kWh    entrambe            8.09    3.29e+03         0       0.998       0.168      0.0955       0.156
+E_frenatura_recuperata_kWh     entrambe             2.9    3.19e+03         0       0.998       0.816       0.517       0.717
+E_ricarica_rete_kWh            entrambe            -317    2.53e+03         0         1.2        1.94        1.05        1.38
+E_FC_kWh                       entrambe               0    9.72e+03         0       0.997           1           1           1
+ore_FC_viaggio_h               entrambe               0        12.4         0       0.983           1           1           1
+t_FC_erogazione_s              entrambe               0     4.4e+04         0       0.999           1           1           1
+accensioni_FC                  solo coppia            0           1         0           0           1           1           1
+SOC_iniziale                   costante             0.8         0.8         0           0           0           0           0
+SOC_minimo                     entrambe               0         0.8         0           1           1           1           1
+SOC_massimo                    entrambe             0.8         0.9         0       0.111       0.111       0.111       0.111
+scarica_s                      entrambe               0    3.86e+04         0           1           1           1           1
+C_rate_scarica_max             entrambe           0.309          20         0       0.284       0.984       0.982       0.983
+C_rate_carica_max              entrambe           0.354        4.48         0       0.869       0.919       0.902       0.916
+I_stringa_scarica_max_A        entrambe           0.772          50         0       0.284       0.984       0.982       0.983
+vita_batt_cicli_viaggi         entrambe              26    5.36e+05         0       0.998           1       0.991       0.999
+vita_batt_cicli_anni           entrambe          0.0388         443         0       0.996           1       0.991       0.999
+vita_batt_calendario_anni      costante              15          15         0           0           0           0           0
+vita_batt_viaggi               entrambe              26    2.63e+05         0       0.998       0.997       0.988       0.997
+vita_batt_anni                 entrambe          0.0388          15         0       0.996       0.997       0.989       0.997
+vita_batt_limite_calendario    entrambe               0           1         0           1           1           1           1
+vita_FC_f1_ore                 entrambe             193    1.75e+04   491.527       0.972         Inf         Inf         Inf
+vita_FC_viaggi                 entrambe             104    8.93e+03   491.527       0.987         Inf         Inf         Inf
+vita_FC_anni                   entrambe           0.095        9.95   491.527        0.98         Inf         Inf         Inf
+f_degrado_FC                   costante           0.517       0.517         0           0           0           0           0
+ore_max_FC                     costante         2.5e+04     2.5e+04         0           0           0           0           0
+dV_accensioni_uV               solo coppia            0        13.8         0           0           1           1           1
+dV_idling_uV                   entrambe               0        86.6         0           1           1           1           1
+dV_cicli_carico_uV             entrambe               0    1.31e+03         0           1           1           1           1
+dV_alto_carico_uV              entrambe               0         122         0       0.998           1           1           1
+delta_V_max_V                  solo coppia            0       0.126         0           0           1           1           1
+vincolo_peso_t                 entrambe           -27.9        16.6         0        1.92        1.63        1.31        1.54
+vincolo_soc_pt                 entrambe             -70          20         0         1.9           2         1.3        1.65
+vincolo_scarica_100s           entrambe               0         386         0           1           1           1           1
+vincolo_d3                     costante               0           0         0           0           0           0           0
+sostituzione_FC_saltata        costante               0           0         0           0           0           0           0
+tau_FC_anni                    entrambe        3.86e-07        6.67   491.527           1         Inf         Inf         Inf
+H2_coda_kg                     costante               —           — 4.620.434           0           0           0           0
+valore_residuo_FC_EUR_km       entrambe          -0.269           0         0           1           1           1           1
+valore_residuo_batt_EUR_km     entrambe           -0.12   -1.58e-09         0           1           1       0.999           1
+storage_iterazioni             entrambe               0          50         0        0.98           1           1           1
+(Δ = variazione relativa (max−min)/max|·| entro il gruppo; Inf = valori finiti e non finiti nello stesso gruppo)
+per classe: costante: 9, solo coppia: 13, solo tratta: 1, entrambe: 64
+
+## 2. Formule esatte tra colonne (=== bit per bit; sulle completed salvo dove detto)
+  n_viaggi_giorno = matlab_round(36000/(durata_viaggio_s+1))                                   righe 4.718.523  diverse         0  scarto rel. max 0
+  n_viaggi_anno = 365·n_viaggi_giorno                                                          righe 4.718.523  diverse         0  scarto rel. max 0
+  km_anno = n_viaggi_anno·km_viaggio                                                           righe 4.718.523  diverse         0  scarto rel. max 0
+  massa_propulsione = massa_batteria + massa_FC + massa_serbatoio                              righe 4.718.523  diverse         0  scarto rel. max 0
+  massa_treno = 195000 + massa_FC + massa_batteria + massa_serbatoio                           righe 4.718.523  diverse         0  scarto rel. max 0
+  H2_serbatoio = massa_serbatoio·0,055                                                         righe 4.718.523  diverse         0  scarto rel. max 0
+  P_max_FC_kW = P_max·m (P_max = 1435/η + 200)                                                 righe 4.718.523  diverse         0  scarto rel. max 0
+  P_nom_fc_kW = taglia_FC_2(m·P_max; r = rapporto_picco_fc()).P_nom_FC                         righe 4.128.907  diverse         0  scarto rel. max 0
+  P_nom_fc_kW = 0 a sola batteria                                                              righe   491.527  diverse         0  scarto rel. max 0
+  massa_FC_kg = taglia_FC_2(...).peso_totale_FC (0 a sola batteria)                            righe 4.718.523  diverse         0  scarto rel. max 0
+  n_celle_FC = taglia_FC_2(...).n_celle_FC (0 a sola batteria)                                 righe 4.718.523  diverse         0  scarto rel. max 0
+  C_batt_kWh = taglia_batteria_da_n(n, riferimento_batteria(195 t), 1500).E_batteria           righe 4.620.434  diverse         0  scarto rel. max 0
+  massa_batteria_kg = taglia_batteria_da_n(...).peso_totale_batteria                           righe 4.718.523  diverse         0  scarto rel. max 0
+  n_stringhe_batteria = taglia_batteria_da_n(...).n_stringhe_batteria                          righe 4.718.523  diverse         0  scarto rel. max 0
+  E_ref_kWh = riferimento_batteria(195 t, 1500).E_ref                                          righe 4.718.523  diverse         0  scarto rel. max 0
+  limite_massa_propulsione_kg = 0,15·195000                                                    righe 4.718.523  diverse         0  scarto rel. max 0
+  SOC_iniziale: valori distinti [0.8]
+  E_ricarica_rete = ((SOC_iniziale − SOC_end)·Capacita_batteria(n)·1500)/1000                  righe 4.620.434  diverse         0  scarto rel. max 0
+  vincolo_soc_pt = 100·(0,2 − SOC_end)                                                         righe 4.620.434  diverse         0  scarto rel. max 0
+  E_ricarica_rete = ((SOC_iniziale − (0,2 − vincolo_soc_pt/100))·Cap(n)·1500)/1000 (rejected D3) righe    98.089  diverse    10.643  scarto rel. max 3.72e-11
+  vincolo_peso_t = (massa_propulsione − 29250)/1000                                            righe 4.718.523  diverse         0  scarto rel. max 0
+  vincolo_scarica_100s = |scarica_s|/100                                                       righe 4.718.523  diverse         0  scarto rel. max 0
+  E_frenatura_recuperata = E_frenatura_disponibile − frenata_dissipata                         righe 4.718.523  diverse         0  scarto rel. max 0
+  ore_FC_viaggio_h = durata/3600 (ibrido), 0 (sola batteria)                                   righe 4.718.523  diverse         0  scarto rel. max 0
+  I_stringa_scarica_max_A = C_rate_scarica_max·2,5                                             righe 4.718.523  diverse         0  scarto rel. max 0
+  vita_batt_viaggi = min(vita_batt_cicli_viaggi, 15·n_viaggi_anno)                             righe 4.718.523  diverse         0  scarto rel. max 0
+  vita_batt_anni = vita_batt_viaggi/n_viaggi_anno                                              righe 4.718.523  diverse         0  scarto rel. max 0
+  vita_batt_cicli_anni = vita_batt_cicli_viaggi/n_viaggi_anno                                  righe 4.718.523  diverse         0  scarto rel. max 0
+  vita_FC_anni = vita_FC_viaggi/n_viaggi_anno (ibrido)                                         righe 4.194.241  diverse         0  scarto rel. max 0
+  vita_FC_viaggi = min((vita_FC_f1_ore/ore)/f, 25000/ore), ore = durata/3600 (ibrido; costo_da_grandezze con f diverso) righe 4.194.241  diverse 1.913.203  scarto rel. max 5.76e-16
+  vita_FC_ore (D16) = vita_FC_viaggi·durata/3600 (ibrido)                                      righe 4.128.907  diverse 1.420.299  scarto rel. max 3.9e-16
+  km_viaggio = 2·L_km del design                                                               righe 4.718.523  diverse 4.718.523  scarto rel. max 9.8e-05
+  vita della FC limitata dal tetto di 25000 h (vita_FC_tetto = 1): 66 righe ibride completed su 4.128.907
+  vita della batteria limitata dal calendario (vita_batt_limite_calendario = 1): 377.094 completed su 4.620.434
+  sostituzione_FC_saltata = 1: 0 (D15 spenta)
+
+## 3. Controlli fisici (completed)
+  durata A/R ≤ 12 h (43200 s)                                            violazioni 282 su 4.620.434
+  durata massima 44596.0 s = 12.39 h; minima 740.0 s
+  n_viaggi_giorno ≥ 1                                                    violazioni 0 su 4.620.434
+  n_viaggi_giorno: [(1.0, 1294996), (2.0, 1619548), (3.0, 660849), (4.0, 299314), (5.0, 166638), (6.0, 107610), (7.0, 78579), (8.0, 55066), (9.0, 44404), (10.0, 33153), (11.0, 32410), (12.0, 25800), (13.0, 23830), (14.0, 20426), (15.0, 18389), (16.0, 11864), (17.0, 14595), (18.0, 11162), (19.0, 11028), (20.0, 10252), (21.0, 6764), (22.0, 6524), (23.0, 8230), (24.0, 4612), (25.0, 6312), (26.0, 3676), (27.0, 5249), (28.0, 5556), (29.0, 4328), (30.0, 3273), (31.0, 3720), (32.0, 3589), (33.0, 3065), (34.0, 1021), (35.0, 2363), (36.0, 1427), (37.0, 653), (38.0, 1342), (39.0, 1451), (40.0, 594), (41.0, 532), (42.0, 1998), (43.0, 1373), (44.0, 640), (45.0, 703), (46.0, 115), (47.0, 700), (48.0, 697), (49.0, 14)]
+  SOC_iniziale in [0, 1]                                                 violazioni 0 su 4.620.434
+  SOC_minimo in [0, 1]                                                   violazioni 0 su 4.620.434
+  SOC_massimo in [0, 1]                                                  violazioni 0 su 4.620.434
+  SOC_end in [0, 1]                                                      violazioni 0 su 4.620.434
+  SOC_minimo ≤ SOC_end ≤ SOC_massimo                                     violazioni 0 su 4.620.434
+  massa_batteria, massa_propulsione, massa_treno > 0                     violazioni 0 su 4.620.434
+  massa_FC, massa_serbatoio > 0 (ibrido)                                 violazioni 0 su 4.128.907
+  massa_FC = massa_serbatoio = H2_cons = 0 (sola batteria)               violazioni 0 su 491.527
+  H2_cons_kg > 0 (ibrido)                                                violazioni 0 su 4.128.907
+  total_cost_EUR_km > 0                                                  violazioni 0 su 4.620.434
+  le 10 voci di costo ≥ 0                                                violazioni 694.030 su 4.620.434
+  valore_residuo_FC/batt ≤ 0                                             violazioni 0 su 4.620.434
+  E_ricarica_rete_kWh ≥ 0 (SOC_end ≤ SOC_iniziale)                       violazioni 694.030 su 4.620.434
+  E_ricarica_rete_kWh ≥ 0 sulle fattibili                                violazioni 289.813 su 2.014.193
+  num_repl_batt: massimo 515.0 (fattibili: 191.0); num_repl_FC: massimo 210.0 (fattibili: 48.0)
+
+### Durata, energie e massa del treno a tratta fissa (D27)
+  Dal codice: la dinamica riceve structure_caratteristiche_treno(FC, batteria, serbatoio, carico), che usa solo la somma M;
+  durata, E_trazione e E_frenatura_disponibile dipendono quindi solo da (tratta, massa_treno).
+  coppie di righe confrontabili (stessa tratta, completed, massa_treno diversa): 649.193.690
+  durata non decrescente con la massa: 641.843.579 (98.868%); strettamente crescente: 96.401%; durata che cala con la massa: 7.350.111 (1.132%), calo massimo 40.0 s
+  tra righe consecutive in massa: 4.604.050 confronti, cali 541.226 (11.755%)
+  tratte con almeno un calo: 16381; con più dell'1% di coppie in calo: 6756
+  E_trazione non decrescente con la massa: 99.764% (cali: 1.534.063)
+
+## 4. D28: ciclo dello storage non convergente
+  righe: 15.491 (0.369% delle righe ibride simulate); stati: [("completed", 15491), ("rejected", 0)]; tipi: [("fattibile", 11019), ("piccola", 120), ("pesante", 4348), ("mista", 4), ("errore", 0)]
+  fattibili: 11.019; tratte coinvolte: 4.309; coppie coinvolte: 191
+  tutte le righe D28 hanno m > 0: true; storage_iterazioni delle righe D28: [50.0]
+  per m (righe D28 / righe simulate con quella m):
+    m ∈ [0.0000, 0.0300):       0 /   524.282  0.000%
+    m ∈ [0.0300, 0.0957):       0 /   245.758  0.000%
+    m ∈ [0.0957, 0.1016):       0 /   294.909  0.000%
+    m ∈ [0.1016, 0.1195):       0 /   327.677  0.000%
+    m ∈ [0.1195, 0.1500):       4 /    98.303  0.004%
+    m ∈ [0.1500, 0.2000):      15 /   196.604  0.008%
+    m ∈ [0.2000, 0.3000):      96 /   376.828  0.025%
+    m ∈ [0.3000, 0.5000):     963 /   770.033  0.125%
+    m ∈ [0.5000, 0.7500):   5.146 /   933.873  0.551%
+    m ∈ [0.7500, 1.0000):   9.267 /   950.256  0.975%
+  per n:
+    n ∈ [0.0, 0.1):     133 /   393.203  0.034%
+    n ∈ [0.1, 0.2):     928 /   409.588  0.227%
+    n ∈ [0.2, 0.3):   1.753 /   425.982  0.412%
+    n ∈ [0.3, 0.4):   2.262 /   442.364  0.511%
+    n ∈ [0.4, 0.5):   2.138 /   425.979  0.502%
+    n ∈ [0.5, 0.6):   1.984 /   409.592  0.484%
+    n ∈ [0.6, 0.7):   1.797 /   425.975  0.422%
+    n ∈ [0.7, 0.8):   1.883 /   425.979  0.442%
+    n ∈ [0.8, 0.9):   1.325 /   409.600  0.323%
+    n ∈ [0.9, 1.0):   1.288 /   425.979  0.302%
+  storage_iterazioni sulle righe ibride simulate: 1.0: 12.614, 2.0: 2.720.638, 3.0: 1.413.610, 4.0: 29.033, 5.0: 2.291, 6.0: 364, 7.0: 120, 8.0: 44, 9.0: 21, 10.0: 6, 11.0: 5, 12.0: 3, 14.0: 1, 50.0: 15.491
+  storage_iterazioni sulle righe a sola batteria: [0.0]
+  coppie con più righe D28: [(54, (0.9626194282102265, 0.475546146819448), 257), (198, (0.9796179616650832, 0.44075411898961203), 255), (230, (0.9959681310198669, 0.5897205369646851), 253), (158, (0.8962922572943248, 0.5092672206067549), 239), (102, (0.9934462798453335, 0.25734643486317565), 238), (150, (0.9473640378737557, 0.33542079052623563), 230), (22, (0.9407210754909153, 0.5456021195952127), 230), (190, (0.9212130119718079, 0.4619782964929864), 229)]
+
+## 5. Per tratta (tratte_riassunto.arrow)
+  tratte senza nessuna coppia fattibile: 0
+  coppie fattibili per tratta: min 7, mediana 114.0, max 265; quantili 1%/10%/90%: [22.0, 48.0, 216.0]
+  regime della migliore: sola batteria 4208, ibrido 12176, nessuna 0
+  migliore nell'intervallo D25: [(0, 4208), (1, 850), (2, 723), (3, 1200), (4, 9403)]
+  tratte in cui la migliore fattibile è D28 (storage non convergente): 13
+  coppie che sono la migliore in almeno una tratta: 177 su 288; le più frequenti: [(183, (0.2946, 0.8043), 727), (286, (0.1053, 0.8417), 722), (9, (0.0386, 0.9185), 604), (63, (0.2161, 0.7524), 571), (135, (0.2464, 0.7282), 472), (129, (0.1656, 0.8938), 435), (71, (0.2541, 0.8749), 435), (280, (0.1086, 0.9052), 403), (243, (0.3674, 0.7769), 400), (207, (0.1686, 0.8331), 346)]
+  costo della migliore: min 1.13, mediana 3.73, max 8.58 €/km
+  migliore ibrida − migliore a sola batteria (tratte con entrambe, 4208): mediana 0.467 €/km, quota < 0 (vince l'ibrido): 0.000%
+
+## 6. Per coppia (risultati/coppie_riassunto.csv)
+  coppie mai fattibili: 23 → [(8, (0.482, 0.979)), (26, (0.844, 0.876)), (38, (0.987, 0.955)), (60, (0.716, 0.924)), (68, (0.618, 0.941)), (69, (0.0, 0.015)), (83, (0.344, 0.975)), (94, (0.905, 0.911)), (98, (0.731, 0.995)), (118, (0.953, 0.858)), (137, (0.034, 0.032)), (144, (0.533, 0.962)), (146, (0.776, 0.934)), (159, (0.236, 0.996)), (174, (0.881, 0.972)), (186, (0.853, 0.87)), (204, (0.665, 0.991)), (205, (0.0, 0.044)), (214, (0.937, 0.905)), (219, (0.381, 0.958)), (234, (0.794, 0.953)), (239, (0.202, 0.019)), (249, (0.092, 0.983))]
+  coppie fattibili in tutte le tratte: 2
+  quota di fattibili per coppia: mediana 0.358, max 1
+  coppie con rejected D3 > 50%: 6; con scarica totale > 50%: 117; con peso oltre il limite in tutte le tratte: 14
+
+## 7. Regolarità in (m, n): 20 tratte a caso (seme 20261113), grafo dei 6 vicini tra le 288 coppie
+  tratte: [571, 1929, 2707, 5202, 6427, 6745, 8191, 8194, 9306, 9494, 10937, 11851, 12841, 13071, 13815, 14121, 14736, 14781, 15988, 16124]
+  grandezza                   archi  >10% amp  >25% amp | salti > 25%:    D25 regime repl FC repl b. viaggi  esito
+  H2_cons_kg                  19020   16.635%    1.509% |         287 salti:     86    219    237    205      0     45
+  E_ricarica_rete_kWh         19020   12.376%    0.878% |         167 salti:     51     46     89     66      0     53
+  SOC_end                     19020   21.136%    4.821% |         917 salti:    164     70    467    555      2    324
+  num_repl_FC                 19020   15.352%    5.578% |       1.061 salti:     67    980   1061    623     17     84
+  num_repl_batt               19020    5.137%    2.681% |         510 salti:    121     18    254    510      3     52
+  total_cost_EUR_km           19020    8.970%    0.421% |          80 salti:     20     79     79     60      0     16
+  durata_viaggio_s            19020    6.772%    0.100% |          19 salti:      1      1      3     16      0      0
+  massa_serbatoio_kg          19020   17.166%    1.756% |         334 salti:     94    243    267    224      0     55
+  vita_batt_cicli_viaggi      19020    7.192%    0.589% |         112 salti:     51     14     66     13      0     45
+  vita_FC_f1_ore              16680   20.162%    6.067% |       1.012 salti:    599      0    998    453      1    139
+  (amp = max − min della grandezza nella tratta; un salto può avere più cause)
+  valori distinti per tratta (mediana sulle 20): [("num_repl_FC", 7.0), ("num_repl_batt", 31.5), ("n_viaggi_giorno", 1.0)]
+
+### Zone rade delle 288 coppie
+  dominio ibrido m ∈ [0,03, 1], n ∈ [0,01, 0.99914] con 256 coppie ibride: distanza media dal punto più vicino 0.0267, 95° percentile 0.0467, massima 0.0738
+  cerchi vuoti più grandi (raggio, centro m, n): [(0.074, 0.525, 0.01), (0.067, 0.03, 0.114), (0.066, 1.0, 0.376), (0.066, 0.508, 0.883), (0.066, 1.0, 0.01), (0.065, 0.588, 0.999)]
+  bordi: coppie con m > 0,95: 11; con n < 0,05: 10; con n > 0,95: 14
+  m ∈ [0.03000, 0.09574):  15 coppie, larghezza 0.0657, 228 coppie per unità di m
+  m ∈ [0.09574, 0.10158):  18 coppie, larghezza 0.0058, 3080 coppie per unità di m
+  m ∈ [0.10158, 0.11950):  20 coppie, larghezza 0.0179, 1116 coppie per unità di m
+  m ∈ [0.11950, 1.00000): 203 coppie, larghezza 0.8805, 231 coppie per unità di m
+  soglia 0.09574: coppia più vicina a sinistra a Δm = 3.78e-03, a destra a Δm = 1.16e-04
+  soglia 0.10158: coppia più vicina a sinistra a Δm = 2.70e-04, a destra a Δm = 7.24e-04
+  soglia 0.11950: coppia più vicina a sinistra a Δm = 1.90e-04, a destra a Δm = 3.32e-03
+  sola batteria: 32 valori di n tra 0.0147 e 0.9845, passo massimo 0.0578, mediano 0.0293
+
+## 8. Scenari di prezzo con costo_da_grandezze (blocco 1, 256 tratte; solo prova del percorso)
+  penalità identiche in tutti gli scenari (la fattibilità non dipende dai prezzi): true
+  H2 ×0,5  migliore coppia cambiata in  83 tratte su 256; cambi di regime Dict("ibrido→ibrido" => 83); Δm mediano 0.0113, Δn mediano -0.145; costo della migliore: variazione mediana -31.3%
+  H2 ×2    migliore coppia cambiata in  46 tratte su 256; cambi di regime Dict("ibrido→ibrido" => 46); Δm mediano 0.0978, Δn mediano -0.00697; costo della migliore: variazione mediana +61.8%
+  FC ×0,5  migliore coppia cambiata in  39 tratte su 256; cambi di regime Dict("ibrido→ibrido" => 39); Δm mediano 0.161, Δn mediano -0.159; costo della migliore: variazione mediana -3.5%
