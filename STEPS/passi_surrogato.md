@@ -123,3 +123,17 @@ Il confronto semplice è la mediana di ogni coppia (m, n), che non guarda la tra
 5. **Qui l'errore dipende da m e n**, al contrario della durata: queste grandezze cambiano a scatti in (m, n), soprattutto alle soglie della logica di controllo (D25) e tra sola batteria e ibrido.
 
 **Un incidente.** Il primo lancio è rimasto bloccato 20 minuti per un errore nello script (un calcolo ripetuto mezzo milione di volte). L'ho fermato, corretto e rilanciato; i risultati sono del secondo lancio.
+
+## Decisioni prima del passo 5 (13/11/2026)
+
+Numeri in `fase8/risultati/02_decisioni.txt` (script `fase8/02_decisioni.jl`).
+
+**Il surrogato finale sarà un'unica rete neurale con più uscite.** Il boosting resta come riferimento da battere.
+
+1. **Tratte segnalate:**
+   - 2366 e 13258 restano nell'addestramento;
+   - la 14664 (test) resta per gli errori grandezza per grandezza, ma si esclude dal confronto sull'ottimo: delle sue 288 coppie ne mancano 64, ed è lì che cade spesso la migliore.
+2. **Energia di ricarica negativa** (credito nel costo quando il SOC finale supera lo 0,8 iniziale): resta come nel simulatore. Azzerarlo cambierebbe la coppia migliore in 431 tratte su 16 384 (+0,65% di costo in mediana). Se ne riparla dopo, anche con il relatore: la rete non va riaddestrata, perché prevede il SOC finale, non il costo.
+3. **Batterie che durano poco:** nessun vincolo, come nel simulatore. La migliore ha la batteria sotto 1 anno in 96 tratte; con un vincolo "≥ 1 anno" cambierebbe in quelle 96 (+1,3% di costo in mediana). Si può aggiungere dopo, sulla vita prevista, senza riaddestrare.
+
+**Prossimo passo: il 5**, il banco di prova del surrogato (costo, fattibilità, ottimo per tratta), collaudato con il boosting.
