@@ -560,3 +560,15 @@ Prove:
 3. **Questa ruvidezza sembra in gran parte un artefatto dei dati.** Le quote della mappa sono prese "senza filtri" ogni 50 m e sono arrotondate a 0,1 m: il 39% dei salti di pendenza fra punti vicini vale esattamente 2‰ (0,1 m su 50 m). Una livelletta vera dell'1‰ diventa una scala 0‰, 2‰, 0‰, 2‰… e il simulatore fa salire e scendere la fuel cell a ogni gradino.
 
 **Cosa vuol dire.** Più che la rete che sbaglia, è il simulatore che sulle linee reali "vede" un degrado della fuel cell che probabilmente non c'è, perché il profilo è rumoroso. Riguarda quindi anche i risultati del simulatore sulle linee reali, non solo il surrogato. Da decidere, anche con il relatore: lisciare l'altimetria delle linee (per esempio ricostruendo le livellette) prima di simularle, oppure considerare il rumore reale e insegnarlo alla rete (una caratteristica di ruvidezza e tratte DoE ruvide nella nuova campagna).
+
+**E le tratte reali storiche?** (`fase12/06_ruvidezza_reali.jl`, stesse misure, 288 coppie già simulate nel passo 8b)
+
+| tratta | cambi di pendenza per km | Σ\|Δp\| per km (1 m / 100 m / 1 km) | cicli di carico / DoE | errore della rete sulla vita FC |
+|---|---:|---:|---:|---:|
+| Calabria (semplificata, piatta) | 0 | 0 / 0 / 0 | 0,47 | −0,1% |
+| Firenze (livellette) | 3,3 | 4,7 / 4,6 / 1,8 | 1,24 | −0,6% |
+| Canavese (livellette corte, 100–150 m) | 13,1 | 25,7 / 24,9 / 4,3 | 2,42 | +6,4% |
+| *DoE di validazione* | 0,7 | 5,5 / 5,5 / 4,4 | 1,01 | (1,7% in valore assoluto) |
+| *linee della rete* | 23,4 | 28,6 / 13,1 / 3,3 | 2,39 | +15,9% |
+
+Il gradino di quota a 0,1 m ogni 50 m è solo delle linee della rete (dalla mappa HTML). Firenze e Calabria sono lisce e la rete sbaglia pochissimo. Canavese è ruvida in un altro modo: livellette vere, con pendenze continue, lunghe 100–150 m. Anche lì i cicli di carico sono il doppio del DoE, e la rete sottostima il degrado (+6,4%). Quindi le linee della rete hanno un artefatto, ma anche una ruvidezza vera a corto raggio che il DoE non contiene.
