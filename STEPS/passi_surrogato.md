@@ -248,3 +248,22 @@ Numeri in `fase8/risultati/02_decisioni.txt` (script `fase8/02_decisioni.jl`).
 5. **Per la rete neurale:** previsioni lisce in (m, n) e un SOC più preciso dovrebbero ridurre proprio questi due problemi. Questi numeri sono il riferimento da battere.
 
 **Prossimo: passo 6**, la rete neurale unica.
+
+## Passo 6a: la rete neurale, prova breve
+
+16/11/2026. Report: `fase10/REPORT_FASE10_RETE.md`.
+
+**Cosa abbiamo fatto.** Abbiamo preparato la rete neurale unica, così come proposta:
+- 73 ingressi: le 66 caratteristiche, m, n, più gli indicatori esatti di ibrido e delle fasce D25;
+- 4 strati da 256 neuroni;
+- 8 uscite con le funzioni "fisiche".
+
+Poi l'abbiamo addestrata per prova su una piccola parte dei dati: 2048 tratte, 5 epoche, circa un minuto.
+
+**Cosa ci dice la prova:**
+1. **Tutto funziona:** dati e maschere sono giusti, la perdita scende a ogni epoca, e le previsioni rispettano la fisica per costruzione (SOC tra 0 e 0,9, durata sopra la minima, masse e vite positive). Due lanci danno lo stesso risultato.
+2. **I tempi:** l'addestramento completo richiederà circa 45–50 secondi per epoca, cioè 30–35 minuti per 40 epoche.
+3. **La rete è velocissima a prevedere:** 2,5 µs a caso, contro 45 µs degli 8 modelli del boosting.
+4. **Prime metriche**, non ancora alla pari con il boosting, perché la rete ha visto un sesto dei dati per poche epoche: già vicina sul SOC finale (0,039 contro 0,031), più lontana su C-rate e vita della batteria, che dovrebbero migliorare con l'addestramento completo.
+
+**Prossimo: passo 6b**, l'addestramento completo.

@@ -1,0 +1,42 @@
+fase10/01_prova.jl  2026-11-16T11:32:21.051  thread: 8  Flux 0.16.12  julia 1.12.5
+caratteristiche con log con segno (|asimmetria| > 2): 10 su 66: x_slope_max_run_up_km, x_vlim_sum_abs_dv2, x_vlim_sum_dv_pos_sq, x_vlim_sum_dv_neg_sq, x_stops_spacing_std, x_cross_thermal_fatigue, x_cross_stops_v_seg, x_cross_abs_p_highv, x_cross_up_lowv, x_cross_var_p_v
+soglie D25: [0.09573551307707383, 0.1015788377751563, 0.11950451502959565]
+dati: addestramento 589824 righe (gruppi 1, 2), validazione 589824 righe; 73 ingressi; 4.9 s
+
+[1] controlli
+  ingressi non finiti: addestramento 0, validazione 0
+  ingressi standardizzati (le 68 continue): media in [-0.022, 0.030], deviazione in [0.958, 1.026] sui gruppi 1–2
+  indicatori: ibridi 88.9%, fasce D25 1–4: 5.2%, 6.2%, 6.9%, 70.5%
+  testa durata    righe con bersaglio: addestramento  589824, validazione 589824; bersaglio μ 1.1008 σ 0.0871; non finiti 0
+  testa serbatoio righe con bersaglio: addestramento  524288, validazione 524288; bersaglio μ 2.2746 σ 0.5692; non finiti 0
+  testa H2        righe con bersaglio: addestramento  516117, validazione 516125; bersaglio μ -0.8433 σ 0.5597; non finiti 0
+  testa SOC       righe con bersaglio: addestramento  589824, validazione 589824; bersaglio μ 0.4149 σ 0.3126; non finiti 0
+  testa scarica   righe con bersaglio: addestramento  589824, validazione 589824; bersaglio μ 0.4082 σ 0.4915; non finiti 0
+  testa vita_batt righe con bersaglio: addestramento  589824, validazione 589824; bersaglio μ 8.3310 σ 1.2532; non finiti 0
+  testa vita_FC   righe con bersaglio: addestramento  524288, validazione 524288; bersaglio μ 8.2838 σ 0.2996; non finiti 0
+  testa C_rate    righe con bersaglio: addestramento  589824, validazione 589824; bersaglio μ 0.3253 σ 0.9697; non finiti 0
+  ricostruzione: max |r·T − durata| = 2.37e-03 s
+
+[2] addestramento breve: 5 epoche, rete 4 × 256, lotti di 4096, Adam 1e-3 → 1e-5
+  epoca  1  η 1.00e-03  addestramento 3.4931  validazione 0.7744  [durata 0.0364 serbatoio 0.0950 H2 0.0956 SOC 0.1377 scarica 0.1390 vita_batt 0.0817 vita_FC 0.1312 C_rate 0.0579]  14.4 s
+  epoca  2  η 8.55e-04  addestramento 0.5254  validazione 0.4631  [durata 0.0219 serbatoio 0.0611 H2 0.0608 SOC 0.0958 scarica 0.0828 vita_batt 0.0378 vita_FC 0.0768 C_rate 0.0262]  6.0 s
+  epoca  3  η 5.05e-04  addestramento 0.3666  validazione 0.3898  [durata 0.0186 serbatoio 0.0526 H2 0.0516 SOC 0.0819 scarica 0.0719 vita_batt 0.0282 vita_FC 0.0654 C_rate 0.0195]  7.4 s
+  epoca  4  η 1.55e-04  addestramento 0.3215  validazione 0.3688  [durata 0.0178 serbatoio 0.0495 H2 0.0488 SOC 0.0774 scarica 0.0689 vita_batt 0.0260 vita_FC 0.0627 C_rate 0.0177]  6.7 s
+  epoca  5  η 1.00e-05  addestramento 0.3105  validazione 0.3661  [durata 0.0176 serbatoio 0.0489 H2 0.0482 SOC 0.0771 scarica 0.0687 vita_batt 0.0259 vita_FC 0.0622 C_rate 0.0175]  6.6 s
+  epoca migliore 5 (validazione 0.3661)
+  tempo per epoca: 8.2 s su 589824 righe → stima per l'addestramento completo (3 538 939 righe): 49 s per epoca, 33 min per 40 epoche
+  la perdita di validazione scende: sì, a ogni epoca
+
+[3] metriche sulla validazione nelle unità naturali (rete: 2048 tratte, 5 epoche; boosting: 12 288 tratte)
+  previsioni su 589824 casi: 1.52 s (2.58 µs a caso)
+  SOC previsto in [0; 0,9]: true; durata > durata minima: true; vite e masse positive: true
+  durata      mediana 0.461%  p95 2.054  max 9.66   | boosting mediana 0.245  p95 1.283
+  serbatoio   mediana 5.495%  p95 25.513  max 473   | boosting mediana 3.334  p95 14.604
+  H2          mediana 5.366%  p95 24.644  max 486   | boosting mediana 3.386  p95 14.503
+  SOC         mediana 0.039 (assoluto)  p95 0.190  max 0.777   | boosting mediana 0.031  p95 0.156
+  vita_batt   mediana 8.783%  p95 38.726  max 1.76e+03   | boosting mediana 3.659  p95 14.431
+  vita_FC_f1  mediana 4.161%  p95 14.907  max 99.9   | boosting mediana 2.481  p95 8.344
+  C_rate      mediana 6.026%  p95 24.886  max 413   | boosting mediana 0.676  p95 4.343
+  scarica     accuratezza 97.15%, Brier 0.0206      | boosting 98.81%, Brier 0.0087
+
+tempo totale: 60.9 s
