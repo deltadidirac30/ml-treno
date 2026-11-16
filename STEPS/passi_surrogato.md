@@ -511,6 +511,8 @@ La rete trova l'ottimo vero, o quasi, su tutte e tre, con il regime giusto: ibri
 
 **Il comando più semplice è l'alias `surrogato`** (in `~/.zshrc`), da qualunque cartella: `surrogato doe=15000`, oppure `surrogato cartella=… tratta=…`. Senza alias, il comando con `julia` va lanciato dalla cartella `ml_treno`.
 
+**Più tratte in un solo lancio** costano molto meno: l'avvio (circa 10 s) si paga una volta, poi ~0,1 s a tratta. Per esempio `surrogato doe=15000-15100` (101 tratte in 12,5 s) o `surrogato cartella=… tratta=tutte` (le 166 linee della rete in 14 s), con un riepilogo in un file CSV.
+
 **Per le tratte DoE** della campagna basta il numero: `julia -t 8 --project=surrogato surrogato/usa_surrogato.jl doe=15000`. Lo script dice anche se la rete l'ha vista in addestramento, e la confronta con la migliore delle 288 coppie simulate.
 
 Esempio, Firenze: m = 0,03, n = 0,96 (fuel cell da 59 kW, batteria da 3049 kWh), 2,407 €/km. È lo 0,13% dall'ottimo vero della griglia, e la migliore delle 288 coppie della campagna costava il 2% in più.

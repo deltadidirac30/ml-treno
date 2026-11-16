@@ -1,6 +1,6 @@
 # Il surrogato: come si usa
 
-Data una tratta, propone il progetto (m, n) più economico del treno idrogeno–batteria e lo verifica con il simulatore. Circa 10–15 secondi, quasi tutti di caricamento di Julia: la rete valuta 9702 progetti in 1,4 s, e 5 simulazioni di verifica richiedono 2 s.
+Data una tratta, propone il progetto (m, n) più economico del treno idrogeno–batteria e lo verifica con il simulatore. Una tratta sola richiede circa 10–15 secondi, quasi tutti di avvio e compilazione di Julia. Il lavoro vero per tratta è circa 0,1 s: la rete su 9702 progetti ~20 ms, 5 simulazioni di verifica ~5–20 ms. Con più tratte in un solo lancio l'avvio si paga una volta: 166 tratte in circa 20 s.
 
 ## 1. Preparare la tratta
 
@@ -67,6 +67,20 @@ julia -t 8 --project=surrogato surrogato/usa_surrogato.jl doe=15000
 - La tratta si legge da `~/Documents/lavoro/ml_treno_dati/tratte_doe_16384` (o da `cartella=…`), con `leggi_tratte_materializzate` come la campagna.
 - Lo script dice se la tratta era nell'**addestramento** (gruppi 1–6, 8–11, 13, 14: la rete l'ha vista, quindi il risultato è ottimista), nella **validazione** (gruppi 7, 12) o nel **test** (gruppi 15, 16).
 - Alla fine mostra la migliore delle 288 coppie della campagna per confronto. Per esempio, la route 15000 (test): sola batteria, n = 0,31, 2,792 €/km, cioè +0,26% rispetto alla migliore della campagna.
+
+**Più tratte in un solo lancio** (molto più veloce: l'avvio e la compilazione, circa 10 s, si pagano una volta sola; poi ogni tratta costa circa 0,1 s):
+
+```zsh
+surrogato cartella=~/Documents/lavoro/train-powertrain/tratte_reali tratta=Calabria,Canavese,Firenze
+surrogato cartella=~/Documents/lavoro/train-powertrain/dati_rete/archivio/tratte_rete_20261110 tratta=tutte
+surrogato doe=15000,15001,15002
+surrogato doe=15000-15100
+```
+
+- Con più tratte lo script stampa una riga per tratta (lunghezza, distanza dall'addestramento, m, n, costo verificato, candidati verificati e, per le DoE, il confronto con la campagna).
+- Scrive il riepilogo in `~/Documents/lavoro/ml_treno_dati/surrogato/riepilogo_<data e ora>.csv`, con regime, potenza della fuel cell e capacità della batteria.
+- Una tratta che dà errore non ferma le altre.
+- Tempi misurati il 16/11/2026: 101 tratte DoE in 12,5 s, le 166 linee della rete in 14 s (più ~5 s di avvio).
 
 **Opzioni:**
 - `verifiche=5`: quanti candidati far verificare al simulatore (default 5). Con una tratta "lontana" meglio 10.
