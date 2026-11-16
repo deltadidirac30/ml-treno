@@ -28,6 +28,17 @@
 #   4. il simulatore vero valuta quei candidati; la proposta è il più economico davvero fattibile. Se nessuno lo è, si
 #      verificano i candidati successivi (fino a 20 in tutto).
 # Il tempo: ~13 s di avvio (caricamento e compilazione, una volta per lancio), poi ~0,05–0,1 s per tratta.
+#
+# strategia=G (fase12/13, per ora un'opzione; default strategia=semplice, quella sopra): la rete indica dove cercare, il
+# simulatore decide. Il simulatore valuta: le 5 migliori della rete (con il margine); il migliore per la rete di ogni regime
+# (sola batteria, ibrido con FC piccola m < 0,1, ibrido) e di ogni fascia di n (< 0,25, 0,25–0,5, 0,5–0,75, ≥ 0,75), fra i
+# progetti con un margine largo (SOC previsto ≥ 0,18, scarica < 0,5, niente D3, massa nel limite); 5 progetti a sola batteria
+# (n 0,2, 0,4, 0,6, 0,8, 0,99); il ripiego lungo la lista della rete finché uno dei candidati principali è fattibile (fino a
+# 20). Poi una ricerca locale con il simulatore dal migliore fattibile e dal migliore fattibile di ogni regime: vicini
+# (m ± s, n) e (m, n ± s) sulla griglia, s = 0,16, 0,08, 0,04, 0,02, 0,01, ci si sposta finché un vicino fattibile costa meno,
+# al più 40 simulazioni per partenza. Sulle 166 linee della rete (dati RINF): 50 simulazioni per linea, ~0,13 s; tutte entro
+# +1% dalla migliore delle 288 coppie (peggiore +0,58%), più economica in 143. `verifiche=` vale solo per la strategia semplice.
+#   surrogato cartella=… tratta=tutte strategia=G
 # Scrive ~/Documents/lavoro/ml_treno_dati/surrogato/<tratta>/candidati.csv e, con più tratte,
 # ~/Documents/lavoro/ml_treno_dati/surrogato/riepilogo_<data e ora>.csv.
 #
@@ -47,11 +58,13 @@ const T0 = time()
 
 # ── argomenti ────────────────────────────────────────────────────────────────────
 const ARG = Dict(String(split(a, '='; limit = 2)[1]) => String(split(a, '='; limit = 2)[2]) for a in ARGS if occursin('=', a))
-const USO = "uso: surrogato cartella=<cartella> tratta=<nome>[,<nome>…|tutte]  oppure  surrogato doe=<route_id>[,…|<da>-<a>]; poi [verifiche=5] [margine=si], oppure una coppia data: m=<m> n=<n>"
+const USO = "uso: surrogato cartella=<cartella> tratta=<nome>[,<nome>…|tutte]  oppure  surrogato doe=<route_id>[,…|<da>-<a>]; poi [strategia=semplice|G] [verifiche=5] [margine=si], oppure una coppia data: m=<m> n=<n>"
 const IS_DOE = haskey(ARG, "doe")
 IS_DOE || (haskey(ARG, "cartella") && haskey(ARG, "tratta")) || error(USO)
 const CARTELLA = expanduser(get(ARG, "cartella", IS_DOE ? joinpath(BASE, "tratte_doe_16384") : ""))
 const NVER = parse(Int, get(ARG, "verifiche", "5")); const MARGINE = get(ARG, "margine", "si") == "si"
+const STRATEGIA = uppercase(get(ARG, "strategia", "semplice")) == "G" ? :G :
+                  lowercase(get(ARG, "strategia", "semplice")) == "semplice" ? :semplice : error("strategia=semplice oppure strategia=G")
 function elenco_doe(s)
     v = Int[]
     for p in split(s, ',')
@@ -70,6 +83,22 @@ const NOMI70 = vcat(NOMI_ORIG, NOMI_NUOVE)
 const IL = findfirst(==(:x_L_km), NORM.nx); const IT = findfirst(==(:x_tempo_limiti_ar_s), NORM.nx); const ID = findfirst(==(:x_dislivello_m), NORM.nx)
 const GRIGLIA = [(m, n) for m in vcat(0.0, [round(x; digits = 2) for x in 0.03:0.01:0.99]) for n in [round(x; digits = 2) for x in 0.01:0.01:0.99]]
 const GM = [g[1] for g in GRIGLIA]; const GN = [g[2] for g in GRIGLIA]; const NG = length(GRIGLIA)
+const IDX = Dict(GRIGLIA[i] => i for i in 1:NG)
+# strategia G: regimi e vicini sulla griglia (m = 0 oppure 0,03–0,99; n 0,01–0,99), come fase12/13
+regime_g(m) = m == 0 ? "sola batteria" : m < 0.1 ? "ibrido FC piccola" : "ibrido"
+const REGIMI_G = ("sola batteria", "ibrido FC piccola", "ibrido")
+function vicini_g(m, n, s)
+    r2(x) = round(x; digits = 2)
+    out = Tuple{Float64,Float64}[]
+    for nn in (n - s, n + s); 0.01 <= r2(nn) <= 0.99 && push!(out, (m, r2(nn))); end
+    for mm in (m - s, m + s)
+        mm = r2(mm); mm < 0.03 && (mm = m == 0 ? -1.0 : 0.0); mm == -1.0 && continue
+        mm > 0.99 && continue
+        (mm == 0 || mm >= 0.03) && mm != m && push!(out, (mm, n))
+    end
+    m == 0 && push!(out, (max(0.03, r2(s)), n))      # dalla sola batteria: la fuel cell più piccola del passo
+    return unique(out)
+end
 const CFG_SIM = ConfigModello(; modello = :corretta, soglia_cambio_carico = 1e-9, D3 = true, D5 = :nessuna, costi = ParametriCosto())
 # una coppia data (m=… n=…): niente ricerca, rete e simulatore su quella coppia
 const MODO_COPPIA = haskey(ARG, "m") || haskey(ARG, "n")
@@ -124,28 +153,73 @@ function analizza(tc; doe = 0)
         length(cand) == 20 && break
     end
     pre = PrecalcoloTratta(cp, "andata&ritorno")
-    ris = NamedTuple[]
-    for (k, i) in enumerate(cand)
-        k > NVER && any(r -> r.fattibile, ris) && break
+    ris = NamedTuple[]; fatti = Dict{Int,Int}()            # indice nella griglia → posizione in ris (niente simulazioni doppie)
+    function simula!(i, origine)
+        haskey(fatti, i) && return ris[fatti[i]]
         e = valuta_progetto(GM[i], GN[i], 195_000.0, cp, "andata&ritorno"; config = CFG_SIM, precalcolo = pre)
         push!(ris, (i = i, m = GM[i], n = GN[i], costo_rete = v.costo_totale[i], SOC_rete = p.SOC[i], costo_simulatore = e.costo_totale,
-                    fattibile = e.stato === :completed && e.penalita == 0,
+                    fattibile = e.stato === :completed && e.penalita == 0, origine = origine,
                     esito = e.stato === :completed ? (e.penalita == 0 ? "fattibile" : @sprintf("penalità %.0f", e.penalita)) :
                             String(e.stato) * " " * first(e.motivo, 40)))
+        fatti[i] = length(ris)
+        return ris[end]
+    end
+    ricerche = NamedTuple[]
+    if STRATEGIA === :semplice
+        for (k, i) in enumerate(cand)
+            k > NVER && any(r -> r.fattibile, ris) && break
+            simula!(i, "rete $k")
+        end
+    else
+        for (k, i) in enumerate(cand[1:min(5, end)]); simula!(i, "rete $k"); end
+        largo = .!v.d3 .& .!v.viol_massa .& (p.SOC .>= 0.18) .& (p.p_scarica .< 0.5)
+        migliore(f) = (s = [i for i in 1:NG if largo[i] && f(i)]; isempty(s) ? nothing : s[argmin(v.costo_totale[s])])
+        for rg in REGIMI_G; i = migliore(i -> regime_g(GM[i]) == rg); i === nothing || simula!(i, "migliore: " * rg); end
+        for (a, b) in ((0.0, 0.25), (0.25, 0.5), (0.5, 0.75), (0.75, 1.01))
+            i = migliore(i -> a <= GN[i] < b); i === nothing || simula!(i, @sprintf("migliore: n %.2f–%.2f", a, min(b, 1.0)))
+        end
+        for nn in (0.2, 0.4, 0.6, 0.8, 0.99); simula!(IDX[(0.0, nn)], "sola batteria fissa"); end
+        k = 6     # ripiego: lungo la lista della rete finché uno dei candidati principali è fattibile
+        while !any(i -> ris[fatti[i]].fattibile, cand[1:min(k - 1, end)]) && k <= length(cand); simula!(cand[k], "rete $k (ripiego)"); k += 1; end
+        okG = [r for r in ris if r.fattibile]
+        if !isempty(okG)
+            partenze = [okG[argmin([r.costo_simulatore for r in okG])].i]
+            for rg in REGIMI_G
+                o = [r for r in okG if regime_g(r.m) == rg]; isempty(o) || push!(partenze, o[argmin([r.costo_simulatore for r in o])].i)
+            end
+            for i0 in unique(partenze)
+                n0 = length(ris); budget = n0 + 40
+                m0, nn0, c0 = GM[i0], GN[i0], ris[fatti[i0]].costo_simulatore
+                for s in (0.16, 0.08, 0.04, 0.02, 0.01)
+                    mosso = true
+                    while mosso && length(ris) < budget
+                        mosso = false; best = nothing
+                        for g in vicini_g(m0, nn0, s)
+                            length(ris) >= budget && break
+                            j = get(IDX, g, nothing); j === nothing && continue
+                            r = simula!(j, "ricerca locale")
+                            r.fattibile && r.costo_simulatore < c0 - 1e-12 && (best === nothing || r.costo_simulatore < best[3]) && (best = (g..., r.costo_simulatore))
+                        end
+                        best === nothing || ((m0, nn0, c0) = best; mosso = true)
+                    end
+                end
+                push!(ricerche, (da = (GM[i0], GN[i0]), costo_da = ris[fatti[i0]].costo_simulatore, a = (m0, nn0), costo_a = c0, simulazioni = length(ris) - n0))
+            end
+        end
     end
     ok = [r for r in ris if r.fattibile]
     b = isempty(ok) ? nothing : ok[argmin([r.costo_simulatore for r in ok])]
     camp = doe > 0 ? (j = findfirst(==(doe), Int.(RIA.tratta)); (m = RIA.m_migliore[j], n = RIA.n_migliore[j], costo = RIA.costo_migliore[j])) : nothing
     return (nome = nome, doe = doe, L = L, fermate = length(pr.fermate), vmin = minimum(s[3] for s in pr.seg), vmax = maximum(s[3] for s in pr.seg),
             dislivello = X[ID], distanza = dist, n_fattibili_rete = count(v.fattibile), n_ammessi = count(amm), candidati = ris, proposta = b,
-            p = p, campagna = camp)
+            p = p, campagna = camp, ricerche = ricerche)
 end
 
 function scrivi_candidati(r)
     out = joinpath(BASE, "surrogato", r.nome); mkpath(out)
     open(joinpath(out, "candidati.csv"), "w") do io
-        println(io, "m,n,costo_rete_EUR_km,SOC_rete,costo_simulatore_EUR_km,fattibile,esito")
-        for c in r.candidati; println(io, join((c.m, c.n, c.costo_rete, c.SOC_rete, c.costo_simulatore, c.fattibile, c.esito), ',')); end
+        println(io, "m,n,costo_rete_EUR_km,SOC_rete,costo_simulatore_EUR_km,fattibile,esito,origine")
+        for c in r.candidati; println(io, join((c.m, c.n, c.costo_rete, c.SOC_rete, c.costo_simulatore, c.fattibile, c.esito, c.origine), ',')); end
     end
     return joinpath(out, "candidati.csv")
 end
@@ -166,11 +240,19 @@ end
 """L'uscita dettagliata per una tratta sola (come prima)."""
 function stampa_dettaglio(r)
     stampa_tratta(r)
-    println(@sprintf("\nRete neurale: %d progetti; fattibili per la rete %d%s; simulatore: %d candidati verificati", NG, r.n_fattibili_rete,
-                     MARGINE ? @sprintf(", con il margine %d", r.n_ammessi) : "", length(r.candidati)))
-    println("\n   m      n     costo rete   costo simulatore   esito")
+    println(@sprintf("\nRete neurale: %d progetti; fattibili per la rete %d%s; simulatore: %d progetti simulati (strategia %s)", NG, r.n_fattibili_rete,
+                     MARGINE ? @sprintf(", con il margine %d", r.n_ammessi) : "", length(r.candidati), STRATEGIA === :G ? "G" : "semplice"))
+    println("\n   m      n     costo rete   costo simulatore   esito                 origine")
     for c in r.candidati
-        println(@sprintf("  %.2f   %.2f   %8.4f     %10.4f        %s", c.m, c.n, c.costo_rete, c.costo_simulatore, c.esito))
+        c.origine == "ricerca locale" && continue
+        println(@sprintf("  %.2f   %.2f   %8.4f     %10.4f        %-21s %s", c.m, c.n, c.costo_rete, c.costo_simulatore, c.esito, c.origine))
+    end
+    if !isempty(r.ricerche)
+        println("\nRicerca locale con il simulatore (", count(c -> c.origine == "ricerca locale", r.candidati), " simulazioni):")
+        for s in r.ricerche
+            println(@sprintf("  da m %.2f, n %.2f (%.4f €/km) → m %.2f, n %.2f (%.4f €/km, %+.2f%%), %d simulazioni", s.da..., s.costo_da, s.a..., s.costo_a,
+                             100(s.costo_a / s.costo_da - 1), s.simulazioni))
+        end
     end
     if r.proposta === nothing
         println("\nNESSUN CANDIDATO FATTIBILE fra i primi ", length(r.candidati), ": la tratta è difficile per il surrogato. Prova verifiche=20 o margine=si, o usa l'ottimizzatore del simulatore.")

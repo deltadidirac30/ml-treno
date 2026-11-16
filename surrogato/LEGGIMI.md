@@ -85,6 +85,16 @@ surrogato doe=15000-15100
 **Opzioni:**
 - `verifiche=5`: quanti candidati far verificare al simulatore (default 5). Con una tratta "lontana" meglio 10.
 - `margine=si`: chiede alla rete un SOC finale previsto ≥ 0,21 e una probabilità di scarica < 0,1 (default sì). Con `margine=no` si trovano progetti a volte un po' più economici, ma più spesso non fattibili.
+- `strategia=G`: una verifica più robusta (fase12/13), per ora un'opzione; il default resta `strategia=semplice`. La rete indica dove cercare e il simulatore decide:
+  1. il simulatore valuta le 5 migliori della rete, il migliore per la rete di ogni regime (sola batteria, ibrido con fuel cell piccola m < 0,1, ibrido) e di ogni fascia di batteria (n < 0,25, 0,25–0,5, 0,5–0,75, ≥ 0,75), scelti con un margine largo (SOC previsto ≥ 0,18), e 5 progetti a sola batteria (n 0,2, 0,4, 0,6, 0,8, 0,99);
+  2. poi fa una ricerca locale dal migliore fattibile e dal migliore fattibile di ogni regime: prova i vicini in m e in n con passi da 0,16 a 0,01 e si sposta finché trova di meglio, al più 40 simulazioni per partenza;
+  3. la proposta è il progetto più economico fra tutti quelli simulati e fattibili.
+
+  Costa circa 50 simulazioni per tratta, 0,1–0,3 s. Sulle 166 linee della rete ricostruite dai dati RINF tutte le proposte sono entro +1% dalla migliore delle 288 coppie della campagna (la peggiore +0,58%), e in 143 linee più economiche; con la strategia semplice erano 151 su 166, la peggiore +12,9%. Nell'uscita dettagliata compaiono l'origine di ogni candidato e il percorso della ricerca locale; `candidati.csv` contiene tutti i progetti simulati. `verifiche=` vale solo per la strategia semplice.
+
+  ```zsh
+  surrogato cartella=~/Documents/lavoro/train-powertrain/dati_rete/tratte_rete_rinf/tutto_rinf tratta=tutte strategia=G
+  ```
 
 **Una coppia (m, n) data, senza ricerca**: si aggiungono `m=` e `n=`, con il punto o la virgola decimale. La rete e il simulatore valutano solo quella coppia, e lo script mette fianco a fianco:
 - le grandezze: durata, idrogeno, serbatoio, SOC finale, scarica, C-rate, vite, massa della propulsione;
