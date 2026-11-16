@@ -1,0 +1,139 @@
+fase11/01_quanti_dati.jl  2026-11-16T13:13:39.867  thread: 8  Flux 0.16.12
+
+══ gruppi [1, 2]: 2048 tratte, 589824 righe
+  epoca  1  η 1.00e-03  addestramento 3.4960  validazione 0.7754  [durata 0.0365 serbatoio 0.0950 H2 0.0956 SOC 0.1378 scarica 0.1392 vita_batt 0.0819 vita_FC 0.1315 C_rate 0.0579]  14.3 s
+  epoca  2  η 9.98e-04  addestramento 0.5101  validazione 0.4488  [durata 0.0219 serbatoio 0.0589 H2 0.0583 SOC 0.0925 scarica 0.0798 vita_batt 0.0364 vita_FC 0.0758 C_rate 0.0251]  6.1 s
+  epoca  3  η 9.94e-04  addestramento 0.3345  validazione 0.3454  [durata 0.0177 serbatoio 0.0456 H2 0.0453 SOC 0.0720 scarica 0.0648 vita_batt 0.0242 vita_FC 0.0593 C_rate 0.0166]  6.3 s
+  epoca  4  η 9.86e-04  addestramento 0.2625  validazione 0.2920  [durata 0.0146 serbatoio 0.0396 H2 0.0384 SOC 0.0622 scarica 0.0567 vita_batt 0.0185 vita_FC 0.0494 C_rate 0.0126]  6.1 s
+  epoca  5  η 9.75e-04  addestramento 0.2267  validazione 0.2632  [durata 0.0138 serbatoio 0.0341 H2 0.0338 SOC 0.0572 scarica 0.0523 vita_batt 0.0166 vita_FC 0.0445 C_rate 0.0111]  5.9 s
+  epoca  6  η 9.60e-04  addestramento 0.2010  validazione 0.2390  [durata 0.0131 serbatoio 0.0299 H2 0.0296 SOC 0.0537 scarica 0.0482 vita_batt 0.0143 vita_FC 0.0408 C_rate 0.0094]  6.0 s
+  epoca  7  η 9.43e-04  addestramento 0.1840  validazione 0.2251  [durata 0.0128 serbatoio 0.0275 H2 0.0272 SOC 0.0509 scarica 0.0457 vita_batt 0.0136 vita_FC 0.0383 C_rate 0.0092]  6.0 s
+  epoca  8  η 9.23e-04  addestramento 0.1712  validazione 0.2198  [durata 0.0140 serbatoio 0.0272 H2 0.0270 SOC 0.0491 scarica 0.0445 vita_batt 0.0127 vita_FC 0.0371 C_rate 0.0082]  6.0 s
+  epoca  9  η 9.01e-04  addestramento 0.1596  validazione 0.2104  [durata 0.0121 serbatoio 0.0249 H2 0.0246 SOC 0.0476 scarica 0.0434 vita_batt 0.0128 vita_FC 0.0369 C_rate 0.0080]  6.0 s
+  epoca 10  η 8.76e-04  addestramento 0.1510  validazione 0.2059  [durata 0.0118 serbatoio 0.0251 H2 0.0249 SOC 0.0464 scarica 0.0428 vita_batt 0.0121 vita_FC 0.0349 C_rate 0.0078]  6.0 s
+  epoca 11  η 8.48e-04  addestramento 0.1441  validazione 0.2064  [durata 0.0124 serbatoio 0.0250 H2 0.0256 SOC 0.0463 scarica 0.0417 vita_batt 0.0123 vita_FC 0.0356 C_rate 0.0075]  6.3 s
+  epoca 12  η 8.18e-04  addestramento 0.1378  validazione 0.1902  [durata 0.0120 serbatoio 0.0225 H2 0.0219 SOC 0.0440 scarica 0.0396 vita_batt 0.0107 vita_FC 0.0330 C_rate 0.0066]  6.3 s
+  epoca 13  η 7.86e-04  addestramento 0.1320  validazione 0.1852  [durata 0.0110 serbatoio 0.0212 H2 0.0214 SOC 0.0434 scarica 0.0395 vita_batt 0.0103 vita_FC 0.0324 C_rate 0.0061]  6.0 s
+  epoca 14  η 7.53e-04  addestramento 0.1280  validazione 0.1841  [durata 0.0113 serbatoio 0.0217 H2 0.0221 SOC 0.0427 scarica 0.0388 vita_batt 0.0102 vita_FC 0.0313 C_rate 0.0059]  6.0 s
+  epoca 15  η 7.17e-04  addestramento 0.1223  validazione 0.1757  [durata 0.0109 serbatoio 0.0199 H2 0.0195 SOC 0.0421 scarica 0.0378 vita_batt 0.0095 vita_FC 0.0307 C_rate 0.0053]  6.1 s
+  epoca 16  η 6.81e-04  addestramento 0.1186  validazione 0.1796  [durata 0.0110 serbatoio 0.0214 H2 0.0212 SOC 0.0420 scarica 0.0378 vita_batt 0.0095 vita_FC 0.0316 C_rate 0.0052]  6.2 s
+  epoca 17  η 6.43e-04  addestramento 0.1165  validazione 0.1737  [durata 0.0111 serbatoio 0.0195 H2 0.0190 SOC 0.0414 scarica 0.0368 vita_batt 0.0100 vita_FC 0.0308 C_rate 0.0052]  6.4 s
+  epoca 18  η 6.04e-04  addestramento 0.1130  validazione 0.1691  [durata 0.0108 serbatoio 0.0186 H2 0.0182 SOC 0.0407 scarica 0.0370 vita_batt 0.0090 vita_FC 0.0297 C_rate 0.0050]  6.7 s
+  epoca 19  η 5.65e-04  addestramento 0.1100  validazione 0.1670  [durata 0.0106 serbatoio 0.0182 H2 0.0176 SOC 0.0404 scarica 0.0367 vita_batt 0.0093 vita_FC 0.0294 C_rate 0.0049]  6.9 s
+  epoca 20  η 5.25e-04  addestramento 0.1075  validazione 0.1694  [durata 0.0110 serbatoio 0.0186 H2 0.0183 SOC 0.0399 scarica 0.0375 vita_batt 0.0092 vita_FC 0.0301 C_rate 0.0049]  7.1 s
+  epoca 21  η 4.85e-04  addestramento 0.1054  validazione 0.1659  [durata 0.0107 serbatoio 0.0182 H2 0.0177 SOC 0.0402 scarica 0.0362 vita_batt 0.0087 vita_FC 0.0297 C_rate 0.0045]  7.3 s
+  epoca 22  η 4.45e-04  addestramento 0.1029  validazione 0.1640  [durata 0.0108 serbatoio 0.0180 H2 0.0177 SOC 0.0393 scarica 0.0361 vita_batt 0.0085 vita_FC 0.0292 C_rate 0.0045]  7.3 s
+  epoca 23  η 4.06e-04  addestramento 0.1013  validazione 0.1632  [durata 0.0106 serbatoio 0.0181 H2 0.0177 SOC 0.0390 scarica 0.0363 vita_batt 0.0086 vita_FC 0.0287 C_rate 0.0043]  7.3 s
+  epoca 24  η 3.67e-04  addestramento 0.0998  validazione 0.1617  [durata 0.0104 serbatoio 0.0174 H2 0.0170 SOC 0.0390 scarica 0.0365 vita_batt 0.0085 vita_FC 0.0287 C_rate 0.0042]  7.5 s
+  epoca 25  η 3.29e-04  addestramento 0.0982  validazione 0.1634  [durata 0.0105 serbatoio 0.0179 H2 0.0176 SOC 0.0389 scarica 0.0360 vita_batt 0.0092 vita_FC 0.0291 C_rate 0.0043]  7.5 s
+  epoca 26  η 2.93e-04  addestramento 0.0966  validazione 0.1603  [durata 0.0106 serbatoio 0.0177 H2 0.0171 SOC 0.0385 scarica 0.0358 vita_batt 0.0082 vita_FC 0.0285 C_rate 0.0040]  7.4 s
+  epoca 27  η 2.58e-04  addestramento 0.0951  validazione 0.1607  [durata 0.0105 serbatoio 0.0178 H2 0.0173 SOC 0.0384 scarica 0.0360 vita_batt 0.0080 vita_FC 0.0287 C_rate 0.0040]  7.4 s
+  epoca 28  η 2.24e-04  addestramento 0.0938  validazione 0.1583  [durata 0.0103 serbatoio 0.0171 H2 0.0166 SOC 0.0383 scarica 0.0358 vita_batt 0.0081 vita_FC 0.0282 C_rate 0.0039]  7.4 s
+  epoca 29  η 1.92e-04  addestramento 0.0927  validazione 0.1597  [durata 0.0105 serbatoio 0.0172 H2 0.0167 SOC 0.0385 scarica 0.0364 vita_batt 0.0081 vita_FC 0.0283 C_rate 0.0039]  7.3 s
+  epoca 30  η 1.62e-04  addestramento 0.0918  validazione 0.1588  [durata 0.0104 serbatoio 0.0172 H2 0.0167 SOC 0.0386 scarica 0.0356 vita_batt 0.0080 vita_FC 0.0285 C_rate 0.0039]  7.3 s
+  epoca 31  η 1.34e-04  addestramento 0.0911  validazione 0.1573  [durata 0.0104 serbatoio 0.0171 H2 0.0166 SOC 0.0381 scarica 0.0355 vita_batt 0.0078 vita_FC 0.0281 C_rate 0.0037]  7.3 s
+  epoca 32  η 1.09e-04  addestramento 0.0902  validazione 0.1566  [durata 0.0104 serbatoio 0.0170 H2 0.0165 SOC 0.0378 scarica 0.0354 vita_batt 0.0078 vita_FC 0.0281 C_rate 0.0037]  7.3 s
+  epoca 33  η 8.66e-05  addestramento 0.0895  validazione 0.1568  [durata 0.0103 serbatoio 0.0170 H2 0.0164 SOC 0.0378 scarica 0.0357 vita_batt 0.0077 vita_FC 0.0282 C_rate 0.0036]  7.2 s
+  epoca 34  η 6.67e-05  addestramento 0.0889  validazione 0.1557  [durata 0.0103 serbatoio 0.0168 H2 0.0163 SOC 0.0379 scarica 0.0354 vita_batt 0.0077 vita_FC 0.0277 C_rate 0.0036]  7.2 s
+  epoca 35  η 4.96e-05  addestramento 0.0885  validazione 0.1561  [durata 0.0103 serbatoio 0.0169 H2 0.0163 SOC 0.0378 scarica 0.0355 vita_batt 0.0077 vita_FC 0.0280 C_rate 0.0036]  7.2 s
+  epoca 36  η 3.55e-05  addestramento 0.0881  validazione 0.1562  [durata 0.0104 serbatoio 0.0168 H2 0.0162 SOC 0.0377 scarica 0.0359 vita_batt 0.0077 vita_FC 0.0281 C_rate 0.0036]  7.2 s
+  epoca 37  η 2.44e-05  addestramento 0.0877  validazione 0.1554  [durata 0.0103 serbatoio 0.0167 H2 0.0161 SOC 0.0377 scarica 0.0355 vita_batt 0.0076 vita_FC 0.0279 C_rate 0.0035]  7.2 s
+  epoca 38  η 1.64e-05  addestramento 0.0875  validazione 0.1553  [durata 0.0103 serbatoio 0.0167 H2 0.0162 SOC 0.0377 scarica 0.0353 vita_batt 0.0076 vita_FC 0.0279 C_rate 0.0035]  7.1 s
+  epoca 39  η 1.16e-05  addestramento 0.0873  validazione 0.1553  [durata 0.0103 serbatoio 0.0167 H2 0.0162 SOC 0.0377 scarica 0.0354 vita_batt 0.0076 vita_FC 0.0280 C_rate 0.0035]  7.2 s
+  epoca 40  η 1.00e-05  addestramento 0.0873  validazione 0.1555  [durata 0.0103 serbatoio 0.0168 H2 0.0162 SOC 0.0376 scarica 0.0354 vita_batt 0.0076 vita_FC 0.0280 C_rate 0.0035]  7.3 s
+  epoca migliore 39 (validazione 0.1553)
+   2048 tratte: durata 0.274%, serbatoio 2.99%, H2 2.97% (p95 13.6%), SOC 0.0204 (p95 0.135), vita batt 4.29%, vita FC 2.58%, C-rate 2.55%, scarica 98.54% | fattibilità 98.34%, costo 2.08% (p95 8.9%) | secca: non fatt. 13.0%, p95 8.1%, entro 1% 55.7% | prime 5: non fatt. 0.24%, p95 6.65%, entro 1% 77.2%
+
+══ gruppi [1, 2, 3, 4]: 4096 tratte, 1179643 righe
+  epoca  1  η 1.00e-03  addestramento 1.9937  validazione 0.4299  [durata 0.0203 serbatoio 0.0568 H2 0.0568 SOC 0.0918 scarica 0.0793 vita_batt 0.0336 vita_FC 0.0674 C_rate 0.0240]  14.5 s
+  epoca  2  η 9.98e-04  addestramento 0.3083  validazione 0.2731  [durata 0.0125 serbatoio 0.0372 H2 0.0351 SOC 0.0608 scarica 0.0557 vita_batt 0.0173 vita_FC 0.0421 C_rate 0.0125]  14.4 s
+  epoca  3  η 9.94e-04  addestramento 0.2202  validazione 0.2232  [durata 0.0109 serbatoio 0.0286 H2 0.0276 SOC 0.0522 scarica 0.0468 vita_batt 0.0135 vita_FC 0.0340 C_rate 0.0096]  14.5 s
+  epoca  4  η 9.86e-04  addestramento 0.1845  validazione 0.1988  [durata 0.0099 serbatoio 0.0245 H2 0.0239 SOC 0.0475 scarica 0.0423 vita_batt 0.0110 vita_FC 0.0324 C_rate 0.0074]  14.4 s
+  epoca  5  η 9.75e-04  addestramento 0.1624  validazione 0.1772  [durata 0.0092 serbatoio 0.0204 H2 0.0203 SOC 0.0440 scarica 0.0397 vita_batt 0.0103 vita_FC 0.0266 C_rate 0.0067]  14.5 s
+  epoca  6  η 9.60e-04  addestramento 0.1477  validazione 0.1646  [durata 0.0082 serbatoio 0.0182 H2 0.0180 SOC 0.0421 scarica 0.0381 vita_batt 0.0091 vita_FC 0.0252 C_rate 0.0058]  14.4 s
+  epoca  7  η 9.43e-04  addestramento 0.1374  validazione 0.1561  [durata 0.0079 serbatoio 0.0172 H2 0.0169 SOC 0.0407 scarica 0.0368 vita_batt 0.0083 vita_FC 0.0236 C_rate 0.0048]  14.5 s
+  epoca  8  η 9.23e-04  addestramento 0.1287  validazione 0.1536  [durata 0.0076 serbatoio 0.0175 H2 0.0170 SOC 0.0391 scarica 0.0359 vita_batt 0.0087 vita_FC 0.0224 C_rate 0.0055]  14.3 s
+  epoca  9  η 9.01e-04  addestramento 0.1220  validazione 0.1443  [durata 0.0072 serbatoio 0.0151 H2 0.0148 SOC 0.0385 scarica 0.0342 vita_batt 0.0077 vita_FC 0.0221 C_rate 0.0046]  14.5 s
+  epoca 10  η 8.76e-04  addestramento 0.1164  validazione 0.1424  [durata 0.0068 serbatoio 0.0149 H2 0.0146 SOC 0.0386 scarica 0.0339 vita_batt 0.0074 vita_FC 0.0223 C_rate 0.0039]  14.5 s
+  epoca 11  η 8.48e-04  addestramento 0.1119  validazione 0.1367  [durata 0.0074 serbatoio 0.0141 H2 0.0139 SOC 0.0366 scarica 0.0332 vita_batt 0.0070 vita_FC 0.0205 C_rate 0.0039]  14.6 s
+  epoca 12  η 8.18e-04  addestramento 0.1074  validazione 0.1352  [durata 0.0070 serbatoio 0.0142 H2 0.0143 SOC 0.0360 scarica 0.0333 vita_batt 0.0069 vita_FC 0.0201 C_rate 0.0034]  14.6 s
+  epoca 13  η 7.86e-04  addestramento 0.1036  validazione 0.1311  [durata 0.0067 serbatoio 0.0133 H2 0.0132 SOC 0.0354 scarica 0.0325 vita_batt 0.0063 vita_FC 0.0206 C_rate 0.0031]  14.5 s
+  epoca 14  η 7.53e-04  addestramento 0.1012  validazione 0.1306  [durata 0.0066 serbatoio 0.0136 H2 0.0132 SOC 0.0352 scarica 0.0329 vita_batt 0.0066 vita_FC 0.0194 C_rate 0.0031]  14.5 s
+  epoca 15  η 7.17e-04  addestramento 0.0985  validazione 0.1263  [durata 0.0066 serbatoio 0.0128 H2 0.0125 SOC 0.0343 scarica 0.0322 vita_batt 0.0060 vita_FC 0.0189 C_rate 0.0030]  14.7 s
+  epoca 16  η 6.81e-04  addestramento 0.0957  validazione 0.1262  [durata 0.0063 serbatoio 0.0129 H2 0.0124 SOC 0.0341 scarica 0.0318 vita_batt 0.0064 vita_FC 0.0189 C_rate 0.0035]  14.7 s
+  epoca 17  η 6.43e-04  addestramento 0.0927  validazione 0.1241  [durata 0.0062 serbatoio 0.0124 H2 0.0122 SOC 0.0334 scarica 0.0328 vita_batt 0.0055 vita_FC 0.0191 C_rate 0.0026]  14.6 s
+  epoca 18  η 6.04e-04  addestramento 0.0908  validazione 0.1245  [durata 0.0063 serbatoio 0.0128 H2 0.0125 SOC 0.0339 scarica 0.0321 vita_batt 0.0054 vita_FC 0.0187 C_rate 0.0029]  14.6 s
+  epoca 19  η 5.65e-04  addestramento 0.0884  validazione 0.1199  [durata 0.0061 serbatoio 0.0120 H2 0.0117 SOC 0.0333 scarica 0.0308 vita_batt 0.0053 vita_FC 0.0184 C_rate 0.0024]  14.7 s
+  epoca 20  η 5.25e-04  addestramento 0.0866  validazione 0.1199  [durata 0.0062 serbatoio 0.0117 H2 0.0114 SOC 0.0328 scarica 0.0318 vita_batt 0.0054 vita_FC 0.0180 C_rate 0.0024]  14.7 s
+  epoca 21  η 4.85e-04  addestramento 0.0849  validazione 0.1181  [durata 0.0061 serbatoio 0.0118 H2 0.0116 SOC 0.0324 scarica 0.0311 vita_batt 0.0050 vita_FC 0.0179 C_rate 0.0022]  14.6 s
+  epoca 22  η 4.45e-04  addestramento 0.0831  validazione 0.1186  [durata 0.0060 serbatoio 0.0119 H2 0.0116 SOC 0.0325 scarica 0.0306 vita_batt 0.0048 vita_FC 0.0188 C_rate 0.0024]  15.1 s
+  epoca 23  η 4.06e-04  addestramento 0.0820  validazione 0.1149  [durata 0.0060 serbatoio 0.0112 H2 0.0110 SOC 0.0319 scarica 0.0304 vita_batt 0.0046 vita_FC 0.0178 C_rate 0.0021]  14.7 s
+  epoca 24  η 3.67e-04  addestramento 0.0798  validazione 0.1163  [durata 0.0058 serbatoio 0.0116 H2 0.0112 SOC 0.0321 scarica 0.0307 vita_batt 0.0049 vita_FC 0.0177 C_rate 0.0023]  14.7 s
+  epoca 25  η 3.29e-04  addestramento 0.0787  validazione 0.1142  [durata 0.0060 serbatoio 0.0111 H2 0.0108 SOC 0.0316 scarica 0.0302 vita_batt 0.0046 vita_FC 0.0176 C_rate 0.0022]  14.7 s
+  epoca 26  η 2.93e-04  addestramento 0.0777  validazione 0.1146  [durata 0.0059 serbatoio 0.0114 H2 0.0111 SOC 0.0318 scarica 0.0305 vita_batt 0.0045 vita_FC 0.0175 C_rate 0.0020]  14.8 s
+  epoca 27  η 2.58e-04  addestramento 0.0763  validazione 0.1133  [durata 0.0059 serbatoio 0.0110 H2 0.0108 SOC 0.0317 scarica 0.0299 vita_batt 0.0043 vita_FC 0.0176 C_rate 0.0020]  14.7 s
+  epoca 28  η 2.24e-04  addestramento 0.0754  validazione 0.1123  [durata 0.0059 serbatoio 0.0110 H2 0.0107 SOC 0.0315 scarica 0.0299 vita_batt 0.0042 vita_FC 0.0174 C_rate 0.0018]  14.7 s
+  epoca 29  η 1.92e-04  addestramento 0.0743  validazione 0.1118  [durata 0.0059 serbatoio 0.0107 H2 0.0104 SOC 0.0313 scarica 0.0299 vita_batt 0.0043 vita_FC 0.0173 C_rate 0.0019]  14.7 s
+  epoca 30  η 1.62e-04  addestramento 0.0733  validazione 0.1119  [durata 0.0059 serbatoio 0.0110 H2 0.0107 SOC 0.0313 scarica 0.0298 vita_batt 0.0042 vita_FC 0.0174 C_rate 0.0017]  14.7 s
+  epoca 31  η 1.34e-04  addestramento 0.0724  validazione 0.1110  [durata 0.0059 serbatoio 0.0107 H2 0.0104 SOC 0.0310 scarica 0.0299 vita_batt 0.0040 vita_FC 0.0173 C_rate 0.0017]  14.8 s
+  epoca 32  η 1.09e-04  addestramento 0.0717  validazione 0.1108  [durata 0.0058 serbatoio 0.0107 H2 0.0104 SOC 0.0311 scarica 0.0299 vita_batt 0.0040 vita_FC 0.0172 C_rate 0.0017]  14.7 s
+  epoca 33  η 8.66e-05  addestramento 0.0711  validazione 0.1103  [durata 0.0058 serbatoio 0.0107 H2 0.0103 SOC 0.0310 scarica 0.0297 vita_batt 0.0040 vita_FC 0.0171 C_rate 0.0017]  14.8 s
+  epoca 34  η 6.67e-05  addestramento 0.0705  validazione 0.1096  [durata 0.0058 serbatoio 0.0106 H2 0.0103 SOC 0.0309 scarica 0.0295 vita_batt 0.0039 vita_FC 0.0170 C_rate 0.0016]  14.8 s
+  epoca 35  η 4.96e-05  addestramento 0.0700  validazione 0.1097  [durata 0.0058 serbatoio 0.0106 H2 0.0103 SOC 0.0308 scarica 0.0296 vita_batt 0.0039 vita_FC 0.0170 C_rate 0.0016]  14.9 s
+  epoca 36  η 3.55e-05  addestramento 0.0696  validazione 0.1095  [durata 0.0058 serbatoio 0.0105 H2 0.0102 SOC 0.0309 scarica 0.0295 vita_batt 0.0039 vita_FC 0.0170 C_rate 0.0017]  14.8 s
+  epoca 37  η 2.44e-05  addestramento 0.0692  validazione 0.1093  [durata 0.0058 serbatoio 0.0105 H2 0.0102 SOC 0.0308 scarica 0.0296 vita_batt 0.0039 vita_FC 0.0170 C_rate 0.0016]  14.8 s
+  epoca 38  η 1.64e-05  addestramento 0.0690  validazione 0.1091  [durata 0.0058 serbatoio 0.0104 H2 0.0102 SOC 0.0308 scarica 0.0294 vita_batt 0.0038 vita_FC 0.0170 C_rate 0.0016]  14.8 s
+  epoca 39  η 1.16e-05  addestramento 0.0688  validazione 0.1090  [durata 0.0058 serbatoio 0.0105 H2 0.0102 SOC 0.0308 scarica 0.0294 vita_batt 0.0038 vita_FC 0.0170 C_rate 0.0016]  15.1 s
+  epoca 40  η 1.00e-05  addestramento 0.0688  validazione 0.1091  [durata 0.0058 serbatoio 0.0105 H2 0.0102 SOC 0.0308 scarica 0.0294 vita_batt 0.0038 vita_FC 0.0170 C_rate 0.0016]  14.8 s
+  epoca migliore 39 (validazione 0.1090)
+   4096 tratte: durata 0.212%, serbatoio 2.30%, H2 2.28% (p95 10.9%), SOC 0.0163 (p95 0.121), vita batt 3.16%, vita FC 2.15%, C-rate 1.81%, scarica 98.77% | fattibilità 98.60%, costo 1.65% (p95 6.8%) | secca: non fatt. 13.9%, p95 6.7%, entro 1% 63.5% | prime 5: non fatt. 0.15%, p95 5.18%, entro 1% 83.7%
+
+══ gruppi [1, 2, 3, 4, 5, 6, 8, 9]: 8192 tratte, 2359291 righe
+  epoca  1  η 1.00e-03  addestramento 1.1499  validazione 0.2689  [durata 0.0118 serbatoio 0.0349 H2 0.0340 SOC 0.0607 scarica 0.0549 vita_batt 0.0173 vita_FC 0.0417 C_rate 0.0135]  30.8 s
+  epoca  2  η 9.98e-04  addestramento 0.2073  validazione 0.1910  [durata 0.0087 serbatoio 0.0237 H2 0.0232 SOC 0.0470 scarica 0.0422 vita_batt 0.0113 vita_FC 0.0267 C_rate 0.0081]  30.3 s
+  epoca  3  η 9.94e-04  addestramento 0.1599  validazione 0.1629  [durata 0.0073 serbatoio 0.0176 H2 0.0179 SOC 0.0419 scarica 0.0374 vita_batt 0.0091 vita_FC 0.0256 C_rate 0.0061]  30.1 s
+  epoca  4  η 9.86e-04  addestramento 0.1367  validazione 0.1442  [durata 0.0079 serbatoio 0.0147 H2 0.0146 SOC 0.0388 scarica 0.0349 vita_batt 0.0075 vita_FC 0.0208 C_rate 0.0051]  29.7 s
+  epoca  5  η 9.75e-04  addestramento 0.1237  validazione 0.1314  [durata 0.0057 serbatoio 0.0135 H2 0.0133 SOC 0.0363 scarica 0.0326 vita_batt 0.0064 vita_FC 0.0200 C_rate 0.0035]  29.7 s
+  epoca  6  η 9.60e-04  addestramento 0.1149  validazione 0.1237  [durata 0.0056 serbatoio 0.0119 H2 0.0120 SOC 0.0347 scarica 0.0320 vita_batt 0.0062 vita_FC 0.0180 C_rate 0.0033]  29.8 s
+  epoca  7  η 9.43e-04  addestramento 0.1075  validazione 0.1201  [durata 0.0053 serbatoio 0.0114 H2 0.0110 SOC 0.0335 scarica 0.0317 vita_batt 0.0062 vita_FC 0.0178 C_rate 0.0033]  29.9 s
+  epoca  8  η 9.23e-04  addestramento 0.1024  validazione 0.1161  [durata 0.0051 serbatoio 0.0111 H2 0.0111 SOC 0.0335 scarica 0.0302 vita_batt 0.0052 vita_FC 0.0166 C_rate 0.0032]  29.8 s
+  epoca  9  η 9.01e-04  addestramento 0.0977  validazione 0.1147  [durata 0.0051 serbatoio 0.0110 H2 0.0107 SOC 0.0320 scarica 0.0305 vita_batt 0.0061 vita_FC 0.0159 C_rate 0.0034]  30.0 s
+  epoca 10  η 8.76e-04  addestramento 0.0945  validazione 0.1073  [durata 0.0052 serbatoio 0.0103 H2 0.0100 SOC 0.0309 scarica 0.0289 vita_batt 0.0043 vita_FC 0.0157 C_rate 0.0020]  29.6 s
+  epoca 11  η 8.48e-04  addestramento 0.0906  validazione 0.1098  [durata 0.0049 serbatoio 0.0106 H2 0.0103 SOC 0.0309 scarica 0.0297 vita_batt 0.0050 vita_FC 0.0158 C_rate 0.0026]  30.1 s
+  epoca 12  η 8.18e-04  addestramento 0.0881  validazione 0.1058  [durata 0.0050 serbatoio 0.0098 H2 0.0098 SOC 0.0301 scarica 0.0294 vita_batt 0.0042 vita_FC 0.0153 C_rate 0.0022]  30.1 s
+  epoca 13  η 7.86e-04  addestramento 0.0853  validazione 0.1026  [durata 0.0046 serbatoio 0.0097 H2 0.0093 SOC 0.0294 scarica 0.0282 vita_batt 0.0042 vita_FC 0.0152 C_rate 0.0020]  30.3 s
+  epoca 14  η 7.53e-04  addestramento 0.0830  validazione 0.1036  [durata 0.0043 serbatoio 0.0098 H2 0.0098 SOC 0.0296 scarica 0.0279 vita_batt 0.0049 vita_FC 0.0143 C_rate 0.0028]  29.9 s
+  epoca 15  η 7.17e-04  addestramento 0.0805  validazione 0.0984  [durata 0.0042 serbatoio 0.0090 H2 0.0087 SOC 0.0288 scarica 0.0275 vita_batt 0.0036 vita_FC 0.0149 C_rate 0.0017]  29.9 s
+  epoca 16  η 6.81e-04  addestramento 0.0787  validazione 0.0982  [durata 0.0043 serbatoio 0.0092 H2 0.0090 SOC 0.0289 scarica 0.0275 vita_batt 0.0036 vita_FC 0.0140 C_rate 0.0017]  30.1 s
+  epoca 17  η 6.43e-04  addestramento 0.0767  validazione 0.0984  [durata 0.0045 serbatoio 0.0093 H2 0.0090 SOC 0.0283 scarica 0.0280 vita_batt 0.0038 vita_FC 0.0136 C_rate 0.0018]  30.0 s
+  epoca 18  η 6.04e-04  addestramento 0.0750  validazione 0.0970  [durata 0.0042 serbatoio 0.0091 H2 0.0088 SOC 0.0280 scarica 0.0278 vita_batt 0.0035 vita_FC 0.0140 C_rate 0.0016]  29.9 s
+  epoca 19  η 5.65e-04  addestramento 0.0737  validazione 0.0961  [durata 0.0042 serbatoio 0.0087 H2 0.0085 SOC 0.0279 scarica 0.0269 vita_batt 0.0038 vita_FC 0.0140 C_rate 0.0022]  30.2 s
+  epoca 20  η 5.25e-04  addestramento 0.0723  validazione 0.0941  [durata 0.0040 serbatoio 0.0084 H2 0.0082 SOC 0.0276 scarica 0.0265 vita_batt 0.0033 vita_FC 0.0143 C_rate 0.0018]  30.4 s
+  epoca 21  η 4.85e-04  addestramento 0.0706  validazione 0.0940  [durata 0.0040 serbatoio 0.0088 H2 0.0086 SOC 0.0276 scarica 0.0269 vita_batt 0.0032 vita_FC 0.0135 C_rate 0.0014]  30.0 s
+  epoca 22  η 4.45e-04  addestramento 0.0694  validazione 0.0938  [durata 0.0041 serbatoio 0.0089 H2 0.0087 SOC 0.0276 scarica 0.0267 vita_batt 0.0030 vita_FC 0.0133 C_rate 0.0014]  30.3 s
+  epoca 23  η 4.06e-04  addestramento 0.0681  validazione 0.0929  [durata 0.0040 serbatoio 0.0085 H2 0.0083 SOC 0.0275 scarica 0.0267 vita_batt 0.0032 vita_FC 0.0131 C_rate 0.0015]  30.4 s
+  epoca 24  η 3.67e-04  addestramento 0.0670  validazione 0.0922  [durata 0.0040 serbatoio 0.0087 H2 0.0085 SOC 0.0275 scarica 0.0262 vita_batt 0.0030 vita_FC 0.0130 C_rate 0.0012]  29.9 s
+  epoca 25  η 3.29e-04  addestramento 0.0658  validazione 0.0921  [durata 0.0040 serbatoio 0.0089 H2 0.0087 SOC 0.0273 scarica 0.0265 vita_batt 0.0027 vita_FC 0.0129 C_rate 0.0011]  29.9 s
+  epoca 26  η 2.93e-04  addestramento 0.0649  validazione 0.0919  [durata 0.0042 serbatoio 0.0086 H2 0.0084 SOC 0.0273 scarica 0.0258 vita_batt 0.0031 vita_FC 0.0132 C_rate 0.0014]  29.7 s
+  epoca 27  η 2.58e-04  addestramento 0.0638  validazione 0.0919  [durata 0.0042 serbatoio 0.0088 H2 0.0085 SOC 0.0272 scarica 0.0266 vita_batt 0.0028 vita_FC 0.0127 C_rate 0.0011]  29.6 s
+  epoca 28  η 2.24e-04  addestramento 0.0629  validazione 0.0908  [durata 0.0041 serbatoio 0.0084 H2 0.0082 SOC 0.0272 scarica 0.0264 vita_batt 0.0027 vita_FC 0.0127 C_rate 0.0011]  29.8 s
+  epoca 29  η 1.92e-04  addestramento 0.0621  validazione 0.0907  [durata 0.0040 serbatoio 0.0085 H2 0.0082 SOC 0.0270 scarica 0.0264 vita_batt 0.0027 vita_FC 0.0129 C_rate 0.0011]  29.6 s
+  epoca 30  η 1.62e-04  addestramento 0.0613  validazione 0.0891  [durata 0.0040 serbatoio 0.0084 H2 0.0082 SOC 0.0268 scarica 0.0257 vita_batt 0.0026 vita_FC 0.0125 C_rate 0.0010]  30.0 s
+  epoca 31  η 1.34e-04  addestramento 0.0606  validazione 0.0897  [durata 0.0040 serbatoio 0.0084 H2 0.0082 SOC 0.0268 scarica 0.0258 vita_batt 0.0026 vita_FC 0.0128 C_rate 0.0010]  30.3 s
+  epoca 32  η 1.09e-04  addestramento 0.0601  validazione 0.0895  [durata 0.0040 serbatoio 0.0084 H2 0.0081 SOC 0.0267 scarica 0.0261 vita_batt 0.0026 vita_FC 0.0125 C_rate 0.0011]  29.8 s
+  epoca 33  η 8.66e-05  addestramento 0.0594  validazione 0.0890  [durata 0.0039 serbatoio 0.0082 H2 0.0080 SOC 0.0268 scarica 0.0259 vita_batt 0.0025 vita_FC 0.0126 C_rate 0.0010]  29.8 s
+  epoca 34  η 6.67e-05  addestramento 0.0589  validazione 0.0887  [durata 0.0039 serbatoio 0.0082 H2 0.0080 SOC 0.0267 scarica 0.0257 vita_batt 0.0025 vita_FC 0.0126 C_rate 0.0010]  29.7 s
+  epoca 35  η 4.96e-05  addestramento 0.0584  validazione 0.0884  [durata 0.0039 serbatoio 0.0083 H2 0.0081 SOC 0.0266 scarica 0.0256 vita_batt 0.0025 vita_FC 0.0125 C_rate 0.0009]  29.6 s
+  epoca 36  η 3.55e-05  addestramento 0.0581  validazione 0.0883  [durata 0.0039 serbatoio 0.0083 H2 0.0081 SOC 0.0266 scarica 0.0256 vita_batt 0.0025 vita_FC 0.0124 C_rate 0.0009]  29.5 s
+  epoca 37  η 2.44e-05  addestramento 0.0578  validazione 0.0883  [durata 0.0039 serbatoio 0.0082 H2 0.0080 SOC 0.0266 scarica 0.0257 vita_batt 0.0025 vita_FC 0.0125 C_rate 0.0009]  29.4 s
+  epoca 38  η 1.64e-05  addestramento 0.0576  validazione 0.0882  [durata 0.0039 serbatoio 0.0082 H2 0.0080 SOC 0.0266 scarica 0.0256 vita_batt 0.0024 vita_FC 0.0125 C_rate 0.0009]  29.4 s
+  epoca 39  η 1.16e-05  addestramento 0.0574  validazione 0.0880  [durata 0.0039 serbatoio 0.0082 H2 0.0080 SOC 0.0266 scarica 0.0255 vita_batt 0.0024 vita_FC 0.0124 C_rate 0.0009]  30.0 s
+  epoca 40  η 1.00e-05  addestramento 0.0574  validazione 0.0880  [durata 0.0039 serbatoio 0.0082 H2 0.0080 SOC 0.0265 scarica 0.0255 vita_batt 0.0024 vita_FC 0.0124 C_rate 0.0009]  29.5 s
+  epoca migliore 40 (validazione 0.0880)
+   8192 tratte: durata 0.178%, serbatoio 1.88%, H2 1.86% (p95 9.3%), SOC 0.0130 (p95 0.111), vita batt 2.56%, vita FC 1.83%, C-rate 1.41%, scarica 98.94% | fattibilità 98.78%, costo 1.38% (p95 5.8%) | secca: non fatt. 15.8%, p95 4.4%, entro 1% 67.6% | prime 5: non fatt. 0.10%, p95 3.14%, entro 1% 88.4%
+
+══ tutti i 12 gruppi (rete 6b)
+  12288 tratte: durata 0.159%, serbatoio 1.70%, H2 1.68% (p95 8.5%), SOC 0.0118 (p95 0.108), vita batt 2.36%, vita FC 1.73%, C-rate 1.24%, scarica 99.00% | fattibilità 98.86%, costo 1.26% (p95 5.2%) | secca: non fatt. 14.4%, p95 4.0%, entro 1% 70.4% | prime 5: non fatt. 0.10%, p95 2.29%, entro 1% 90.2%
+
+figura: fig_curva_apprendimento.png
+tempo totale: 38.1 min

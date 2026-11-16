@@ -1,0 +1,83 @@
+fase11/02_dove_sbaglia.jl  2026-11-16T13:52:24.543  thread: 8
+
+[1] errori per tipo di tratta (fasce a quantili delle 2048 tratte di validazione; mediana e p95 sui casi della fascia)
+    H2 e serbatoio in %, SOC assoluto, costo % sui casi davvero fattibili, fattibilità giusta %
+  lunghezza [km]:
+        5.01–64        H2 2.95 /  14.8   serbatoio 3.06 /  16.5   SOC 0.0114 / 0.073   costo 1.81 /  7.4   fattibilità 99.06
+          64–123       H2 1.81 /   7.9   serbatoio 1.84 /   7.9   SOC 0.0129 / 0.102   costo 1.18 /  4.2   fattibilità 98.71
+         123–182       H2 1.54 /   6.5   serbatoio 1.56 /   6.5   SOC 0.0119 / 0.114   costo 1.08 /  3.8   fattibilità 98.76
+         182–237       H2 1.39 /   5.6   serbatoio 1.40 /   5.7   SOC 0.0121 / 0.130   costo 1.01 /  3.4   fattibilità 98.86
+         237–300       H2 1.31 /   4.7   serbatoio 1.32 /   4.8   SOC 0.0106 / 0.118   costo 0.96 /  3.2   fattibilità 98.89
+  pendenza rms [‰]:
+           0–7         H2 1.95 /  12.6   serbatoio 1.98 /  13.0   SOC 0.0128 / 0.145   costo 1.26 /  5.4   fattibilità 99.05
+           7–12.9      H2 1.73 /   9.6   serbatoio 1.75 /  10.0   SOC 0.0135 / 0.118   costo 1.22 /  5.2   fattibilità 98.91
+        12.9–16.8      H2 1.56 /   7.1   serbatoio 1.59 /   7.3   SOC 0.0117 / 0.094   costo 1.21 /  4.9   fattibilità 98.80
+        16.8–20        H2 1.57 /   6.5   serbatoio 1.58 /   6.6   SOC 0.0109 / 0.091   costo 1.23 /  5.2   fattibilità 98.79
+          20–27.9      H2 1.65 /   6.9   serbatoio 1.67 /   7.2   SOC 0.0105 / 0.087   costo 1.40 /  5.4   fattibilità 98.72
+  fermate intermedie:
+           0–2         H2 2.39 /  15.0   serbatoio 2.44 /  16.8   SOC 0.0121 / 0.109   costo 1.85 /  8.0   fattibilità 98.88
+           2–8         H2 1.97 /  10.6   serbatoio 2.00 /  10.9   SOC 0.0117 / 0.100   costo 1.42 /  5.7   fattibilità 98.88
+           8–14        H2 1.56 /   6.7   serbatoio 1.57 /   6.8   SOC 0.0113 / 0.104   costo 1.15 /  4.0   fattibilità 98.82
+          14–21        H2 1.44 /   5.7   serbatoio 1.47 /   5.8   SOC 0.0119 / 0.109   costo 1.04 /  3.4   fattibilità 98.82
+          21–28        H2 1.43 /   5.4   serbatoio 1.45 /   5.4   SOC 0.0121 / 0.117   costo 1.01 /  3.3   fattibilità 98.86
+  limite medio [km/h]:
+        42.2–62.4      H2 1.85 /  10.6   serbatoio 1.88 /  10.6   SOC 0.0145 / 0.145   costo 1.20 /  4.9   fattibilità 98.89
+        62.4–77.2      H2 1.76 /   9.9   serbatoio 1.80 /  10.3   SOC 0.0127 / 0.122   costo 1.25 /  5.3   fattibilità 98.85
+        77.2–92.2      H2 1.64 /   8.8   serbatoio 1.67 /   9.2   SOC 0.0113 / 0.103   costo 1.25 /  5.3   fattibilità 98.86
+        92.2–114       H2 1.61 /   7.3   serbatoio 1.64 /   7.7   SOC 0.0109 / 0.090   costo 1.27 /  5.3   fattibilità 98.84
+         114–160       H2 1.56 /   6.0   serbatoio 1.57 /   6.2   SOC 0.0104 / 0.077   costo 1.36 /  5.3   fattibilità 98.84
+  dislivello [m]:
+           0–212       H2 2.31 /  15.1   serbatoio 2.40 /  16.5   SOC 0.0116 / 0.121   costo 1.56 /  7.4   fattibilità 99.15
+         212–662       H2 2.07 /   9.8   serbatoio 2.10 /  10.1   SOC 0.0136 / 0.116   costo 1.35 /  5.1   fattibilità 98.95
+         662–1.34e+03  H2 1.66 /   6.7   serbatoio 1.69 /   6.8   SOC 0.0140 / 0.113   costo 1.13 /  3.8   fattibilità 98.68
+    1.34e+03–2.47e+03  H2 1.43 /   5.1   serbatoio 1.45 /   5.2   SOC 0.0122 / 0.101   costo 1.03 /  3.4   fattibilità 98.65
+    2.47e+03–5.96e+03  H2 1.29 /   4.3   serbatoio 1.30 /   4.4   SOC 0.0078 / 0.089   costo 1.00 /  3.2   fattibilità 98.84
+  fermate per km:
+           0–0.0203    H2 1.98 /  12.2   serbatoio 2.02 /  13.1   SOC 0.0122 / 0.119   costo 1.59 /  7.2   fattibilità 98.83
+      0.0203–0.0598    H2 1.49 /   6.8   serbatoio 1.51 /   6.9   SOC 0.0115 / 0.110   costo 1.10 /  4.0   fattibilità 98.86
+      0.0598–0.1       H2 1.44 /   6.5   serbatoio 1.46 /   6.6   SOC 0.0118 / 0.115   costo 1.07 /  4.1   fattibilità 98.84
+         0.1–0.173     H2 1.62 /   7.7   serbatoio 1.65 /   8.2   SOC 0.0118 / 0.108   costo 1.23 /  5.2   fattibilità 98.84
+       0.173–0.533     H2 1.96 /   9.2   serbatoio 2.01 /   9.4   SOC 0.0117 / 0.088   costo 1.30 /  4.9   fattibilità 98.90
+
+[2] errori per zona di (m, n)
+  m = 0 (sola batteria)                 65536 casi: H2 NaN%, SOC 0.0038 (p95 0.033), vita batt 1.65%, costo 2.55% (p95 10.9%), fattibilità giusta 99.71%
+  0,03 ≤ m < 0,0957 (fascia D25 1)      30720 casi: H2 1.66%, SOC 0.0053 (p95 0.034), vita batt 1.75%, costo 1.61% (p95 8.3%), fattibilità giusta 99.64%
+  0,0957 ≤ m < 0,1195 (fasce D25 2-3)   77824 casi: H2 1.26%, SOC 0.0067 (p95 0.041), vita batt 1.80%, costo 1.28% (p95 5.7%), fattibilità giusta 99.45%
+  0,1195 ≤ m < 0,4                     131072 casi: H2 1.64%, SOC 0.0114 (p95 0.074), vita batt 2.23%, costo 1.23% (p95 5.1%), fattibilità giusta 98.59%
+  0,4 ≤ m < 0,7                        143360 casi: H2 1.79%, SOC 0.0180 (p95 0.123), vita batt 2.66%, costo 1.21% (p95 4.8%), fattibilità giusta 98.01%
+  m ≥ 0,7                              141312 casi: H2 1.90%, SOC 0.0213 (p95 0.168), vita batt 3.35%, costo 1.24% (p95 4.8%), fattibilità giusta 99.06%
+  0.00 ≤ n < 0.05                        24576 casi: H2 1.58%, SOC 0.0296 (p95 0.199), vita batt 5.76%, costo 1.32% (p95 4.7%), fattibilità giusta 97.95%
+  0.05 ≤ n < 0.20                        88064 casi: H2 1.57%, SOC 0.0234 (p95 0.163), vita batt 3.20%, costo 1.24% (p95 4.7%), fattibilità giusta 98.13%
+  0.20 ≤ n < 0.50                       180224 casi: H2 1.67%, SOC 0.0134 (p95 0.113), vita batt 2.29%, costo 1.25% (p95 4.9%), fattibilità giusta 98.83%
+  0.50 ≤ n < 0.80                       178176 casi: H2 1.69%, SOC 0.0094 (p95 0.063), vita batt 2.07%, costo 1.24% (p95 5.3%), fattibilità giusta 98.91%
+  0.80 ≤ n < 1.00                       118784 casi: H2 1.77%, SOC 0.0085 (p95 0.047), vita batt 2.09%, costo 1.47% (p95 7.6%), fattibilità giusta 99.54%
+
+[3] errore del SOC finale per valore vero
+  SOC vero in [0.00, 0.00):      36 casi, errore mediana 0.0065, p95 0.025; previsto dalla parte sbagliata di 0,2: 0.00%
+  SOC vero in [0.00, 0.15):  177527 casi, errore mediana 0.0047, p95 0.040; previsto dalla parte sbagliata di 0,2: 0.47%
+  SOC vero in [0.15, 0.25):   24948 casi, errore mediana 0.0160, p95 0.087; previsto dalla parte sbagliata di 0,2: 20.36%
+  SOC vero in [0.25, 0.75):  272601 casi, errore mediana 0.0190, p95 0.135; previsto dalla parte sbagliata di 0,2: 0.32%
+  SOC vero in [0.75, 0.85):   56268 casi, errore mediana 0.0169, p95 0.138; previsto dalla parte sbagliata di 0,2: 0.00%
+  SOC vero in [0.85, 0.90):   58410 casi, errore mediana 0.0073, p95 0.098; previsto dalla parte sbagliata di 0,2: 0.00%
+
+[4] per tratta: errore del costo e rimpianto della scelta secca fra le 288 coppie; distanza dall'addestramento
+  distanza dalla tratta di addestramento più vicina: mediana 2.90, p95 4.72, max 6.61
+  correlazione (Spearman) fra distanza ed errore mediano del costo della tratta: 0.29
+    distanza 0.14–2.35:  512 tratte, errore del costo mediana 0.96%, SOC 0.0117, fattibilità 99.31%, scelta secca non fattibile 10.4%, rimpianto p95 2.9%
+    distanza 2.35–2.90:  512 tratte, errore del costo mediana 1.02%, SOC 0.0111, fattibilità 98.96%, scelta secca non fattibile 16.2%, rimpianto p95 3.6%
+    distanza 2.90–3.57:  512 tratte, errore del costo mediana 1.13%, SOC 0.0116, fattibilità 98.96%, scelta secca non fattibile 16.4%, rimpianto p95 3.5%
+    distanza 3.57–4.27:  307 tratte, errore del costo mediana 1.23%, SOC 0.0133, fattibilità 98.96%, scelta secca non fattibile 16.6%, rimpianto p95 4.0%
+    distanza 4.27–6.61:  205 tratte, errore del costo mediana 1.84%, SOC 0.0140, fattibilità 98.96%, scelta secca non fattibile 11.7%, rimpianto p95 7.8%
+  le 10 tratte con l'errore del costo più alto:
+    11273: costo 8.7%, SOC 0.016, H2 19.6% | L 9.1 km, fermate 0, pendenza rms 14.1‰, limite medio 79 km/h, dislivello 41 m, distanza 4.97
+     7113: costo 8.1%, SOC 0.017, H2 9.4% | L 12.0 km, fermate 3, pendenza rms 18.5‰, limite medio 92 km/h, dislivello 183 m, distanza 4.10
+     7049: costo 7.7%, SOC 0.011, H2 29.6% | L 5.8 km, fermate 0, pendenza rms 10.8‰, limite medio 44 km/h, dislivello 45 m, distanza 3.24
+     6264: costo 7.0%, SOC 0.013, H2 5.2% | L 5.9 km, fermate 0, pendenza rms 18.5‰, limite medio 65 km/h, dislivello 82 m, distanza 3.86
+    11817: costo 6.6%, SOC 0.025, H2 5.4% | L 17.6 km, fermate 3, pendenza rms 18.0‰, limite medio 84 km/h, dislivello 96 m, distanza 5.95
+     6200: costo 6.5%, SOC 0.007, H2 13.5% | L 12.4 km, fermate 0, pendenza rms 0.0‰, limite medio 125 km/h, dislivello 0 m, distanza 2.15
+    11896: costo 6.3%, SOC 0.010, H2 10.7% | L 5.0 km, fermate 0, pendenza rms 0.0‰, limite medio 60 km/h, dislivello 0 m, distanza 1.24
+    11873: costo 6.2%, SOC 0.034, H2 10.3% | L 57.1 km, fermate 11, pendenza rms 16.8‰, limite medio 71 km/h, dislivello 551 m, distanza 4.29
+    11529: costo 6.2%, SOC 0.007, H2 5.1% | L 7.4 km, fermate 1, pendenza rms 11.7‰, limite medio 90 km/h, dislivello 80 m, distanza 4.30
+    12069: costo 5.9%, SOC 0.038, H2 6.1% | L 152.2 km, fermate 11, pendenza rms 18.6‰, limite medio 84 km/h, dislivello 2788 m, distanza 3.50
+
+figure: fig_errori_tratta.png, fig_errori_mn.png

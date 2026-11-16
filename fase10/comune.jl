@@ -43,7 +43,7 @@ end
 
 """Statistiche di normalizzazione: per caratteristica log con segno se |asimmetria| > 2, poi media e deviazione; m, n."""
 function normalizzazione(t_add)
-    nx = [c for c in Arrow.names(t_add) if startswith(String(c), "x_")]
+    nx = [c for c in propertynames(t_add) if startswith(String(c), "x_")]     # Arrow.Table o NamedTuple di colonne
     tr = Int.(t_add.tratta); first_i = unique(i -> tr[i], eachindex(tr))     # una riga per tratta
     trasf = Dict{Symbol,Tuple{Bool,Float64}}(); μ = Dict{Symbol,Float64}(); σ = Dict{Symbol,Float64}()
     for c in nx

@@ -394,3 +394,40 @@ Misurato sul Mac (M4), alla pari, su un solo core: simulatore vero contro rete 6
 - **Nel preconfiguratore:** griglia fitta con la rete (0,05 s) + 5 simulazioni di verifica (≈ 0,06 s) = circa un decimo di secondo per tratta, contro 2 minuti per la sola griglia simulata.
 
 Il prezzo si paga una volta sola: la campagna (5 ore sul PC) e l'addestramento (35 minuti). Il guadagno è più piccolo sulle tratte corte e semplici (~100×) e più grande su quelle lunghe e difficili (oltre 9000×), perché il tempo della rete non dipende dalla tratta.
+
+## Passo 7: rifiniture (quanti dati servono, dove sbaglia la rete)
+
+16/11/2026. Report: `fase11/REPORT_FASE11_RIFINITURE.md`. Figure: `fase11/figure/`.
+
+### 7a: quanti dati servono
+
+**Cosa abbiamo fatto.** Abbiamo riaddestrato la rete con 2048, 4096 e 8192 tratte (sottoinsiemi annidati dei gruppi di addestramento), con le stesse impostazioni, e l'abbiamo confrontata con quella da 12 288 tratte. 38 minuti di calcolo.
+
+| tratte di addestramento | 2048 | 4096 | 8192 | 12 288 |
+|---|---:|---:|---:|---:|
+| idrogeno (errore mediano) | 3,0% | 2,3% | 1,9% | 1,7% |
+| SOC finale (errore assoluto) | 0,020 | 0,016 | 0,013 | 0,012 |
+| costo (errore mediano) | 2,1% | 1,7% | 1,4% | 1,3% |
+| con 5 verifiche: tratte entro l'1% dalla migliore | 77% | 84% | 88% | 90% |
+| surrogato da solo: scelte non fattibili | 13% | 14% | 16% | 14% |
+
+**Cosa ci dicono i numeri:**
+1. **Più tratte migliorano ancora tutto, senza segni di saturazione.** Ogni raddoppio riduce gli errori di circa il 20%. Con altre 16 384 tratte (una nuova campagna, circa 5 ore sul PC) ci si può aspettare un altro 20% in meno.
+2. **La scelta del surrogato da solo resta non fattibile nel 13–16% delle tratte, qualunque sia la quantità di dati.** La maledizione del vincitore non dipende dalla precisione media, ma da quella proprio sul bordo dei vincoli.
+
+### 7b: dove sbaglia la rete
+
+**Cosa abbiamo fatto.** Abbiamo guardato gli errori della rete per tipo di tratta, per zona di (m, n), vicino ai limiti, e in funzione della distanza dalle tratte di addestramento. Pochi secondi.
+
+**Cosa ci dicono i numeri:**
+1. **Le tratte "piccole" sono le più difficili** (corte, senza fermate, piatte): idrogeno 3% contro 1,3% delle tratte lunghe. Consumano poco, quindi lo stesso errore pesa di più. Le 10 tratte peggiori sono quasi tutte sotto i 18 km.
+2. **Il SOC è più difficile con una fuel cell grande e una batteria piccola** (m alto, n basso): errore fino a 0,06 contro 0,004 a sola batteria.
+3. **Sul limite del SOC la rete sbaglia lato una volta su cinque.** Quando il SOC vero è fra 0,15 e 0,25, la rete lo mette dalla parte sbagliata di 0,2 nel 20% dei casi; altrove quasi mai. È la maledizione del vincitore vista da vicino.
+4. **Le tratte lontane dai dati di addestramento sbagliano di più:** il 10% più lontano ha l'errore del costo doppio (1,8% contro 1,0%) e i casi peggiori della scelta quasi tripli. Da tenere d'occhio per le linee reali ai bordi del dominio.
+
+**Cosa conviene fare:**
+- più tratte per la precisione media;
+- più tratte corte per i casi peggiori;
+- per la maledizione del vincitore, le verifiche al simulatore oppure più coppie (m, n) proprio vicino al limite del SOC (campionamento adattivo).
+
+**Prossimo: passo 8**, l'esame finale sul test e l'applicazione a tratte reali e linee della rete.
