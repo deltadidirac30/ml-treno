@@ -547,3 +547,16 @@ Prove:
 2. **La vita della fuel cell è l'eccezione:** errore mediano 16% invece di 1,7%, e quasi sempre per eccesso (la rete la dà più lunga nell'87% dei casi). In 67 linee su 166 l'errore mediano supera il 20%.
 3. **È probabilmente la causa principale dell'errore del costo sulle linee reali.** La rete sottostima il costo nel 72% dei casi, e le linee con il costo più sbagliato (Sicilia occidentale, Siena, Lecce: 7–11%) hanno la vita della FC sbagliata del 30–85%, mentre l'idrogeno è giusto entro il 2–4%. Fra le linee, l'errore del costo va insieme a quello della vita della FC (correlazione di rango 0,49) più che a quello dell'idrogeno (0,18) o del SOC (0,17).
 4. Da capire: cosa hanno le linee reali che consuma la fuel cell più delle tratte DoE (accensioni, minimo, cambi di carico). Una campagna ancorata alle linee reali (opzione c) dovrebbe correggerlo.
+
+## Da dove viene l'errore sulla vita della fuel cell
+
+16/11/2026. Script `fase12/04_vita_fc.jl` e `05_ruvidezza.jl`; risultati in `fase12/risultati/04_*` e `05_*`. Nessuna simulazione nuova, un paio di minuti.
+
+**Come.** Il simulatore calcola la vita della fuel cell da quattro voci di degrado per viaggio: accensioni, ore al minimo, cicli di carico (quanto la potenza della FC sale e scende, Σ|ΔP|) e ore ad alto carico. Le abbiamo confrontate fra le linee della rete e le tratte DoE di validazione, alla stessa coppia (m, n).
+
+**Cosa abbiamo trovato:**
+1. **La voce che cambia è quella dei cicli di carico.** Sulle linee è 2,3 volte quella delle tratte DoE alla stessa coppia; minimo e alto carico sono uguali. Caso per caso, l'errore della rete va insieme all'eccesso dei cicli di carico (correlazione di rango 0,81), non alle altre voci. Anche le accensioni per ora sono il doppio, ma solo perché i viaggi sono più corti (una accensione per viaggio in entrambi): la rete lo vede.
+2. **I cicli di carico vengono dal profilo "ruvido" delle linee.** La pendenza delle linee cambia 23 volte per km, contro 0,7 delle tratte DoE; la variazione totale della pendenza a corto raggio è 5 volte quella del DoE, mentre sulla scala del km le linee sono anzi più dolci (0,75 volte). Nessuna delle 66 caratteristiche lo misura, quindi la rete non può saperlo.
+3. **Questa ruvidezza sembra in gran parte un artefatto dei dati.** Le quote della mappa sono prese "senza filtri" ogni 50 m e sono arrotondate a 0,1 m: il 39% dei salti di pendenza fra punti vicini vale esattamente 2‰ (0,1 m su 50 m). Una livelletta vera dell'1‰ diventa una scala 0‰, 2‰, 0‰, 2‰… e il simulatore fa salire e scendere la fuel cell a ogni gradino.
+
+**Cosa vuol dire.** Più che la rete che sbaglia, è il simulatore che sulle linee reali "vede" un degrado della fuel cell che probabilmente non c'è, perché il profilo è rumoroso. Riguarda quindi anche i risultati del simulatore sulle linee reali, non solo il surrogato. Da decidere, anche con il relatore: lisciare l'altimetria delle linee (per esempio ricostruendo le livellette) prima di simularle, oppure considerare il rumore reale e insegnarlo alla rete (una caratteristica di ruvidezza e tratte DoE ruvide nella nuova campagna).

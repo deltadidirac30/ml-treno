@@ -1,0 +1,51 @@
+fase12/04_vita_fc.jl  2026-11-16T15:35:33.887
+ibridi completati: DoE validazione 516125 casi (2048 tratte), linee della rete 41838 casi (166 linee)
+controllo vita × degrado orario: DoE 73255.8–73255.8, linee 73255.8–73255.8 (deve essere una costante)
+
+1. Le quattro voci del degrado (µV per ora di viaggio), mediana sui casi:
+   voce               DoE valid.   linee rete   rapporto   quota del totale DoE → linee
+   accensioni              2.778        5.915       2.13    16.4% →  22.0%
+   minimo                  3.714        3.836       1.03    18.0% →  11.6%
+   cicli di carico         5.255       12.428       2.37    28.2% →  43.8%
+   alto carico             5.473        5.160       0.94    28.6% →  16.6%
+   totale                 17.613       28.940       1.64
+   accensioni per viaggio: DoE 1.0, linee 1.0 (mediana); ore di FC accesa / ore di viaggio: DoE 1.000, linee 1.000
+
+2. Coppia per coppia (stesse m, n): rapporto mediano linee / DoE di ogni voce per ora
+   accensioni       mediana 2.12   (25° 1.38, 75° 3.38)
+   minimo           mediana 0.97   (25° 0.75, 75° 1.21)
+   cicli di carico  mediana 2.31   (25° 1.50, 75° 3.45)
+   alto carico      mediana 1.00   (25° 0.85, 75° 1.13)
+   totale           mediana 1.60   (25° 1.33, 75° 1.93)
+
+3. L'errore della rete sulla vita, voce per voce
+   errore con segno della rete: mediana +15.9%, 25° +4.0%, 75° +33.5%; degrado orario che manca alla rete: mediana 3.897 µV/h
+   eccesso di ogni voce sulle linee rispetto al DoE alla stessa coppia (µV/h), e quota del degrado che manca alla rete:
+   accensioni       eccesso mediano +3.127 µV/h   somma degli eccessi / somma del degrado mancante:  97.1%
+   minimo           eccesso mediano -0.042 µV/h   somma degli eccessi / somma del degrado mancante:   0.0%
+   cicli di carico  eccesso mediano +6.900 µV/h   somma degli eccessi / somma del degrado mancante: 151.2%
+   alto carico      eccesso mediano +0.010 µV/h   somma degli eccessi / somma del degrado mancante:  -1.1%
+   correlazione di rango, caso per caso, fra l'errore della rete e l'eccesso di ogni voce:
+   accensioni       -0.20
+   minimo           +0.03
+   cicli di carico  +0.81
+   alto carico      -0.01
+
+4. Le 15 linee con l'errore più grande: errore mediano e rapporto linee / DoE di ogni voce (stessa coppia)
+   linea                                      errore     acc.   minimo   carico     alto   totale
+   Trapani-Alcamo_Diramazione                 +85.9%     1.38     0.90     4.17     1.10     2.06
+   Macomer-Oristano                           +74.6%     2.92     1.00     4.45     1.04     2.40
+   Trapani-Piraineto                          +67.8%     0.97     0.82     3.77     1.11     1.88
+   Piraineto-Castelvetrano                    +65.3%     1.82     1.04     4.89     0.94     2.42
+   Foggia-Rocchetta_S_Antonio-Lacedonia       +65.3%     3.67     0.86     4.14     1.14     2.36
+   Alba-Asti                                  +58.1%     4.19     1.29     4.09     0.76     2.47
+   Cinisi_Terrasini-Trapani                   +52.6%     1.01     0.78     3.43     1.09     1.69
+   Caltanissetta_Centrale-Gela                +51.2%     1.51     0.98     3.92     1.01     1.96
+   Caltagirone-Catania_Centrale               +51.0%     1.60     0.97     3.73     1.04     1.79
+   Siena-Chiusi-Chianciano_Terme              +50.0%     1.93     0.90     3.84     1.11     1.98
+   Macomer-Olbia_Terranova                    +48.6%     1.33     0.88     3.93     1.13     1.89
+   Civitanova_Marche-Fabriano                 +45.6%     1.29     0.94     2.89     1.03     1.64
+   Sassari-Oristano                           +44.2%     1.02     0.76     2.78     1.23     1.49
+   Oristano-Olbia_Terranova                   +43.8%     0.92     0.60     2.64     1.29     1.46
+   Olbia_Terranova-Ozieri_Chilivani           +43.5%     2.33     0.91     4.38     1.08     2.26
+   correlazione di rango fra le linee, errore mediano contro rapporto: accensioni -0.34, minimo -0.07, carico +0.76, alto +0.11, totale +0.32
