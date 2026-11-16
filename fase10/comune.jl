@@ -7,10 +7,10 @@
 
 using Flux, JLD2, Arrow, Statistics, Printf, Random, Dates, LinearAlgebra
 using TrainPowertrain
-const TP = TrainPowertrain
-
-const BASE = expanduser("~/Documents/lavoro/ml_treno_dati")
-const TAB  = joinpath(BASE, "P9_D28_16384", "tabella")
+# condizionate: fase9/comune.jl (banco di prova) definisce le stesse costanti, con gli stessi valori
+if !@isdefined(TP); const TP = TrainPowertrain; end
+if !@isdefined(BASE); const BASE = expanduser("~/Documents/lavoro/ml_treno_dati"); end
+if !@isdefined(TAB); const TAB = joinpath(BASE, "P9_D28_16384", "tabella"); end
 const SOGLIE_D25 = [x.m for x in TP.soglie_controllo(ConfigModello())]      # 0,0957…, 0,1016…, 0,1195…
 fascia_d25(m) = m == 0 ? 0 : m < SOGLIE_D25[1] ? 1 : m < SOGLIE_D25[2] ? 2 : m < SOGLIE_D25[3] ? 3 : 4
 

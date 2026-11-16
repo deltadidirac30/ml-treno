@@ -330,3 +330,26 @@ Poi l'abbiamo addestrata per prova su una piccola parte dei dati: 2048 tratte, 5
 **La strategia candidata per il preconfiguratore:** rete neurale + margine piccolo (SOC ≥ 0,21, scarica < 0,1) + verifica delle 3–5 proposte migliori con il simulatore, circa un quarto di secondo per tratta. I margini sono scelti sulla validazione: vanno confermati sul test.
 
 **Prossimo: passo 6d**, la griglia fitta con la rete e le simulazioni di verifica, per vedere se spariscono gli zig-zag e quanto si guadagna rispetto alle 288 coppie.
+
+## Passo 6d: la rete sulla griglia fitta
+
+16/11/2026. Report: `fase10/REPORT_FASE10_RETE.md`, sezione "Passo 6d". Figure: `fase10/figure/fig_linee.png` e `fig_griglia_rimpianto.png`.
+
+**Cosa abbiamo fatto.** Come nel passo 5c, ma con la rete neurale: sulle stesse 256 tratte, la rete ha cercato il progetto migliore su una griglia fitta di quasi 10 000 punti (m, n) per tratta, con e senza il margine piccolo (SOC ≥ 0,21, scarica < 0,1). Il simulatore ha verificato le 5 proposte migliori. Un minuto in tutto: la rete valuta 2,5 milioni di punti in 10 secondi, il boosting ne impiegava 250. Poi 2179 simulazioni di verifica in 22 secondi.
+
+**I risultati** (costo vero della scelta rispetto alla migliore delle 288 coppie della campagna; negativo vuol dire che la griglia ha trovato un progetto migliore):
+
+| strategia | scelte non fattibili | mediana | il 10% delle tratte migliori | 95° percentile | tratte con un progetto migliore delle 288 | entro +1% |
+|---|---:|---:|---:|---:|---:|---:|
+| boosting, griglia + verifica delle prime 5 | 10,5% | 0,0% | −4,3% | +5,6% | 43% | 73% |
+| rete, 288 coppie + verifica delle prime 5 | 0% | 0,0% | 0% | +3,3% | — | 88% |
+| rete, griglia + verifica delle prime 5 | 6,2% | **−0,3%** | **−7,6%** | **+1,2%** | **62%** | 86% |
+| **rete, griglia + margine + verifica delle prime 5** | **1,6%** | −0,2% | −6,8% | +1,7% | 61% | **89%** |
+
+**Cosa ci dicono i numeri:**
+1. **Con la rete la ricerca fitta conviene davvero.** In 6 tratte su 10 trova un progetto più economico del migliore fra le 288 coppie simulate nella campagna, e in una tratta su dieci almeno il 7–8% più economico. Il caso peggiore è appena +1,2%.
+2. **Con il margine piccolo le scelte non fattibili scendono all'1,6%**, contro il 10,5% del boosting, quasi senza perdere il guadagno.
+3. **La rete è liscia e segue il simulatore** (figura delle linee): quasi sovrapposta alla curva vera, compreso lo scalino della soglia D25 a m ≈ 0,1. Gli zig-zag del boosting sono spariti: la rete è 20–40 volte più liscia, e sbaglia il costo lungo le linee dello 0,5–1,4% contro il 2–5% del boosting.
+4. **La scelta senza verifica resta rischiosa** (18–41% non fattibile): fra 10 000 punti il più economico sta quasi sempre sul bordo dei vincoli. Servono sempre le poche simulazioni di verifica.
+
+**La strategia di riferimento per il preconfiguratore:** rete neurale sulla griglia fitta + margine piccolo + verifica delle 5 proposte migliori con il simulatore. Costa circa un quarto di secondo per tratta, e trova progetti in media migliori di quelli della campagna da 288 coppie. Va confermata sul test (passo 8).

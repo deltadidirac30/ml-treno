@@ -178,3 +178,49 @@ Con il boosting, per scendere sotto il 3% di scelte non fattibili il rimpianto m
 2. **La maledizione del vincitore resta, ma si governa.** La scelta secca è ancora non fattibile nel 14% delle tratte, per un SOC sbagliato di poco proprio sul limite. Ora però un margine piccolo funziona, perché il SOC della rete è preciso: SOC + 0,01 e scarica < 0,1 portano le scelte non fattibili al 6,8% senza perdere nulla in mediana. Con 3 verifiche, allo 0,2%.
 3. **Per il preconfiguratore la strategia candidata è: rete + margine piccolo (SOC + 0,01, scarica < 0,1) + verifica delle prime 3–5 coppie con il simulatore.** I margini sono scelti sulla validazione: vanno confermati sul test.
 4. **Il costo** sbaglia ora dell'1,3% in mediana (contro 2,4%), e a sola batteria del 2,6% (contro 6,5%). Il resto dell'errore viene ancora soprattutto dall'idrogeno negli ibridi.
+
+## Passo 6d: la rete sulla griglia fitta (`04_griglia_fitta.jl`, `risultati/04_griglia.txt`, `04_tratte.csv`)
+
+Comando: `julia -t 8 --project=fase10 fase10/04_griglia_fitta.jl > ~/Documents/lavoro/ml_treno_dati/fase10_log/log_04.txt 2>&1` (≈ 1 min).
+
+**Cosa si fa:**
+- come il passo 5c, sulle **stesse 256 tratte** e con la **stessa griglia** (9702 punti per tratta), ma con la rete (`rete_6b.jld2`; ricaricata, ridà le previsioni del passo 6b);
+- due varianti di fattibilità per il surrogato:
+  - senza margini;
+  - con il margine piccolo del passo 6c (SOC previsto ≥ 0,21, scarica < 0,1);
+- per ognuna, la scelta secca e 5 candidati distanti almeno 0,03, simulati con il percorso della campagna (2179 simulazioni distinte in 22 s; `config.txt` uguale a quello della campagna);
+- **velocità:** la rete valuta i 2,5 milioni di punti della griglia in **10 s**, il boosting in 251 s.
+
+**Risultati** (costo vero della scelta rispetto alla migliore delle 288 coppie; negativo = più economica):
+
+| strategia | scelte non fattibili | mediana | p10 | p90 | p95 | più economica della migliore delle 288 | entro +1% |
+|---|---:|---:|---:|---:|---:|---:|---:|
+| boosting, griglia, scelta secca (5c) | 48,4% | +0,36% | −2,6% | +5,6% | +8,2% | 15,6% | 34,0% |
+| boosting, griglia, verifica delle prime 5 (5c) | 10,5% | +0,00% | −4,3% | +3,7% | +5,6% | 43,4% | 72,7% |
+| rete, 288 coppie, scelta secca (6c) | 14,1% | 0,00% | 0,00% | +2,3% | +4,4% | — | 68,0% |
+| rete, 288 coppie, verifica delle prime 5 (6c) | 0,0% | 0,00% | 0,00% | +1,2% | +3,3% | — | 88,3% |
+| rete, griglia, scelta secca | 41,0% | −0,23% | −8,7% | +1,5% | +2,3% | 37,1% | 50,0% |
+| **rete, griglia, verifica delle prime 5** | 6,2% | **−0,30%** | **−7,6%** | +0,75% | **+1,15%** | **62,1%** | 85,9% |
+| rete, griglia, margine, scelta secca | 18,0% | −0,15% | −7,1% | +1,6% | +2,3% | 48,0% | 69,9% |
+| **rete, griglia, margine, verifica delle prime 5** | **1,6%** | −0,21% | −6,8% | +1,0% | +1,7% | 60,9% | **88,7%** |
+
+Il costo previsto della scelta secca fattibile è quasi esatto: contro il vero, mediana +0,1%, p5–p95 da −3,5% a +2,8%. Con il boosting era da −22% a +7%.
+
+**Linee in m** (le stesse 4 tratte del 5c, n fissa; `figure/fig_linee.png`). La "rugosità" è lo scarto mediano di ogni punto dalla media dei due vicini.
+
+| tratta | rugosità: simulatore | rete | boosting | errore mediano del costo: rete | boosting |
+|---|---:|---:|---:|---:|---:|
+| 6146 | 0,41% | 0,010% | 0,59% | 1,4% | 3,4% |
+| 6876 | 0,22% | 0,018% | 0,42% | 1,0% | 3,7% |
+| 11610 | 0,11% | 0,020% | 0,29% | 0,9% | 1,8% |
+| 12285 | 0,14% | 0,021% | 0,48% | 0,5% | 4,9% |
+
+La rete segue il simulatore quasi sovrapposta, anche lo scalino della soglia D25 a m ≈ 0,1 sulla tratta 12285. È liscia, più del simulatore stesso, che ha un piccolo rumore suo. Si stacca solo dove il simulatore ha un salto netto (tratta 6876, m ≈ 0,85).
+
+**Cosa vuol dire:**
+1. **Con la rete la ricerca fitta conviene davvero.** Con 5 verifiche, in **6 tratte su 10 trova un progetto più economico della migliore delle 288 coppie** della campagna: −0,3% in mediana, almeno −7,6% in una tratta su dieci. E il caso peggiore è appena +1,2% (p95).
+2. **Con il margine piccolo, le scelte non fattibili scendono all'1,6%** (dal 10,5% del boosting e dal 6,2% senza margine), con quasi lo stesso guadagno (−0,2% in mediana, 61% delle tratte migliorate, 89% entro +1%).
+3. **La maledizione del vincitore resta nella scelta secca** (41% senza margine, 18% con): fra 10 000 punti il più economico sta quasi sempre sul bordo. Le verifiche al simulatore restano necessarie.
+4. **Gli zig-zag sono spariti:** la rete è 20–40 volte più liscia del boosting. È anche 25 volte più veloce sulla griglia (10 s contro 251 s per 2,5 milioni di punti).
+
+**La strategia di riferimento per il preconfiguratore:** rete neurale sulla griglia fitta + margine piccolo (SOC ≥ 0,21, scarica < 0,1) + verifica delle 5 proposte migliori con il simulatore. Costa circa 0,04 s di rete più 5 simulazioni (circa un quarto di secondo) per tratta. I margini e la strategia sono scelti sulla validazione: vanno confermati sul test.

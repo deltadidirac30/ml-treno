@@ -1,0 +1,30 @@
+fase10/04_griglia_fitta.jl  2026-11-16T12:25:32.327  thread: 8  TrainPowertrain 7c9115a1877dda0142eeb08fe25dc810bd93a544
+campione: le stesse 256 tratte del passo 5c; griglia 98 × 99 = 9702 punti
+controllo: la rete ricaricata ridà le previsioni del passo 6b (SOC, H2): true, true
+
+[1] la rete sulla griglia fitta
+  256 tratte × 9702 punti in 9.9 s; tratte senza punti ammessi: senza margini 0, SOC ≥ 0,21, scarica < 0,1 0
+
+[2] simulazioni dei candidati (5 per tratta e per variante)
+  2179 simulazioni in 21.5 s; config.txt uguale a quello della campagna
+
+[3] confronto sulle 256 tratte (costo vero della scelta / migliore delle 288 − 1; negativo = più economica)
+  boosting, griglia, scelta secca (5c)               non fattibile  48.4% | rispetto alla migliore delle 288: mediana +0.355%, p10 -2.58%, p90 +5.59%, p95 +8.15%; più economica  15.6%, entro +1%  34.0%
+  boosting, griglia, verifica delle prime 5 (5c)     non fattibile  10.5% | rispetto alla migliore delle 288: mediana +0.003%, p10 -4.27%, p90 +3.67%, p95 +5.57%; più economica  43.4%, entro +1%  72.7%
+  rete, 288 coppie, scelta secca (6c)                non fattibile  14.1% | rispetto alla migliore delle 288: mediana +0.000%, p10 +0.00%, p90 +2.31%, p95 +4.41%; più economica   0.0%, entro +1%  68.0%
+  rete, 288 coppie, verifica delle prime 5 (6c)      non fattibile   0.0% | rispetto alla migliore delle 288: mediana +0.000%, p10 +0.00%, p90 +1.19%, p95 +3.27%; più economica   0.0%, entro +1%  88.3%
+  rete, griglia, scelta secca, senza margini         non fattibile  41.0% | rispetto alla migliore delle 288: mediana -0.233%, p10 -8.67%, p90 +1.54%, p95 +2.29%; più economica  37.1%, entro +1%  50.0%
+  rete, griglia, verifica delle prime 5, senza margini non fattibile   6.2% | rispetto alla migliore delle 288: mediana -0.304%, p10 -7.60%, p90 +0.75%, p95 +1.15%; più economica  62.1%, entro +1%  85.9%
+  rete, griglia, scelta secca, SOC ≥ 0,21, scarica < 0,1 non fattibile  18.0% | rispetto alla migliore delle 288: mediana -0.154%, p10 -7.05%, p90 +1.61%, p95 +2.32%; più economica  48.0%, entro +1%  69.9%
+  rete, griglia, verifica delle prime 5, SOC ≥ 0,21, scarica < 0,1 non fattibile   1.6% | rispetto alla migliore delle 288: mediana -0.214%, p10 -6.83%, p90 +0.99%, p95 +1.66%; più economica  60.9%, entro +1%  88.7%
+  rete, griglia, senza margini: costo previsto / vero della scelta secca fattibile − 1: mediana +0.12%, p5 -3.52%, p95 +2.80%
+  rete, griglia, SOC ≥ 0,21, scarica < 0,1: costo previsto / vero della scelta secca fattibile − 1: mediana -0.21%, p5 -2.67%, p95 +2.73%
+
+[4] linee in m a n fissa (le 4 tratte del passo 5c): rete, boosting, simulatore
+  tratta  6146, n 0.21: rugosità (|c − media dei vicini| / c, mediana) simulatore 0.4093%, rete 0.0098%, boosting 0.5923%; errore mediano del costo rete 1.38%, boosting 3.39%; fattibilità giusta rete 95, boosting 96 su 97
+  tratta  6876, n 0.39: rugosità (|c − media dei vicini| / c, mediana) simulatore 0.2176%, rete 0.0182%, boosting 0.4155%; errore mediano del costo rete 1.01%, boosting 3.74%; fattibilità giusta rete 97, boosting 94 su 97
+  tratta 11610, n 0.75: rugosità (|c − media dei vicini| / c, mediana) simulatore 0.1059%, rete 0.0204%, boosting 0.2944%; errore mediano del costo rete 0.90%, boosting 1.80%; fattibilità giusta rete 95, boosting 90 su 97
+  tratta 12285, n 0.92: rugosità (|c − media dei vicini| / c, mediana) simulatore 0.1443%, rete 0.0214%, boosting 0.4800%; errore mediano del costo rete 0.50%, boosting 4.93%; fattibilità giusta rete 96, boosting 97 su 97
+
+figure: fig_griglia_rimpianto.png, fig_linee.png
+tempo totale: 51.4 s
