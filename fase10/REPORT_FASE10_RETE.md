@@ -111,3 +111,70 @@ Modello in `~/Documents/lavoro/ml_treno_dati/fase10/rete_6b.jld2`, previsioni su
    - **il SOC finale con un errore mediano di 0,012 invece di 0,031**.
 2. **Il C-rate è l'unica grandezza peggiore** (1,2% contro 0,7% in mediana; p95 vicino). Dipende quasi solo da n, e la mediana per coppia del boosting lo indovinava già. Conta solo per la regola D3 (C-rate > 20): lo verifica il passo 6c.
 3. **C'è ancora margine:** l'epoca migliore è l'ultima, e il sovradattamento è piccolo. Più epoche, o una rete un po' più grande, possono migliorare ancora (varianti del passo 6e).
+
+## Passo 6c: la rete sul banco di prova (`03_banco.jl`, `risultati/03_banco.txt`, `03_scelta.csv`)
+
+Comando: `julia -t 8 --project=fase10 fase10/03_banco.jl > ~/Documents/lavoro/ml_treno_dati/fase10_log/log_03.txt 2>&1` (≈ 15 s). Nessuna simulazione.
+
+Le grandezze previste dalla rete (`pred_validazione_6b.arrow`) passano per lo stesso banco di prova della fase 9: `valuta`, D3 dalla regola C-rate > 20, nessun margine. Il boosting è misurato allo stesso modo, sugli stessi casi.
+
+**Caso per caso (come il passo 5a):**
+
+| | boosting | **rete** |
+|---|---:|---:|
+| fattibilità giusta | 98,12% | **98,86%** |
+| fattibili scartati per errore | 2,67% | **1,38%** |
+| non fattibili promossi per errore | 1,28% | **0,97%** |
+| vincolo D3 giusto (mancati / in più) | **99,986% (59 / 22)** | 99,904% (255 / 313) |
+| vincolo di massa giusto | 99,62% | **99,79%** |
+| vincolo SOC < 0,2 giusto | 97,46% | **98,85%** |
+| vincolo di scarica giusto | 98,81% | **99,00%** |
+| costo, casi fattibili: mediana / p95 / p99 | 2,44% / 9,9% / 17,8% | **1,26% / 5,2% / 9,3%** |
+| … sola batteria | 6,54% / 23,0% / 40,4% | **2,55% / 10,9% / 17,5%** |
+| … ibridi | 2,39% / 9,2% / 16,0% | **1,24% / 5,0% / 8,7%** |
+| bias del costo (casi fattibili) | +0,54% | **+0,11%** |
+
+**Una sola grandezza prevista dalla rete** (le altre vere):
+- il costo degli ibridi sbaglia ancora soprattutto per l'idrogeno (1,34% / 6,2%, contro 2,47% / 9,7% del boosting) e poi per il SOC (0,53% / 3,5%);
+- a sola batteria sbaglia per il SOC (2,42% / 10,3%, contro 6,45% / 22,8%).
+
+Il C-rate della rete è un po' meno preciso: la regola D3 perde 255 scarti e ne aggiunge 313, contro 59 e 22. Resta giusta nel 99,9% dei casi, e nessuna scelta non fattibile è dovuta a D3.
+
+**Scelta fra le 288 coppie (come il passo 5b), 2048 tratte:**
+
+| strategia | modello | scelte non fattibili | rimpianto mediano | p90 | p95 | tratte entro l'1% |
+|---|---|---:|---:|---:|---:|---:|
+| scelta secca | boosting | 18,2% | 1,01% | 9,6% | 14,7% | 40,7% |
+| scelta secca | **rete** | **14,4%** | **0,00%** | **2,0%** | **4,0%** | **70,4%** |
+| verifica delle prime 3 | boosting | 2,5% | 0,35% | 8,0% | 12,9% | 60,1% |
+| verifica delle prime 3 | **rete** | **1,0%** | **0,00%** | **1,4%** | **2,8%** | **86,8%** |
+| verifica delle prime 5 | boosting | 0,3% | 0,09% | 7,6% | 12,7% | 65,3% |
+| verifica delle prime 5 | **rete** | **0,1%** | **0,00%** | **0,9%** | **2,3%** | **90,2%** |
+| verifica delle prime 10 | boosting | 0% | 0,00% | 6,9% | 12,7% | 69,4% |
+| verifica delle prime 10 | **rete** | **0%** | **0,00%** | **0,5%** | **1,9%** | **92,7%** |
+
+Rimpianto mediano 0,00% vuol dire che in più di metà delle tratte la rete sceglie esattamente la coppia migliore.
+
+Le 295 scelte secche non fattibili della rete violano davvero:
+- il SOC in 216 casi, con SOC vero 0,196 in mediana e previsto 0,213: il SOC sbaglia di poco, ma sul bordo;
+- la scarica in 69;
+- la massa in 12;
+- D3 mai.
+
+**Margini con la rete** (tutte le combinazioni in `risultati/03_banco.txt`):
+
+| margini | scelta secca: non fattibili / rimpianto mediano | verifica delle prime 3 | verifica delle prime 5 |
+|---|---:|---:|---:|
+| nessuno | 14,4% / 0,00% | 1,03% / 0,00% | 0,10% / 0,00% |
+| scarica < 0,1 | 12,1% / 0,00% | 0,59% / 0,00% | 0% / 0,00% |
+| SOC + 0,01, scarica < 0,1 | 6,8% / 0,00% | 0,20% / 0,00% | 0% / 0,00% |
+| SOC + 0,02, scarica < 0,1 | 4,2% / 0,11% | 0,20% / 0,00% | 0% / 0,00% |
+| SOC + 0,03, scarica < 0,1 | 2,9% / 0,46% | 0,15% / 0,22% | 0% / 0,14% |
+
+Con il boosting, per scendere sotto il 3% di scelte non fattibili il rimpianto mediano saliva al 3%; con la rete basta lo 0,5%.
+
+**Cosa vuol dire:**
+1. **La rete sceglie molto meglio del boosting.** In più di metà delle tratte sceglie proprio la migliore delle 288 coppie, e il 95° percentile del rimpianto passa dal 14,7% al 4,0%. Con 5 verifiche: 0,1% di scelte non fattibili, 90% delle tratte entro l'1%, p95 2,3%, contro 12,7% del boosting.
+2. **La maledizione del vincitore resta, ma si governa.** La scelta secca è ancora non fattibile nel 14% delle tratte, per un SOC sbagliato di poco proprio sul limite. Ora però un margine piccolo funziona, perché il SOC della rete è preciso: SOC + 0,01 e scarica < 0,1 portano le scelte non fattibili al 6,8% senza perdere nulla in mediana. Con 3 verifiche, allo 0,2%.
+3. **Per il preconfiguratore la strategia candidata è: rete + margine piccolo (SOC + 0,01, scarica < 0,1) + verifica delle prime 3–5 coppie con il simulatore.** I margini sono scelti sulla validazione: vanno confermati sul test.
+4. **Il costo** sbaglia ora dell'1,3% in mediana (contro 2,4%), e a sola batteria del 2,6% (contro 6,5%). Il resto dell'errore viene ancora soprattutto dall'idrogeno negli ibridi.

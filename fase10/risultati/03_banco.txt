@@ -1,0 +1,53 @@
+fase10/03_banco.jl  2026-11-16T12:21:16.023  thread: 8
+
+[1] caso per caso (passo 5a): fattibilità e costo
+  boosting  fattibilità giusta 98.123%; fattibili scartati 2.67%; non fattibili promossi 1.28%; detti fattibili e lo sono 98.293%
+  rete      fattibilità giusta 98.855%; fattibili scartati 1.38%; non fattibili promossi 0.97%; detti fattibili e lo sono 98.713%
+  vincolo per vincolo: giusto % (mancati / in più)
+    D3        boosting 99.986% (59 / 22)   rete 99.904% (255 / 313)
+    massa     boosting 99.616% (1105 / 1160)   rete 99.785% (645 / 625)
+    SOC < 0,2 boosting 97.461% (8481 / 6492)   rete 98.849% (3161 / 3628)
+    scarica   boosting 98.807% (3371 / 3667)   rete 98.998% (2872 / 3036)
+  costo senza penalità, errore relativo % sui casi davvero fattibili (mediana / p95 / p99; bias):
+    tutti         boosting 2.444 / 9.925 / 17.807 (+0.54%)   rete 1.257 / 5.206 / 9.272 (+0.11%)
+    sola batteria boosting 6.544 / 22.953 / 40.352 (+3.51%)   rete 2.554 / 10.882 / 17.530 (+0.64%)
+    ibridi        boosting 2.387 / 9.249 / 15.989 (+0.45%)   rete 1.235 / 4.978 / 8.698 (+0.10%)
+  una sola grandezza prevista dalla rete (le altre vere): fattibilità giusta; costo ibridi mediana / p95; sola batteria mediana / p95
+    durata      99.992%   0.025% / 0.231%   0.000% / 0.070%
+    serbatoio   99.804%   0.012% / 0.070%   0.000% / 0.000%
+    H2          99.992%   1.339% / 6.169%   0.000% / 0.000%
+    SOC         99.559%   0.527% / 3.540%   2.422% / 10.331%
+    scarica     99.459%   0.000% / 0.000%   0.000% / 0.000%
+    vita_batt   99.992%   0.053% / 0.251%   0.217% / 0.810%
+    vita_FC_f1  99.992%   0.315% / 1.512%   0.000% / 0.000%
+    C_rate      99.989%   0.000% / 0.000%   0.000% / 0.000%
+
+[2] scelta fra le 288 coppie di ognuna delle 2048 tratte (passo 5b)
+  boosting, scelta secca             non fattibili 18.21% | rimpianto mediana 1.009%, p90 9.64%, p95 14.73%; entro 1% 40.7%
+  boosting, verifica delle prime 2   non fattibili  6.40% | rimpianto mediana 0.577%, p90 8.55%, p95 13.77%; entro 1% 53.7%
+  boosting, verifica delle prime 3   non fattibili  2.49% | rimpianto mediana 0.350%, p90 8.03%, p95 12.87%; entro 1% 60.1%
+  boosting, verifica delle prime 5   non fattibili  0.29% | rimpianto mediana 0.089%, p90 7.59%, p95 12.74%; entro 1% 65.3%
+  boosting, verifica delle prime 10  non fattibili  0.00% | rimpianto mediana 0.000%, p90 6.89%, p95 12.67%; entro 1% 69.4%
+  rete, scelta secca                 non fattibili 14.40% | rimpianto mediana 0.000%, p90 2.03%, p95 3.99%; entro 1% 70.4%
+  rete, verifica delle prime 2       non fattibili  3.91% | rimpianto mediana 0.000%, p90 1.62%, p95 3.01%; entro 1% 82.4%
+  rete, verifica delle prime 3       non fattibili  1.03% | rimpianto mediana 0.000%, p90 1.35%, p95 2.76%; entro 1% 86.8%
+  rete, verifica delle prime 5       non fattibili  0.10% | rimpianto mediana 0.000%, p90 0.92%, p95 2.29%; entro 1% 90.2%
+  rete, verifica delle prime 10      non fattibili  0.00% | rimpianto mediana 0.000%, p90 0.54%, p95 1.90%; entro 1% 92.7%
+  rete, 295 scelte secche non fattibili: violano davvero D3 0, massa 12, SOC 216, scarica 69; SOC vero mediana 0.196, previsto 0.213
+
+[3] margini con la rete: SOC previsto ≥ 0,2 + δ, probabilità di scarica < p (scelta secca e verifica delle prime 3 e 5)
+  δSOC 0.000, p < 0.5: k=1 non fattibili 14.40% rimpianto mediana 0.000% | k=3 non fattibili  1.03% rimpianto mediana 0.000% | k=5 non fattibili  0.10% rimpianto mediana 0.000%
+  δSOC 0.000, p < 0.3: k=1 non fattibili 12.94% rimpianto mediana 0.000% | k=3 non fattibili  0.78% rimpianto mediana 0.000% | k=5 non fattibili  0.00% rimpianto mediana 0.000%
+  δSOC 0.000, p < 0.1: k=1 non fattibili 12.06% rimpianto mediana 0.000% | k=3 non fattibili  0.59% rimpianto mediana 0.000% | k=5 non fattibili  0.00% rimpianto mediana 0.000%
+  δSOC 0.005, p < 0.5: k=1 non fattibili 11.38% rimpianto mediana 0.000% | k=3 non fattibili  0.63% rimpianto mediana 0.000% | k=5 non fattibili  0.10% rimpianto mediana 0.000%
+  δSOC 0.005, p < 0.3: k=1 non fattibili  9.91% rimpianto mediana 0.000% | k=3 non fattibili  0.39% rimpianto mediana 0.000% | k=5 non fattibili  0.00% rimpianto mediana 0.000%
+  δSOC 0.005, p < 0.1: k=1 non fattibili  8.94% rimpianto mediana 0.000% | k=3 non fattibili  0.24% rimpianto mediana 0.000% | k=5 non fattibili  0.00% rimpianto mediana 0.000%
+  δSOC 0.010, p < 0.5: k=1 non fattibili  9.28% rimpianto mediana 0.000% | k=3 non fattibili  0.59% rimpianto mediana 0.000% | k=5 non fattibili  0.10% rimpianto mediana 0.000%
+  δSOC 0.010, p < 0.3: k=1 non fattibili  7.81% rimpianto mediana 0.000% | k=3 non fattibili  0.34% rimpianto mediana 0.000% | k=5 non fattibili  0.00% rimpianto mediana 0.000%
+  δSOC 0.010, p < 0.1: k=1 non fattibili  6.84% rimpianto mediana 0.000% | k=3 non fattibili  0.20% rimpianto mediana 0.000% | k=5 non fattibili  0.00% rimpianto mediana 0.000%
+  δSOC 0.020, p < 0.5: k=1 non fattibili  6.59% rimpianto mediana 0.028% | k=3 non fattibili  0.59% rimpianto mediana 0.000% | k=5 non fattibili  0.10% rimpianto mediana 0.000%
+  δSOC 0.020, p < 0.3: k=1 non fattibili  5.13% rimpianto mediana 0.066% | k=3 non fattibili  0.34% rimpianto mediana 0.000% | k=5 non fattibili  0.00% rimpianto mediana 0.000%
+  δSOC 0.020, p < 0.1: k=1 non fattibili  4.20% rimpianto mediana 0.108% | k=3 non fattibili  0.20% rimpianto mediana 0.000% | k=5 non fattibili  0.00% rimpianto mediana 0.000%
+  δSOC 0.030, p < 0.5: k=1 non fattibili  5.22% rimpianto mediana 0.366% | k=3 non fattibili  0.54% rimpianto mediana 0.140% | k=5 non fattibili  0.10% rimpianto mediana 0.017%
+  δSOC 0.030, p < 0.3: k=1 non fattibili  3.71% rimpianto mediana 0.406% | k=3 non fattibili  0.29% rimpianto mediana 0.159% | k=5 non fattibili  0.00% rimpianto mediana 0.047%
+  δSOC 0.030, p < 0.1: k=1 non fattibili  2.88% rimpianto mediana 0.460% | k=3 non fattibili  0.15% rimpianto mediana 0.223% | k=5 non fattibili  0.00% rimpianto mediana 0.140%

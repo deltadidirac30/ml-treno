@@ -295,3 +295,38 @@ Poi l'abbiamo addestrata per prova su una piccola parte dei dati: 2048 tratte, 5
 5. **C'è ancora margine:** l'ultima epoca è stata la migliore, quindi più epoche o una rete un po' più grande potrebbero migliorare ancora.
 
 **Prossimo: passo 6c**, la rete sul banco di prova: costo, fattibilità e scelta della coppia migliore, contro il boosting.
+
+## Passo 6c: la rete sul banco di prova (costo, fattibilità, scelta)
+
+16/11/2026. Report: `fase10/REPORT_FASE10_RETE.md`, sezione "Passo 6c".
+
+**Cosa abbiamo fatto.** Abbiamo passato le previsioni della rete neurale per lo stesso banco di prova usato con il boosting nei passi 5a e 5b: fattibilità e costo caso per caso, e scelta della coppia migliore fra le 288 di ogni tratta. Abbiamo anche riprovato i margini di sicurezza. 15 secondi di calcolo, nessuna simulazione nuova.
+
+**Caso per caso:**
+
+| | boosting | rete neurale |
+|---|---:|---:|
+| fattibilità giusta | 98,1% | **98,9%** |
+| errore del costo (casi fattibili): mediana / 95° percentile | 2,4% / 9,9% | **1,3% / 5,2%** |
+| … a sola batteria | 6,5% / 23% | **2,6% / 10,9%** |
+
+**La scelta del progetto migliore fra le 288 coppie** (2048 tratte):
+
+| strategia | modello | scelte non fattibili | rimpianto mediano | 95° percentile | tratte entro l'1% |
+|---|---|---:|---:|---:|---:|
+| surrogato da solo | boosting | 18% | 1,0% | 14,7% | 41% |
+| surrogato da solo | **rete** | **14%** | **0,0%** | **4,0%** | **70%** |
+| + verifica delle prime 3 | boosting | 2,5% | 0,35% | 12,9% | 60% |
+| + verifica delle prime 3 | **rete** | **1,0%** | **0,0%** | **2,8%** | **87%** |
+| + verifica delle prime 5 | boosting | 0,3% | 0,09% | 12,7% | 65% |
+| + verifica delle prime 5 | **rete** | **0,1%** | **0,0%** | **2,3%** | **90%** |
+
+**Cosa ci dicono i numeri:**
+1. **La rete sceglie molto meglio del boosting.** In più di metà delle tratte sceglie esattamente la coppia migliore, e i casi peggiori passano da 15% a 4% di costo in più. Con 5 verifiche al simulatore, 9 tratte su 10 sono entro l'1% dalla migliore.
+2. **La maledizione del vincitore resta, ma ora si governa.** Da sola la rete sceglie ancora un progetto non fattibile nel 14% delle tratte, quasi sempre per un SOC finale sbagliato di poco proprio sul limite (vero 0,196, previsto 0,213). Ma il suo SOC è preciso, quindi ora un margine piccolo funziona: chiedendo SOC ≥ 0,21 e probabilità di scarica sotto 0,1, le scelte non fattibili scendono al 6,8% senza perdere nulla in costo. Con 3 verifiche, allo 0,2%. Con il boosting un margine utile costava il triplo in rimpianto.
+3. **Il costo è più preciso** (1,3% in mediana, contro 2,4%), soprattutto a sola batteria (2,6% contro 6,5%). L'errore che resta viene soprattutto dall'idrogeno negli ibridi.
+4. **Il C-rate un po' meno preciso pesa pochissimo:** la regola D3 resta giusta nel 99,9% dei casi, e nessuna scelta sbagliata è dovuta a D3.
+
+**La strategia candidata per il preconfiguratore:** rete neurale + margine piccolo (SOC ≥ 0,21, scarica < 0,1) + verifica delle 3–5 proposte migliori con il simulatore, circa un quarto di secondo per tratta. I margini sono scelti sulla validazione: vanno confermati sul test.
+
+**Prossimo: passo 6d**, la griglia fitta con la rete e le simulazioni di verifica, per vedere se spariscono gli zig-zag e quanto si guadagna rispetto alle 288 coppie.
