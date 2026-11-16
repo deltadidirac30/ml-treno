@@ -456,3 +456,38 @@ Il prezzo si paga una volta sola: la campagna (5 ore sul PC) e l'addestramento (
 **Cosa ci dice:** il test conferma la validazione quasi alla cifra. Il surrogato non è stato "aggiustato" sulla validazione: funziona allo stesso modo su tratte davvero nuove.
 
 **Prossimo: 8b e 8c**, le tratte reali (Calabria, Canavese, Firenze) e le 166 linee della rete ferroviaria.
+
+## Passi 8b e 8c: il surrogato su tratte vere
+
+16/11/2026. Report: `fase12/REPORT_FASE12_ESAME.md`. Figure: `fase12/figure/fig_reali_mappe.png` e `fig_rete_scelta.png`.
+
+**Cosa abbiamo fatto.** Abbiamo usato la rete, con la sua strategia (griglia fitta + margine piccolo + 5 simulazioni di verifica), su tratte vere, e l'abbiamo confrontata con il simulatore:
+- **le 3 tratte reali storiche** (Calabria, Canavese, Firenze): qui abbiamo simulato l'intera griglia fitta, quasi 10 000 progetti per tratta, per avere il vero ottimo;
+- **le 166 linee della rete ferroviaria** (versione del 10/11): abbiamo simulato le 288 coppie per linea, come nella campagna.
+
+4 minuti in tutto, circa 78 000 simulazioni.
+
+**Le tratte reali:**
+
+| tratta | la scelta della rete rispetto all'ottimo vero | la migliore delle 288 coppie rispetto all'ottimo vero |
+|---|---:|---:|
+| Calabria (semplificata) | **+0,00%** (trova l'ottimo) | +2,8% |
+| Canavese | +0,02% | +0,06% |
+| Firenze | +0,13% | +2,1% |
+
+La rete trova l'ottimo vero, o quasi, su tutte e tre, con il regime giusto: ibrido, sola batteria, ibrido con fuel cell minima.
+
+**Le 166 linee della rete** (rispetto alla migliore delle 288 coppie simulate):
+
+| linee | errore del costo (mediana) | scelte non fattibili | tratte con un progetto più economico | entro +1% |
+|---|---:|---:|---:|---:|
+| tutte | 2,7% | 3,0% | 45% | 86% |
+| dentro il dominio del DoE (123) | 2,5% | 2,4% | 46% | 88% |
+| fuori dal dominio (43) | 3,2% | 4,7% | 42% | 79% |
+| il 10% più lontano dai dati di addestramento (17) | 3,0% | 12% | 24% | 59% |
+
+**Cosa ci dicono i numeri:**
+1. **Sulle linee reali la rete sbaglia circa il doppio che sulle tratte del DoE** (costo 2,7% contro 1,2%). Le linee reali sono più "lontane" dai dati di addestramento: anche quando ogni caratteristica è dentro gli intervalli, le combinazioni sono diverse da quelle delle tratte sintetiche.
+2. **La scelta del progetto resta buona.** In 86 linee su 100 la rete con 5 verifiche arriva entro l'1% dalla migliore delle 288, e in quasi metà delle linee trova un progetto più economico (fino all'11% in meno). Anche dove l'errore del costo è alto (7–11%, per esempio le linee della Sicilia occidentale), la scelta è buona: l'errore sposta tutti i progetti della linea allo stesso modo e non cambia la classifica.
+3. **La distanza dai dati di addestramento è il miglior segnale di allarme.** Per il 10% di linee più lontane conviene fare più di 5 verifiche, o una breve ricerca con il simulatore.
+4. **Per migliorare sulle linee reali**, una nuova campagna dovrebbe aggiungere tratte più simili a quelle reali: un DoE "ancorato" alle linee della rete, oltre a quello uniforme.

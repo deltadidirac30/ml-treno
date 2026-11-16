@@ -1,0 +1,56 @@
+fase12/02_tratte_vere.jl  2026-11-16T14:09:37.552  thread: 8  TrainPowertrain 7c9115a1877dda0142eeb08fe25dc810bd93a544
+
+══ 8b: tratte reali (riferimento: la griglia fitta simulata per intero)
+  Calabria  (L 177.6 km, 58.3 s): fattibili 4251 su 9702. Migliore simulata: m 0.33, n 0.82, 4.0258 €/km (migliore delle 288: +2.76%).
+            rete: errori mediani H2 1.41%, SOC 0.0174, durata 0.13%, costo 1.07% (p95 2.9%), fattibilità giusta 99.02%
+            scelta secca (m 0.32, n 0.83): NON FATTIBILE; margine, scelta secca: NON FATTIBILE; margine + verifica delle prime 5: +0.00% (m 0.33, n 0.80)
+  Canavese  (L 16.5 km, 8.5 s): fattibili 8186 su 9702. Migliore simulata: m 0.00, n 0.26, 2.9320 €/km (migliore delle 288: +0.06%).
+            rete: errori mediani H2 2.96%, SOC 0.0070, durata 0.28%, costo 2.72% (p95 5.3%), fattibilità giusta 99.28%
+            scelta secca (m 0.00, n 0.25): +0.02%; margine, scelta secca: +0.02%; margine + verifica delle prime 5: +0.02% (m 0.00, n 0.25)
+  Firenze   (L 93.6 km, 31.9 s): fattibili 6011 su 9702. Migliore simulata: m 0.03, n 0.94, 2.4040 €/km (migliore delle 288: +2.12%).
+            rete: errori mediani H2 3.10%, SOC 0.0170, durata 0.19%, costo 1.11% (p95 4.3%), fattibilità giusta 98.29%
+            scelta secca (m 0.03, n 0.94): +0.00%; margine, scelta secca: +0.13%; margine + verifica delle prime 5: +0.13% (m 0.03, n 0.96)
+
+══ 8c: le linee della rete (versione del 10/11; riferimento: la migliore delle 288 coppie simulate)
+  166 linee lette; fuori dal dominio DoE (fase 5): 43
+  288 coppie × 166 linee simulate in 2.0 min
+  rete e verifiche sulla griglia: 0.3 min
+
+  risultati (rispetto alla migliore delle 288 coppie simulate):
+  tutte le linee                     166 linee | errori mediani: H2 3.06%, SOC 0.0143, costo 2.71%, fattibilità giusta 98.61%
+      288, scelta secca: non fattibili 13.3%, rimpianto mediana 0.00%, p95 9.3%, entro 1% 68.1%
+      288 + verifica delle prime 5: non fattibili 0.0%, rimpianto mediana 0.00%, p95 7.5%, entro 1% 83.1%
+      griglia + margine + verifica delle prime 5: non fattibili 3.0%, mediana +0.02%, p95 +2.9%, più economica della migliore delle 288 44.6%, entro +1% 85.5%
+  dentro il dominio DoE              123 linee | errori mediani: H2 2.96%, SOC 0.0123, costo 2.48%, fattibilità giusta 98.61%
+      288, scelta secca: non fattibili 11.4%, rimpianto mediana 0.00%, p95 7.4%, entro 1% 71.5%
+      288 + verifica delle prime 5: non fattibili 0.0%, rimpianto mediana 0.00%, p95 7.1%, entro 1% 86.2%
+      griglia + margine + verifica delle prime 5: non fattibili 2.4%, mediana +0.00%, p95 +2.0%, più economica della migliore delle 288 45.5%, entro +1% 87.8%
+  fuori dal dominio DoE (1–2 caratt.)  43 linee | errori mediani: H2 3.67%, SOC 0.0191, costo 3.22%, fattibilità giusta 98.26%
+      288, scelta secca: non fattibili 18.6%, rimpianto mediana 0.12%, p95 10.4%, entro 1% 58.1%
+      288 + verifica delle prime 5: non fattibili 0.0%, rimpianto mediana 0.00%, p95 9.7%, entro 1% 74.4%
+      griglia + margine + verifica delle prime 5: non fattibili 4.7%, mediana +0.04%, p95 +4.0%, più economica della migliore delle 288 41.9%, entro +1% 79.1%
+  distanza dalla tratta di addestramento più vicina: mediana 3.69, p90 4.98, max 6.81 (test DoE: mediana 2,9, max 6,6)
+  distanza sotto la mediana           83 linee | errori mediani: H2 3.08%, SOC 0.0129, costo 2.48%, fattibilità giusta 98.96%
+      288, scelta secca: non fattibili 8.4%, rimpianto mediana 0.00%, p95 8.9%, entro 1% 79.5%
+      288 + verifica delle prime 5: non fattibili 0.0%, rimpianto mediana 0.00%, p95 5.3%, entro 1% 91.6%
+      griglia + margine + verifica delle prime 5: non fattibili 1.2%, mediana +0.01%, p95 +2.3%, più economica della migliore delle 288 45.8%, entro +1% 91.6%
+  distanza fra mediana e p90          66 linee | errori mediani: H2 3.01%, SOC 0.0155, costo 2.78%, fattibilità giusta 98.26%
+      288, scelta secca: non fattibili 13.6%, rimpianto mediana 0.08%, p95 7.8%, entro 1% 63.6%
+      288 + verifica delle prime 5: non fattibili 0.0%, rimpianto mediana 0.00%, p95 7.2%, entro 1% 77.3%
+      griglia + margine + verifica delle prime 5: non fattibili 3.0%, mediana -0.00%, p95 +2.0%, più economica della migliore delle 288 48.5%, entro +1% 84.8%
+  il 10% più lontano                  17 linee | errori mediani: H2 2.94%, SOC 0.0208, costo 3.03%, fattibilità giusta 97.57%
+      288, scelta secca: non fattibili 35.3%, rimpianto mediana 1.85%, p95 13.5%, entro 1% 29.4%
+      288 + verifica delle prime 5: non fattibili 0.0%, rimpianto mediana 0.00%, p95 9.9%, entro 1% 64.7%
+      griglia + margine + verifica delle prime 5: non fattibili 11.8%, mediana +0.26%, p95 +5.6%, più economica della migliore delle 288 23.5%, entro +1% 58.8%
+  le 8 linee con l'errore del costo più alto:
+    Trapani-Alcamo_Diramazione               L 116.1 km, fuori dominio 0, distanza 3.42: costo 11.0%, SOC 0.014, H2 2.7%; scelta 288+5 +0.0%, griglia+margine+5 -10.9%
+    Piraineto-Castelvetrano                  L  88.2 km, fuori dominio 0, distanza 3.38: costo 10.6%, SOC 0.026, H2 3.4%; scelta 288+5 +0.5%, griglia+margine+5 +0.5%
+    Buonconvento-Siena                       L  28.8 km, fuori dominio 0, distanza 3.37: costo 8.9%, SOC 0.008, H2 3.9%; scelta 288+5 +0.0%, griglia+margine+5 -0.3%
+    Trapani-Piraineto                        L 162.5 km, fuori dominio 0, distanza 3.42: costo 8.2%, SOC 0.013, H2 1.8%; scelta 288+5 +0.0%, griglia+margine+5 -1.8%
+    Cinisi_Terrasini-Trapani                 L 156.2 km, fuori dominio 0, distanza 3.37: costo 7.9%, SOC 0.029, H2 2.4%; scelta 288+5 +0.0%, griglia+margine+5 -5.1%
+    LECCE-NOVOLI-L2                          L  10.8 km, fuori dominio 0, distanza 3.25: costo 7.7%, SOC 0.020, H2 10.1%; scelta 288+5 +0.0%, griglia+margine+5 +0.0%
+    Siena-Chiusi-Chianciano_Terme            L  89.0 km, fuori dominio 0, distanza 3.29: costo 7.6%, SOC 0.013, H2 1.9%; scelta 288+5 +0.0%, griglia+margine+5 -10.0%
+    Buonconvento-Empoli                      L  91.8 km, fuori dominio 0, distanza 4.25: costo 7.4%, SOC 0.017, H2 2.2%; scelta 288+5 +0.0%, griglia+margine+5 non fattibile
+
+figure: fig_reali_mappe.png, fig_rete_scelta.png
+tempo totale: 4.1 min
