@@ -1,0 +1,21 @@
+G          media +0.296%  mediana +0.000%  p90 +1.117%  max +4.510%  entro 0,01% 127  entro 0,5% 128  entro 1% 131  oltre 2% 12
+G + bordo  media +0.060%  mediana +0.000%  p90 +0.000%  max +2.987%  entro 0,01% 141  entro 0,5% 142  entro 1% 143  oltre 2% 3
+simulazioni in più: media 9.1, max 43
+  Grosseto-Siena                       G +4.51%  ->  +0.00%  (22 sim)
+  Rovigo-Verona_Porta_Nuova            G +4.41%  ->  +2.99%  (24 sim)
+  Faenza-Firenze_S_Maria_Novella       G +3.38%  ->  -0.00%  (34 sim)
+  Gela-Siracusa                        G +3.14%  ->  +0.01%  (43 sim)
+  Trento-Bassano_del_Grappa            G +3.11%  ->  +0.00%  (24 sim)
+  Crotone-Lamezia_Terme_Centrale       G +2.84%  ->  +2.84%  (5 sim)
+  Siracusa-Donnafugata                 G +2.64%  ->  -0.00%  (26 sim)
+  Piazza_al_Serchio-Pisa_Centrale      G +2.59%  ->  +0.00%  (26 sim)
+  Civitanova_Marche-Fabriano           G +2.52%  ->  +0.00%  (22 sim)
+  Aulla_Lunigiana-Lucca                G +2.47%  ->  -0.00%  (28 sim)
+  Siena-Chiusi-Chianciano_Terme        G +2.24%  ->  -0.00%  (9 sim)
+  Buonconvento-Empoli                  G +2.08%  ->  +2.08%  (5 sim)
+  Cinisi_Terrasini-Trapani             G +1.86%  ->  -0.00%  (38 sim)
+  Firenze_S_Maria_Novella-Ravenna      G +1.49%  ->  -0.00%  (38 sim)
+  Parma-Brescia                        G +1.31%  ->  -0.00%  (25 sim)
+  Cagliari-Olbia_Terranova             G +0.93%  ->  -0.00%  (37 sim)
+  Cagliari-Macomer                     G +0.81%  ->  +0.81%  (29 sim)
+  Grosseto-Firenze_S_Maria_Novella     G +0.78%  ->  -0.00%  (42 sim)

@@ -728,3 +728,32 @@ Su tutte le 166 linee G è entro +1% dalla migliore delle 288 in **166 linee su 
 ### La strategia G nel comando `surrogato`
 
 16/11/2026. In `surrogato/usa_surrogato.jl` c'è l'opzione `strategia=G` (default ancora `strategia=semplice`), descritta nel LEGGIMI. Prove: Rutigliano–Putignano arriva a (0, 0,29), 2,2088 €/km, come la migliore delle 288 (la semplice faceva +7,2%); su tutte le 166 linee "tutto RINF" il comando dà esattamente le stesse proposte di `fase12/13` (166 su 166), 50 simulazioni per linea, 27 s in tutto; la strategia semplice è invariata (route 15000: +0,26% come prima). Da rendere default dopo il confronto con l'ottimo vero (griglia fitta simulata sulle 146 linee, da fare).
+
+## Il confronto con l'ottimo vero (griglia fitta simulata)
+
+16/11/2026. Script `fase12/15_ottimo_vero.jl`, risultati in `fase12/risultati/15_ottimo_vero.txt` e `_linee.csv`, figura `fase12/figure/fig_ottimo_vero.png`. Le 146 linee "tutto RINF" non elettrificate oltre il 70%, ognuna simulata su tutti i 9702 progetti della griglia (m 0 e 0,03–0,99, n 0,01–0,99, passo 0,01): 1,4 milioni di simulazioni, 63 minuti sul Mac a 8 core (5,5 ore sommando i singoli progetti). L'ottimo vero è il progetto fattibile più economico della griglia. Simulazioni in `ml_treno_dati/fase12/griglia_rinf/<linea>` (~3 GB). Controllo: i costi delle proposte C e G riletti dalla griglia coincidono con quelli delle verifiche (scarto 3e-5).
+
+| costo rispetto all'ottimo vero | migliore delle 288 | surrogato semplice | surrogato C | **surrogato G** |
+|---|---:|---:|---:|---:|
+| media / mediana | +2,29 / +0,24% | +1,15 / +0,29% | +0,83 / +0,19% | **+0,30 / 0,00%** |
+| 90° percentile / massimo | +8,2 / +18,0% | +3,3 / +13,0% | +2,9 / +7,2% | **+1,1 / +4,5%** |
+| proprio l'ottimo | 15 | 11 | 31 | **127** |
+| entro 0,5% / 1% | 94 / 102 | 94 / 100 | 103 / 109 | **128 / 131** |
+| oltre 2% / 5% | 39 / 24 | 32 / 6 | 25 / 3 | **12 / 0** |
+
+- **G trova esattamente l'ottimo vero in 127 linee su 146**, e il regime giusto in 144. Fra i 6782 progetti fattibili (mediana per linea) la proposta G è 1ª in mediana, 2ª al 90° percentile, 12ª nel caso peggiore.
+- **Il costo non è piatto vicino all'ottimo**: entro lo 0,5% dall'ottimo ci sono in mediana solo 4 progetti. Quindi trovare il punto esatto conta.
+- **Le 18 linee in cui G resta oltre lo 0,5% sono tutte dello stesso tipo**: ibridi con fuel cell piccola e batteria grande (n 0,85–0,97). Lì l'ottimo sta sul bordo della fattibilità, spesso è un progetto fattibile isolato. Per esempio Grosseto–Siena: l'ottimo (0,06, 0,97) è l'unico fattibile intorno: con n = 0,96 la batteria non basta, con n = 0,98 il treno è troppo pesante. Ogni 0,01 di m in più costa circa +2,3%. La ricerca locale di G si muove o in m o in n, mai insieme: dalla proposta (0,08, 0,91), diminuire m da solo dà un progetto non fattibile, e la ricerca si ferma (+4,5%).
+
+### Mosse "lungo il bordo" (emulazione, nessuna simulazione nuova)
+
+Script `fase12/16_mosse_bordo.jl`, risultati in `fase12/risultati/16_mosse_bordo.txt`. Sulla griglia già simulata si prova un'aggiunta alla ricerca locale di G: dalla proposta si toglie 0,01 o 0,02 di fuel cell e si sale in n (al più +0,12) finché il progetto torna fattibile; si accetta se costa meno, e si ripete (insieme ai vicini a passo 0,01).
+
+| 146 linee | G | G + bordo |
+|---|---:|---:|
+| media / massimo | +0,30 / +4,5% | **+0,06 / +3,0%** |
+| entro 0,01% / 0,5% / 1% dall'ottimo | 127 / 128 / 131 | **141 / 142 / 143** |
+| oltre 2% | 12 | 3 |
+| simulazioni in più per linea | — | 9 in media, al più 43 |
+
+Restano lontane 3 linee (Rovigo–Verona +3,0%, Crotone–Lamezia +2,8%, Buonconvento–Empoli +2,1%), dove G è nel regime ibrido (m 0,12–0,16) e l'ottimo ha la fuel cell piccola con m più basso di 0,03–0,05: servirebbe un passo più lungo in m. L'emulazione parte dalla proposta finale di G; nel comando la mossa andrebbe dentro la ricerca locale. Da decidere: inserirla in `usa_surrogato.jl` e rendere G (con il bordo) la strategia di default.

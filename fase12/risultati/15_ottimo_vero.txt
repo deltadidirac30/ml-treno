@@ -1,0 +1,201 @@
+fase12/15_ottimo_vero.jl  2026-11-16T20:21:43.777  thread: 8  TrainPowertrain 7c9115a1877dda0142eeb08fe25dc810bd93a544
+linee: 146
+  [  1/146] Adria-Rovigo                               10.2 s   (trascorsi 0.2 min, ne mancano circa 25)
+  [  2/146] Alba-Asti                                   8.0 s   (trascorsi 0.3 min, ne mancano circa 22)
+  [  3/146] Albate-Trecallo-Lecco                      13.8 s   (trascorsi 0.5 min, ne mancano circa 26)
+  [  4/146] Aulla_Lunigiana-Lucca                      49.4 s   (trascorsi 1.4 min, ne mancano circa 48)
+  [  5/146] Aulla_Lunigiana-Pisa_Centrale              63.9 s   (trascorsi 2.4 min, ne mancano circa 68)
+  [  6/146] BARI_CENTRO-PUTIGNANO-L1                   16.7 s   (trascorsi 2.7 min, ne mancano circa 63)
+  [  7/146] Biella_S_Paolo-Novara                      11.6 s   (trascorsi 2.9 min, ne mancano circa 58)
+  [  8/146] Breno-Brescia                              45.3 s   (trascorsi 3.7 min, ne mancano circa 63)
+  [  9/146] Breno-Pisogne                               6.5 s   (trascorsi 3.8 min, ne mancano circa 57)
+  [ 10/146] Brescia-Iseo                                9.9 s   (trascorsi 3.9 min, ne mancano circa 53)
+  [ 11/146] Brescia-Marone-Zone                        12.3 s   (trascorsi 4.1 min, ne mancano circa 51)
+  [ 12/146] Brescia-Piadena                            16.4 s   (trascorsi 4.4 min, ne mancano circa 49)
+  [ 13/146] Buonconvento-Empoli                        30.2 s   (trascorsi 4.9 min, ne mancano circa 50)
+  [ 14/146] Buonconvento-Firenze_S_Maria_Novella       27.9 s   (trascorsi 5.4 min, ne mancano circa 51)
+  [ 15/146] Buonconvento-Granaiolo                     23.3 s   (trascorsi 5.8 min, ne mancano circa 50)
+  [ 16/146] Buonconvento-Siena                          5.8 s   (trascorsi 5.9 min, ne mancano circa 48)
+  [ 17/146] CASARANO-GALLIPOLI-L4                       8.2 s   (trascorsi 6.0 min, ne mancano circa 46)
+  [ 18/146] CASARANO-LECCE-L3                          23.6 s   (trascorsi 6.4 min, ne mancano circa 45)
+  [ 19/146] Cagliari-Decimomannu                        7.3 s   (trascorsi 6.5 min, ne mancano circa 44)
+  [ 20/146] Cagliari-Macomer                           44.9 s   (trascorsi 7.3 min, ne mancano circa 46)
+  [ 21/146] Cagliari-Olbia_Terranova                   78.7 s   (trascorsi 8.6 min, ne mancano circa 51)
+  [ 22/146] Cagliari-Oristano                          24.1 s   (trascorsi 9.0 min, ne mancano circa 51)
+  [ 23/146] Cagliari-Porto_Torres_Marittima            88.3 s   (trascorsi 10.5 min, ne mancano circa 56)
+  [ 24/146] Cagliari_Elmas-Cagliari                     2.0 s   (trascorsi 10.5 min, ne mancano circa 53)
+  [ 25/146] Caltagirone-Catania_Centrale               21.7 s   (trascorsi 10.9 min, ne mancano circa 53)
+  [ 26/146] Caltanissetta_Centrale-Gela                25.3 s   (trascorsi 11.3 min, ne mancano circa 52)
+  [ 27/146] Cantu-Lecco                                 7.8 s   (trascorsi 11.4 min, ne mancano circa 50)
+  [ 28/146] Capistrello-Avezzano                        1.7 s   (trascorsi 11.4 min, ne mancano circa 48)
+  [ 29/146] Casale_Monferrato-Mortara                   6.8 s   (trascorsi 11.6 min, ne mancano circa 47)
+  [ 30/146] Cassino-Avezzano                           54.5 s   (trascorsi 12.5 min, ne mancano circa 48)
+  [ 31/146] Catanzaro_Lido-Locri                       17.5 s   (trascorsi 12.8 min, ne mancano circa 47)
+  [ 32/146] Chioggia-Adria                              8.1 s   (trascorsi 12.9 min, ne mancano circa 46)
+  [ 33/146] Chioggia-Rovigo                            17.2 s   (trascorsi 13.2 min, ne mancano circa 45)
+  [ 34/146] Cinisi_Terrasini-Trapani                   64.5 s   (trascorsi 14.3 min, ne mancano circa 47)
+  [ 35/146] Civitanova_Marche-Fabriano                 44.5 s   (trascorsi 15.0 min, ne mancano circa 48)
+  [ 36/146] Codogno-Pavia                              18.9 s   (trascorsi 15.3 min, ne mancano circa 47)
+  [ 37/146] Corteolona-Codogno                         10.3 s   (trascorsi 15.5 min, ne mancano circa 46)
+  [ 38/146] Crotone-Catanzaro_Lido                     10.3 s   (trascorsi 15.7 min, ne mancano circa 45)
+  [ 39/146] Crotone-Lamezia_Terme_Centrale             25.0 s   (trascorsi 16.1 min, ne mancano circa 44)
+  [ 40/146] Dicomano-Pontassieve                        5.5 s   (trascorsi 16.2 min, ne mancano circa 43)
+  [ 41/146] Edolo-Brescia                              46.1 s   (trascorsi 16.9 min, ne mancano circa 43)
+  [ 42/146] Empoli-Chiusi-Chianciano_Terme             62.6 s   (trascorsi 18.0 min, ne mancano circa 45)
+  [ 43/146] Empoli-Siena                               18.7 s   (trascorsi 18.3 min, ne mancano circa 44)
+  [ 44/146] FRANCAVILLA_FONTANA-MARTINA_FRANCA-L2      14.4 s   (trascorsi 18.5 min, ne mancano circa 43)
+  [ 45/146] Fabriano-Macerata                          23.9 s   (trascorsi 18.9 min, ne mancano circa 43)
+  [ 46/146] Faenza-Borgo_S_Lorenzo                     20.8 s   (trascorsi 19.3 min, ne mancano circa 42)
+  [ 47/146] Faenza-Firenze_S_Maria_Novella             34.0 s   (trascorsi 19.9 min, ne mancano circa 42)
+  [ 48/146] Firenze_Campo_Marte-Borgo_S_Lorenzo        10.0 s   (trascorsi 20.0 min, ne mancano circa 41)
+  [ 49/146] Firenze_S_Maria_Novella-Marradi            15.3 s   (trascorsi 20.3 min, ne mancano circa 40)
+  [ 50/146] Firenze_S_Maria_Novella-Ravenna            48.5 s   (trascorsi 21.1 min, ne mancano circa 41)
+  [ 51/146] Foggia-Rocchetta_S_Antonio-Lacedonia       11.2 s   (trascorsi 21.3 min, ne mancano circa 40)
+  [ 52/146] GAGLIANO-GALLIPOLI-L4_3                    19.0 s   (trascorsi 21.6 min, ne mancano circa 39)
+  [ 53/146] GAGLIANO-LECCE-L3                          42.7 s   (trascorsi 22.3 min, ne mancano circa 39)
+  [ 54/146] GAGLIANO-LECCE-L6                          35.6 s   (trascorsi 22.9 min, ne mancano circa 39)
+  [ 55/146] GAGLIANO-ZOLLINO-L6                        19.9 s   (trascorsi 23.3 min, ne mancano circa 38)
+  [ 56/146] GALLIPOLI-LECCE-L5                         25.0 s   (trascorsi 23.7 min, ne mancano circa 38)
+  [ 57/146] Gela-Siracusa                              73.4 s   (trascorsi 24.9 min, ne mancano circa 39)
+  [ 58/146] Granaiolo-Chiusi-Chianciano_Terme          56.7 s   (trascorsi 25.8 min, ne mancano circa 39)
+  [ 59/146] Granaiolo-Siena                            14.7 s   (trascorsi 26.1 min, ne mancano circa 38)
+  [ 60/146] Grosseto-Firenze_S_Maria_Novella           75.4 s   (trascorsi 27.4 min, ne mancano circa 39)
+  [ 61/146] Grosseto-Siena                             33.8 s   (trascorsi 27.9 min, ne mancano circa 39)
+  [ 62/146] Iseo-Edolo                                 42.2 s   (trascorsi 28.6 min, ne mancano circa 39)
+  [ 63/146] LAquila-Sulmona                            17.3 s   (trascorsi 28.9 min, ne mancano circa 38)
+  [ 64/146] LAquila-Terni                              46.4 s   (trascorsi 29.7 min, ne mancano circa 38)
+  [ 65/146] LECCE-GALLIPOLI-L3_5                       20.4 s   (trascorsi 30.0 min, ne mancano circa 37)
+  [ 66/146] LECCE-NOVOLI-L2                             2.5 s   (trascorsi 30.1 min, ne mancano circa 36)
+  [ 67/146] Lamezia_Terme_Centrale-Catanzaro_Lido      10.9 s   (trascorsi 30.3 min, ne mancano circa 36)
+  [ 68/146] Lecco-Besana                               14.3 s   (trascorsi 30.5 min, ne mancano circa 35)
+  [ 69/146] Lecco-Monza                                30.2 s   (trascorsi 31.0 min, ne mancano circa 35)
+  [ 70/146] Lecco-Triuggio-Ponte_Albiate               19.5 s   (trascorsi 31.3 min, ne mancano circa 34)
+  [ 71/146] Legnago-Rovigo                             12.9 s   (trascorsi 31.6 min, ne mancano circa 33)
+  [ 72/146] Locri-Roccella_Jonica                       4.2 s   (trascorsi 31.6 min, ne mancano circa 33)
+  [ 73/146] Lucca-Minucciano-Pieve-Casola              30.8 s   (trascorsi 32.2 min, ne mancano circa 32)
+  [ 74/146] Lucca-Piazza_al_Serchio                    26.3 s   (trascorsi 32.6 min, ne mancano circa 32)
+  [ 75/146] MAGLIE-LECCE-L6                            11.6 s   (trascorsi 32.8 min, ne mancano circa 31)
+  [ 76/146] MAGLIE-OTRANTO-L7                           6.1 s   (trascorsi 32.9 min, ne mancano circa 30)
+  [ 77/146] Macerata-Civitanova_Marche                  6.7 s   (trascorsi 33.0 min, ne mancano circa 30)
+  [ 78/146] Macomer-Olbia_Terranova                    33.2 s   (trascorsi 33.6 min, ne mancano circa 29)
+  [ 79/146] Macomer-Oristano                           11.3 s   (trascorsi 33.8 min, ne mancano circa 29)
+  [ 80/146] Maniago-Sacile                              6.9 s   (trascorsi 33.9 min, ne mancano circa 28)
+  [ 81/146] Marradi-Borgo_S_Lorenzo                     6.6 s   (trascorsi 34.0 min, ne mancano circa 27)
+  [ 82/146] Melfi-Potenza_Centrale                     18.9 s   (trascorsi 34.3 min, ne mancano circa 27)
+  [ 83/146] Milano_Porta_Garibaldi-Lecco               40.2 s   (trascorsi 35.0 min, ne mancano circa 27)
+  [ 84/146] Minucciano-Pieve-Casola-Pisa_Centrale      43.1 s   (trascorsi 35.7 min, ne mancano circa 26)
+  [ 85/146] Modica-Augusta                             46.7 s   (trascorsi 36.5 min, ne mancano circa 26)
+  [ 86/146] Modica-Caltanissetta_Xirbi                 63.9 s   (trascorsi 37.6 min, ne mancano circa 26)
+  [ 87/146] Modica-Gela                                21.4 s   (trascorsi 37.9 min, ne mancano circa 26)
+  [ 88/146] Modica-Siracusa                            34.3 s   (trascorsi 38.5 min, ne mancano circa 25)
+  [ 89/146] Molteno-Albate-Trecallo                     8.4 s   (trascorsi 38.6 min, ne mancano circa 25)
+  [ 90/146] Monza-Molteno                              18.7 s   (trascorsi 39.0 min, ne mancano circa 24)
+  [ 91/146] Mortara-Pavia                              11.7 s   (trascorsi 39.2 min, ne mancano circa 24)
+  [ 92/146] Olbia_Terranova-Golfo_Aranci                7.0 s   (trascorsi 39.3 min, ne mancano circa 23)
+  [ 93/146] Olbia_Terranova-Ozieri_Chilivani           17.4 s   (trascorsi 39.6 min, ne mancano circa 23)
+  [ 94/146] Olbia_Terranova-Sassari                    36.1 s   (trascorsi 40.2 min, ne mancano circa 22)
+  [ 95/146] Oristano-Olbia_Terranova                   52.3 s   (trascorsi 41.1 min, ne mancano circa 22)
+  [ 96/146] Oristano-Porto_Torres_Marittima            59.7 s   (trascorsi 42.1 min, ne mancano circa 22)
+  [ 97/146] Ozieri_Chilivani-Porto_Torres_Marittima    15.3 s   (trascorsi 42.3 min, ne mancano circa 21)
+  [ 98/146] Parma-Brescia                              43.0 s   (trascorsi 43.0 min, ne mancano circa 21)
+  [ 99/146] Parma-Montirone                            35.3 s   (trascorsi 43.6 min, ne mancano circa 21)
+  [100/146] Pavia-Vercelli                             22.2 s   (trascorsi 44.0 min, ne mancano circa 20)
+  [101/146] Piadena-Parma                              11.6 s   (trascorsi 44.2 min, ne mancano circa 20)
+  [102/146] Piazza_al_Serchio-Aulla_Lunigiana          10.1 s   (trascorsi 44.4 min, ne mancano circa 19)
+  [103/146] Piazza_al_Serchio-Pisa_Centrale            40.9 s   (trascorsi 45.1 min, ne mancano circa 19)
+  [104/146] Piraineto-Castelvetrano                    35.5 s   (trascorsi 45.7 min, ne mancano circa 18)
+  [105/146] Pisogne-Brescia                            23.8 s   (trascorsi 46.1 min, ne mancano circa 18)
+  [106/146] Pisogne-Edolo                              23.5 s   (trascorsi 46.5 min, ne mancano circa 18)
+  [107/146] Pisogne-Rovato_Fn                          16.4 s   (trascorsi 46.7 min, ne mancano circa 17)
+  [108/146] Pontassieve-Borgo_S_Lorenzo                13.8 s   (trascorsi 47.0 min, ne mancano circa 17)
+  [109/146] Porto_Torres_Marittima-Sassari              4.4 s   (trascorsi 47.0 min, ne mancano circa 16)
+  [110/146] Portogruaro_Caorle-Casarsa                  6.9 s   (trascorsi 47.2 min, ne mancano circa 15)
+  [111/146] RUTIGLIANO-PUTIGNANO-L1                     8.6 s   (trascorsi 47.3 min, ne mancano circa 15)
+  [112/146] Ragusa-Modica                               3.5 s   (trascorsi 47.4 min, ne mancano circa 14)
+  [113/146] Reggio_di_Calabria_Centrale-Catanzaro_Lido   58.6 s   (trascorsi 48.4 min, ne mancano circa 14)
+  [114/146] Reggio_di_Calabria_Centrale-Roccella_Jonica   49.5 s   (trascorsi 49.2 min, ne mancano circa 14)
+  [115/146] Rieti-Terni                                11.3 s   (trascorsi 49.4 min, ne mancano circa 13)
+  [116/146] Rionero_Atella_Ripacandita-Potenza_Centrale   12.3 s   (trascorsi 49.6 min, ne mancano circa 13)
+  [117/146] Roccella_Jonica-Catanzaro_Lido             16.8 s   (trascorsi 49.9 min, ne mancano circa 12)
+  [118/146] Rovato_Fn-Iseo                              6.5 s   (trascorsi 50.0 min, ne mancano circa 12)
+  [119/146] Rovigo-Verona_Porta_Nuova                  33.9 s   (trascorsi 50.6 min, ne mancano circa 11)
+  [120/146] Rufina-Borgo_S_Lorenzo                     10.2 s   (trascorsi 50.7 min, ne mancano circa 11)
+  [121/146] S_Gavino-Cagliari                          12.4 s   (trascorsi 50.9 min, ne mancano circa 11)
+  [122/146] Sale_Marasino-Brescia                       9.4 s   (trascorsi 51.1 min, ne mancano circa 10)
+  [123/146] Sassari-Cagliari                           71.4 s   (trascorsi 52.3 min, ne mancano circa 10)
+  [124/146] Sassari-Oristano                           42.4 s   (trascorsi 53.0 min, ne mancano circa 9)
+  [125/146] Sassari-Ozieri_Chilivani                    9.9 s   (trascorsi 53.2 min, ne mancano circa 9)
+  [126/146] Schio-Vicenza                               9.8 s   (trascorsi 53.4 min, ne mancano circa 8)
+  [127/146] Siena-Chiusi-Chianciano_Terme              29.3 s   (trascorsi 53.9 min, ne mancano circa 8)
+  [128/146] Siracusa-Donnafugata                       45.2 s   (trascorsi 54.6 min, ne mancano circa 8)
+  [129/146] Siracusa-Ragusa                            37.6 s   (trascorsi 55.2 min, ne mancano circa 7)
+  [130/146] Siracusa-Rosolini                          16.3 s   (trascorsi 55.5 min, ne mancano circa 7)
+  [131/146] Siracusa-Vittoria                          61.8 s   (trascorsi 56.6 min, ne mancano circa 6)
+  [132/146] Soverato-Reggio_di_Calabria_Centrale       46.1 s   (trascorsi 57.3 min, ne mancano circa 6)
+  [133/146] Torreberetti-Pavia                         14.3 s   (trascorsi 57.6 min, ne mancano circa 6)
+  [134/146] Trapani-Alcamo_Diramazione                 46.7 s   (trascorsi 58.4 min, ne mancano circa 5)
+  [135/146] Trapani-Castelvetrano                      22.2 s   (trascorsi 58.7 min, ne mancano circa 5)
+  [136/146] Trapani-Piraineto                          74.0 s   (trascorsi 60.0 min, ne mancano circa 4)
+  [137/146] Trento-Bassano_del_Grappa                  64.3 s   (trascorsi 61.1 min, ne mancano circa 4)
+  [138/146] Trento-Borgo_Valsugana_Est                 24.4 s   (trascorsi 61.5 min, ne mancano circa 4)
+  [139/146] Triuggio-Ponte_Albiate-Besana               3.1 s   (trascorsi 61.5 min, ne mancano circa 3)
+  [140/146] Triuggio-Ponte_Albiate-Molteno              9.4 s   (trascorsi 61.7 min, ne mancano circa 3)
+  [141/146] Ventimiglia-Limone                         36.6 s   (trascorsi 62.3 min, ne mancano circa 2)
+  [142/146] Vercelli-Mortara                            6.8 s   (trascorsi 62.4 min, ne mancano circa 2)
+  [143/146] Vicchio-Borgo_S_Lorenzo                     2.5 s   (trascorsi 62.5 min, ne mancano circa 1)
+  [144/146] Vicchio-Firenze_Campo_Marte                12.8 s   (trascorsi 62.7 min, ne mancano circa 1)
+  [145/146] Vicchio-Firenze_S_Maria_Novella            12.8 s   (trascorsi 62.9 min, ne mancano circa 0)
+  [146/146] Vittoria-Modica                            15.2 s   (trascorsi 63.2 min, ne mancano circa 0)
+1. griglia fitta simulata su 146 linee in questo lancio: 62.7 min (0 già pronte)
+
+2. controllo: costo delle proposte C e G riletto dalla griglia contro quello delle verifiche, scarto massimo 2.7e-05 (deve essere ~0)
+
+IL COSTO RISPETTO ALL'OTTIMO VERO (griglia fitta simulata), 146 linee
+                                    migliore delle 288  surrogato semplice         surrogato C         surrogato G
+  media                                        +2.286%             +1.151%             +0.833%             +0.296%
+  mediana                                      +0.244%             +0.287%             +0.187%             +0.000%
+  90° percentile                               +8.187%             +3.305%             +2.908%             +1.117%
+  massimo                                     +17.982%            +12.989%             +7.172%             +4.510%
+  esattamente l'ottimo                              15                  11                  31                 127
+  entro 0,1%                                        54                  44                  54                 128
+  entro 0,5%                                        94                  94                 103                 128
+  entro 1%                                         102                 100                 109                 131
+  oltre 2%                                          39                  32                  25                  12
+  oltre 5%                                          24                   6                   3                   0
+
+IL REGIME: ottimo vero (righe) contro surrogato G (colonne)
+  sola batteria         99 → sola batteria 99, ibrido FC piccola 0, ibrido 0
+  ibrido FC piccola     20 → sola batteria 0, ibrido FC piccola 18, ibrido 2
+  ibrido                27 → sola batteria 0, ibrido FC piccola 0, ibrido 27
+  stesso regime: 144 su 146
+  distanza della proposta G dall'ottimo: m mediana 0.00 (max 0.05), n mediana 0.00 (max 0.10); stesso punto in 127 linee
+  posizione della proposta G nella classifica dei progetti fattibili: mediana 1°, 90° percentile 2°, peggiore 12°
+
+QUANTO È PIATTO IL COSTO VICINO ALL'OTTIMO (progetti fattibili entro lo 0,1 / 0,5 / 1% dall'ottimo, mediana sulle linee)
+  2 / 4 / 8 progetti su 6782 fattibili (mediana)
+
+LE LINEE CON IL SURROGATO G OLTRE LO 0,5% DALL'OTTIMO
+  Grosseto-Siena                         L  100.6 km: ottimo (0.06, 0.97) 2.7208 €/km ibrido FC piccola  | G (0.08, 0.91) +4.51% ibrido FC piccola  | 288 +9.82%, semplice +6.97%
+  Rovigo-Verona_Porta_Nuova              L   94.6 km: ottimo (0.11, 0.94) 3.5824 €/km ibrido             | G (0.16, 0.91) +4.41% ibrido             | 288 +16.43%, semplice +4.60%
+  Faenza-Firenze_S_Maria_Novella         L  100.7 km: ottimo (0.15, 0.91) 3.8328 €/km ibrido             | G (0.17, 0.85) +3.38% ibrido             | 288 +2.77%, semplice +3.74%
+  Gela-Siracusa                          L  181.4 km: ottimo (0.21, 0.87) 3.5045 €/km ibrido             | G (0.23, 0.77) +3.14% ibrido             | 288 +5.81%, semplice +3.60%
+  Trento-Bassano_del_Grappa              L   95.7 km: ottimo (0.05, 0.96) 3.1646 €/km ibrido FC piccola  | G (0.06, 0.91) +3.11% ibrido FC piccola  | 288 +17.36%, semplice +3.26%
+  Crotone-Lamezia_Terme_Centrale         L  102.9 km: ottimo (0.09, 0.94) 2.8579 €/km ibrido FC piccola  | G (0.12, 0.95) +2.84% ibrido             | 288 +3.40%, semplice +2.89%
+  Siracusa-Donnafugata                   L  130.8 km: ottimo (0.07, 0.94) 2.4712 €/km ibrido FC piccola  | G (0.08, 0.90) +2.64% ibrido FC piccola  | 288 +9.42%, semplice +2.65%
+  Piazza_al_Serchio-Pisa_Centrale        L   80.5 km: ottimo (0.06, 0.94) 3.5942 €/km ibrido FC piccola  | G (0.07, 0.90) +2.59% ibrido FC piccola  | 288 +12.01%, semplice +3.02%
+  Civitanova_Marche-Fabriano             L   94.9 km: ottimo (0.05, 0.96) 2.8959 €/km ibrido FC piccola  | G (0.06, 0.93) +2.52% ibrido FC piccola  | 288 +14.92%, semplice +2.53%
+  Aulla_Lunigiana-Lucca                  L   89.9 km: ottimo (0.07, 0.94) 3.5973 €/km ibrido FC piccola  | G (0.08, 0.89) +2.47% ibrido FC piccola  | 288 +8.97%, semplice +2.94%
+  Siena-Chiusi-Chianciano_Terme          L   89.0 km: ottimo (0.03, 0.97) 2.6003 €/km ibrido FC piccola  | G (0.04, 0.94) +2.24% ibrido FC piccola  | 288 +17.95%, semplice +2.62%
+  Buonconvento-Empoli                    L   91.8 km: ottimo (0.09, 0.94) 3.4040 €/km ibrido FC piccola  | G (0.12, 0.94) +2.08% ibrido             | 288 +3.44%, semplice +2.08%
+  Cinisi_Terrasini-Trapani               L  156.2 km: ottimo (0.18, 0.88) 3.1411 €/km ibrido             | G (0.19, 0.84) +1.86% ibrido             | 288 +6.40%, semplice +2.16%
+  Firenze_S_Maria_Novella-Ravenna        L  134.1 km: ottimo (0.24, 0.85) 4.2897 €/km ibrido             | G (0.25, 0.82) +1.49% ibrido             | 288 +7.58%, semplice +1.58%
+  Parma-Brescia                          L   91.1 km: ottimo (0.21, 0.91) 4.6444 €/km ibrido             | G (0.22, 0.90) +1.31% ibrido             | 288 +5.68%, semplice +2.51%
+  Cagliari-Olbia_Terranova               L  276.1 km: ottimo (0.36, 0.68) 3.7264 €/km ibrido             | G (0.37, 0.66) +0.93% ibrido             | 288 +1.30%, semplice +3.63%
+  Cagliari-Macomer                       L  152.7 km: ottimo (0.35, 0.84) 4.0565 €/km ibrido             | G (0.34, 0.74) +0.81% ibrido             | 288 +1.66%, semplice +2.70%
+  Grosseto-Firenze_S_Maria_Novella       L  194.2 km: ottimo (0.35, 0.79) 4.4309 €/km ibrido             | G (0.36, 0.74) +0.78% ibrido             | 288 +1.88%, semplice +2.15%
+
+I TEMPI
+  griglia fitta simulata: 5.5 h di calcolo sommando i singoli progetti (8 in parallelo); 62.7 min (146 linee, 25.8 s per linea) di orologio per le linee simulate in questo lancio
+  surrogato G (fase12/13): 0,125 s per linea in media, 18 s per le 146 linee (+ ~10 s di avvio di Julia)
+
+Tempo totale 63.3 min. Tabella: /Users/kairos/Documents/lavoro/ml_treno_dati/fase12_log/15_ottimo_vero_linee.csv; figura: fase12/figure/fig_ottimo_vero.png
