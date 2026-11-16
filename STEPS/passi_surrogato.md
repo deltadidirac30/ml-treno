@@ -700,3 +700,25 @@ Scarica giusta nel 98,7% dei casi, fattibilità giusta nel 98,4% (minimo per lin
 **La scelta del progetto** (variante C): fattibile in 146 linee su 146; costo vero rispetto alla migliore delle 288 in media −1,3%, mediana −0,07%, da −15,2% a +7,2%; più economico in 86 linee (59%), entro +1% in 134 (92%), oltre +3% in 3. Regime uguale in 133 linee; le differenze sono quasi tutte ibridi con fuel cell piccola più economici. Nel progetto proposto la rete sbaglia il costo del 2,1% in mediana (95° percentile 7%).
 
 **I tempi**, sul Mac M4 a 8 core, a parità di macchina: la griglia fitta tutta simulata costa 20 s per linea in media (da 1,4 a 71 s), 48 minuti per le 146 linee; il surrogato 0,05 s per linea (rete 31 ms, 7 verifiche 15 ms), 7 secondi per tutte. Circa **400 volte più veloce** (per linea da 30× a 1000×; il guadagno cresce con la lunghezza della linea). Rispetto alle sole 288 coppie: 12 volte più veloce, e con un progetto più economico nel 59% delle linee. Il tempo del registro (8 simulazioni in parallelo) è da 1,2 a 3 volte quello su un core libero: per questo il confronto è a parità di macchina.
+
+## Una verifica più robusta: candidati sparsi e ricerca locale con il simulatore
+
+16/11/2026. Script `fase12/13_verifica_locale.jl`, risultati in `fase12/risultati/13_verifica_locale.txt` e `_linee.csv`. Linee "tutto RINF", riferimento la migliore delle 288 coppie simulate. Un minuto.
+
+Varianti, tutte partendo dalla rete sulla griglia fitta: **C** (fase12/12: 5 migliori + il migliore di ogni regime); **D** = C + il migliore in ogni fascia di n; **E** = C + ricerca locale con il simulatore dal migliore verificato (vicini in m e n, passi da 0,16 a 0,01, al più 40 simulazioni); **F** = D + E; **G** = F + 5 progetti a sola batteria simulati (n 0,2–0,99) e ricerca locale anche dal migliore fattibile di ogni regime. Corretto anche il ripiego: si continua finché è fattibile uno dei candidati principali, non uno "extra" (prima un candidato sparso mediocre poteva fermarlo: Schio–Venezia +28%).
+
+| 146 linee non elettrificate oltre il 70% | C | D | E | F | **G** |
+|---|---:|---:|---:|---:|---:|
+| costo vs migliore 288: media / mediana | −1,3 / −0,08% | −1,4 / −0,08% | −1,7 / −0,23% | −1,8 / −0,24% | **−1,8 / −0,24%** |
+| caso peggiore | +7,2% | +6,6% | +6,4% | +6,4% | **+0,58%** |
+| più economico / entro +1% / oltre +2% | 87 / 134 / 6 | 93 / 138 / 3 | 123 / 144 / 1 | 125 / 145 / 1 | **126 / 146 / 0** |
+| simulazioni per linea: media / max | 7 / 8 | 10 / 11 | 23 / 33 | 26 / 36 | 50 / 80 |
+| tempo per linea | 0,05 s | 0,06 s | 0,08 s | 0,09 s | 0,13 s |
+
+Su tutte le 166 linee G è entro +1% dalla migliore delle 288 in **166 linee su 166** (peggiore +0,58%) e più economica in 143.
+
+**Cosa ci dicono i numeri:**
+1. **La ricerca locale con il simulatore corregge i casi "regime giusto, batteria sbagliata"**: Rutigliano da +7,2% a 0,00%, Mortara–Pavia da +2,1% a 0,00%, Cagliari–Oristano da +2,8% a −1,4%.
+2. **I casi "sola batteria al limite" richiedono di simulare anche qualche progetto a sola batteria**, perché per arrivarci bisogna cambiare m e n insieme: Corteolona–Cremona da +8,1% a +0,06%, Roccella–Catanzaro da +6,6% a −0,11%.
+3. **Il prezzo è piccolo**: 50 simulazioni per linea invece di 7, 0,13 s per linea, 18 s per tutte le 146 linee. Resta circa 150 volte più veloce della griglia fitta simulata (20 s per linea su 8 core).
+4. La rete ora serve a "puntare" la zona giusta, e il simulatore rifinisce. Il confronto con la migliore delle 288 non basta più (il surrogato la batte nell'86% delle linee): per misurare la distanza dall'ottimo vero serve la griglia fitta simulata.
