@@ -85,6 +85,7 @@ surrogato doe=15000-15100
 **Opzioni:**
 - `strategia=G` (il default dal 16/11/2026) oppure `strategia=semplice`: come si scelgono i progetti da far simulare, vedi sotto.
 - `verifiche=5`: solo con `strategia=semplice`, quanti candidati far verificare al simulatore (default 5). Con una tratta "lontana" meglio 10.
+- `griglia=si`: scrive anche `<tratta>/griglia_rete.csv`, con le previsioni della rete su tutti i 9702 progetti (costo, fattibilità, SOC), utile per mappe e grafici.
 - `margine=si`: chiede alla rete un SOC finale previsto ≥ 0,21 e una probabilità di scarica < 0,1 (default sì). Con `margine=no` si trovano progetti a volte un po' più economici, ma più spesso non fattibili.
 - **La strategia G (default)**, fase12/13 e 16. La rete indica dove cercare e il simulatore decide:
   1. il simulatore valuta le 5 migliori della rete, il migliore per la rete di ogni regime (sola batteria, ibrido con fuel cell piccola m < 0,1, ibrido) e di ogni fascia di batteria (n < 0,25, 0,25–0,5, 0,5–0,75, ≥ 0,75), scelti con un margine largo (SOC previsto ≥ 0,18), e 5 progetti a sola batteria (n 0,2, 0,4, 0,6, 0,8, 0,99);

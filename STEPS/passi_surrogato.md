@@ -767,3 +767,10 @@ Prove:
 - sulle 146 non elettrificate, contro l'ottimo vero (`fase12/risultati/17_g_bordo_comando.txt`): esattamente i numeri dell'emulazione: ottimo in 141, media +0,06%, peggiore +2,99%; fuori restano Breno–Pisogne +0,05%, Cagliari–Macomer +0,81%, Buonconvento–Empoli +2,08%, Crotone–Lamezia +2,84%, Rovigo–Verona +2,99%. Deciso di non complicare oltre;
 - Grosseto–Siena (dettaglio): il bordo porta da (0,08, 0,91) all'ottimo (0,06, 0,97) in 14 simulazioni, −4,3%;
 - route DoE 15000: G 2,7851 €/km, come la migliore della campagna; `strategia=semplice` invariata (+0,26%).
+
+### I dati per la presentazione
+
+16/11/2026. Opzione `griglia=si` nel comando (scrive `<tratta>/griglia_rete.csv`, la rete su tutti i 9702 progetti). Script `fase12/18_dati_presentazione.py` → `fase12/presentazione_146/` (con LEGGIMI): tabella e tracciati GeoJSON delle 146 linee, heatmap simulatore/rete per Brescia–Iseo, Grosseto–Siena e Cagliari–Olbia, `riassunto.txt`. Numeri principali:
+- regimi della proposta: 99 sola batteria, 18 ibrido FC piccola, 29 ibrido (ottimo vero 99 / 20 / 27). Sotto i 60 km tutte a sola batteria (78 linee); oltre i 150 km tutte ibride; la Lombardia è tutta a sola batteria (28 linee);
+- costo mediano 2,52 €/km a sola batteria, 2,75 ibrido FC piccola, 3,83 ibrido (in tutto da 1,52 a 5,58);
+- rete contro simulatore su 1,4 milioni di progetti: fattibilità giusta 98,3% (linea peggiore 92,1%), errore sul costo nei progetti fattibili 1,9% in mediana, 6,5% al 95° percentile.

@@ -65,6 +65,7 @@ const IS_DOE = haskey(ARG, "doe")
 IS_DOE || (haskey(ARG, "cartella") && haskey(ARG, "tratta")) || error(USO)
 const CARTELLA = expanduser(get(ARG, "cartella", IS_DOE ? joinpath(BASE, "tratte_doe_16384") : ""))
 const NVER = parse(Int, get(ARG, "verifiche", "5")); const MARGINE = get(ARG, "margine", "si") == "si"
+const SALVA_GRIGLIA = get(ARG, "griglia", "no") == "si"   # scrive anche <tratta>/griglia_rete.csv (la rete sui 9702 progetti)
 const STRATEGIA = uppercase(get(ARG, "strategia", "G")) == "G" ? :G :
                   lowercase(get(ARG, "strategia", "G")) == "semplice" ? :semplice : error("strategia=semplice oppure strategia=G")
 function elenco_doe(s)
@@ -146,6 +147,13 @@ function analizza(tc; doe = 0)
     q = (durata = p.durata, serbatoio = p.serbatoio, H2 = p.H2, SOC = p.SOC, scarica = p.p_scarica .>= 0.5, vita_batt = p.vita_batt,
          vita_FC_f1 = p.vita_FC_f1, C_rate = p.C_rate)
     v = valuta(GM, GN, fill(L, NG), q)
+    if SALVA_GRIGLIA     # griglia=si: le previsioni della rete su tutti i 9702 progetti, per mappe e grafici
+        out = joinpath(BASE, "surrogato", nome); mkpath(out)
+        open(joinpath(out, "griglia_rete.csv"), "w") do io
+            println(io, "m,n,costo_rete_EUR_km,fattibile_rete,SOC_rete,p_scarica_rete")
+            for i in 1:NG; println(io, join((GM[i], GN[i], v.costo_totale[i], v.fattibile[i], p.SOC[i], p.p_scarica[i]), ',')); end
+        end
+    end
     amm = v.fattibile .& (MARGINE ? (p.SOC .>= 0.21) .& (p.p_scarica .< 0.1) : trues(NG))
     ord = sortperm([amm[i] ? v.costo_totale[i] : Inf for i in 1:NG])
     cand = Int[]
