@@ -1,0 +1,18 @@
+fase10/06_velocita.jl  2026-11-16T13:08:52.563  thread: 8  BLAS: 8  Apple M4
+
+ tratta    L [km] | simulatore: precalcolo  per progetto (media di 24) | rete + costo: 1 punto   288 coppie   griglia 9702 | rapporto per progetto
+   6152     38.4 |       0.1 ms         3.8 ms                    |     34.8 µs       1.3 ms         28 ms |     1325×
+   6840     10.2 |       0.0 ms         0.7 ms                    |     35.9 µs       1.2 ms         30 ms |      227×
+  11608     15.3 |       0.0 ms         1.7 ms                    |     33.5 µs       1.3 ms         28 ms |      599×
+  12281     38.3 |       0.1 ms         3.3 ms                    |     33.1 µs       1.3 ms         28 ms |     1169×
+   6149    142.6 |       0.2 ms         9.6 ms                    |     36.0 µs       1.2 ms         26 ms |     3539×
+   6827    171.5 |       0.2 ms        11.8 ms                    |     35.9 µs       1.3 ms         26 ms |     4463×
+  11606    171.3 |       0.2 ms        38.0 ms                    |     36.5 µs       1.3 ms         26 ms |    13928×
+  12284    142.5 |       2.4 ms        10.5 ms                    |     35.3 µs       1.3 ms         26 ms |     3905×
+   6146    246.4 |       0.3 ms         7.9 ms                    |     35.4 µs       1.3 ms         27 ms |     2892×
+   6815    262.2 |       0.5 ms        17.2 ms                    |     35.8 µs       1.3 ms         26 ms |     6488×
+  11594    290.3 |       0.7 ms        14.4 ms                    |     35.8 µs       1.3 ms         27 ms |     5236×
+  12287    246.6 |       0.5 ms        18.7 ms                    |     36.1 µs       1.2 ms         27 ms |     6817×
+
+medie: simulatore 11.5 ms a progetto (+ precalcolo 0.4 ms a tratta); rete + costo 35.3 µs per un punto solo, 4.4 µs a punto sulle 288 coppie, 2.77 µs a punto sulla griglia
+rapporto per progetto: punto singolo 325×, 288 coppie 2621×, griglia 4138×

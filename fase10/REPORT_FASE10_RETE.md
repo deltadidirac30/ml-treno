@@ -274,3 +274,23 @@ La variante è un po' peggiore del 6b su tutte le grandezze.
 1. **La testa di fattibilità non aggiunge nulla** rispetto ai vincoli calcolati dalle grandezze previste: stessa accuratezza, stesso compromesso fra scelte non fattibili e rimpianto. Con una soglia alta (0,9–0,95) la scelta secca diventa quasi sempre fattibile (1,8–2,8%), ma il progetto scelto costa di più: rimpianto mediano 0,3–0,5%, p95 8–9%.
 2. **Ogni margine sposta lo stesso compromesso.** Meno scelte non fattibili si pagano con un rimpianto più alto nei casi peggiori. Anche il margine piccolo del 6b fa salire il p95 del rimpianto dal 4,0% al 6,1% (scelta secca) e dal 2,3% al 4,9% (con 5 verifiche). Senza simulazioni non c'è un modo gratuito per evitare la maledizione del vincitore; con 5 verifiche e nessun margine il problema è già quasi risolto (0,1% di scelte non fattibili, p95 2,3%).
 3. **Il modello di riferimento resta il 6b** (8 teste, 40 epoche). Più epoche andrebbero provate con un arresto anticipato più paziente: costerebbe circa 50 minuti, e dalle curve il guadagno atteso è piccolo.
+
+## Velocità: rete contro simulatore (`06_velocita.jl`, `risultati/06_velocita_t1.txt`, `06_velocita_t8.txt`)
+
+Comandi: `julia -t 1 --project=fase10 fase10/06_velocita.jl` (tutto su un core, anche BLAS) e `julia -t 8 …` (rete su 8 thread; il simulatore resta su un core). Mac M4, ≈ 1 min ciascuno.
+
+**Cosa si misura:**
+- **simulatore:** `valuta_progetto` (TrainPowertrain invariato, configurazione della campagna) su 12 tratte di validazione (4 corte, 4 medie, 4 lunghe) × 24 coppie scelte a caso fra le 288, dopo un riscaldamento; il precalcolo della tratta a parte;
+- **rete:** le 8 grandezze più vincoli e costo (`valuta` della fase 9), cioè lo stesso risultato utile, per 1 punto, per le 288 coppie e per la griglia fitta (9702 punti).
+
+| | un core | 8 thread (solo la rete) |
+|---|---:|---:|
+| simulatore, per progetto (media; da 0,6 a 44 ms secondo tratta e progetto) | 12 ms | — |
+| simulatore nella campagna sul PC (16 thread; 294 912 valutazioni) | mediana 26 ms, media 51 ms, p95 179 ms | — |
+| rete + costo, un punto da solo | 40 µs (**300×**) | 35 µs |
+| rete + costo, a punto sulle 288 coppie di una tratta | 6,3 µs (**1900×**) | 4,4 µs (2600×) |
+| rete + costo, a punto sulla griglia fitta | 5,1 µs (**2400×**) | 2,8 µs (4100×) |
+
+- Il tempo della rete non dipende dalla tratta né dal progetto. Quello del simulatore cresce con la lunghezza e con le iterazioni di dimensionamento del serbatoio.
+- Sulle tratte corte e facili il rapporto scende a ~100×; sulle lunghe e difficili sale oltre 9000×.
+- Il costo una tantum per ottenere la rete è la campagna (≈ 5 h di parete sul PC, 68,5 h di CPU) più l'addestramento (≈ 35 min).

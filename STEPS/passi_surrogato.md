@@ -372,3 +372,25 @@ Poi l'abbiamo addestrata per prova su una piccola parte dei dati: 2048 tratte, 5
 5. **La soluzione migliore resta quella del passo 6d:** la rete 6b e poche simulazioni di verifica (5 verifiche, nessun margine: 0,1% di scelte non fattibili, 90% delle tratte entro l'1%).
 
 **Decisione proposta:** il modello di riferimento resta la rete 6b. La testa di fattibilità non serve. Più epoche si potrebbero riprovare con un arresto anticipato più paziente (circa 50 minuti), ma dalle curve il guadagno atteso è piccolo.
+
+## Quanto è più veloce la rete del simulatore
+
+16/11/2026. Report: `fase10/REPORT_FASE10_RETE.md`, sezione "Velocità".
+
+Misurato sul Mac (M4), alla pari, su un solo core: simulatore vero contro rete 6b. Per la rete è incluso il calcolo di costo e vincoli dalle grandezze previste, cioè lo stesso risultato utile.
+
+| | tempo per progetto | quante volte più veloce |
+|---|---:|---:|
+| simulatore (media su 12 tratte × 24 coppie; da 0,6 a 44 ms) | 12 ms | — |
+| rete, un progetto da solo | 40 µs | ~300× |
+| rete, le 288 coppie di una tratta insieme | 6 µs a progetto | ~1900× |
+| rete, la griglia fitta di una tratta (9702 punti) | 5 µs a progetto | ~2400× (4100× con 8 core) |
+
+**Esempi:**
+- **Le 288 coppie di una tratta:** simulatore ≈ 3,5 s, rete ≈ 2 ms.
+- **La griglia fitta di una tratta (quasi 10 000 progetti):** simulatore ≈ 2 minuti, rete ≈ 0,05 s.
+- **La griglia fitta su tutte le 166 linee della rete ferroviaria:** simulatore ≈ 5 ore e mezza su un core, rete ≈ 8 secondi.
+- **Tutta la campagna (4,7 milioni di progetti):** sul PC con 16 core ci sono volute circa 5 ore; la rete la rifarebbe in circa 25 secondi su un core.
+- **Nel preconfiguratore:** griglia fitta con la rete (0,05 s) + 5 simulazioni di verifica (≈ 0,06 s) = circa un decimo di secondo per tratta, contro 2 minuti per la sola griglia simulata.
+
+Il prezzo si paga una volta sola: la campagna (5 ore sul PC) e l'addestramento (35 minuti). Il guadagno è più piccolo sulle tratte corte e semplici (~100×) e più grande su quelle lunghe e difficili (oltre 9000×), perché il tempo della rete non dipende dalla tratta.
