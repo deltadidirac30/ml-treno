@@ -64,3 +64,50 @@ Addestramento sui gruppi Sobol 1 e 2 (2048 tratte, 589 824 righe), 5 epoche; val
 | scarica (accuratezza; Brier) | 97,2%; 0,021 | 98,8%; 0,009 |
 
 Con un sesto dei dati e pochissimo addestramento la rete è già dello stesso ordine del boosting sul SOC (0,039 contro 0,031), meno sulle altre. Il C-rate e la vita della batteria sono le più lontane: dipendono soprattutto da n, e dovrebbero migliorare con più epoche. Da guardare nel passo 6b.
+
+## Passo 6b: addestramento completo (`02_addestra.jl`, `risultati/02_addestra.txt`)
+
+Comando: `julia -t 8 --project=fase10 fase10/02_addestra.jl > ~/Documents/lavoro/ml_treno_dati/fase10_log/log_02.txt 2>&1` (≈ 35 min).
+
+**Impostazioni.** Tutto l'addestramento (12 288 tratte, 3 538 939 righe), rete 4 × 256, lotti di 4096, Adam con passo coseno da 1e-3 a 1e-5 in 40 epoche, pesi uguali, seme 1, arresto anticipato con pazienza 5.
+
+**Addestramento:**
+- 40 epoche in 33 minuti (50 s per epoca);
+- **la migliore è l'ultima** (perdita di validazione 0,0792): l'arresto anticipato non è scattato;
+- la perdita di validazione scende sempre, ma dopo l'epoca 25 di pochissimo, mentre quella di addestramento continua (0,054 alla fine);
+- per testa, SOC e scarica sono le perdite più grandi e si appiattiscono prima (`figure/fig_curve.png`).
+
+Modello in `~/Documents/lavoro/ml_treno_dati/fase10/rete_6b.jld2`, previsioni sulla validazione in `pred_validazione_6b.arrow`.
+
+**Validazione (2048 tratte mai viste), rete contro boosting:**
+
+| grandezza | rete: mediana / p95 / p99 / max | boosting: mediana / p95 | rete meglio? |
+|---|---:|---:|---|
+| durata | **0,16% / 0,89%** / 1,6% / 5,0% | 0,25% / 1,28% | sì |
+| serbatoio | **1,70% / 8,8%** / 19,5% / 303% | 3,33% / 14,6% | sì, errore dimezzato |
+| idrogeno | **1,68% / 8,5%** / 18,3% / 301% | 3,39% / 14,5% | sì, errore dimezzato |
+| SOC finale (assoluto) | **0,012 / 0,108** / 0,213 / 0,61 | 0,031 / 0,156 | sì, mediana ridotta di 2,5 volte |
+| vita della batteria | **2,36% / 10,8%** / 20,9% / 229% | 3,66% / 14,4% | sì |
+| vita della FC | **1,73% / 6,5%** / 10,0% / 31% | 2,48% / 8,3% | sì |
+| C-rate | 1,24% / 4,9% / 8,9% / 57% | **0,68% / 4,3%** | no, peggio |
+| scarica (accuratezza; Brier) | **99,00%; 0,0072** | 98,81%; 0,0087 | sì |
+
+**Sovradattamento piccolo.** Mediane sulle tratte di addestramento (gruppi 1–2) contro la validazione:
+
+| grandezza | addestramento | validazione |
+|---|---:|---:|
+| durata | 0,129% | 0,159% |
+| serbatoio | 1,47% | 1,70% |
+| idrogeno | 1,44% | 1,68% |
+| SOC | 0,011 | 0,012 |
+| vita della batteria | 2,14% | 2,36% |
+| vita della FC | 1,47% | 1,73% |
+| C-rate | 1,18% | 1,24% |
+| scarica | 99,27% | 99,00% |
+
+**Cosa vuol dire:**
+1. **Un unico modello batte gli 8 modelli del boosting su 7 grandezze su 8.** I miglioramenti più grandi sono proprio sulle priorità del passo 5a:
+   - idrogeno e serbatoio con l'errore dimezzato;
+   - **il SOC finale con un errore mediano di 0,012 invece di 0,031**.
+2. **Il C-rate è l'unica grandezza peggiore** (1,2% contro 0,7% in mediana; p95 vicino). Dipende quasi solo da n, e la mediana per coppia del boosting lo indovinava già. Conta solo per la regola D3 (C-rate > 20): lo verifica il passo 6c.
+3. **C'è ancora margine:** l'epoca migliore è l'ultima, e il sovradattamento è piccolo. Più epoche, o una rete un po' più grande, possono migliorare ancora (varianti del passo 6e).

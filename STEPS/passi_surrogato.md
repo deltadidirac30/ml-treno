@@ -267,3 +267,31 @@ Poi l'abbiamo addestrata per prova su una piccola parte dei dati: 2048 tratte, 5
 4. **Prime metriche**, non ancora alla pari con il boosting, perché la rete ha visto un sesto dei dati per poche epoche: già vicina sul SOC finale (0,039 contro 0,031), più lontana su C-rate e vita della batteria, che dovrebbero migliorare con l'addestramento completo.
 
 **Prossimo: passo 6b**, l'addestramento completo.
+
+## Passo 6b: la rete neurale, addestramento completo
+
+16/11/2026. Report: `fase10/REPORT_FASE10_RETE.md`, sezione "Passo 6b". Figura: `fase10/figure/fig_curve.png`.
+
+**Cosa abbiamo fatto.** Abbiamo addestrato la rete neurale unica su tutte le 12 288 tratte di addestramento: 40 epoche, 35 minuti. Poi l'abbiamo misurata sulle 2048 tratte di validazione, grandezza per grandezza, accanto al boosting.
+
+**I risultati** (errori su tratte mai viste):
+
+| grandezza | rete neurale: mediana / 95° percentile | boosting: mediana / 95° percentile |
+|---|---:|---:|
+| durata | **0,16% / 0,9%** | 0,25% / 1,3% |
+| serbatoio | **1,7% / 8,8%** | 3,3% / 14,6% |
+| idrogeno | **1,7% / 8,5%** | 3,4% / 14,5% |
+| SOC finale (errore assoluto) | **0,012 / 0,108** | 0,031 / 0,156 |
+| vita della batteria | **2,4% / 10,8%** | 3,7% / 14,4% |
+| vita della fuel cell | **1,7% / 6,5%** | 2,5% / 8,3% |
+| C-rate di scarica | 1,2% / 4,9% | **0,7% / 4,3%** |
+| scarica (giusta) | **99,0%** | 98,8% |
+
+**Cosa ci dicono i numeri:**
+1. **Un unico modello batte gli 8 modelli del boosting su 7 grandezze su 8.**
+2. **Migliora proprio dove serviva:** idrogeno e serbatoio con l'errore dimezzato, e soprattutto il **SOC finale, con un errore mediano 2,5 volte più piccolo** (0,012 invece di 0,031). Era la causa principale degli errori di fattibilità e della maledizione del vincitore.
+3. **Il C-rate è l'unica grandezza un po' peggiore.** Serve solo per la regola D3: vedremo nel passo 6c se cambia qualcosa.
+4. **La rete non "impara a memoria":** sulle tratte che ha visto sbaglia quasi come su quelle nuove.
+5. **C'è ancora margine:** l'ultima epoca è stata la migliore, quindi più epoche o una rete un po' più grande potrebbero migliorare ancora.
+
+**Prossimo: passo 6c**, la rete sul banco di prova: costo, fattibilità e scelta della coppia migliore, contro il boosting.
