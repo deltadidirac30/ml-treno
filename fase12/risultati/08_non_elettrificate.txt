@@ -1,0 +1,54 @@
+fase12/08_non_elettrificate.jl  2026-11-16T16:40:52.669  thread: 8  TrainPowertrain 7c9115a1877dda0142eeb08fe25dc810bd93a544
+linee non elettrificate per più del 70%: 146 su 166 (totalmente non elettrificate: 108)
+
+A. Le grandezze sulle 288 coppie (146 linee × 288 = 42048 casi): rete contro simulatore
+   grandezza             casi   mediana     media       p95       max
+   durata               42048     0.33%     0.46%     1.36%     4.18%
+   serbatoio            37376     2.74%     3.73%    10.06%    52.29%
+   idrogeno             36799     2.68%     3.57%     9.71%    51.62%
+   SOC finale           41179    0.0127    0.0253    0.0956    0.5132
+   vita batteria        42048     3.30%     4.42%    12.21%    65.07%
+   vita FC (f1)         37376     4.36%     6.72%    21.46%    69.20%
+   C-rate scarica       42048     1.50%     2.09%     5.87%    48.22%
+   costo                24900     1.89%     2.42%     6.29%    31.72%
+   scarica giusta 98.79%; fattibilità giusta 98.52%
+
+B. La scelta del progetto (rete sulla griglia fitta + margine + verifiche), contro la migliore delle 288 simulate
+   progetto fattibile proposto: 146 linee su 146; verifiche: mediana 5, più di 5 in 3 linee
+   costo vero rispetto alla migliore delle 288: mediana -0.00%, 10° -3.12%, 90° +0.66%, max +6.46%
+   più economico della migliore delle 288 in 75 linee (51%); entro +1% in 134 (92%); oltre +3% in 3
+   regime: migliore delle 288 (righe) contro proposta del surrogato (colonne)
+                             sola batteria    ibrido FC piccola     ibrido    nessuna     totale
+   sola batteria                        92                    0          0          0         92
+   ibrido FC piccola                     0                    6          0          0          6
+   ibrido                                0                   10         38          0         48
+   stesso regime: 136 linee su 146; con la scelta secca fra le 288 (senza verifiche): 139 (scelta non fattibile in 20)
+   le linee con il regime diverso:
+     Aulla_Lunigiana-Lucca                    migliore 288: m 0.11 n 0.84 4.1316 €/km (ibrido) | surrogato: m 0.09 n 0.94 4.0272 €/km (ibrido FC piccola), -2.53%
+     Buonconvento-Granaiolo                   migliore 288: m 0.11 n 0.84 3.5324 €/km (ibrido) | surrogato: m 0.04 n 0.98 3.0602 €/km (ibrido FC piccola), -13.37%
+     Caltagirone-Catania_Centrale             migliore 288: m 0.11 n 0.84 3.3656 €/km (ibrido) | surrogato: m 0.04 n 0.96 2.8283 €/km (ibrido FC piccola), -15.96%
+     Caltanissetta_Centrale-Gela              migliore 288: m 0.11 n 0.84 2.9243 €/km (ibrido) | surrogato: m 0.09 n 0.92 2.8294 €/km (ibrido FC piccola), -3.25%
+     Cassino-Avezzano                         migliore 288: m 0.11 n 0.84 3.9328 €/km (ibrido) | surrogato: m 0.09 n 0.94 3.8182 €/km (ibrido FC piccola), -2.91%
+     Civitanova_Marche-Fabriano               migliore 288: m 0.11 n 0.84 3.7473 €/km (ibrido) | surrogato: m 0.09 n 0.92 3.6471 €/km (ibrido FC piccola), -2.67%
+     Piazza_al_Serchio-Pisa_Centrale          migliore 288: m 0.11 n 0.84 4.1344 €/km (ibrido) | surrogato: m 0.08 n 0.93 3.8990 €/km (ibrido FC piccola), -5.70%
+     Siena-Chiusi-Chianciano_Terme            migliore 288: m 0.11 n 0.84 3.2109 €/km (ibrido) | surrogato: m 0.06 n 0.95 2.9107 €/km (ibrido FC piccola), -9.35%
+     Siracusa-Ragusa                          migliore 288: m 0.11 n 0.84 3.1075 €/km (ibrido) | surrogato: m 0.06 n 0.96 2.7297 €/km (ibrido FC piccola), -12.16%
+     Trento-Bassano_del_Grappa                migliore 288: m 0.11 n 0.84 3.7288 €/km (ibrido) | surrogato: m 0.06 n 0.93 3.2709 €/km (ibrido FC piccola), -12.28%
+
+C. Nel progetto proposto: grandezze previste dalla rete contro il simulatore (con il segno: + = rete più alta)
+   grandezza          casi    mediana  |mediana|    p95 |e|    max |e|
+   durata              146      0.24%      0.34%      1.27%      2.77%
+   serbatoio            54      1.04%      2.72%      7.01%      8.42%
+   idrogeno             54      0.78%      2.47%      6.83%      7.93%
+   SOC finale          146    -0.0022     0.0127     0.0439     0.1621
+   vita batteria       146     -1.32%      2.55%      7.92%     16.57%
+   vita FC (f1)         54      9.08%      9.08%     31.33%     43.34%
+   C-rate scarica      146     -0.32%      1.44%      4.01%      5.86%
+   costo               146      0.24%      1.97%      7.02%     15.82%
+
+D. Per fasce di distanza dall'addestramento
+   vicina (≤ 2,9)      27 linee: costo vs 288 mediana -0.07%, max +1.65%, entro +1% 96%, stesso regime 96%
+   nella norma        101 linee: costo vs 288 mediana -0.01%, max +6.46%, entro +1% 92%, stesso regime 92%
+   LONTANA (> 4,7)     18 linee: costo vs 288 mediana +0.18%, max +4.15%, entro +1% 83%, stesso regime 94%
+
+Tempo 0.4 min. Tabella per linea: /Users/kairos/Documents/lavoro/ml_treno_dati/fase12_log/08_non_elettrificate.csv

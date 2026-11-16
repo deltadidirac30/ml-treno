@@ -596,3 +596,19 @@ Il gradino di quota a 0,1 m ogni 50 m è solo delle linee della rete (dalla mapp
 4. Rovigo–Verona sembra peggiorare del 10%, ma è un caso al limite: la migliore dell'originale aveva SOC finale 0,2019, con 200 m scende a 0,1990 e diventa non fattibile per 0,001.
 
 **Proposta:** usare le linee lisciate a 200 m come versione di riferimento della rete, sia per il simulatore sia per il surrogato. È la finestra più piccola che toglie il gradino di 0,1 m, e non tocca il profilo vero. Da confermare con il relatore.
+
+## Il surrogato sulle linee non elettrificate (oltre il 70%), lisciate a 200 m
+
+16/11/2026. Script `fase12/08_non_elettrificate.jl`, risultati in `fase12/risultati/08_non_elettrificate.txt` e `.csv`. 146 linee su 166 (108 totalmente non elettrificate), con la quota non elettrificata = `km_non_el` / lunghezza dal `riepilogo.csv` (la colonna `perc_non_el` vale 0 ovunque: è rotta). Riferimento: il simulatore sulle 288 coppie. 30 secondi.
+
+**Le grandezze, sulle 288 coppie** (42 048 casi; errore mediano / 95° percentile): durata 0,33% / 1,4%; serbatoio 2,7% / 10%; idrogeno 2,7% / 9,7%; SOC 0,013 / 0,096; vita batteria 3,3% / 12%; vita FC 4,4% / 21%; C-rate 1,5% / 5,9%; costo 1,9% / 6,3%; scarica giusta 98,8%, fattibilità giusta 98,5%.
+
+**La scelta del progetto** (griglia fitta + margine + 5 verifiche):
+- progetto fattibile in 146 linee su 146 (più di 5 verifiche in 3);
+- costo vero rispetto alla migliore delle 288: mediana 0,00%, più economico in 75 linee (51%, fino a −16%), entro +1% in 134 (92%), oltre +3% in 3;
+- regime: lo stesso in 136 linee su 146. Le 10 diverse sono tutte linee dove la migliore delle 288 è (0,11, 0,84), un ibrido appena sopra la soglia D25, e il surrogato trova un ibrido con fuel cell piccola (m 0,04–0,09, n 0,92–0,98) più economico del 3–16%: è la griglia delle 288 che non ha coppie in quella zona, non un errore del surrogato;
+- i casi peggiori sono linee corte a sola batteria (Cagliari Elmas–Cagliari 7,9 km, +6,5%; Marradi–Borgo S. Lorenzo, +4,2%): la rete sottostima il costo di una batteria grande e propone n ≈ 0,9 invece di 0,3–0,4.
+
+**Nel progetto proposto** la rete sbaglia il costo del 2% in mediana (95° percentile 7%). La vita della fuel cell è sovrastimata del 9% in mediana: fra 10 000 progetti la ricerca sceglie quelli dove la rete è ottimista (maledizione del vincitore), anche se sulle 288 coppie l'errore è solo del 4%.
+
+**Il riferimento è debole:** la migliore delle 288 non è l'ottimo vero, e nella zona m 0,03–0,11 con batteria grande le 288 hanno solo 6 coppie. Per un confronto con il modello vero serve l'ottimo del simulatore sulla griglia fitta.
