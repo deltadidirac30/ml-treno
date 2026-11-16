@@ -650,3 +650,5 @@ Il gradino di quota a 0,1 m ogni 50 m è solo delle linee della rete (dalla mapp
 2. **La lisciatura a 200 m riproduce bene il profilo vero** (stesso costo entro lo 0,05%).
 3. **Le fermate contano molto di più del profilo.** La versione dalla mappa ha 2 fermate in più del servizio reale (a 60,5 e 100,8 km). Con le fermate dell'orario l'idrogeno scende del 21%, l'ottimo passa a una fuel cell più piccola (217 kW invece di 335) e il costo scende del 15%.
 4. Le soste reali (60 s per fermata, 300–600 s in alcune) non sono rappresentabili nel formato a 4 file: il simulatore usa 120 s per fermata.
+
+**Le fermate su tutte le 166 linee** (stazioni nella versione dalla mappa contro fermate dell'orario nel Drive): uguali in 53 linee; la mappa ne ha di più in 113, mai di meno: 1–2 in più in 47 linee, 3 o più in 66, fino a 28–29 in più (Aulla–Pisa 29 contro 26, Buonconvento–Firenze 20 contro 6, Cagliari–Macomer 24 contro 11, Biella–Novara 12 contro 5). Era una scelta documentata nel README delle linee ("un servizio che ferma ovunque"), ma su Trapani–Alcamo 2 fermate in più valgono il 15% del costo: da rivedere prima di usare le linee per la tesi.
