@@ -1,0 +1,82 @@
+fase12/12_riassunto_non_el.jl  2026-11-16T18:28:47.098  thread: 8  TrainPowertrain 7c9115a1877dda0142eeb08fe25dc810bd93a544
+
+1. LE TRE VARIANTI DELLA SCELTA — TUTTE LE 166 LINEE (166 linee); riferimento: migliore delle 288 simulate
+                                                   A attuale        B + regime  C + regime largo
+  progetto fattibile                                 166/166           166/166           166/166
+  costo vs migliore 288: mediana                      -0.03%            -0.02%            -0.08%
+  … 10° / 90° percentile                        -6.5 / +0.9%      -6.5 / +0.9%      -7.0 / +0.6%
+  … caso peggiore                                    +12.86%           +12.86%            +8.09%
+  più economico / entro +1% / oltre +3%         91 / 151 / 5      90 / 151 / 5     100 / 153 / 4
+  stesso regime della migliore 288                       146               147               149
+  simulazioni di verifica: media / max               5.0 / 6           6.3 / 7           7.2 / 8
+
+1. LE TRE VARIANTI DELLA SCELTA — NON ELETTRIFICATE OLTRE IL 70% (146 linee); riferimento: migliore delle 288 simulate
+                                                   A attuale        B + regime  C + regime largo
+  progetto fattibile                                 146/146           146/146           146/146
+  costo vs migliore 288: mediana                      -0.01%            -0.01%            -0.07%
+  … 10° / 90° percentile                        -5.7 / +0.9%      -5.7 / +0.9%      -6.2 / +0.6%
+  … caso peggiore                                    +12.86%           +12.86%            +7.17%
+  più economico / entro +1% / oltre +3%         77 / 132 / 4      76 / 132 / 4      86 / 134 / 3
+  stesso regime della migliore 288                       130               131               133
+  simulazioni di verifica: media / max               5.0 / 6           6.3 / 7           7.2 / 8
+
+   le 3 linee difficili di fase12/11 (sola batteria a n 0,98): SOC previsto dalla rete a (0, 0,98) e scelta delle varianti
+   Edolo-Brescia                    SOC rete (0;0,98) 0.182 (fattibile per la rete: false) | migliore 288 1.987 €/km | A +12.86% (ibrido FC piccola), B +12.86% (ibrido FC piccola), C -0.05% (sola batteria)
+   Corteolona-Cremona               SOC rete (0;0,98) 0.226 (fattibile per la rete: true) | migliore 288 3.676 €/km | A +8.09% (ibrido FC piccola), B +8.09% (ibrido FC piccola), C +8.09% (ibrido FC piccola)
+   Roccella_Jonica-Catanzaro_Lido   SOC rete (0;0,98) 0.203 (fattibile per la rete: true) | migliore 288 3.006 €/km | A +6.62% (ibrido FC piccola), B +6.62% (ibrido FC piccola), C +6.62% (ibrido FC piccola)
+
+
+2. RIASSUNTO — LINEE NON ELETTRIFICATE OLTRE IL 70% (146 linee, 95 totalmente non elettrificate)
+   lunghezza 6.9–276.1 km (mediana 56.1); distanza dall'addestramento mediana 3.80, LONTANE (> 4,7) 20
+
+2a. Errori della rete su ogni grandezza, sulle 288 coppie di ogni linea (42048 casi)
+   grandezza                   casi    media  mediana      p95      min      max   linea migliore (mediana)                     linea peggiore (mediana)
+   durata del viaggio         42048    0.47%    0.35%    1.26%    0.00%    4.22%   Cagliari-Porto_Torres_Marittima (0.09%)      Porto_Torres_Marittima-Sassari (2.80%)
+   massa del serbatoio        37376    4.16%    3.04%   11.89%    0.00%   51.12%   GAGLIANO-LECCE-L6 (1.42%)                    Capistrello-Avezzano (13.68%)
+   idrogeno consumato         36804    4.00%    3.00%   11.07%    0.00%   49.21%   GAGLIANO-LECCE-L6 (1.22%)                    Capistrello-Avezzano (10.16%)
+   SOC finale (assoluto)      41184   0.0265   0.0144   0.0945   0.0000   0.4736   CASARANO-GALLIPOLI-L4 (0.0049)               Marradi-Borgo_S_Lorenzo (0.0352)
+   vita della batteria        42048    5.10%    3.74%   14.28%    0.00%   92.39%   Grosseto-Firenze_S_Maria_Novella (1.51%)     Marradi-Borgo_S_Lorenzo (14.61%)
+   vita della fuel cell       37376    5.10%    3.79%   14.21%    0.00%   43.29%   Parma-Brescia (1.16%)                        Trapani-Alcamo_Diramazione (19.37%)
+   C-rate di scarica          42048    2.28%    1.64%    6.32%    0.00%   41.09%   Lecco-Triuggio-Ponte_Albiate (0.81%)         Marradi-Borgo_S_Lorenzo (4.33%)
+   costo [€/km]               25720    2.54%    1.97%    6.71%    0.00%   21.68%   GAGLIANO-LECCE-L6 (0.54%)                    Rovigo-Verona_Porta_Nuova (6.23%)
+                            scarica giusta 98.70% dei casi (min per linea 93.4%); fattibilità giusta 98.41% (min per linea 93.8%)
+   errore con il segno (+ = rete più alta), mediana: durata del viaggio +0.14%; massa del serbatoio +0.06%; idrogeno consumato +0.01%; SOC finale (assoluto) -0.00; vita della batteria -0.72%; vita della fuel cell -0.32%; C-rate di scarica +0.20%; costo [€/km] +0.12%
+
+2b. La scelta del progetto (variante C), contro la migliore delle 288 simulate
+   fattibile 146/146; costo vero vs migliore 288: media -1.26%, mediana -0.07%, min -15.24%, max +7.17%
+   più economico in 86 linee (59%), entro +1% in 134 (92%), oltre +3% in 3
+   regime (righe: migliore 288; colonne: surrogato)
+     sola batteria         99 → sola batteria 98, ibrido FC piccola 1, ibrido 0
+     ibrido FC piccola      6 → sola batteria 0, ibrido FC piccola 5, ibrido 1
+     ibrido                41 → sola batteria 0, ibrido FC piccola 11, ibrido 30
+   le linee oltre +2%:
+     Cagliari-Oristano                    L 93.0 km, dist 2.83: migliore 288 (0.27, 0.88) 4.646 €/km, surrogato (0.29, 0.87) 4.778 €/km, +2.83%
+     Marradi-Borgo_S_Lorenzo              L 32.0 km, dist 5.38: migliore 288 (0.00, 0.41) 2.289 €/km, surrogato (0.00, 0.84) 2.356 €/km, +2.94%
+     Mortara-Pavia                        L 37.4 km, dist 3.16: migliore 288 (0.00, 0.56) 2.982 €/km, surrogato (0.00, 0.71) 3.046 €/km, +2.13%
+     Olbia_Terranova-Golfo_Aranci         L 21.7 km, dist 4.24: migliore 288 (0.00, 0.36) 2.720 €/km, surrogato (0.00, 0.56) 2.806 €/km, +3.15%
+     RUTIGLIANO-PUTIGNANO-L1              L 25.8 km, dist 3.55: migliore 288 (0.00, 0.29) 2.209 €/km, surrogato (0.00, 0.87) 2.367 €/km, +7.17%
+     Roccella_Jonica-Catanzaro_Lido       L 66.0 km, dist 3.04: migliore 288 (0.00, 0.98) 3.006 €/km, surrogato (0.03, 0.94) 3.205 €/km, +6.62%
+
+2c. Nel progetto proposto: rete contro simulatore
+   grandezza                 linee    mediana  |mediana|    p95 |e|    max |e|
+   durata del viaggio          146      0.15%      0.34%      1.23%      3.39%
+   massa del serbatoio          48      0.85%      2.21%      6.10%      7.67%
+   idrogeno consumato           48      0.88%      1.86%      5.87%      8.19%
+   SOC finale (assoluto)       146    -0.0019     0.0141     0.0397     0.0643
+   vita della batteria         146     -0.99%      3.03%      8.68%     16.99%
+   vita della fuel cell         48      1.35%      3.11%     13.60%     24.56%
+   C-rate di scarica           146     -0.34%      1.41%      4.38%      6.20%
+   costo [€/km]                146      0.30%      2.11%      7.06%     16.61%
+
+2d. I tempi, sul Mac M4 a 8 core
+   (simulatore: colonna tempo_s del registro, misurata con 8 simulazioni in parallelo; su un core libero lo stesso progetto è da 1,2 a
+    3 volte più veloce, misurato su 5 linee. Il confronto giusto è quindi a parità di macchina: griglia simulata su 8 core = Σ tempo_s / 8,
+    che torna con la misura diretta di fase12/09: Trapani–Alcamo 9702 progetti in 0,7–0,8 min)
+   simulatore, un progetto (8 in parallelo): media 16.4 ms, mediana 13.2 ms, da 1.2 a 58.4 ms secondo la linea
+   griglia fitta (9702 progetti) tutta simulata su 8 core, per linea: media 19.9 s, da 1.4 a 70.8 s; tutte le 146 linee: 48 min
+   le sole 288 coppie della campagna su 8 core, per linea: media 0.59 s; tutte le linee: 1.4 min
+   surrogato (variante C), per linea: caratteristiche 3 ms + rete sulla griglia 31 ms + verifiche 15 ms (7.2 simulazioni) = 0.049 s in media, max 0.14 s
+   tutte le 146 linee con il surrogato: 7 s (più ~10 s di avvio di Julia, una volta sola)
+   guadagno a parità di macchina: 406× sul totale rispetto alla griglia fitta simulata (per linea: mediana 360×, da 30× a 1040×); 12× rispetto alle sole 288 coppie
+
+Tempo totale 0.5 min. Tabella per linea: /Users/kairos/Documents/lavoro/ml_treno_dati/fase12_log/12_riassunto_non_el_linee.csv

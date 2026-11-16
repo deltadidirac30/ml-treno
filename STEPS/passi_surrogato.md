@@ -675,3 +675,28 @@ Sulle 146 linee non elettrificate oltre il 70% i numeri sono quasi uguali (tutto
 2. **Con le fermate dell'orario cambia molto il simulatore**: la migliore delle 288 costa l'8,6% in meno in mediana, e il 35% o più in meno in una linea su dieci (quelle con molte fermate in più nella mappa). Ci sono più linee a sola batteria (109 contro 101).
 3. **Un nuovo caso difficile**: 3 linee dove l'ottimo è a sola batteria con la batteria più grande (n 0,98) e il surrogato propone una fuel cell minima (m 0,03): Edolo–Brescia +12,9%, Corteolona–Cremona +8,1%, Roccella J.–Catanzaro +6,6%. Probabilmente il margine sul SOC esclude la sola batteria al limite e le 5 verifiche restano tutte sugli ibridi. Rimedio possibile: verificare sempre anche il migliore candidato di ogni regime.
 4. Le altre 17 differenze di regime sono a favore del surrogato (ibrido con fuel cell piccola più economico della migliore delle 288, fino al −15%).
+
+## Un candidato per regime, e il riassunto sulle linee non elettrificate
+
+16/11/2026. Script `fase12/12_riassunto_non_el.jl`, risultati in `fase12/risultati/12_riassunto_non_el.txt` e `_linee.csv`. Linee "tutto RINF". Nessuna simulazione nuova oltre alle verifiche, 30 secondi.
+
+**La strategia con un candidato per regime.** Oltre ai 5 progetti più economici per la rete, il simulatore verifica anche il migliore per la rete di ogni regime (sola batteria, ibrido con FC piccola, ibrido), scelto con un margine largo (SOC previsto ≥ 0,18 invece di 0,21). Sulle 166 linee: caso peggiore da +12,9% a +8,1%, entro +1% in 153 linee invece di 151, più economico della migliore delle 288 in 100 invece di 91, al prezzo di 7,2 simulazioni per linea invece di 5. Con il margine normale (variante B) non cambia nulla. Edolo–Brescia passa da +12,9% a −0,05% (la rete prevedeva SOC 0,182 per la sola batteria con n 0,98). Restano Corteolona–Cremona (+8,1%) e Roccella J.–Catanzaro (+6,6%): qui la rete sceglie per la sola batteria un altro progetto, che il simulatore boccia.
+
+**Riassunto sulle 146 linee non elettrificate oltre il 70%** (95 totalmente; da 6,9 a 276 km):
+
+| grandezza (288 coppie × 146 linee) | media | mediana | 95° perc. | massimo | linea migliore / peggiore (mediana) |
+|---|---:|---:|---:|---:|---|
+| durata del viaggio | 0,47% | 0,35% | 1,3% | 4,2% | 0,09% / 2,8% |
+| massa del serbatoio | 4,2% | 3,0% | 11,9% | 51% | 1,4% / 13,7% |
+| idrogeno consumato | 4,0% | 3,0% | 11,1% | 49% | 1,2% / 10,2% |
+| SOC finale (assoluto) | 0,027 | 0,014 | 0,095 | 0,47 | 0,005 / 0,035 |
+| vita della batteria | 5,1% | 3,7% | 14,3% | 92% | 1,5% / 14,6% |
+| vita della fuel cell | 5,1% | 3,8% | 14,2% | 43% | 1,2% / 19,4% |
+| C-rate di scarica | 2,3% | 1,6% | 6,3% | 41% | 0,8% / 4,3% |
+| costo [€/km] | 2,5% | 2,0% | 6,7% | 22% | 0,5% / 6,2% |
+
+Scarica giusta nel 98,7% dei casi, fattibilità giusta nel 98,4% (minimo per linea 93,8%). Nessuna grandezza ha più una tendenza sistematica (errore con il segno entro ±0,7%).
+
+**La scelta del progetto** (variante C): fattibile in 146 linee su 146; costo vero rispetto alla migliore delle 288 in media −1,3%, mediana −0,07%, da −15,2% a +7,2%; più economico in 86 linee (59%), entro +1% in 134 (92%), oltre +3% in 3. Regime uguale in 133 linee; le differenze sono quasi tutte ibridi con fuel cell piccola più economici. Nel progetto proposto la rete sbaglia il costo del 2,1% in mediana (95° percentile 7%).
+
+**I tempi**, sul Mac M4 a 8 core, a parità di macchina: la griglia fitta tutta simulata costa 20 s per linea in media (da 1,4 a 71 s), 48 minuti per le 146 linee; il surrogato 0,05 s per linea (rete 31 ms, 7 verifiche 15 ms), 7 secondi per tutte. Circa **400 volte più veloce** (per linea da 30× a 1000×; il guadagno cresce con la lunghezza della linea). Rispetto alle sole 288 coppie: 12 volte più veloce, e con un progetto più economico nel 59% delle linee. Il tempo del registro (8 simulazioni in parallelo) è da 1,2 a 3 volte quello su un core libero: per questo il confronto è a parità di macchina.
