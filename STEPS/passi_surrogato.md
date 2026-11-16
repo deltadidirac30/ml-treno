@@ -165,22 +165,32 @@ Numeri in `fase8/risultati/02_decisioni.txt` (script `fase8/02_decisioni.jl`).
 
 ## Passo 5b: la scelta della coppia migliore fra le 288
 
-16/11/2026. Report: `fase9/REPORT_FASE9_COSTO.md`, sezione "Passo 5b".
+16/11/2026. Report: `fase9/REPORT_FASE9_COSTO.md`, sezione "Passo 5b". Figura: `fase9/figure/fig_rimpianto.png`.
 
-**Cosa abbiamo fatto.** Per ognuna delle 2048 tratte di validazione abbiamo messo a confronto la coppia (m, n) migliore secondo il simulatore e quella scelta dal surrogato. Abbiamo misurato quanto costa di più la scelta del surrogato (il "rimpianto") e quante volte è in realtà non fattibile. Pochi secondi di calcolo.
+**Cosa abbiamo fatto.** Per ognuna delle 2048 tratte di validazione abbiamo confrontato la coppia (m, n) migliore secondo il simulatore con quella scelta dal surrogato (il boosting), fra le 288 coppie simulate. Due misure: quanto costa di più la scelta del surrogato (il "rimpianto") e quante volte è in realtà non fattibile. Pochi secondi di calcolo.
 
-**I risultati:**
+**Il risultato principale:** usato da solo, il surrogato sceglie un progetto in realtà non fattibile nel **18% delle tratte**. Con 5 simulazioni di verifica questa quota scende allo 0,3%.
 
-| strategia | scelte non fattibili | rimpianto mediano | 95° percentile |
-|---|---:|---:|---:|
-| surrogato da solo | 18,2% delle tratte | 1,0% | 14,7% |
-| surrogato + 3 simulazioni di verifica | 2,5% | 0,35% | 12,9% |
-| surrogato + 5 simulazioni di verifica | 0,3% | 0,09% | 12,7% |
-| migliore della tratta più simile (senza surrogato) | 36% | 2,6% | 40% |
+**Le strategie a confronto** (2048 tratte di validazione):
+
+| strategia | scelte non fattibili | rimpianto mediano | 95° percentile | tratte entro l'1% |
+|---|---:|---:|---:|---:|
+| **surrogato da solo** | **18,2%** | 1,0% | 14,7% | 41% |
+| surrogato + verifica delle prime 3 | 2,5% | 0,35% | 12,9% | 60% |
+| surrogato + verifica delle prime 5 | 0,3% | 0,09% | 12,7% | 65% |
+| surrogato + verifica delle prime 10 | 0% | 0,00% | 12,7% | 69% |
+| migliore della tratta di addestramento più simile | 36% | 2,6% | 40% | 22% |
+| coppia fissa più frequente | 60% | 40% | 71% | 7% |
+
+"Verifica delle prime k" vuol dire che il simulatore controlla le k coppie migliori secondo il surrogato, circa k × 50 ms, e si tiene la migliore davvero fattibile. Il rimpianto è quanto costa di più la scelta rispetto alla migliore vera.
 
 **Cosa ci dicono i numeri:**
-1. **Il surrogato sceglie quasi sempre vicino alla migliore:** regime giusto nel 97% delle tratte, la sua scelta è in mediana la seconda migliore, ed è molto meglio che copiare la tratta più simile.
-2. **Ma una volta su cinque sceglie un progetto che viola di poco un vincolo**, quasi sempre il SOC finale: previsto 0,211, vero 0,173. È la "maledizione del vincitore": l'ottimo sta sul bordo dei vincoli, e cercando il più economico il surrogato finisce proprio dove un piccolo errore sbaglia la fattibilità.
-3. **Bastano poche simulazioni per rimediare.** Se il simulatore verifica le 5 coppie migliori secondo il surrogato (circa un quarto di secondo), le scelte non fattibili scendono allo 0,3% e il rimpianto mediano allo 0,09%.
-4. **I rimpianti più grandi** vengono da tratte la cui migliore è a sola batteria, dove il surrogato sceglie un ibrido con m ≈ 0,1.
-5. **Un altro rimedio da provare:** un margine di sicurezza sui vincoli, per esempio chiedere un SOC previsto un po' sopra 0,2.
+1. **Il surrogato sceglie quasi sempre vicino alla migliore.** Indovina il regime (sola batteria o ibrido) nel 97% delle tratte, e la sua scelta è in mediana la seconda migliore fra le fattibili. Copiare la tratta più simile, senza surrogato, fa molto peggio.
+2. **Ma una volta su cinque la sua scelta viola di poco un vincolo, ed è la "maledizione del vincitore".** L'ottimo sta sul bordo dei vincoli, e cercando la coppia più economica il surrogato finisce proprio dove un piccolo errore sbaglia la fattibilità. Delle 373 scelte non fattibili:
+   - 255 violano il SOC finale, con un SOC previsto di 0,211 contro 0,173 vero;
+   - 106 violano la scarica, con una probabilità prevista appena sotto 0,5;
+   - 34 violano la massa.
+3. **Bastano poche simulazioni per rimediare.** Con 5 verifiche, circa un quarto di secondo per tratta, le scelte non fattibili scendono allo 0,3% e il rimpianto mediano allo 0,09%.
+4. **Resta una coda** (95° percentile intorno al 13%, anche con 10 verifiche). Sono tratte in cui la migliore è a sola batteria e il surrogato preferisce un ibrido con m ≈ 0,1, oppure in cui gli errori di costo spostano molto la classifica.
+
+**Come continuare.** Prima di passare a 5c o alla rete neurale, una piccola prova: un **margine di sicurezza sui vincoli**. Il surrogato considera fattibile un progetto solo se il SOC previsto è almeno 0,2 + δ e la probabilità di scarica è sotto una soglia più bassa di 0,5. Si provano alcuni margini e si misurano scelte non fattibili e rimpianto, con e senza le verifiche. Ci dice se il problema si risolve con una regola semplice, e quale margine usare poi anche con la rete neurale.
