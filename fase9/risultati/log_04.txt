@@ -1,0 +1,43 @@
+fase9/04_griglia_fitta.jl  2026-11-16T10:46:53.850  thread: 8  TrainPowertrain 7c9115a1877dda0142eeb08fe25dc810bd93a544
+campione: 256 tratte di validazione (seme 20261116); griglia 98 × 99 = 9702 punti per tratta
+
+[1] il surrogato sulla griglia fitta
+  256 tratte × 9702 punti in 251.5 s; tratte senza punti fattibili per il surrogato: 0
+
+[2] simulazioni dei candidati (5 per tratta)
+  1280 simulazioni in 17.6 s; config.txt uguale a quello della campagna in tutte le cartelle
+
+[3] confronto sulle 256 tratte del campione (costo vero della scelta / costo della migliore delle 288 − 1)
+  288 coppie, scelta secca (passo 5b)          non fattibile  57 ( 22.3%) | rispetto alla migliore delle 288: mediana +0.880%, p10 +0.000%, p90 +8.494%, p95 +12.114%; più economica in 0 tratte (0.0%), entro +1% in 40.6%
+  288 coppie, verifica delle prime 5 (passo 5b) non fattibile   2 (  0.8%) | rispetto alla migliore delle 288: mediana +0.000%, p10 +0.000%, p90 +6.005%, p95 +9.245%; più economica in 0 tratte (0.0%), entro +1% in 68.4%
+  griglia fitta, scelta secca                  non fattibile 124 ( 48.4%) | rispetto alla migliore delle 288: mediana +0.355%, p10 -2.578%, p90 +5.588%, p95 +8.153%; più economica in 40 tratte (15.6%), entro +1% in 34.0%
+  griglia fitta, verifica delle prime 5        non fattibile  27 ( 10.5%) | rispetto alla migliore delle 288: mediana +0.003%, p10 -4.271%, p90 +3.670%, p95 +5.573%; più economica in 111 tratte (43.4%), entro +1% in 72.7%
+  griglia, scelta secca fattibile: costo previsto / vero − 1: mediana -0.21%, p5 -21.83%, p95 +6.86%
+  griglia, scelte secche non fattibili per stato: Dict{SubString{String}, Int64}("completed" => 124)
+  regime della scelta secca sulla griglia uguale a quello della migliore delle 288: 97.7%
+
+[4] gradini: linee in m a n fissa, previste e simulate
+  tratta  6146, n 0.21: passi di m con costo previsto invariato 0 su 96; salto previsto massimo fra punti vicini 14.95% (simulato 18.19%); fattibilità uguale 96 su 97
+  tratta  6876, n 0.39: passi di m con costo previsto invariato 0 su 96; salto previsto massimo fra punti vicini 12.65% (simulato 9.56%); fattibilità uguale 94 su 97
+  tratta 11610, n 0.75: passi di m con costo previsto invariato 0 su 96; salto previsto massimo fra punti vicini 10.15% (simulato 11.92%); fattibilità uguale 90 su 97
+  tratta 12285, n 0.92: passi di m con costo previsto invariato 0 su 96; salto previsto massimo fra punti vicini 7.90% (simulato 6.69%); fattibilità uguale 97 su 97
+
+figure: fig_griglia_rimpianto.png, fig_linee.png
+tempo totale: 282.2 s
+┌ Warning: Il ciclo dello storage non converge in 50 iterazioni (tolleranza 50.0 kg): ciclo di periodo 2, D28: si usa il peso massimo 4950.490457267839 kg del ciclo.
+│   m = 0.48
+│   n = 0.75
+└ @ TrainPowertrain.Objective ~/Documents/lavoro/train-powertrain/julia/src/Objective.jl:481
+┌ Warning: Il ciclo dello storage non converge in 50 iterazioni (tolleranza 50.0 kg): ciclo di periodo 3, D28: si usa il peso massimo 4176.590382225438 kg del ciclo.
+│   m = 0.36
+│   n = 0.75
+└ @ TrainPowertrain.Objective ~/Documents/lavoro/train-powertrain/julia/src/Objective.jl:481
+┌ Warning: Il ciclo dello storage non converge in 50 iterazioni (tolleranza 50.0 kg): ciclo di periodo 2, D28: si usa il peso massimo 4238.938073290663 kg del ciclo.
+│   m = 0.37
+│   n = 0.75
+└ @ TrainPowertrain.Objective ~/Documents/lavoro/train-powertrain/julia/src/Objective.jl:481
+┌ Warning: Il ciclo dello storage non converge in 50 iterazioni (tolleranza 50.0 kg): ciclo di periodo 3, D28: si usa il peso massimo 4238.799261298813 kg del ciclo.
+│   m = 0.38
+│   n = 0.75
+└ @ TrainPowertrain.Objective ~/Documents/lavoro/train-powertrain/julia/src/Objective.jl:481
+julia -t 8 --project=fase9 fase9/04_griglia_fitta.jl  1988,90s user 72,29s system 723% cpu 4:44,77 total

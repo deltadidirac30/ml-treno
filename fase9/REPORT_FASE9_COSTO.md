@@ -196,3 +196,45 @@ Sono 96 combinazioni, ognuna con la scelta secca (k = 1) e con la verifica delle
 2. **Il margine sulla scarica è il più conveniente** (da 18% a 12% con p < 0,1, rimpianto da 1,0% a 1,2%). Quello sul SOC è il più efficace ma il più caro. Quello sulla massa serve poco.
 3. **La verifica con poche simulazioni batte qualunque margine.** Con 5 simulazioni e nessun margine si ottengono 0,3% di scelte non fattibili e 0,09% di rimpianto mediano. Aggiungere margini alla verifica peggiora il rimpianto: toglie dai candidati proprio le coppie migliori.
 4. **Conclusione:** per ora **niente margini**. La strategia di riferimento è **surrogato + verifica delle prime 5 coppie**. Per il surrogato da solo serve un modello del SOC più preciso: è la priorità della rete neurale. Resta da provare, con la rete, una probabilità di fattibilità al posto della soglia secca.
+
+## Passo 5c: l'ottimo su una griglia fitta (`04_griglia_fitta.jl`, `risultati/04_griglia.txt`, `04_tratte.csv`)
+
+Comando: `julia -t 8 --project=fase9 fase9/04_griglia_fitta.jl > $L/log_04.txt 2>&1` (≈ 5 min: 4 min di previsioni, 18 s di simulazioni).
+
+**Cosa si fa:**
+- **Campione:** 256 tratte di validazione scelte a caso (seme 20261116).
+- **Griglia del surrogato** (boosting, banco di prova del passo 5a, nessun margine): m ∈ {0} ∪ {0,03; 0,04; …; 0,99}, n ∈ {0,01; …; 0,99}, cioè 9702 punti per tratta.
+- **Candidati:**
+  - la scelta secca è il punto più economico fra quelli che il surrogato dice fattibili;
+  - le 5 migliori sono scelte distanti fra loro almeno 0,03 in m o in n, perché sulla griglia fitta le 5 migliori "pure" sarebbero 5 punti attaccati.
+- **Verifica:** i 5 candidati li simula il **simulatore vero** (TrainPowertrain `7c9115a`, invariato) con il percorso della campagna: `leggi_tratte_materializzate`, `CampagnaSpec` in modalità griglia, andata e ritorno, `esegui_campagna`. Il `config.txt` è uguale a quello della campagna in tutte le cartelle. Sono 1280 simulazioni in 18 s.
+- **Confronto** con la migliore delle 288 coppie vere della campagna, e con le scelte del passo 5b sulle stesse 256 tratte.
+
+**Risultati** (costo vero della scelta rispetto alla migliore delle 288; negativo = più economica):
+
+| strategia | scelte non fattibili | mediana | p10 | p90 | p95 | tratte più economiche della migliore delle 288 |
+|---|---:|---:|---:|---:|---:|---:|
+| 288 coppie, scelta secca (5b) | 57 (22,3%) | +0,88% | 0 | +8,5% | +12,1% | — |
+| 288 coppie, verifica delle prime 5 (5b) | 2 (0,8%) | 0,00% | 0 | +6,0% | +9,2% | — |
+| **griglia fitta, scelta secca** | **124 (48,4%)** | +0,36% | −2,6% | +5,6% | +8,2% | 40 (15,6%) |
+| **griglia fitta, verifica delle prime 5** | **27 (10,5%)** | +0,00% | **−4,3%** | +3,7% | +5,6% | **111 (43,4%)** |
+
+- La scelta secca fattibile: costo previsto contro vero −0,2% in mediana, da −22% a +7% (p5–p95).
+- Le scelte secche non fattibili sono tutte "completed" con penalità, cioè violano SOC, scarica o massa. Nessuna è D3.
+- Il regime della scelta secca è uguale a quello della migliore delle 288 nel 97,7% delle tratte.
+
+**Gradini** (`figure/fig_linee.png`: 4 tratte, linea in m a n fissa, 97 punti, previsti e simulati):
+- il costo previsto non ha tratti piatti a passo 0,01: gli istogrammi a 255 classi di m sono più fini della griglia;
+- però **oscilla**: piccoli zig-zag dell'1–3% fra punti vicini, che il simulatore non ha;
+- in alcune zone c'è uno scostamento sistematico (tratta 12285: sotto il vero fra m = 0,45 e 0,7, sopra a m piccola);
+- la fattibilità lungo la linea è giusta in 90–97 punti su 97;
+- i salti veri ci sono anche nel simulatore (fino al 18% fra punti vicini, alle soglie D25).
+
+**Cosa vuol dire:**
+1. **La griglia fitta trova progetti migliori delle 288 coppie.** Con la verifica delle prime 5, in 43% delle tratte il progetto scelto costa meno della migliore delle 288, e in un decimo delle tratte almeno il 4% in meno. La coda alta è più stretta (p95 +5,6% contro +9,2%).
+2. **Ma la maledizione del vincitore è più forte.** Su 9702 punti il surrogato trova punti ancora più vicini al bordo dei vincoli, e anche quelli dove i suoi errori (gli zig-zag) lo rendono ottimista. La scelta secca è non fattibile in quasi metà delle tratte (contro il 22% fra le 288), e con 5 verifiche resta non fattibile nel 10,5% (contro lo 0,8%).
+3. **Per il preconfiguratore** la ricerca fitta vale la pena solo con una verifica più robusta. Per esempio:
+   - più candidati, o candidati più sparsi;
+   - un ripiego sulle migliori fra le 288 coppie quando nessun candidato della griglia è fattibile;
+   - una ricerca locale con il simulatore attorno al migliore, come NOMAD-PB in fase 2.
+4. **Per la rete neurale:** previsioni lisce in (m, n), senza zig-zag, e un SOC più preciso dovrebbero ridurre proprio questi due problemi. Questi numeri sono il riferimento.

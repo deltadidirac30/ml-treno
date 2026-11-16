@@ -222,3 +222,29 @@ Numeri in `fase8/risultati/02_decisioni.txt` (script `fase8/02_decisioni.jl`).
 - la strategia di riferimento è il **surrogato + verifica delle prime 5 coppie** con il simulatore (circa un quarto di secondo per tratta);
 - per usare il surrogato da solo serve un modello del SOC più preciso: è la priorità della rete neurale;
 - con la rete proveremo anche a stimare direttamente la probabilità che un progetto sia fattibile, al posto della soglia secca.
+
+## Passo 5c: l'ottimo cercato su una griglia fitta di (m, n)
+
+16/11/2026. Report: `fase9/REPORT_FASE9_COSTO.md`, sezione "Passo 5c". Figure: `fase9/figure/fig_griglia_rimpianto.png` e `fig_linee.png`.
+
+**Cosa abbiamo fatto.** Su 256 tratte di validazione il surrogato (il boosting) ha cercato il progetto migliore su una griglia fitta di quasi 10 000 punti (m, n) per tratta, invece che fra le sole 288 coppie della campagna. Il simulatore vero, invariato e con la stessa configurazione della campagna, ha poi verificato le 5 proposte migliori del surrogato, scelte distanti fra loro. È la prima volta dal passo 1 che usiamo di nuovo il simulatore: 1280 simulazioni in 18 secondi. Circa 5 minuti in tutto.
+
+**A cosa serve, con il boosting:** soprattutto come confronto. Prepara il "motore" di ricerca che userà il surrogato finale, e dà alla rete neurale il riferimento da battere.
+
+**I risultati** (costo vero della scelta rispetto alla migliore delle 288 coppie: un numero negativo vuol dire che la griglia fitta ha trovato di meglio):
+
+| strategia | scelte non fattibili | costo, mediana | 10% delle tratte migliori | 95° percentile | tratte con un progetto migliore delle 288 |
+|---|---:|---:|---:|---:|---:|
+| 288 coppie, surrogato da solo | 22% | +0,9% | 0% | +12% | — |
+| 288 coppie + verifica delle prime 5 | 0,8% | 0,0% | 0% | +9,2% | — |
+| griglia fitta, surrogato da solo | **48%** | +0,4% | −2,6% | +8,2% | 16% |
+| **griglia fitta + verifica delle prime 5** | **10,5%** | 0,0% | **−4,3%** | **+5,6%** | **43%** |
+
+**Cosa ci dicono i numeri:**
+1. **La ricerca fitta trova progetti migliori di quelli della campagna.** Con 5 verifiche, in quasi metà delle tratte il progetto scelto costa meno della migliore delle 288 coppie simulate, e in un decimo delle tratte almeno il 4% in meno. Anche i casi peggiori migliorano (95° percentile +5,6% contro +9,2%).
+2. **Ma la maledizione del vincitore peggiora.** Fra quasi 10 000 punti il surrogato trova punti ancora più vicini al bordo dei vincoli, e punti dove i suoi errori lo rendono troppo ottimista. Da solo sceglie un progetto non fattibile in quasi metà delle tratte, e anche con 5 verifiche nel 10,5%.
+3. **I gradini del boosting.** Lungo una linea in m il costo previsto non ha tratti piatti, ma fa piccoli zig-zag dell'1–3% fra punti vicini, che il simulatore non ha. In qualche zona sta sistematicamente sopra o sotto il vero. Una ricerca fitta "sfrutta" proprio queste oscillazioni.
+4. **Per il preconfiguratore** la ricerca fitta conviene, ma con una verifica più robusta: più candidati, un ripiego sulle migliori fra le 288 coppie, o una breve ricerca locale con il simulatore attorno alla proposta del surrogato.
+5. **Per la rete neurale:** previsioni lisce in (m, n) e un SOC più preciso dovrebbero ridurre proprio questi due problemi. Questi numeri sono il riferimento da battere.
+
+**Prossimo: passo 6**, la rete neurale unica.
