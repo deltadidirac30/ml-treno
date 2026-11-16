@@ -612,3 +612,21 @@ Il gradino di quota a 0,1 m ogni 50 m è solo delle linee della rete (dalla mapp
 **Nel progetto proposto** la rete sbaglia il costo del 2% in mediana (95° percentile 7%). La vita della fuel cell è sovrastimata del 9% in mediana: fra 10 000 progetti la ricerca sceglie quelli dove la rete è ottimista (maledizione del vincitore), anche se sulle 288 coppie l'errore è solo del 4%.
 
 **Il riferimento è debole:** la migliore delle 288 non è l'ottimo vero, e nella zona m 0,03–0,11 con batteria grande le 288 hanno solo 6 coppie. Per un confronto con il modello vero serve l'ottimo del simulatore sulla griglia fitta.
+
+## Effetto della lisciatura sull'ottimo del simulatore vero: Trapani–Alcamo
+
+16/11/2026. Script `fase12/09_ottimo_lisciatura.jl`, risultati in `fase12/risultati/09_ottimo_lisciatura_Trapani-Alcamo_Diramazione.txt`, figura `fase12/figure/fig_ottimo_lisciatura_Trapani-Alcamo_Diramazione.png`. Solo simulatore, niente surrogato: griglia fitta intera (9702 progetti) in 5 versioni del profilo, circa 4 minuti. Aggiunta anche la versione `media_100m` in `tratte_rete_attenuate`.
+
+| | originale | 100 m | 200 m | 500 m | 1 km |
+|---|---:|---:|---:|---:|---:|
+| Σ\|Δp\| per km a 1 m / su 1 km | 39,0 / 3,78 | 19,2 / 3,77 | 12,4 / 3,75 | 8,1 / 3,62 | 5,4 / 3,27 |
+| ottimo (m, n) | 0,17, 0,92 | uguale | uguale | uguale | uguale |
+| costo dell'ottimo [€/km] | 3,672 | 3,599 (−2,0%) | 3,585 (−2,4%) | 3,558 (−3,1%) | 3,528 (−3,9%) |
+| cicli di carico [µV/h] | 18,5 | 11,6 | 10,0 | 8,5 | 6,6 |
+| vita FC f1 [h] / sostituzioni FC | 2298 / 17 | 2926 / 13 | 3125 / 13 | 3342 / 12 | 3661 / 11 |
+| sostituzioni FC [€/km] | 0,340 | 0,261 | 0,255 | 0,236 | 0,215 |
+
+**Cosa ci dicono i numeri:**
+1. **L'ottimo non si muove**: stesso progetto (m 0,17, n 0,92) in tutte le versioni, primo anche nella classifica dell'originale. Qui l'ottimo sta sul bordo della fattibilità: è la fuel cell più piccola che tiene il SOC finale sopra 0,2 (0,2001), e la lisciatura non cambia energia e idrogeno (±0,5%).
+2. **Cambia il costo**: −2% già con 100 m, quasi tutto dalle sostituzioni della fuel cell (da 17 a 13). Con 500 m e 1 km si aggiunge un salto discreto delle sostituzioni della batteria (da 3 a 2).
+3. **Con i cicli equivalenti l'effetto sull'ottimo è piccolo, ma non sul degrado**: la vita della fuel cell sale del 27% con 100 m e del 36% con 200 m. Per progetti con fuel cell più grandi il costo scende di più (fino a −8–10% per m ≈ 0,5, figura).

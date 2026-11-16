@@ -1,0 +1,65 @@
+fase12/09_ottimo_lisciatura.jl  2026-11-16T17:13:29.250  thread: 8  TrainPowertrain 7c9115a1877dda0142eeb08fe25dc810bd93a544  linea Trapani-Alcamo_Diramazione
+originale  griglia fitta (9702 progetti) simulata in 0.1 min
+100 m      griglia fitta (9702 progetti) simulata in 0.0 min
+200 m      griglia fitta (9702 progetti) simulata in 0.0 min
+500 m      griglia fitta (9702 progetti) simulata in 0.0 min
+1 km       griglia fitta (9702 progetti) simulata in 0.0 min
+
+                                                 originale         100 m         200 m         500 m          1 km
+IL PROFILO
+  Σ|Δp| per km, a 1 m [‰/km]                         38.96         19.22         12.42          8.06          5.35
+  Σ|Δp| per km, media su 100 m                       18.03         13.67         10.88          7.58          5.16
+  Σ|Δp| per km, media su 1 km                         3.78          3.77          3.75          3.62          3.27
+  pendenza massima su 100 m [‰]                       21.8          20.2          18.4          16.3          15.9
+  dislivello [m]                                     249.1         248.9         248.7         247.9         246.8
+L'OTTIMO VERO (griglia fitta simulata)
+  progetti fattibili                                  5155          5152          5153          5158          5175
+  m, n                                          0.17, 0.92    0.17, 0.92    0.17, 0.92    0.17, 0.92    0.17, 0.92
+  regime                                            ibrido        ibrido        ibrido        ibrido        ibrido
+  fuel cell [kW] / batteria [kWh]               335 / 2921    335 / 2921    335 / 2921    335 / 2921    335 / 2921
+  costo [€/km]                                      3.6724        3.5991        3.5850        3.5582        3.5279
+  rispetto all'originale                             0.00%        -2.00%        -2.38%        -3.11%        -3.94%
+  voci di costo dell'ottimo [€/km]:
+    CAPEX_FC_EUR_km                                 0.0291        0.0291        0.0291        0.0291        0.0291
+    CAPEX_batt_EUR_km                               0.0845        0.0845        0.0845        0.0845        0.0845
+    CAPEX_tank_EUR_km                               0.0111        0.0111        0.0112        0.0111        0.0111
+    OPEX_H2_rech_EUR_km_att                         1.6250        1.6336        1.6364        1.6293        1.6208
+    OPEX_batt_rech_EUR_km_att                       1.4355        1.4306        1.4317        1.4296        1.4304
+    OPEX_mant_FC_EUR_km_att                         0.0079        0.0079        0.0079        0.0079        0.0079
+    OPEX_mant_batt_EUR_km_att                       0.0230        0.0230        0.0230        0.0230        0.0230
+    OPEX_mant_tank_EUR_km_att                       0.0030        0.0030        0.0030        0.0030        0.0030
+    cost_repl_FC_EUR_km_att                         0.3402        0.2608        0.2547        0.2357        0.2151
+    cost_repl_batt_EUR_km_att                       0.1539        0.1539        0.1539        0.1151        0.1148
+  idrogeno [kg/viaggio]                              57.18         57.48         57.58         57.33         57.03
+  SOC finale                                        0.2001        0.2022        0.2017        0.2026        0.2023
+  vita FC f1 [h]                                      2298          2926          3125          3342          3661
+  vita FC [anni]                                     1.122         1.429         1.526         1.631         1.787
+  sostituzioni FC                                       17            13            13            12            11
+  vita batteria [anni]                               6.657         6.659         6.658         6.686         6.725
+  sostituzioni batteria                                  3             3             3             2             2
+  durata A/R [s]                                 1.302e+04     1.302e+04     1.302e+04     1.303e+04     1.303e+04
+IL MIGLIORE PER REGIME [€/km] (m, n)
+  sola batteria                                          —             —             —             —             —
+  ibrido FC piccola (m < 0,1)                            —             —             —             —             —
+  ibrido (m ≥ 0,1)                          3.672 (0.17,0.92)3.599 (0.17,0.92)3.585 (0.17,0.92)3.558 (0.17,0.92)3.528 (0.17,0.92)
+LO STESSO TRENO (l'ottimo dell'originale) IN OGNI VERSIONE
+  m 0.17, n 0.92: costo [€/km]                      3.6724        3.5991        3.5850        3.5582        3.5279
+  esito                                          fattibile     fattibile     fattibile     fattibile     fattibile
+  vita FC f1 [h]                                      2298          2926          3125          3342          3661
+  sostituzioni FC                                       17            13            13            12            11
+  sostituzioni FC [€/km]                            0.3402        0.2608        0.2547        0.2357        0.2151
+  idrogeno [kg/viaggio]                              57.18         57.48         57.58         57.33         57.03
+  SOC finale                                        0.2001        0.2022        0.2017        0.2026        0.2023
+  voci di degrado della FC [µV per ora di viaggio]:
+    accensioni                                        3.81          3.81          3.81          3.81          3.81
+    minimo                                            2.42          2.37          2.36          2.39          2.43
+    cicli di carico                                  18.45         11.59         10.00          8.48          6.57
+    alto carico                                       7.20          7.26          7.27          7.24          7.19
+LA CLASSIFICA
+  ottimo di originale : nell'originale è il 1°, costa +0.00% rispetto all'ottimo dell'originale
+  ottimo di 100 m     : nell'originale è il 1°, costa +0.00% rispetto all'ottimo dell'originale
+  ottimo di 200 m     : nell'originale è il 1°, costa +0.00% rispetto all'ottimo dell'originale
+  ottimo di 500 m     : nell'originale è il 1°, costa +0.00% rispetto all'ottimo dell'originale
+  ottimo di 1 km      : nell'originale è il 1°, costa +0.00% rispetto all'ottimo dell'originale
+
+Tempo 0.1 min. Figura: fase12/figure/fig_ottimo_lisciatura_Trapani-Alcamo_Diramazione.png
