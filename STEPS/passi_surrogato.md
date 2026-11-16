@@ -194,3 +194,31 @@ Numeri in `fase8/risultati/02_decisioni.txt` (script `fase8/02_decisioni.jl`).
 4. **Resta una coda** (95° percentile intorno al 13%, anche con 10 verifiche). Sono tratte in cui la migliore è a sola batteria e il surrogato preferisce un ibrido con m ≈ 0,1, oppure in cui gli errori di costo spostano molto la classifica.
 
 **Come continuare.** Prima di passare a 5c o alla rete neurale, una piccola prova: un **margine di sicurezza sui vincoli**. Il surrogato considera fattibile un progetto solo se il SOC previsto è almeno 0,2 + δ e la probabilità di scarica è sotto una soglia più bassa di 0,5. Si provano alcuni margini e si misurano scelte non fattibili e rimpianto, con e senza le verifiche. Ci dice se il problema si risolve con una regola semplice, e quale margine usare poi anche con la rete neurale.
+
+## Prova dei margini di sicurezza (dopo il passo 5b)
+
+16/11/2026. Report: `fase9/REPORT_FASE9_COSTO.md`, sezione "Prova dei margini di sicurezza". Figura: `fase9/figure/fig_margini.png`.
+
+**L'idea.** Per evitare che il surrogato scelga progetti al limite dei vincoli, gli chiediamo un margine di sicurezza: considera fattibile un progetto solo se il SOC previsto è almeno 0,2 + δ, la probabilità di scarica è sotto una soglia più bassa di 0,5, e la massa prevista sta qualche centinaio di kg sotto il limite. Abbiamo provato 96 combinazioni di margini, con e senza le simulazioni di verifica. 7 secondi di calcolo, nessuna simulazione nuova. I margini sono scelti sulla validazione: il giudizio finale andrà confermato sul test.
+
+**I risultati principali:**
+
+| strategia | scelte non fattibili | rimpianto mediano | 95° percentile |
+|---|---:|---:|---:|
+| surrogato da solo, nessun margine | 18,2% | 1,0% | 14,7% |
+| surrogato da solo, margini medi (SOC + 0,03, scarica < 0,2, massa − 200 kg) | 4,5% | 2,1% | 22% |
+| surrogato da solo, margini forti (SOC + 0,05, scarica < 0,1, massa − 200 kg) | 1,9% | 3,2% | 25% |
+| **surrogato + verifica delle prime 5, nessun margine** | **0,3%** | **0,09%** | **12,7%** |
+| surrogato + verifica delle prime 5, scarica < 0,1 | 0,05% | 0,37% | 13,6% |
+
+**Cosa ci dicono i numeri:**
+1. **I margini riducono le scelte sbagliate, ma costano caro.** Per scendere sotto il 2% di scelte non fattibili senza simulazioni, il rimpianto mediano triplica (dall'1% al 3,2%) e il 95° percentile passa dal 15% al 25%. Il margine allontana la scelta dal bordo dei vincoli, ed è proprio lì che sta l'ottimo.
+2. **Il margine sulla scarica è il più conveniente** (scelte sbagliate dal 18% al 12% quasi gratis). Quello sul SOC è il più efficace ma il più caro. Quello sulla massa serve poco.
+3. **Poche simulazioni di verifica battono qualunque margine.** Con 5 verifiche e nessun margine le scelte non fattibili sono lo 0,3% e il rimpianto mediano lo 0,09%. Aggiungere margini alla verifica peggiora: toglie dai candidati proprio le coppie migliori.
+4. **Il vero problema è la precisione del SOC finale** (errore tipico 0,03): troppo grande perché un margine piccolo basti.
+
+**Conclusione:**
+- per ora nessun margine;
+- la strategia di riferimento è il **surrogato + verifica delle prime 5 coppie** con il simulatore (circa un quarto di secondo per tratta);
+- per usare il surrogato da solo serve un modello del SOC più preciso: è la priorità della rete neurale;
+- con la rete proveremo anche a stimare direttamente la probabilità che un progetto sia fattibile, al posto della soglia secca.

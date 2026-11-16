@@ -157,3 +157,42 @@ Due rimedi possibili, che si possono anche combinare:
 - **un margine di sicurezza sui vincoli:** per esempio SOC previsto ≥ 0,2 + δ, e probabilità di scarica sotto una soglia più bassa di 0,5.
 
 La rete neurale dovrà essere misurata anche su questo.
+
+## Prova dei margini di sicurezza (`03_margini.jl`, `risultati/03_margini.txt`, `03_margini.csv`)
+
+Comando: `julia -t 8 --project=fase9 fase9/03_margini.jl > $L/log_03.txt 2>&1` (≈ 7 s). Nessuna simulazione.
+
+**Cosa si prova.** Il surrogato considera fattibile un caso solo se:
+- non è D3;
+- SOC previsto ≥ 0,2 + δSOC, con δSOC = 0; 0,01; 0,02; 0,03; 0,05; 0,08;
+- probabilità di scarica < p_max, con p_max = 0,5; 0,3; 0,2; 0,1;
+- massa prevista ≤ 29 250 − δmassa, con δmassa = 0, 100, 200, 400 kg.
+
+Sono 96 combinazioni, ognuna con la scelta secca (k = 1) e con la verifica delle prime 3 e 5. Con i margini nulli si ritrova esattamente il passo 5b (controllato). **I margini sono scelti sulla validazione: il giudizio finale va confermato sul test.**
+
+**Un margine alla volta** (scelta secca):
+
+| margine | scelte non fattibili | rimpianto mediano | p95 |
+|---|---:|---:|---:|
+| nessuno | 18,2% | 1,01% | 14,7% |
+| δSOC 0,01 / 0,02 / 0,03 / 0,05 / 0,08 | 14,8 / 12,1 / 9,6 / 7,3 / 6,2% | 1,3 / 1,6 / 2,0 / 2,9 / 4,6% | 18 / 21 / 22 / 25 / 29% |
+| p_scarica < 0,3 / 0,2 / 0,1 | 14,9 / 13,8 / 11,9% | 1,08 / 1,12 / 1,19% | 14,7% |
+| δmassa 100 / 200 / 400 kg | 17,7 / 17,1 / 17,1% | 1,05 / 1,09 / 1,24% | 14,8–15,6% |
+
+**Le combinazioni migliori:**
+
+| strategia | margini | scelte non fattibili | rimpianto mediano | p95 |
+|---|---|---:|---:|---:|
+| surrogato da solo, ≤ 5% non fattibili | δSOC 0,03, p < 0,2, δmassa 200 | 4,5% | 2,1% | 22% |
+| surrogato da solo, ≤ 2% non fattibili | δSOC 0,05, p < 0,1, δmassa 200 | 1,9% | 3,2% | 25% |
+| surrogato da solo, il meno non fattibile | δSOC 0,08, p < 0,1, δmassa 400 | 1,1% | 5,0% | 29% |
+| verifica delle prime 3, ≤ 1% | δSOC 0,01, p < 0,2 | 0,9% | 0,73% | 15% |
+| verifica delle prime 3, nessun margine | — | 2,5% | 0,35% | 12,9% |
+| **verifica delle prime 5, nessun margine** | — | **0,3%** | **0,09%** | **12,7%** |
+| verifica delle prime 5, p < 0,1 | p < 0,1 | 0,05% | 0,37% | 13,6% |
+
+**Cosa vuol dire:**
+1. **I margini riducono le scelte non fattibili, ma costano tanto in rimpianto.** Per scendere sotto il 2% senza simulazioni, il rimpianto mediano passa dall'1% al 3,2% e il p95 dal 15% al 25%. Il margine allontana la scelta proprio dalla zona del bordo dei vincoli, che è dove sta l'ottimo. Con questo surrogato l'errore sul SOC, circa 0,03 in mediana, è troppo grande perché un margine piccolo basti.
+2. **Il margine sulla scarica è il più conveniente** (da 18% a 12% con p < 0,1, rimpianto da 1,0% a 1,2%). Quello sul SOC è il più efficace ma il più caro. Quello sulla massa serve poco.
+3. **La verifica con poche simulazioni batte qualunque margine.** Con 5 simulazioni e nessun margine si ottengono 0,3% di scelte non fattibili e 0,09% di rimpianto mediano. Aggiungere margini alla verifica peggiora il rimpianto: toglie dai candidati proprio le coppie migliori.
+4. **Conclusione:** per ora **niente margini**. La strategia di riferimento è **surrogato + verifica delle prime 5 coppie**. Per il surrogato da solo serve un modello del SOC più preciso: è la priorità della rete neurale. Resta da provare, con la rete, una probabilità di fattibilità al posto della soglia secca.
