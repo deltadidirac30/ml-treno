@@ -572,3 +572,27 @@ Prove:
 | *linee della rete* | 23,4 | 28,6 / 13,1 / 3,3 | 2,39 | +15,9% |
 
 Il gradino di quota a 0,1 m ogni 50 m è solo delle linee della rete (dalla mappa HTML). Firenze e Calabria sono lisce e la rete sbaglia pochissimo. Canavese è ruvida in un altro modo: livellette vere, con pendenze continue, lunghe 100–150 m. Anche lì i cicli di carico sono il doppio del DoE, e la rete sottostima il degrado (+6,4%). Quindi le linee della rete hanno un artefatto, ma anche una ruvidezza vera a corto raggio che il DoE non contiene.
+
+## Le linee della rete con l'altimetria lisciata
+
+16/11/2026. Script `fase12/07_lisciatura.jl`, risultati in `fase12/risultati/07_lisciatura.txt` e `07_lisciatura_linee.csv`. Le linee lisciate sono in `train-powertrain/dati_rete/tratte_rete_attenuate/` (`media_200m`, `media_500m`, `media_1km`): cambia solo la quota, che diventa la media mobile su 200 m, 500 m o 1 km; le originali non sono toccate. 288 coppie × 166 linee × 3 varianti simulate, circa 6 minuti.
+
+| | originale | 200 m | 500 m | 1 km |
+|---|---:|---:|---:|---:|
+| Σ\|Δp\| per km a 1 m / su 1 km [‰/km] (DoE: 5,5 / 4,4) | 28,6 / 3,28 | 9,7 / 3,26 | 7,6 / 3,07 | 5,1 / 2,72 |
+| dislivello mediano [m] | 197,3 | 196,9 | 196,1 | 194,8 |
+| cicli di carico / DoE alla stessa coppia | 2,31 | 1,54 | 1,39 | 1,26 |
+| simulatore: vita FC rispetto all'originale | — | +13% | +18% | +22% |
+| simulatore: costo della migliore delle 288, mediana / 10% delle linee | — | −0,3% / −2,0% | −0,6% / −2,7% | −1,0% / −3,6% |
+| linee con un'altra coppia migliore / un altro regime | — | 14 / 0 | 21 / 0 | 27 / 0 |
+| rete: errore vita FC (con il segno) | 15,7% (+15,7%) | 4,2% (+1,7%) | 3,4% (+0,5%) | 3,0% (−0,4%) |
+| rete: errore idrogeno / SOC / costo | 3,0% / 0,014 / 2,8% | 2,6% / 0,013 / 1,8% | 2,5% / 0,012 / 1,8% | 2,6% / 0,013 / 1,9% |
+| rete: costo con il segno, 95° percentile | −2,0%, 9,5% | +0,1%, 6,2% | +0,6%, 5,9% | +0,8%, 6,0% |
+
+**Cosa ci dicono i numeri:**
+1. **Già 200 m tolgono quasi tutto l'artefatto.** La variazione della pendenza a corto raggio scende da 28,6 a 9,7 ‰/km, mentre il profilo sulla scala del km e il dislivello restano uguali. 500 m e 1 km cominciano a cancellare anche pendenze vere (−17% sulla scala del km, −2,5 m di dislivello con 1 km).
+2. **La rete torna a sbagliare come sul DoE, o quasi.** Vita FC dal 15,7% al 4,2%, senza più la tendenza a stare sopra; costo dal 2,8% all'1,8%, senza più sottostima, e 95° percentile dal 9,5% al 6,2%. Idrogeno e SOC migliorano un po'. Oltre i 200 m la rete migliora poco.
+3. **Per il simulatore la fuel cell dura il 13% in più** e il progetto migliore costa in mediana lo 0,3% in meno (2% o più nel 10% delle linee). In 14 linee cambia la coppia migliore, in nessuna il regime.
+4. Rovigo–Verona sembra peggiorare del 10%, ma è un caso al limite: la migliore dell'originale aveva SOC finale 0,2019, con 200 m scende a 0,1990 e diventa non fattibile per 0,001.
+
+**Proposta:** usare le linee lisciate a 200 m come versione di riferimento della rete, sia per il simulatore sia per il surrogato. È la finestra più piccola che toglie il gradino di 0,1 m, e non tocca il profilo vero. Da confermare con il relatore.

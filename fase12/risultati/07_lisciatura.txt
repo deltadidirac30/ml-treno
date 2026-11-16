@@ -1,0 +1,40 @@
+fase12/07_lisciatura.jl  2026-11-16T16:23:35.040  thread: 8  TrainPowertrain 7c9115a1877dda0142eeb08fe25dc810bd93a544
+1. linee lisciate scritte in /Users/kairos/Documents/lavoro/train-powertrain/dati_rete/tratte_rete_attenuate (media_200m, media_500m, media_1km): 0.8 s
+2. media_200m: 288 coppie × 166 linee simulate in 1.7 min
+2. media_500m: 288 coppie × 166 linee simulate in 2.0 min
+2. media_1km: 288 coppie × 166 linee simulate in 2.2 min
+
+                                                 originale  media_200m  media_500m   media_1km
+A. il profilo (mediana sulle linee)
+   cambi di pendenza per km                          23.44       25.98       31.17       33.95
+   Σ|Δp| per km a 1 m [‰/km]                         28.59        9.72        7.58        5.09
+   Σ|Δp| per km, media su 100 m                      13.10        8.84        7.15        4.79
+   Σ|Δp| per km, media su 1 km                        3.28        3.26        3.07        2.72
+   dislivello [m]                                    197.3       196.9       196.1       194.8
+   distanza dall'addestramento                        3.69        3.68        3.42        3.35
+   (DoE di validazione: cambi 0,67/km, Σ|Δp| 5,5 / 5,5 / 4,4 ‰/km)
+B. il simulatore (ibridi completati; rispetto all'originale)
+   cicli di carico / DoE alla stessa coppia           2.31        1.54        1.39        1.26
+   vita FC rispetto all'originale, mediana           +0.0%      +13.3%      +18.0%      +22.4%
+   idrogeno rispetto all'originale, mediana         +0.00%      -0.01%      -0.19%      -0.44%
+   migliore delle 288: costo vs originale, med.      +0.00%      -0.27%      -0.55%      -0.96%
+   … 10° percentile (le linee che calano di più)      +0.00%      -2.03%      -2.65%      -3.58%
+   … massimo                                        +0.00%      +9.88%      +9.45%      +0.97%
+   linee con un'altra coppia migliore                    0          14          21          27
+   linee con un altro regime migliore                    0           0           0           0
+C. la rete contro il simulatore (errore mediano su tutti i casi)
+   durata                                            0.36%       0.34%       0.32%       0.31%
+   serbatoio                                         3.11%       2.66%       2.57%       2.60%
+   idrogeno                                          3.01%       2.60%       2.53%       2.55%
+   SOC finale                                       0.0137      0.0125      0.0123      0.0125
+   vita batteria                                     3.47%       3.23%       3.03%       2.94%
+   vita FC (f1)                                     15.74%       4.18%       3.41%       2.99%
+   C-rate scarica                                    1.55%       1.50%       1.43%       1.39%
+   costo                                             2.77%       1.83%       1.84%       1.89%
+   vita FC, con il segno (+ = rete più lunga)       +15.7%       +1.7%       +0.5%       -0.4%
+   vita FC: casi con la rete più lunga                 87%         61%         54%         46%
+   costo, con il segno (+ = rete più cara)          -2.01%      +0.07%      +0.59%      +0.83%
+   costo, 95° percentile dell'errore                 9.54%       6.16%       5.88%       5.99%
+   fattibilità giusta                               98.35%      98.52%      98.60%      98.64%
+
+Tempo totale 6.3 min. Tabella per linea: /Users/kairos/Documents/lavoro/ml_treno_dati/fase12_log/07_lisciatura_linee.csv
