@@ -1,6 +1,6 @@
 # Il surrogato: come si usa
 
-Data una tratta, propone il progetto (m, n) più economico del treno idrogeno–batteria e lo verifica con il simulatore. Una tratta sola richiede circa 10–15 secondi, quasi tutti di avvio e compilazione di Julia. Il lavoro vero per tratta è circa 0,1 s: la rete su 9702 progetti ~20 ms, 5 simulazioni di verifica ~5–20 ms. Con più tratte in un solo lancio l'avvio si paga una volta: 166 tratte in circa 20 s.
+Data una tratta, propone il progetto (m, n) più economico del treno idrogeno–batteria e lo verifica con il simulatore. Una tratta sola richiede circa 10–15 secondi, quasi tutti di avvio e compilazione di Julia. Il lavoro vero per tratta è circa 0,2 s: la rete su 9702 progetti ~20 ms, poi circa 55 simulazioni di verifica e di ricerca con il simulatore (strategia G, il default). Con più tratte in un solo lancio l'avvio si paga una volta: 166 tratte in circa 35 s.
 
 ## 1. Preparare la tratta
 
@@ -66,7 +66,7 @@ julia -t 8 --project=surrogato surrogato/usa_surrogato.jl doe=15000
 
 - La tratta si legge da `~/Documents/lavoro/ml_treno_dati/tratte_doe_16384` (o da `cartella=…`), con `leggi_tratte_materializzate` come la campagna.
 - Lo script dice se la tratta era nell'**addestramento** (gruppi 1–6, 8–11, 13, 14: la rete l'ha vista, quindi il risultato è ottimista), nella **validazione** (gruppi 7, 12) o nel **test** (gruppi 15, 16).
-- Alla fine mostra la migliore delle 288 coppie della campagna per confronto. Per esempio, la route 15000 (test): sola batteria, n = 0,31, 2,792 €/km, cioè +0,26% rispetto alla migliore della campagna.
+- Alla fine mostra la migliore delle 288 coppie della campagna per confronto. Per esempio, la route 15000 (test): con la strategia G sola batteria, 2,7851 €/km, uguale alla migliore della campagna; con la strategia semplice n = 0,31, 2,792 €/km, cioè +0,26%.
 
 **Più tratte in un solo lancio** (molto più veloce: l'avvio e la compilazione, circa 10 s, si pagano una volta sola; poi ogni tratta costa circa 0,1 s):
 
@@ -83,17 +83,22 @@ surrogato doe=15000-15100
 - Tempi misurati il 16/11/2026: 101 tratte DoE in 12,5 s, le 166 linee della rete in 14 s (più ~5 s di avvio).
 
 **Opzioni:**
-- `verifiche=5`: quanti candidati far verificare al simulatore (default 5). Con una tratta "lontana" meglio 10.
+- `strategia=G` (il default dal 16/11/2026) oppure `strategia=semplice`: come si scelgono i progetti da far simulare, vedi sotto.
+- `verifiche=5`: solo con `strategia=semplice`, quanti candidati far verificare al simulatore (default 5). Con una tratta "lontana" meglio 10.
 - `margine=si`: chiede alla rete un SOC finale previsto ≥ 0,21 e una probabilità di scarica < 0,1 (default sì). Con `margine=no` si trovano progetti a volte un po' più economici, ma più spesso non fattibili.
-- `strategia=G`: una verifica più robusta (fase12/13), per ora un'opzione; il default resta `strategia=semplice`. La rete indica dove cercare e il simulatore decide:
+- **La strategia G (default)**, fase12/13 e 16. La rete indica dove cercare e il simulatore decide:
   1. il simulatore valuta le 5 migliori della rete, il migliore per la rete di ogni regime (sola batteria, ibrido con fuel cell piccola m < 0,1, ibrido) e di ogni fascia di batteria (n < 0,25, 0,25–0,5, 0,5–0,75, ≥ 0,75), scelti con un margine largo (SOC previsto ≥ 0,18), e 5 progetti a sola batteria (n 0,2, 0,4, 0,6, 0,8, 0,99);
   2. poi fa una ricerca locale dal migliore fattibile e dal migliore fattibile di ogni regime: prova i vicini in m e in n con passi da 0,16 a 0,01 e si sposta finché trova di meglio, al più 40 simulazioni per partenza;
-  3. la proposta è il progetto più economico fra tutti quelli simulati e fattibili.
+  3. infine le **mosse lungo il bordo** dal migliore fattibile: toglie 0,01 o 0,02 di fuel cell e aumenta la batteria finché il progetto torna fattibile (al più +0,12 in n), insieme ai vicini a passo 0,01, e ripete finché trova di meglio (al più 60 simulazioni). Serve quando l'ottimo è un progetto isolato sul bordo della fattibilità (fuel cell piccola e batteria grande), dove muovere solo m o solo n dà progetti non fattibili;
+  4. la proposta è il progetto più economico fra tutti quelli simulati e fattibili.
 
-  Costa circa 50 simulazioni per tratta, 0,1–0,3 s. Sulle 166 linee della rete ricostruite dai dati RINF tutte le proposte sono entro +1% dalla migliore delle 288 coppie della campagna (la peggiore +0,58%), e in 143 linee più economiche; con la strategia semplice erano 151 su 166, la peggiore +12,9%. Nell'uscita dettagliata compaiono l'origine di ogni candidato e il percorso della ricerca locale; `candidati.csv` contiene tutti i progetti simulati. `verifiche=` vale solo per la strategia semplice.
+  Costa circa 55 simulazioni per tratta (al più 80), circa 0,2 s. Confronto con l'**ottimo vero** (tutti i 9702 progetti simulati, fase12/15) sulle 146 linee non elettrificate oltre il 70%, dati RINF: G trova l'ottimo in 141 linee, scarto medio +0,06%, peggiore +3,0% (3 linee oltre il 2%). La strategia semplice: ottimo in 11 linee, media +1,15%, peggiore +13%; la migliore delle 288 coppie della campagna: media +2,3%, peggiore +18%. Nell'uscita dettagliata compaiono l'origine di ogni candidato e il percorso della ricerca locale; `candidati.csv` contiene tutti i progetti simulati.
+
+- **La strategia semplice** (`strategia=semplice`, il default fino al 16/11/2026): il simulatore verifica solo le `verifiche` migliori della rete (5) e, se nessuna è fattibile, le successive fino a 20. Più rapida (0,05 s per tratta), ma spesso un po' lontana dall'ottimo.
 
   ```zsh
-  surrogato cartella=~/Documents/lavoro/train-powertrain/dati_rete/tratte_rete_rinf/tutto_rinf tratta=tutte strategia=G
+  surrogato cartella=~/Documents/lavoro/train-powertrain/dati_rete/tratte_rete_rinf/tutto_rinf tratta=tutte
+  surrogato cartella=~/Documents/lavoro/train-powertrain/dati_rete/tratte_rete_rinf/tutto_rinf tratta=tutte strategia=semplice
   ```
 
 **Una coppia (m, n) data, senza ricerca**: si aggiungono `m=` e `n=`, con il punto o la virgola decimale. La rete e il simulatore valutano solo quella coppia, e lo script mette fianco a fianco:
@@ -126,6 +131,7 @@ I candidati sono salvati anche in `~/Documents/lavoro/ml_treno_dati/surrogato/<n
 
 - Treno di riferimento da 195 t, andata e ritorno, modello e prezzi del simulatore di oggi (`ConfigModello()`, commit `7c9115a`). Con un altro treno, altri prezzi o un modello cambiato la rete va riaddestrata.
 - m e n su una griglia a passo 0,01.
-- Affidabilità misurata: sul test (2048 tratte nuove) il progetto proposto è fattibile nel 98,4% dei casi ed è entro l'1% dalla migliore delle 288 coppie della campagna, o meglio, nel 90%. Sulle 166 linee reali: 97% e 86% (fase 12).
+- Affidabilità misurata con la strategia semplice: sul test (2048 tratte nuove) il progetto proposto è fattibile nel 98,4% dei casi ed è entro l'1% dalla migliore delle 288 coppie della campagna, o meglio, nel 90%. Con la strategia G la proposta è fattibile per il simulatore (è scelta fra i progetti simulati) in tutte le 166 linee provate, e sulle 146 linee non elettrificate è l'ottimo vero in 141 (fase 12).
+- I numeri del progetto proposto (costo, SOC, vite) vanno presi dal simulatore, non dalla rete: nell'ottimo, che sta quasi sempre sul limite del SOC, la rete sbaglia il costo del 2% in mediana.
 
 Il modello è `~/Documents/lavoro/ml_treno_dati/fase10/rete_6b.jld2` (fuori da Drive e da git); i dati per la distanza vengono da `…/P9_D28_16384/arrow/caratteristiche.arrow`.

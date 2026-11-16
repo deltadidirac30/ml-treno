@@ -1,8 +1,8 @@
 # surrogato/usa_surrogato.jl: il surrogato in pratica. Per una o più tratte propone il progetto (m, n) più economico e lo
 # verifica con il simulatore.
 #
-#   surrogato cartella=<cartella delle tratte> tratta=<nome>[,<nome>…|tutte] [verifiche=5] [margine=si]
-#   surrogato doe=<route_id>[,<route_id>…|<da>-<a>] [cartella=<tratte DoE>] [verifiche=5] [margine=si]
+#   surrogato cartella=<cartella delle tratte> tratta=<nome>[,<nome>…|tutte] [strategia=G|semplice] [margine=si]
+#   surrogato doe=<route_id>[,<route_id>…|<da>-<a>] [cartella=<tratte DoE>] [strategia=G|semplice] [margine=si]
 #
 # (`surrogato` è l'alias in ~/.zshrc; senza alias: julia -t 8 --project=surrogato surrogato/usa_surrogato.jl … dalla cartella
 # ml_treno, vedi LEGGIMI.md). Esempi:
@@ -19,26 +19,28 @@
 # della campagna P9_D28_16384. Treno di riferimento 195 t, andata e ritorno, modello e prezzi del simulatore di oggi
 # (ConfigModello()), gli stessi con cui la rete è stata addestrata.
 #
-# Per ogni tratta (la strategia scelta sulla validazione e confermata sul test, fase 12):
+# Per ogni tratta (strategia=semplice, la prima scelta sulla validazione e sul test, fase 12; il default è G, sotto):
 #   1. le 66 caratteristiche (stesso codice della fase 1) e la distanza dalle tratte di addestramento;
 #   2. la rete neurale (fase 10, rete_6b) valuta 9702 progetti (m da 0 a 0,99, n da 0,01 a 0,99, a passo 0,01) e da ognuno
 #      ricava vincoli e costo con le formule del simulatore;
 #   3. tiene i progetti che la rete dice fattibili (con margine=si anche SOC finale previsto ≥ 0,21 e probabilità di
 #      scarica < 0,1) e prende i `verifiche` più economici, distanti fra loro almeno 0,03 in m o in n;
 #   4. il simulatore vero valuta quei candidati; la proposta è il più economico davvero fattibile. Se nessuno lo è, si
-#      verificano i candidati successivi (fino a 20 in tutto).
+#      verificano i candidati successivi (fino a 20 in tutto); `verifiche=5` ne cambia il numero.
 # Il tempo: ~13 s di avvio (caricamento e compilazione, una volta per lancio), poi ~0,05–0,1 s per tratta.
 #
-# strategia=G (fase12/13, per ora un'opzione; default strategia=semplice, quella sopra): la rete indica dove cercare, il
+# strategia=G (fase12/13 e 16, il DEFAULT dal 16/11/2026): la rete indica dove cercare, il
 # simulatore decide. Il simulatore valuta: le 5 migliori della rete (con il margine); il migliore per la rete di ogni regime
 # (sola batteria, ibrido con FC piccola m < 0,1, ibrido) e di ogni fascia di n (< 0,25, 0,25–0,5, 0,5–0,75, ≥ 0,75), fra i
 # progetti con un margine largo (SOC previsto ≥ 0,18, scarica < 0,5, niente D3, massa nel limite); 5 progetti a sola batteria
 # (n 0,2, 0,4, 0,6, 0,8, 0,99); il ripiego lungo la lista della rete finché uno dei candidati principali è fattibile (fino a
 # 20). Poi una ricerca locale con il simulatore dal migliore fattibile e dal migliore fattibile di ogni regime: vicini
 # (m ± s, n) e (m, n ± s) sulla griglia, s = 0,16, 0,08, 0,04, 0,02, 0,01, ci si sposta finché un vicino fattibile costa meno,
-# al più 40 simulazioni per partenza. Sulle 166 linee della rete (dati RINF): 50 simulazioni per linea, ~0,13 s; tutte entro
-# +1% dalla migliore delle 288 coppie (peggiore +0,58%), più economica in 143. `verifiche=` vale solo per la strategia semplice.
-#   surrogato cartella=… tratta=tutte strategia=G
+# al più 40 simulazioni per partenza. Infine le mosse lungo il bordo dal migliore fattibile: m − 0,01 o − 0,02 salendo in n
+# finché il progetto è fattibile (al più +0,12), più i vicini a passo 0,01, al più 60 simulazioni. Sulle 146 linee non
+# elettrificate (dati RINF), contro l'ottimo vero della griglia fitta simulata (fase12/15-16): ottimo trovato in 141, scarto
+# medio +0,06%, peggiore +3%; ~60 simulazioni per linea, ~0,15 s. `verifiche=` vale solo per la strategia semplice.
+#   surrogato cartella=… tratta=tutte strategia=semplice
 # Scrive ~/Documents/lavoro/ml_treno_dati/surrogato/<tratta>/candidati.csv e, con più tratte,
 # ~/Documents/lavoro/ml_treno_dati/surrogato/riepilogo_<data e ora>.csv.
 #
@@ -58,13 +60,13 @@ const T0 = time()
 
 # ── argomenti ────────────────────────────────────────────────────────────────────
 const ARG = Dict(String(split(a, '='; limit = 2)[1]) => String(split(a, '='; limit = 2)[2]) for a in ARGS if occursin('=', a))
-const USO = "uso: surrogato cartella=<cartella> tratta=<nome>[,<nome>…|tutte]  oppure  surrogato doe=<route_id>[,…|<da>-<a>]; poi [strategia=semplice|G] [verifiche=5] [margine=si], oppure una coppia data: m=<m> n=<n>"
+const USO = "uso: surrogato cartella=<cartella> tratta=<nome>[,<nome>…|tutte]  oppure  surrogato doe=<route_id>[,…|<da>-<a>]; poi [strategia=G|semplice] [verifiche=5 solo con semplice] [margine=si], oppure una coppia data: m=<m> n=<n>"
 const IS_DOE = haskey(ARG, "doe")
 IS_DOE || (haskey(ARG, "cartella") && haskey(ARG, "tratta")) || error(USO)
 const CARTELLA = expanduser(get(ARG, "cartella", IS_DOE ? joinpath(BASE, "tratte_doe_16384") : ""))
 const NVER = parse(Int, get(ARG, "verifiche", "5")); const MARGINE = get(ARG, "margine", "si") == "si"
-const STRATEGIA = uppercase(get(ARG, "strategia", "semplice")) == "G" ? :G :
-                  lowercase(get(ARG, "strategia", "semplice")) == "semplice" ? :semplice : error("strategia=semplice oppure strategia=G")
+const STRATEGIA = uppercase(get(ARG, "strategia", "G")) == "G" ? :G :
+                  lowercase(get(ARG, "strategia", "G")) == "semplice" ? :semplice : error("strategia=semplice oppure strategia=G")
 function elenco_doe(s)
     v = Int[]
     for p in split(s, ',')
@@ -203,8 +205,39 @@ function analizza(tc; doe = 0)
                         best === nothing || ((m0, nn0, c0) = best; mosso = true)
                     end
                 end
-                push!(ricerche, (da = (GM[i0], GN[i0]), costo_da = ris[fatti[i0]].costo_simulatore, a = (m0, nn0), costo_a = c0, simulazioni = length(ris) - n0))
+                push!(ricerche, (tipo = "", da = (GM[i0], GN[i0]), costo_da = ris[fatti[i0]].costo_simulatore, a = (m0, nn0), costo_a = c0, simulazioni = length(ris) - n0))
             end
+            # mosse lungo il bordo (fase12/16): dal migliore fattibile, meno fuel cell (m − 0,01 o − 0,02) e più batteria, salendo
+            # in n finché il progetto è fattibile (al più +0,12), insieme ai vicini a passo 0,01; ci si sposta sul più economico
+            # e si ripete, al più 60 simulazioni. Serve quando l'ottimo è un progetto isolato sul bordo della fattibilità
+            # (FC piccola, batteria grande), dove muovere m o n da soli dà progetti non fattibili.
+            okB = [r for r in ris if r.fattibile]; rb = okB[argmin([r.costo_simulatore for r in okB])]
+            m0, nn0, c0 = rb.m, rb.n, rb.costo_simulatore; n0 = length(ris); budget = n0 + 60
+            while length(ris) < budget
+                best = nothing
+                for dm in (0.01, 0.02)
+                    mm = round(m0 - dm; digits = 2); mm < 0.03 && (mm = m0 > 0.03 ? 0.03 : -1.0)
+                    (mm < 0 || mm == m0) && continue
+                    for e in 0.0:0.01:0.12
+                        nn = round(nn0 + e; digits = 2); (nn > 0.99 || length(ris) >= budget) && break
+                        j = get(IDX, (mm, nn), nothing); j === nothing && continue
+                        r = simula!(j, "ricerca sul bordo")
+                        if r.fattibile
+                            r.costo_simulatore < c0 - 1e-12 && (best === nothing || r.costo_simulatore < best[3]) && (best = (mm, nn, r.costo_simulatore))
+                            break
+                        end
+                    end
+                end
+                for g in ((m0, round(nn0 - 0.01; digits = 2)), (m0, round(nn0 + 0.01; digits = 2)), (round(m0 + 0.01; digits = 2), nn0))
+                    length(ris) >= budget && break
+                    j = get(IDX, g, nothing); j === nothing && continue
+                    r = simula!(j, "ricerca sul bordo")
+                    r.fattibile && r.costo_simulatore < c0 - 1e-12 && (best === nothing || r.costo_simulatore < best[3]) && (best = (g..., r.costo_simulatore))
+                end
+                best === nothing && break
+                m0, nn0, c0 = best
+            end
+            push!(ricerche, (tipo = "lungo il bordo, ", da = (rb.m, rb.n), costo_da = rb.costo_simulatore, a = (m0, nn0), costo_a = c0, simulazioni = length(ris) - n0))
         end
     end
     ok = [r for r in ris if r.fattibile]
@@ -244,13 +277,13 @@ function stampa_dettaglio(r)
                      MARGINE ? @sprintf(", con il margine %d", r.n_ammessi) : "", length(r.candidati), STRATEGIA === :G ? "G" : "semplice"))
     println("\n   m      n     costo rete   costo simulatore   esito                 origine")
     for c in r.candidati
-        c.origine == "ricerca locale" && continue
+        startswith(c.origine, "ricerca") && continue
         println(@sprintf("  %.2f   %.2f   %8.4f     %10.4f        %-21s %s", c.m, c.n, c.costo_rete, c.costo_simulatore, c.esito, c.origine))
     end
     if !isempty(r.ricerche)
-        println("\nRicerca locale con il simulatore (", count(c -> c.origine == "ricerca locale", r.candidati), " simulazioni):")
+        println("\nRicerca locale con il simulatore (", count(c -> startswith(c.origine, "ricerca"), r.candidati), " simulazioni):")
         for s in r.ricerche
-            println(@sprintf("  da m %.2f, n %.2f (%.4f €/km) → m %.2f, n %.2f (%.4f €/km, %+.2f%%), %d simulazioni", s.da..., s.costo_da, s.a..., s.costo_a,
+            println(@sprintf("  %sda m %.2f, n %.2f", s.tipo, s.da...) * @sprintf(" (%.4f €/km) → m %.2f, n %.2f (%.4f €/km, %+.2f%%), %d simulazioni", s.costo_da, s.a..., s.costo_a,
                              100(s.costo_a / s.costo_da - 1), s.simulazioni))
         end
     end

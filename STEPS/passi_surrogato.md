@@ -757,3 +757,13 @@ Script `fase12/16_mosse_bordo.jl`, risultati in `fase12/risultati/16_mosse_bordo
 | simulazioni in più per linea | — | 9 in media, al più 43 |
 
 Restano lontane 3 linee (Rovigo–Verona +3,0%, Crotone–Lamezia +2,8%, Buonconvento–Empoli +2,1%), dove G è nel regime ibrido (m 0,12–0,16) e l'ottimo ha la fuel cell piccola con m più basso di 0,03–0,05: servirebbe un passo più lungo in m. L'emulazione parte dalla proposta finale di G; nel comando la mossa andrebbe dentro la ricerca locale. Da decidere: inserirla in `usa_surrogato.jl` e rendere G (con il bordo) la strategia di default.
+
+### Il bordo nel comando e G come default
+
+16/11/2026. In `surrogato/usa_surrogato.jl` la strategia G ora finisce con le mosse lungo il bordo (dal migliore fattibile: m − 0,01 o − 0,02 salendo in n finché il progetto è fattibile, al più +0,12, più i vicini a passo 0,01; al più 60 simulazioni), e **G è la strategia di default**; la vecchia resta con `strategia=semplice` (`verifiche=` vale solo lì). Aggiornati il commento in testa e il LEGGIMI.
+
+Prove:
+- tutte le 166 linee "tutto RINF" con il comando: 166 proposte, 31 s (0,19 s per linea), 55 simulazioni per linea in media, al più 80;
+- sulle 146 non elettrificate, contro l'ottimo vero (`fase12/risultati/17_g_bordo_comando.txt`): esattamente i numeri dell'emulazione: ottimo in 141, media +0,06%, peggiore +2,99%; fuori restano Breno–Pisogne +0,05%, Cagliari–Macomer +0,81%, Buonconvento–Empoli +2,08%, Crotone–Lamezia +2,84%, Rovigo–Verona +2,99%. Deciso di non complicare oltre;
+- Grosseto–Siena (dettaglio): il bordo porta da (0,08, 0,91) all'ottimo (0,06, 0,97) in 14 simulazioni, −4,3%;
+- route DoE 15000: G 2,7851 €/km, come la migliore della campagna; `strategia=semplice` invariata (+0,26%).

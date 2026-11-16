@@ -1,0 +1,8 @@
+comando surrogato (default G + bordo) contro l'ottimo vero, 146 linee non elettrificate (riepilogo_20261116_213611.csv)
+media +0.060%  mediana +0.000%  max +2.987%  entro 0,01%: 141  entro 0,5%: 142  entro 1%: 143  oltre 2%: 3
+simulazioni per linea: media 55.2, max 80
+  Breno-Pisogne                        +0.05%  proposta (0.0, 0.27)  ottimo (0.0, 0.23)
+  Cagliari-Macomer                     +0.81%  proposta (0.34, 0.74)  ottimo (0.35, 0.84)
+  Buonconvento-Empoli                  +2.08%  proposta (0.12, 0.94)  ottimo (0.09, 0.94)
+  Crotone-Lamezia_Terme_Centrale       +2.84%  proposta (0.12, 0.95)  ottimo (0.09, 0.94)
+  Rovigo-Verona_Porta_Nuova            +2.99%  proposta (0.15, 0.94)  ottimo (0.11, 0.94)
