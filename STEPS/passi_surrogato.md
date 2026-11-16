@@ -525,3 +525,25 @@ Prove:
 - Firenze, m = 0,03, n = 0,96: il simulatore dà 2,4070 €/km, come l'esempio sopra; la rete 2,4103 €/km (+0,14%).
 - Route 15000, sola batteria, n = 0,31: 2,7924 €/km, uguale alla proposta della modalità ricerca.
 - Route 15000–15004, m = 0,30, n = 0,50: rete e simulatore d'accordo sulla fattibilità in 5 tratte su 5; errore del costo mediano 1,6%.
+
+## Quanto sbaglia la rete su ogni grandezza, linea per linea (dopo il passo 8c)
+
+16/11/2026. Script `fase12/03_errori_linee.jl`, risultati `fase12/risultati/03_errori_linee.txt` e `03_errori_linee.csv` (una riga per linea: errore mediano e massimo di ogni grandezza sulle sue 288 coppie). Nessuna simulazione nuova: le 288 coppie × 166 linee simulate nel passo 8c. Un minuto.
+
+| grandezza | validazione DoE (mediana) | 166 linee: mediana | media | 95° percentile | massimo | rete sopra il simulatore |
+|---|---:|---:|---:|---:|---:|---:|
+| durata | 0,16% | 0,36% | 0,49% | 1,3% | 4,0% | 68% dei casi |
+| serbatoio | 1,7% | 3,1% | 4,2% | 11,5% | 70% | 58% |
+| idrogeno | 1,7% | 3,0% | 4,0% | 11,0% | 70% | 59% |
+| SOC finale (assoluto) | 0,012 | 0,014 | 0,027 | 0,100 | 0,51 | 49% |
+| vita della batteria | 2,4% | 3,5% | 4,7% | 12,9% | 64% | 47% |
+| **vita della fuel cell** | **1,7%** | **15,7%** | **21,9%** | **64%** | **188%** | **87%** |
+| C-rate di scarica | 1,2% | 1,6% | 2,2% | 6,1% | 37% | 54% |
+| costo | 1,3% | 2,8% | 3,6% | 9,5% | 28% | **28%** |
+| scarica giusta / fattibilità giusta | 99,0% / 98,9% | 98,7% / 98,4% | | | | |
+
+**Cosa ci dicono i numeri:**
+1. Su quasi tutte le grandezze la rete sbaglia sulle linee reali 1,2–2 volte più che sulla validazione DoE, come già visto nel passo 8c.
+2. **La vita della fuel cell è l'eccezione:** errore mediano 16% invece di 1,7%, e quasi sempre per eccesso (la rete la dà più lunga nell'87% dei casi). In 67 linee su 166 l'errore mediano supera il 20%.
+3. **È probabilmente la causa principale dell'errore del costo sulle linee reali.** La rete sottostima il costo nel 72% dei casi, e le linee con il costo più sbagliato (Sicilia occidentale, Siena, Lecce: 7–11%) hanno la vita della FC sbagliata del 30–85%, mentre l'idrogeno è giusto entro il 2–4%. Fra le linee, l'errore del costo va insieme a quello della vita della FC (correlazione di rango 0,49) più che a quello dell'idrogeno (0,18) o del SOC (0,17).
+4. Da capire: cosa hanno le linee reali che consuma la fuel cell più delle tratte DoE (accensioni, minimo, cambi di carico). Una campagna ancorata alle linee reali (opzione c) dovrebbe correggerlo.
