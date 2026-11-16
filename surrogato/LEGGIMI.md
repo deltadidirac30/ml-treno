@@ -86,6 +86,24 @@ surrogato doe=15000-15100
 - `verifiche=5`: quanti candidati far verificare al simulatore (default 5). Con una tratta "lontana" meglio 10.
 - `margine=si`: chiede alla rete un SOC finale previsto ≥ 0,21 e una probabilità di scarica < 0,1 (default sì). Con `margine=no` si trovano progetti a volte un po' più economici, ma più spesso non fattibili.
 
+**Una coppia (m, n) data, senza ricerca**: si aggiungono `m=` e `n=`, con il punto o la virgola decimale. La rete e il simulatore valutano solo quella coppia, e lo script mette fianco a fianco:
+- le grandezze: durata, idrogeno, serbatoio, SOC finale, scarica, C-rate, vite, massa della propulsione;
+- l'esito, con i vincoli violati, e il costo in €/km;
+- le taglie: potenza della fuel cell e capacità della batteria.
+
+```zsh
+surrogato cartella=~/Documents/lavoro/train-powertrain/tratte_reali tratta=Firenze m=0.03 n=0.96
+surrogato doe=15000-15100 m=0.30 n=0.50
+surrogato cartella=~/Documents/lavoro/train-powertrain/dati_rete/archivio/tratte_rete_20261110 tratta=tutte m=0.30 n=0.50
+```
+
+- Con più tratte stampa una riga per tratta: costo della rete e del simulatore, SOC, i due esiti.
+- In fondo dice in quante tratte rete e simulatore sono d'accordo sulla fattibilità.
+- Scrive tutto in `~/Documents/lavoro/ml_treno_dati/surrogato/coppia_m<m>_n<n>_<data e ora>.csv`.
+- Con 0 < m < 0,03 il simulatore non mette la fuel cell (D8): il progetto è a sola batteria e lo script lo dice.
+- Una coppia fuori dal campo di addestramento (m oltre 0,996, n fuori da 0,013–0,996) dà un avviso: lì la rete estrapola.
+- `verifiche` e `margine` qui non servono.
+
 ## 3. Leggere il risultato
 
 - **Distanza dalla tratta di addestramento più vicina:** quanto la tratta è diversa da quelle su cui la rete ha imparato. Fino a ~4,7 è nella norma; oltre, la rete sbaglia di più e conviene `verifiche=10`.

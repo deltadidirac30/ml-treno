@@ -30,6 +30,13 @@
 # Il tempo: ~13 s di avvio (caricamento e compilazione, una volta per lancio), poi ~0,05–0,1 s per tratta.
 # Scrive ~/Documents/lavoro/ml_treno_dati/surrogato/<tratta>/candidati.csv e, con più tratte,
 # ~/Documents/lavoro/ml_treno_dati/surrogato/riepilogo_<data e ora>.csv.
+#
+# Con una coppia data (m=… n=…, in aggiunta a cartella/tratta o doe) niente ricerca: la rete e il simulatore valutano quella
+# sola coppia, e lo script mette fianco a fianco le grandezze, i vincoli, l'esito e il costo. Con 0 < m < 0,03 il simulatore
+# non mette la fuel cell (D8): il progetto è a sola batteria e anche la rete lo valuta con m = 0. Scrive
+# ~/Documents/lavoro/ml_treno_dati/surrogato/coppia_m<m>_n<n>_<data e ora>.csv.
+#   surrogato doe=15000 m=0.30 n=0.50
+#   surrogato cartella=~/Documents/lavoro/train-powertrain/tratte_reali tratta=tutte m=0.03 n=0.96
 
 const ML = normpath(joinpath(@__DIR__, ".."))
 include(joinpath(ML, "fase9", "comune.jl"))           # valuta (vincoli e costo), taglie
@@ -40,7 +47,7 @@ const T0 = time()
 
 # ── argomenti ────────────────────────────────────────────────────────────────────
 const ARG = Dict(String(split(a, '='; limit = 2)[1]) => String(split(a, '='; limit = 2)[2]) for a in ARGS if occursin('=', a))
-const USO = "uso: surrogato cartella=<cartella> tratta=<nome>[,<nome>…|tutte]  oppure  surrogato doe=<route_id>[,…|<da>-<a>]; poi [verifiche=5] [margine=si]"
+const USO = "uso: surrogato cartella=<cartella> tratta=<nome>[,<nome>…|tutte]  oppure  surrogato doe=<route_id>[,…|<da>-<a>]; poi [verifiche=5] [margine=si], oppure una coppia data: m=<m> n=<n>"
 const IS_DOE = haskey(ARG, "doe")
 IS_DOE || (haskey(ARG, "cartella") && haskey(ARG, "tratta")) || error(USO)
 const CARTELLA = expanduser(get(ARG, "cartella", IS_DOE ? joinpath(BASE, "tratte_doe_16384") : ""))
@@ -64,6 +71,19 @@ const IL = findfirst(==(:x_L_km), NORM.nx); const IT = findfirst(==(:x_tempo_lim
 const GRIGLIA = [(m, n) for m in vcat(0.0, [round(x; digits = 2) for x in 0.03:0.01:0.99]) for n in [round(x; digits = 2) for x in 0.01:0.01:0.99]]
 const GM = [g[1] for g in GRIGLIA]; const GN = [g[2] for g in GRIGLIA]; const NG = length(GRIGLIA)
 const CFG_SIM = ConfigModello(; modello = :corretta, soglia_cambio_carico = 1e-9, D3 = true, D5 = :nessuna, costi = ParametriCosto())
+# una coppia data (m=… n=…): niente ricerca, rete e simulatore su quella coppia
+const MODO_COPPIA = haskey(ARG, "m") || haskey(ARG, "n")
+MODO_COPPIA && !(haskey(ARG, "m") && haskey(ARG, "n")) && error("con una coppia data servono sia m= sia n=, es. m=0.30 n=0.50")
+leggi_numero(s) = parse(Float64, replace(strip(s), ',' => '.'))
+const M_RICH = MODO_COPPIA ? leggi_numero(ARG["m"]) : NaN
+const N_RICH = MODO_COPPIA ? leggi_numero(ARG["n"]) : NaN
+MODO_COPPIA && !(0 <= M_RICH <= 1 && 0 < N_RICH <= 1) && error("m deve stare fra 0 e 1, n fra 0 (escluso) e 1: m = $M_RICH, n = $N_RICH")
+const M_EFF = MODO_COPPIA ? TP.m_effettiva(M_RICH, CFG_SIM) : NaN   # D8: con 0 < m < 0,03 niente fuel cell
+if MODO_COPPIA
+    M_EFF != M_RICH && println(@sprintf("Nota: con m = %.3g < 0,03 il simulatore non mette la fuel cell (D8): il progetto è a sola batteria, m = 0, n = %.3g.", M_RICH, N_RICH))
+    (M_RICH > 0.996 || !(0.013 <= N_RICH <= 0.996)) &&
+        println("Attenzione: la coppia è fuori dal campo delle coppie di addestramento (m da 0 a 0,996, n da 0,013 a 0,996): la rete estrapola.")
+end
 # tratte di addestramento standardizzate, per la distanza
 const ZA, MU, SG = let ct = Arrow.Table(joinpath(BASE, "P9_D28_16384", "arrow", "caratteristiche.arrow"))
     XA = reduce(hcat, (collect(getproperty(ct, c)) for c in NORM.nx))[[r for r in 1:16384 if cld(r, 1024) in (1, 2, 3, 4, 5, 6, 8, 9, 10, 11, 13, 14)], :]
@@ -75,14 +95,20 @@ giudizio(d) = d <= 2.9 ? "vicina" : d <= 4.7 ? "nella norma" : "LONTANA"
 insieme(r) = (g = cld(r, 1024); g in (7, 12) ? "validazione" : g in (15, 16) ? "test" : "addestramento")
 
 # ── una tratta ───────────────────────────────────────────────────────────────────
+"""Le caratteristiche della tratta per la rete e la distanza dalla tratta di addestramento più vicina."""
+function descrivi_tratta(tc)
+    pr = profilo_tratta(tc.cp)
+    v70 = vcat(caratteristiche_orig(pr), caratteristiche_nuove(pr))
+    X = [v70[findfirst(==(String(c)[3:end]), NOMI70)] for c in NORM.nx]
+    dist = sqrt(minimum(vec(sum((ZA .- ((X' .- MU) ./ SG)) .^ 2; dims = 2))))
+    return (pr = pr, X = X, L = X[IL], T = X[IT], dist = dist)
+end
+
 """Il surrogato su una tratta (TrattaCampagna): candidati verificati e progetto proposto."""
 function analizza(tc; doe = 0)
     nome = tc.id; cp = tc.cp
-    pr = profilo_tratta(cp)
-    v70 = vcat(caratteristiche_orig(pr), caratteristiche_nuove(pr))
-    X = [v70[findfirst(==(String(c)[3:end]), NOMI70)] for c in NORM.nx]
-    L = X[IL]; T = X[IT]
-    dist = sqrt(minimum(vec(sum((ZA .- ((X' .- MU) ./ SG)) .^ 2; dims = 2))))
+    dt = descrivi_tratta(tc)
+    pr = dt.pr; X = dt.X; L = dt.L; T = dt.T; dist = dt.dist
     d = Dati(ingressi(repeat(X', NG, 1), GM, GN, NORM), zeros(Float32, K, NG), zeros(Float32, K, NG), zeros(Int32, NG), zeros(Int16, NG),
              GM, GN, fill(L, NG), fill(T, NG), zeros(Int8, NG))
     p = previsioni(RETE, d, SC)
@@ -124,8 +150,8 @@ function scrivi_candidati(r)
     return joinpath(out, "candidati.csv")
 end
 
-"""L'uscita dettagliata per una tratta sola (come prima)."""
-function stampa_dettaglio(r)
+"""La descrizione della tratta, comune alle due uscite dettagliate."""
+function stampa_tratta(r; consiglio = "conviene fare più verifiche (es. verifiche=10)")
     r.doe > 0 && println("\nTratta DoE ", r.doe, ": gruppo Sobol ", cld(r.doe, 1024), ", insieme di ", insieme(r.doe),
                          insieme(r.doe) == "addestramento" ? " (la rete l'ha vista: il risultato è ottimista)" : " (la rete non l'ha mai vista)")
     println(@sprintf("\nTratta %s: L = %.1f km, %d fermate intermedie, limiti da %.0f a %.0f km/h, dislivello %.0f m", r.nome, r.L, r.fermate,
@@ -133,8 +159,13 @@ function stampa_dettaglio(r)
     g = giudizio(r.distanza)
     println(@sprintf("Distanza dalla tratta di addestramento più vicina: %.2f → %s", r.distanza,
                      g == "vicina" ? "vicina: come una tratta tipica di prova" : g == "nella norma" ? "nella norma (come la maggior parte delle linee reali)" :
-                     "LONTANA: la rete qui sbaglia di più, conviene fare più verifiche (es. verifiche=10)"))
+                     "LONTANA: la rete qui sbaglia di più, " * consiglio))
     println("  (riferimenti: tratte di prova mediana 2,9, 95° percentile 4,7; linee della rete mediana 3,7)")
+end
+
+"""L'uscita dettagliata per una tratta sola (come prima)."""
+function stampa_dettaglio(r)
+    stampa_tratta(r)
     println(@sprintf("\nRete neurale: %d progetti; fattibili per la rete %d%s; simulatore: %d candidati verificati", NG, r.n_fattibili_rete,
                      MARGINE ? @sprintf(", con il margine %d", r.n_ammessi) : "", length(r.candidati)))
     println("\n   m      n     costo rete   costo simulatore   esito")
@@ -159,13 +190,108 @@ function stampa_dettaglio(r)
     end
 end
 
+# ── una coppia data (m=… n=…) ────────────────────────────────────────────────────
+const NOMI_CONFRONTO = (:durata, :H2, :serbatoio, :SOC, :scarica, :C_rate, :vita_batt, :vita_FC_f1, :massa, :costo)
+
+"""Le grandezze del simulatore (come le colonne y_ della tabella, fase 6); NaN se il progetto non è stato simulato."""
+function grandezze_simulatore(e)
+    g = e.diagnostica === nothing ? nothing : e.diagnostica.grandezze
+    cd = e.diagnostica === nothing ? nothing : e.diagnostica.cost_details
+    x(k) = g !== nothing && haskey(g, k) ? Float64(g[k]) : cd !== nothing && haskey(cd, k) ? Float64(cd[k]) : NaN
+    return (durata = x("durata_viaggio_s"), H2 = x("H2_cons_kg"), serbatoio = x("massa_serbatoio_kg"), SOC = x("SOC_end"),
+            scarica = x("scarica_s") > 1e-6, C_rate = x("C_rate_scarica_max"), vita_batt = x("vita_batt_cicli_viaggi"),
+            vita_FC_f1 = x("vita_FC_f1_ore"), massa = x("massa_propulsione_kg"))
+end
+
+"""L'esito del simulatore in parole: fattibile, i vincoli violati (dalle penalità 5000 SOC, 3000 scarica, 1000 massa), o scartato."""
+function esito_simulatore(e)
+    e.stato === :error && return "errore: " * replace(first(e.motivo, 60), ',' => ';')
+    e.stato === :completed || return "scartato: " * replace(first(e.motivo, 60), ',' => ';')
+    e.penalita == 0 && return "fattibile"
+    resto = e.penalita; v = String[]
+    for (c, nm) in ((5000.0, "SOC"), (3000.0, "scarica"), (1000.0, "massa"))
+        resto >= c - 0.5 && (push!(v, nm); resto -= c)
+    end
+    return "viola " * join(v, " e ") * @sprintf(" (penalità %.0f)", e.penalita)
+end
+
+"""Rete e simulatore sulla coppia data (M_RICH, N_RICH) di una tratta."""
+function analizza_coppia(tc; doe = 0)
+    dt = descrivi_tratta(tc); L = dt.L
+    d = Dati(ingressi(repeat(dt.X', 1, 1), [M_EFF], [N_RICH], NORM), zeros(Float32, K, 1), zeros(Float32, K, 1), zeros(Int32, 1), zeros(Int16, 1),
+             [M_EFF], [N_RICH], [L], [dt.T], zeros(Int8, 1))
+    p = previsioni(RETE, d, SC)
+    q = (durata = p.durata, serbatoio = p.serbatoio, H2 = p.H2, SOC = p.SOC, scarica = p.p_scarica .>= 0.5, vita_batt = p.vita_batt,
+         vita_FC_f1 = p.vita_FC_f1, C_rate = p.C_rate)
+    v = valuta([M_EFF], [N_RICH], [L], q)
+    tg = taglie(M_EFF, N_RICH)
+    viol = [nm for (b, nm) in ((v.viol_soc[1], "SOC"), (v.viol_scarica[1], "scarica"), (v.viol_massa[1], "massa")) if b]
+    rete = (durata = p.durata[1], H2 = p.H2[1], serbatoio = p.serbatoio[1], SOC = p.SOC[1], scarica = q.scarica[1], p_scarica = p.p_scarica[1],
+            C_rate = p.C_rate[1], vita_batt = p.vita_batt[1], vita_FC_f1 = p.vita_FC_f1[1], massa = tg.massa_batt + tg.massa_FC + p.serbatoio[1],
+            costo = v.costo_totale[1], fattibile = v.fattibile[1],
+            esito = v.d3[1] ? "scartato (D3: C-rate > 20)" : v.fattibile[1] ? "fattibile" : "viola " * join(viol, " e "),
+            al_limite = v.fattibile[1] && (p.SOC[1] < 0.21 || p.p_scarica[1] >= 0.1))
+    t0 = time()
+    e = valuta_progetto(M_RICH, N_RICH, 195_000.0, tc.cp, "andata&ritorno"; config = CFG_SIM)
+    t_sim = time() - t0
+    sim = merge(grandezze_simulatore(e), (costo = e.costo_totale, fattibile = e.stato === :completed && e.penalita == 0, esito = esito_simulatore(e)))
+    return (nome = tc.id, doe = doe, L = L, fermate = length(dt.pr.fermate), vmin = minimum(s[3] for s in dt.pr.seg),
+            vmax = maximum(s[3] for s in dt.pr.seg), dislivello = dt.X[ID], distanza = dt.dist, taglie = tg, rete = rete, sim = sim, t_sim = t_sim)
+end
+
+fmt(f, x) = isfinite(x) ? Printf.format(Printf.Format(f), x) : "—"
+differenza(a, b, tipo) = !(isfinite(a) && isfinite(b)) ? "" : tipo === :rel ? (b == 0 ? "" : @sprintf("%+.2f%%", 100 * (a / b - 1))) : @sprintf("%+.3f", a - b)
+
+"""L'uscita dettagliata per una coppia data su una tratta."""
+function stampa_coppia(r)
+    stampa_tratta(r; consiglio = "da prendere con più cautela")
+    ibr = M_EFF > 0; tg = r.taglie; a = r.rete; b = r.sim
+    println(@sprintf("\n══ PROGETTO m = %.2f, n = %.2f ══  %s", M_RICH, N_RICH, ibr ? "treno ibrido idrogeno–batteria" : "treno a sola batteria"))
+    println(@sprintf("  fuel cell: %.0f kW nominali   batteria: %.0f kWh", tg.P_nom, tg.C_batt))
+    println(@sprintf("\n  %-38s %14s %14s %12s", "", "rete neurale", "simulatore", "rete − sim."))
+    riga(nome, x, y, f, tipo) = println(@sprintf("  %-38s %14s %14s %12s", nome, fmt(f, x), fmt(f, y), differenza(x, y, tipo)))
+    riga("durata del viaggio A/R [h]", a.durata / 3600, b.durata / 3600, "%.3f", :rel)
+    ibr && riga("idrogeno consumato [kg a viaggio]", a.H2, b.H2, "%.2f", :rel)
+    ibr && riga("serbatoio [kg]", a.serbatoio, b.serbatoio, "%.1f", :rel)
+    riga("SOC finale (vincolo ≥ 0,20)", a.SOC, b.SOC, "%.3f", :abs)
+    println(@sprintf("  %-38s %14s %14s", "scarica completa (vincolo: no)", (a.scarica ? "sì" : "no") * @sprintf(" (p=%.2f)", a.p_scarica),
+                     isnan(b.C_rate) ? "—" : b.scarica ? "sì" : "no"))
+    riga("C-rate di scarica massimo (D3: ≤ 20)", a.C_rate, b.C_rate, "%.2f", :rel)
+    riga("vita della batteria a cicli [viaggi]", a.vita_batt, b.vita_batt, "%.0f", :rel)
+    ibr && riga("vita della fuel cell (f1) [h]", a.vita_FC_f1, b.vita_FC_f1, "%.0f", :rel)
+    riga(@sprintf("massa propulsione [kg] (≤ %.0f)", LIMITE_MASSA), a.massa, b.massa, "%.0f", :rel)
+    riga("costo [€/km], senza penalità", a.costo, b.costo, "%.4f", :rel)
+    println(@sprintf("  %-38s %14s %14s", "esito", a.esito, b.esito))
+    a.al_limite && println("\n  La rete lo dice fattibile ma vicino al limite (SOC previsto < 0,21 o probabilità di scarica ≥ 0,1): qui sbaglia più spesso.")
+    a.fattibile != b.fattibile && println("\n  Rete e simulatore NON sono d'accordo sulla fattibilità: fa fede il simulatore.")
+end
+
+"""Il riepilogo CSV della coppia data, una riga per tratta."""
+function scrivi_coppia(risultati)
+    f = joinpath(BASE, "surrogato", @sprintf("coppia_m%.3f_n%.3f_%s.csv", M_RICH, N_RICH, Dates.format(now(), "yyyymmdd_HHMMSS"))); mkpath(dirname(f))
+    open(f, "w") do io
+        println(io, "tratta,L_km,distanza,giudizio,insieme,m,n,m_simulata,P_nom_FC_kW,C_batt_kWh,",
+                join((string(k, "_", s) for k in NOMI_CONFRONTO for s in ("rete", "sim")), ','), ",p_scarica_rete,fattibile_rete,fattibile_sim,esito_rete,esito_sim")
+        for r in risultati
+            println(io, join((r.nome, @sprintf("%.3f", r.L), @sprintf("%.3f", r.distanza), giudizio(r.distanza), r.doe > 0 ? insieme(r.doe) : "",
+                              M_RICH, N_RICH, M_EFF, @sprintf("%.1f", r.taglie.P_nom), @sprintf("%.1f", r.taglie.C_batt),
+                              (Float64(getproperty(x, k)) for k in NOMI_CONFRONTO for x in (r.rete, r.sim))...,
+                              @sprintf("%.4f", r.rete.p_scarica), r.rete.fattibile, r.sim.fattibile, r.rete.esito, r.sim.esito), ','))
+        end
+    end
+    return f
+end
+
 # ── tutte le tratte ──────────────────────────────────────────────────────────────
 t_avvio = time() - T0
 risultati = NamedTuple[]
 errori = Tuple{String,String}[]
 t_tratte = time()
-DETTAGLIO || println(@sprintf("\n%d tratte; avvio %.1f s\n\n  %-40s %7s %6s %-11s %6s %6s %9s %9s %s", length(ELENCO), t_avvio,
-                              "tratta", "L [km]", "dist.", "", "m", "n", "€/km", "verif.", IS_DOE ? "rispetto alla campagna" : ""))
+DETTAGLIO || (MODO_COPPIA ?
+    println(@sprintf("\n%d tratte, coppia m = %.2f, n = %.2f; avvio %.1f s\n\n  %-40s %7s %6s %-11s %9s %9s %8s %6s %6s  %-24s %s", length(ELENCO),
+                     M_RICH, N_RICH, t_avvio, "tratta", "L [km]", "dist.", "", "€/km rete", "€/km sim", "diff.", "SOC r.", "SOC s.", "esito rete", "esito simulatore")) :
+    println(@sprintf("\n%d tratte; avvio %.1f s\n\n  %-40s %7s %6s %-11s %6s %6s %9s %9s %s", length(ELENCO), t_avvio,
+                     "tratta", "L [km]", "dist.", "", "m", "n", "€/km", "verif.", IS_DOE ? "rispetto alla campagna" : "")))
 for (trs, ids) in (IS_DOE ? ((leggi_tratte_materializzate(CARTELLA; solo = Set(b)), b) for b in Iterators.partition(ELENCO, 256)) :
                    (((n,), [0]) for n in ELENCO))
     for tr in trs
@@ -173,7 +299,7 @@ for (trs, ids) in (IS_DOE ? ((leggi_tratte_materializzate(CARTELLA; solo = Set(b
         try
             tc = IS_DOE ? tr : only(leggi_tratte_reali([tr]; cartella = CARTELLA))
             doe = IS_DOE ? parse(Int, tc.id[7:end]) : 0
-            r = analizza(tc; doe)
+            r = MODO_COPPIA ? analizza_coppia(tc; doe) : analizza(tc; doe)
         catch e
             nome = IS_DOE ? tr.id : String(tr)
             push!(errori, (nome, first(sprint(showerror, e), 200)))
@@ -181,6 +307,14 @@ for (trs, ids) in (IS_DOE ? ((leggi_tratte_materializzate(CARTELLA; solo = Set(b
             continue
         end
         push!(risultati, r)
+        if MODO_COPPIA
+            a = r.rete; s = r.sim
+            DETTAGLIO ? stampa_coppia(r) :
+                println(@sprintf("  %-40s %7.1f %6.2f %-11s %9s %9s %8s %6s %6s  %-24s %s", r.nome, r.L, r.distanza, giudizio(r.distanza),
+                                 fmt("%.4f", a.costo), fmt("%.4f", s.costo), differenza(a.costo, s.costo, :rel), fmt("%.3f", a.SOC), fmt("%.3f", s.SOC),
+                                 a.esito * (a.al_limite ? " (al limite)" : ""), s.esito))
+            continue
+        end
         f = scrivi_candidati(r)
         if DETTAGLIO
             stampa_dettaglio(r)
@@ -196,7 +330,20 @@ for (trs, ids) in (IS_DOE ? ((leggi_tratte_materializzate(CARTELLA; solo = Set(b
 end
 t_tratte = time() - t_tratte
 
-if !DETTAGLIO
+if MODO_COPPIA
+    f = scrivi_coppia(risultati)
+    if DETTAGLIO
+        println(@sprintf("\nTempo: %.1f s di avvio + %.2f s per la tratta (la simulazione %.3f s), quasi tutti di compilazione al primo uso", t_avvio, t_tratte,
+                         isempty(risultati) ? NaN : risultati[1].t_sim))
+    else
+        nr = count(r -> r.rete.fattibile, risultati); ns = count(r -> r.sim.fattibile, risultati)
+        ac = count(r -> r.rete.fattibile == r.sim.fattibile, risultati)
+        ec = [abs(r.rete.costo / r.sim.costo - 1) for r in risultati if isfinite(r.rete.costo) && isfinite(r.sim.costo)]
+        println(@sprintf("\n%d tratte analizzate, %d errori: fattibile per la rete in %d, per il simulatore in %d; d'accordo sulla fattibilità in %d; errore del costo (rete contro simulatore) mediano %.2f%%; %.1f s per le tratte + %.1f s di avvio",
+                         length(risultati), length(errori), nr, ns, ac, isempty(ec) ? NaN : 100 * median(ec), t_tratte, t_avvio))
+    end
+    println("Riepilogo in ", f)
+elseif !DETTAGLIO
     f = joinpath(BASE, "surrogato", "riepilogo_" * Dates.format(now(), "yyyymmdd_HHMMSS") * ".csv"); mkpath(dirname(f))
     open(f, "w") do io
         println(io, "tratta,L_km,distanza,giudizio,m,n,regime,P_nom_FC_kW,C_batt_kWh,costo_simulatore_EUR_km,costo_rete_EUR_km,candidati_verificati,",

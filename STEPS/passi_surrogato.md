@@ -516,3 +516,12 @@ La rete trova l'ottimo vero, o quasi, su tutte e tre, con il regime giusto: ibri
 **Per le tratte DoE** della campagna basta il numero: `julia -t 8 --project=surrogato surrogato/usa_surrogato.jl doe=15000`. Lo script dice anche se la rete l'ha vista in addestramento, e la confronta con la migliore delle 288 coppie simulate.
 
 Esempio, Firenze: m = 0,03, n = 0,96 (fuel cell da 59 kW, batteria da 3049 kWh), 2,407 €/km. È lo 0,13% dall'ottimo vero della griglia, e la migliore delle 288 coppie della campagna costava il 2% in più.
+
+### Una coppia (m, n) data
+
+16/11/2026. Con `m=` e `n=` lo script non cerca: la rete e il simulatore valutano solo quella coppia, e le grandezze, l'esito e il costo escono fianco a fianco. Esempi: `surrogato doe=15000 m=0.30 n=0.50`, `surrogato cartella=… tratta=tutte m=0.30 n=0.50`.
+
+Prove:
+- Firenze, m = 0,03, n = 0,96: il simulatore dà 2,4070 €/km, come l'esempio sopra; la rete 2,4103 €/km (+0,14%).
+- Route 15000, sola batteria, n = 0,31: 2,7924 €/km, uguale alla proposta della modalità ricerca.
+- Route 15000–15004, m = 0,30, n = 0,50: rete e simulatore d'accordo sulla fattibilità in 5 tratte su 5; errore del costo mediano 1,6%.
