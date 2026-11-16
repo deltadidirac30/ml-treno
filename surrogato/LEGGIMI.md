@@ -17,7 +17,35 @@ Vanno bene così come sono le tratte di `train-powertrain/tratte_reali` e le lin
 
 ## 2. Lanciare
 
-Dalla cartella `ml_treno`:
+**Il modo più semplice: il comando `surrogato`**, da qualunque cartella. È un alias nel file `~/.zshrc` (aggiunto il 16/11/2026); funziona in ogni terminale aperto dopo, oppure dopo `source ~/.zshrc`.
+
+```zsh
+surrogato doe=15000
+surrogato cartella=~/Documents/lavoro/train-powertrain/tratte_reali tratta=Firenze
+surrogato cartella=~/Documents/lavoro/train-powertrain/tratte_reali tratta=Firenze verifiche=10
+```
+
+La riga dell'alias, da aggiungere a `~/.zshrc` su un altro computer (cambiando il percorso di `ml_treno`):
+
+```zsh
+alias surrogato='julia -t 8 --project="$HOME/Library/CloudStorage/GoogleDrive-emanuele.dalessio@uniroma1.it/Il mio Drive/Dottorato/ml_treno/surrogato" "$HOME/Library/CloudStorage/GoogleDrive-emanuele.dalessio@uniroma1.it/Il mio Drive/Dottorato/ml_treno/surrogato/usa_surrogato.jl"'
+```
+
+**Senza alias**, il comando va lanciato **dalla cartella `ml_treno`**, non da `train-powertrain`: da un'altra cartella il percorso `surrogato/...` non si trova. Le virgolette servono perché il percorso contiene spazi.
+
+```zsh
+cd "$HOME/Library/CloudStorage/GoogleDrive-emanuele.dalessio@uniroma1.it/Il mio Drive/Dottorato/ml_treno"
+julia -t 8 --project=surrogato surrogato/usa_surrogato.jl doe=15000
+```
+
+Oppure, da qualunque cartella, con i percorsi completi:
+
+```zsh
+ML="$HOME/Library/CloudStorage/GoogleDrive-emanuele.dalessio@uniroma1.it/Il mio Drive/Dottorato/ml_treno"
+julia -t 8 --project="$ML/surrogato" "$ML/surrogato/usa_surrogato.jl" doe=15000
+```
+
+Altri esempi, dalla cartella `ml_treno`:
 
 ```zsh
 julia -t 8 --project=surrogato surrogato/usa_surrogato.jl cartella=<cartella che contiene la tratta> tratta=<nome>

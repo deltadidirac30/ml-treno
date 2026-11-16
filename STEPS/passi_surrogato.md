@@ -509,6 +509,8 @@ La rete trova l'ottimo vero, o quasi, su tutte e tre, con il regime giusto: ibri
    - fa verificare i 5 migliori al simulatore vero;
    - propone il più economico davvero fattibile, con la potenza della fuel cell e la capacità della batteria.
 
+**Il comando più semplice è l'alias `surrogato`** (in `~/.zshrc`), da qualunque cartella: `surrogato doe=15000`, oppure `surrogato cartella=… tratta=…`. Senza alias, il comando con `julia` va lanciato dalla cartella `ml_treno`.
+
 **Per le tratte DoE** della campagna basta il numero: `julia -t 8 --project=surrogato surrogato/usa_surrogato.jl doe=15000`. Lo script dice anche se la rete l'ha vista in addestramento, e la confronta con la migliore delle 288 coppie simulate.
 
 Esempio, Firenze: m = 0,03, n = 0,96 (fuel cell da 59 kW, batteria da 3049 kWh), 2,407 €/km. È lo 0,13% dall'ottimo vero della griglia, e la migliore delle 288 coppie della campagna costava il 2% in più.
