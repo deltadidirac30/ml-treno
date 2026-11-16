@@ -1,0 +1,67 @@
+fase9/01_costo.jl  2026-11-16T09:16:45.388  thread: 8  julia 1.12.5  EvoTrees 0.19.0  TrainPowertrain 7c9115a1877dda0142eeb08fe25dc810bd93a544
+validazione: 589824 casi, 2048 tratte; completed 577569, rejected D3 12255, fattibili 253798
+previsioni delle 8 grandezze su 589824 casi: 27.3 s (46.3 µs a caso con 8 thread)
+  controllo: SOC previsto = fase 8 (prima del taglio a [0; 0,9]): true
+  SOC previsto fuori da [0; 0,9] prima del taglio: 67149 casi
+
+[1] collaudo: grandezze vere ed esito D3 vero → fattibilità e costo del registro?
+  0.9 s
+  fattibile = registro (tipo_esito == fattibile): 589824 / 589824
+  vincoli: massa 577569 / 577569 (pesante o mista ⇔ massa oltre il limite)
+  costo senza penalità (completed): uguali al bit 546898 / 577569; scarto relativo massimo 5.16e-16
+  costo con penalità = registro (scarto ≤ 1e-9 relativo): 589824 / 589824
+  ESITO DEL COLLAUDO: il banco di prova ridà il simulatore
+
+[2] surrogato: grandezze previste, D3 dalla regola C-rate > 20
+  0.6 s
+  fattibilità (righe = vero, colonne = surrogato):
+                       surrogato: fattibile   non fattibile
+    vero fattibile             247018         6780   (scartati per errore: 2.67% dei fattibili)
+    vero non fattibile           4291       331735   (promossi per errore: 1.28% dei non fattibili)
+    giusti 98.123%; dei casi che il surrogato dice fattibili, davvero fattibili 98.293%
+  vincolo per vincolo (vero dalle grandezze vere; D3 vero dall'esito):
+    D3 (C-rate > 20)     violato davvero   12255; surrogato giusto 99.986%; mancati     59, in più     22
+    massa > 29 250 kg    violato davvero  100936; surrogato giusto 99.616%; mancati   1105, in più   1160
+    SOC finale < 0,2     violato davvero  189646; surrogato giusto 97.461%; mancati   8481, in più   6492
+    scarica totale       violato davvero  238383; surrogato giusto 98.807%; mancati   3371, in più   3667
+  nei 11071 casi con la fattibilità sbagliata, il vincolo sbagliato è:
+    D3           63 (0.6%)
+    massa      1892 (17.1%)
+    SOC        5714 (51.6%)
+    scarica    3847 (34.7%)
+  costo senza penalità, errore relativo % (mediana / p95 / p99 / max; bias medio):
+    completed, non D3 per il surrogato    577547 casi: 2.190 / 8.362 / 14.529 / 116.88; bias +0.079%
+    davvero fattibili                     253786 casi: 2.444 / 9.925 / 17.807 / 116.88; bias +0.541%
+    davvero fattibili, sola batteria        7890 casi: 6.544 / 22.953 / 40.352 / 80.10; bias +3.508%
+    davvero fattibili, ibridi             245896 casi: 2.387 / 9.249 / 15.989 / 116.88; bias +0.445%
+  per fascia di lunghezza (davvero fattibili): 0–25 km 4.69 / 18.54;  25–100 km 2.81 / 10.12;  100–200 km 2.06 / 6.94;  200–301 km 1.87 / 5.73
+
+[3] da dove viene l'errore: una grandezza vera alla volta al posto della prevista
+  grandezza resa vera    fattib. giusta  costo mediana        p95        p99
+  nessuna (surrogato)           98.123%         2.444%     9.925%    17.807%
+  durata                        98.123%         2.427%     9.886%    17.755%
+  serbatoio                     98.442%         2.420%     9.886%    17.776%
+  H2                            98.123%         1.333%     8.574%    17.040%
+  SOC                           99.070%         2.423%     9.594%    15.967%
+  scarica                       98.718%         2.444%     9.925%    17.807%
+  vita_batt                     98.123%         2.450%     9.935%    17.815%
+  vita_FC_f1                    98.123%         2.409%     9.880%    17.724%
+  C_rate                        98.125%         2.444%     9.925%    17.809%
+
+[4] una sola grandezza prevista (le altre vere): quanto errore porta ciascuna da sola
+    (D3 dalla regola sul C-rate in uso: vero o previsto; costo sui casi davvero fattibili e non D3)
+  prevista       fattib. giusta   costo: mediana / p95          sola batteria                 ibridi
+  durata                99.992%      0.037% /   0.300%      0.000% /   0.070%      0.038% /   0.306%
+  serbatoio             99.668%      0.021% /   0.117%      0.000% /   0.000%      0.022% /   0.118%
+  H2                    99.992%      2.376% /   9.582%      0.000% /   0.000%      2.473% /   9.697%
+  SOC                   99.041%      1.036% /   8.333%      6.445% /  22.770%      0.985% /   7.417%
+  scarica               99.396%      0.000% /   0.000%      0.000% /   0.000%      0.000% /   0.000%
+  vita_batt             99.992%      0.082% /   0.409%      0.336% /   1.132%      0.079% /   0.367%
+  vita_FC_f1            99.992%      0.406% /   1.740%      0.000% /   0.000%      0.425% /   1.758%
+  C_rate                99.989%      0.000% /   0.000%      0.000% /   0.000%      0.000% /   0.000%
+
+salvato /Users/kairos/Documents/lavoro/ml_treno_dati/fase9/surrogato_validazione.arrow
+figure: fig_costo_previsto_vero.png, fig_una_prevista.png
+
+tempo totale: 53.5 s
+julia -t 8 --project=fase9 fase9/01_costo.jl  255,89s user 5,26s system 466% cpu 55,937 total

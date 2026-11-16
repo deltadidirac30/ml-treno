@@ -137,3 +137,28 @@ Numeri in `fase8/risultati/02_decisioni.txt` (script `fase8/02_decisioni.jl`).
 3. **Batterie che durano poco:** nessun vincolo, come nel simulatore. La migliore ha la batteria sotto 1 anno in 96 tratte; con un vincolo "≥ 1 anno" cambierebbe in quelle 96 (+1,3% di costo in mediana). Si può aggiungere dopo, sulla vita prevista, senza riaddestrare.
 
 **Prossimo passo: il 5**, il banco di prova del surrogato (costo, fattibilità, ottimo per tratta), collaudato con il boosting.
+
+## Passo 5a: dal surrogato al costo, caso per caso
+
+16/11/2026. Report: `fase9/REPORT_FASE9_COSTO.md`.
+
+**Cosa abbiamo fatto.** Abbiamo costruito il "banco di prova": dalle 8 grandezze di un caso calcola vincoli, fattibilità e costo con le stesse regole del simulatore. Il collaudo è perfetto: con le grandezze vere ridà il simulatore su tutti i 589 824 casi della validazione. Poi lo abbiamo usato con le grandezze previste dal boosting. Meno di un minuto di calcolo.
+
+**I risultati:**
+
+| | risultato |
+|---|---|
+| fattibilità giusta | 98,1% dei casi |
+| fattibili scartati per errore | 2,7% |
+| non fattibili promossi per errore | 1,3% |
+| errore del costo (casi fattibili): mediana / 95° percentile | 2,4% / 9,9% |
+| … negli ibridi | 2,4% / 9,2% |
+| … a sola batteria | 6,5% / 23% |
+
+**Cosa ci dicono i numeri:**
+1. **Il costo sbaglia per due sole grandezze:** l'idrogeno negli ibridi, che è la voce di costo più grande, e il SOC finale a sola batteria, dove l'energia di ricarica è quasi tutto il costo. Durata, serbatoio e vite pesano pochissimo.
+2. **La fattibilità sbaglia soprattutto per il SOC** (metà degli errori), poi la scarica e la massa. La tua regola D3 non sbaglia quasi mai.
+3. **Il credito dell'energia di ricarica amplifica gli errori sul SOC.** Su una tratta di 5 km il surrogato prevede un SOC finale sopra lo 0,8 e il costo diventa addirittura negativo.
+4. **Per la rete neurale le priorità sono idrogeno e SOC finale.**
+
+**Prossimo: passo 5b**, la scelta della coppia migliore fra le 288 di ogni tratta.
