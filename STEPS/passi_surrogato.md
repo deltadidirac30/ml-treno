@@ -491,3 +491,22 @@ La rete trova l'ottimo vero, o quasi, su tutte e tre, con il regime giusto: ibri
 2. **La scelta del progetto resta buona.** In 86 linee su 100 la rete con 5 verifiche arriva entro l'1% dalla migliore delle 288, e in quasi metà delle linee trova un progetto più economico (fino all'11% in meno). Anche dove l'errore del costo è alto (7–11%, per esempio le linee della Sicilia occidentale), la scelta è buona: l'errore sposta tutti i progetti della linea allo stesso modo e non cambia la classifica.
 3. **La distanza dai dati di addestramento è il miglior segnale di allarme.** Per il 10% di linee più lontane conviene fare più di 5 verifiche, o una breve ricerca con il simulatore.
 4. **Per migliorare sulle linee reali**, una nuova campagna dovrebbe aggiungere tratte più simili a quelle reali: un DoE "ancorato" alle linee della rete, oltre a quello uniforme.
+
+## Come si usa il surrogato
+
+16/11/2026. Istruzioni complete in `surrogato/LEGGIMI.md`.
+
+1. **Preparare la tratta**: una cartella con i 4 file di progressiva, altimetria, stazioni e limiti, come quelle di `tratte_reali` e `tratte_rete`.
+2. **Lanciare**, dalla cartella `ml_treno`:
+
+   ```
+   julia -t 8 --project=surrogato surrogato/usa_surrogato.jl cartella=<cartella> tratta=<nome>
+   ```
+
+3. **In circa 10–15 secondi lo script:**
+   - dice quanto la tratta è diversa da quelle di addestramento;
+   - fa valutare alla rete quasi 10 000 progetti (m, n);
+   - fa verificare i 5 migliori al simulatore vero;
+   - propone il più economico davvero fattibile, con la potenza della fuel cell e la capacità della batteria.
+
+Esempio, Firenze: m = 0,03, n = 0,96 (fuel cell da 59 kW, batteria da 3049 kWh), 2,407 €/km. È lo 0,13% dall'ottimo vero della griglia, e la migliore delle 288 coppie della campagna costava il 2% in più.
