@@ -1,0 +1,34 @@
+fase12/01_test.jl  2026-11-16T14:03:06.278  thread: 8  TrainPowertrain 7c9115a1877dda0142eeb08fe25dc810bd93a544
+test: gruppi [15, 16], 2048 tratte, 589760 casi
+
+[1] errori per grandezza sul test (mediana / p95), accanto alla validazione
+  durata      rete: test 0.161 / 0.815 (validazione 0.159 / 0.888) | boosting: test 0.251 / 1.220
+  serbatoio   rete: test 1.670 / 8.215 (validazione 1.703 / 8.811) | boosting: test 3.315 / 13.790
+  H2          rete: test 1.645 / 7.902 (validazione 1.676 / 8.510) | boosting: test 3.318 / 13.660
+  SOC         rete: test 0.012 / 0.106 (validazione 0.012 / 0.108) | boosting: test 0.029 / 0.156
+  vita_batt   rete: test 2.363 / 10.911 (validazione 2.356 / 10.840) | boosting: test 3.676 / 14.528
+  vita_FC_f1  rete: test 1.760 / 6.550 (validazione 1.732 / 6.470) | boosting: test 2.552 / 8.435
+  C_rate      rete: test 1.234 / 4.973 (validazione 1.236 / 4.934) | boosting: test 0.674 / 4.309
+  scarica     rete: test 98.97% (validazione 99.00%) | boosting: test 98.77%
+
+[2] collaudo sul test: le grandezze vere ridanno la fattibilità del simulatore: 589760 / 589760
+    fattibilità e costo (casi davvero fattibili): giusta %, costo mediana / p95 (validazione della rete: 98,86%, 1,26% / 5,21%)
+    rete      fattibilità giusta 98.829%; costo 1.235% / 4.867%
+    boosting  fattibilità giusta 98.070%; costo 2.384% / 9.516%
+
+[3] scelta fra le 288 coppie, 2047 tratte del test (senza la 14664); validazione fra parentesi
+  rete      scelta secca             non fattibili 16.71% (14.40%) | rimpianto mediana 0.000% (0.000%), p95  4.12% ( 3.99%) | entro 1%  67.1% ( 70.4%)
+  rete      verifica delle prime 3   non fattibili  0.98% ( 1.03%) | rimpianto mediana 0.000% (0.000%), p95  3.42% ( 2.76%) | entro 1%  85.6% ( 86.8%)
+  rete      verifica delle prime 5   non fattibili  0.34% ( 0.10%) | rimpianto mediana 0.000% (0.000%), p95  3.25% ( 2.29%) | entro 1%  88.5% ( 90.2%)   ← strategia di riferimento fra le 288
+  boosting  scelta secca             non fattibili 21.35% (18.21%) | rimpianto mediana 0.887% (1.009%), p95 15.38% (14.73%) | entro 1%  40.6% ( 40.7%)
+  boosting  verifica delle prime 3   non fattibili  3.47% ( 2.49%) | rimpianto mediana 0.239% (0.350%), p95 12.62% (12.87%) | entro 1%  60.2% ( 60.1%)
+  boosting  verifica delle prime 5   non fattibili  0.73% ( 0.29%) | rimpianto mediana 0.000% (0.089%), p95 12.44% (12.74%) | entro 1%  66.0% ( 65.3%)
+
+[4] griglia fitta (9702 punti) con verifica al simulatore, 256 tratte del test (seme 20261117)
+  26.1 s (previsioni e 2163 simulazioni)
+  griglia, scelta secca, senza margini             non fattibili  38.7% ( 41.0%) | mediana -0.942% (-0.233%), p10 -6.54% (-8.67%), p95 +1.57% (+2.29%) | più economica della migliore delle 288  44.1% ( 37.1%), entro +1%  56.2% ( 50.0%)
+  griglia + verifica delle prime 5, senza margini  non fattibili   7.0% (  6.2%) | mediana -0.767% (-0.304%), p10 -6.56% (-7.60%), p95 +1.44% (+1.15%) | più economica della migliore delle 288  67.6% ( 62.1%), entro +1%  85.2% ( 85.9%)
+  griglia, scelta secca, margine piccolo           non fattibili  20.3% ( 18.0%) | mediana -0.562% (-0.154%), p10 -6.73% (-7.05%), p95 +2.30% (+2.32%) | più economica della migliore delle 288  48.0% ( 48.0%), entro +1%  71.1% ( 69.9%)
+  griglia + margine + verifica delle prime 5       non fattibili   1.6% (  1.6%) | mediana -0.547% (-0.214%), p10 -6.79% (-6.83%), p95 +1.94% (+1.66%) | più economica della migliore delle 288  65.6% ( 60.9%), entro +1%  90.2% ( 88.7%)   ← strategia di riferimento sulla griglia
+
+tempo totale: 1.2 min

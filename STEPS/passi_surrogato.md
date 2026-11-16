@@ -431,3 +431,28 @@ Il prezzo si paga una volta sola: la campagna (5 ore sul PC) e l'addestramento (
 - per la maledizione del vincitore, le verifiche al simulatore oppure più coppie (m, n) proprio vicino al limite del SOC (campionamento adattivo).
 
 **Prossimo: passo 8**, l'esame finale sul test e l'applicazione a tratte reali e linee della rete.
+
+## Passo 8a: l'esame finale sul test
+
+16/11/2026. Report: `fase12/REPORT_FASE12_ESAME.md`.
+
+**Come.** Il test (2048 tratte mai usate per nulla) si guarda una volta sola. Per questo abbiamo prima scritto e committato il piano, con le regole e le strategie scelte sulla validazione (commit 50e5132, alle 14:02). Poi abbiamo fatto la misura (alle 14:03), con la rete 6b così com'è e il boosting come confronto. Poco più di un minuto, comprese 2163 simulazioni di verifica.
+
+**I risultati** (test; fra parentesi la validazione):
+
+| | rete neurale | boosting |
+|---|---:|---:|
+| idrogeno (errore mediano) | 1,65% (1,68%) | 3,32% |
+| SOC finale (errore assoluto) | 0,012 (0,012) | 0,029 |
+| fattibilità giusta | 98,8% (98,9%) | 98,1% |
+| costo (errore mediano) | 1,24% (1,26%) | 2,38% |
+| scelta fra le 288 + 5 verifiche: tratte entro l'1% | 88,5% (90,2%) | 66,0% |
+
+**La strategia per il preconfiguratore** (griglia fitta con la rete + margine piccolo + 5 simulazioni di verifica), sul test:
+- progetto fattibile nel **98,4%** delle tratte (validazione 98,4%);
+- in **2 tratte su 3** trova un progetto **più economico** della migliore delle 288 coppie della campagna: −0,55% in mediana, almeno −6,8% in una tratta su dieci;
+- nel **90%** delle tratte è entro l'1% dalla migliore delle 288, o meglio.
+
+**Cosa ci dice:** il test conferma la validazione quasi alla cifra. Il surrogato non è stato "aggiustato" sulla validazione: funziona allo stesso modo su tratte davvero nuove.
+
+**Prossimo: 8b e 8c**, le tratte reali (Calabria, Canavese, Firenze) e le 166 linee della rete ferroviaria.
