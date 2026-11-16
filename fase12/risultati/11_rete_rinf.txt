@@ -1,0 +1,91 @@
+fase12/11_rete_rinf.jl  2026-11-16T17:45:42.171  thread: 8  TrainPowertrain 7c9115a1877dda0142eeb08fe25dc810bd93a544
+1. linee costruite: 166 su 166 (1.0 s)
+   Edolo-Brescia: fermate fino a 76.996 km, capolinea aggiunto a 100.622 km
+   Sale_Marasino-Brescia: fermate fino a 8.641 km, capolinea aggiunto a 32.267 km
+2. profilo RINF: 288 coppie × 166 linee simulate in 1.6 min
+2. tutto RINF: 288 coppie × 166 linee simulate in 1.8 min
+3. surrogato valutato sulle 4 versioni (4.5 min dall'inizio)
+
+══ TUTTE LE LINEE COSTRUITE (166 linee)
+                                                     mappa   mappa 200 m  profilo RINF    tutto RINF
+A. errori della rete sulle 288 coppie (mediana / 95° percentile)
+   durata                                        0.36/1.3%     0.34/1.3%     0.37/1.2%     0.37/1.3%
+   serbatoio                                    3.11/11.5%     2.66/9.8%    2.86/10.2%    3.00/11.7%
+   idrogeno                                     3.01/11.0%     2.60/9.4%     2.82/9.8%    2.95/10.9%
+   SOC finale                                 0.0137/0.100  0.0125/0.096  0.0133/0.097  0.0143/0.095
+   vita batteria                                3.47/12.9%    3.23/12.0%    3.36/12.6%    3.72/14.5%
+   vita FC (f1)                                15.74/63.6%    4.18/20.6%    3.39/11.7%    3.80/13.9%
+   C-rate scarica                                1.55/6.1%     1.50/5.8%     1.57/6.1%     1.63/6.3%
+   costo                                         2.77/9.5%     1.83/6.2%     1.97/6.3%     1.96/6.7%
+   vita FC con il segno (+ = rete più lunga)        +15.7%         +1.7%         -1.0%         -0.6%
+   fattibilità giusta                               98.35%        98.52%        98.39%        98.41%
+   distanza dall'addestramento (mediana)              3.69          3.68          3.82          3.82
+   linee LONTANE (> 4,7)                                21            23            21            25
+B. la scelta del progetto (griglia fitta + margine + verifiche) contro la migliore delle 288
+   progetto fattibile                              166/166       166/166       166/166       166/166
+   costo vs migliore 288: mediana                   +0.02%        -0.01%        +0.00%        -0.03%
+   … 10° / 90° percentile                       -4.8/+2.0%    -3.4/+0.7%    -3.5/+1.3%    -6.5/+0.9%
+   … massimo                                       +11.83%        +6.46%        +8.09%       +12.86%
+   più economico delle 288                             45%           52%           49%           55%
+   entro +1%                                           86%           91%           89%           91%
+   oltre +3%                                            11             3             8             5
+   più di 5 verifiche                                    5             5             7             4
+   stesso regime della migliore 288                152/166       154/166       153/166       146/166
+   migliore 288 sola batteria                 101 → 98/3/0 101 → 101/0/0 101 → 100/1/0 109 → 106/3/0
+   migliore 288 ibrido FC piccola                7 → 0/7/0     6 → 0/6/0     5 → 0/5/0     8 → 0/6/2
+   migliore 288 ibrido                        58 → 0/11/47  59 → 0/12/47  60 → 0/12/48  49 → 0/15/34
+C. nel progetto proposto, rete contro simulatore (mediana del valore assoluto; costo e vita FC anche con il segno)
+   durata                                            0.41%         0.34%         0.37%         0.38%
+   serbatoio                                         2.77%         3.04%         3.01%         2.21%
+   idrogeno                                          2.88%         2.85%         2.62%         1.81%
+   SOC finale                                       0.0149        0.0123        0.0152        0.0140
+   vita batteria                                     2.65%         2.42%         2.58%         2.91%
+   vita FC (f1)                                     27.19%         6.40%         2.43%         3.55%
+   C-rate scarica                                    1.39%         1.42%         1.42%         1.41%
+   costo                                             2.22%         1.90%         2.25%         1.96%
+   costo con il segno                               -0.39%        +0.05%        +0.40%        +0.19%
+   vita_FC_f1 con il segno                         +27.19%        +6.40%        -0.76%        -0.50%
+
+══ LE LINEE NON ELETTRIFICATE OLTRE IL 70% (146 linee)
+                                                     mappa   mappa 200 m  profilo RINF    tutto RINF
+A. errori della rete sulle 288 coppie (mediana / 95° percentile)
+   durata                                        0.35/1.4%     0.33/1.4%     0.36/1.3%     0.35/1.3%
+   serbatoio                                    3.23/11.9%    2.74/10.1%    2.92/10.6%    3.04/11.9%
+   idrogeno                                     3.12/11.3%     2.68/9.7%    2.89/10.1%    3.00/11.1%
+   SOC finale                                 0.0139/0.102  0.0127/0.096  0.0134/0.097  0.0144/0.094
+   vita batteria                                3.57/13.2%    3.30/12.2%    3.41/12.7%    3.74/14.3%
+   vita FC (f1)                                16.74/65.8%    4.36/21.5%    3.36/11.9%    3.79/14.2%
+   C-rate scarica                                1.56/6.2%     1.50/5.9%     1.58/6.1%     1.64/6.3%
+   costo                                         2.88/9.8%     1.89/6.3%     2.02/6.5%     1.97/6.7%
+   vita FC con il segno (+ = rete più lunga)        +16.7%         +2.2%         -0.8%         -0.3%
+   fattibilità giusta                               98.32%        98.52%        98.39%        98.41%
+   distanza dall'addestramento (mediana)              3.69          3.68          3.80          3.80
+   linee LONTANE (> 4,7)                                16            18            16            20
+B. la scelta del progetto (griglia fitta + margine + verifiche) contro la migliore delle 288
+   progetto fattibile                              146/146       146/146       146/146       146/146
+   costo vs migliore 288: mediana                   +0.02%        -0.00%        +0.00%        -0.01%
+   … 10° / 90° percentile                       -3.8/+1.5%    -3.1/+0.7%    -3.3/+1.1%    -5.7/+0.9%
+   … massimo                                       +11.83%        +6.46%        +8.01%       +12.86%
+   più economico delle 288                             45%           51%           48%           53%
+   entro +1%                                           88%           92%           89%           90%
+   oltre +3%                                             9             3             7             4
+   più di 5 verifiche                                    3             3             4             3
+   stesso regime della migliore 288                136/146       136/146       136/146       130/146
+   migliore 288 sola batteria                  92 → 90/2/0   92 → 92/0/0   92 → 92/0/0   99 → 97/2/0
+   migliore 288 ibrido FC piccola                7 → 0/7/0     6 → 0/6/0     5 → 0/5/0     6 → 0/4/2
+   migliore 288 ibrido                         47 → 0/8/39  48 → 0/10/38  49 → 0/10/39  41 → 0/12/29
+C. nel progetto proposto, rete contro simulatore (mediana del valore assoluto; costo e vita FC anche con il segno)
+   durata                                            0.42%         0.34%         0.37%         0.35%
+   serbatoio                                         2.74%         2.72%         2.99%         2.18%
+   idrogeno                                          2.80%         2.47%         2.62%         1.87%
+   SOC finale                                       0.0155        0.0127        0.0152        0.0143
+   vita batteria                                     2.67%         2.55%         2.74%         3.03%
+   vita FC (f1)                                     31.17%         9.08%         2.42%         3.67%
+   C-rate scarica                                    1.48%         1.44%         1.43%         1.47%
+   costo                                             2.26%         1.97%         2.34%         2.11%
+   costo con il segno                               -0.29%        +0.24%        +0.55%        +0.30%
+   vita_FC_f1 con il segno                         +31.17%        +9.08%        -0.10%        +1.04%
+
+Costo della migliore delle 288 (simulatore), tutto RINF contro mappa, per linea: mediana -8.6%, 10° -35.5%, 90° +0.1%
+
+Tempo totale 4.5 min. Tabella per linea: /Users/kairos/Documents/lavoro/ml_treno_dati/fase12_log/11_rete_rinf_linee.csv

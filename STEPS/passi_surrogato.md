@@ -652,3 +652,26 @@ Il gradino di quota a 0,1 m ogni 50 m è solo delle linee della rete (dalla mapp
 4. Le soste reali (60 s per fermata, 300–600 s in alcune) non sono rappresentabili nel formato a 4 file: il simulatore usa 120 s per fermata.
 
 **Le fermate su tutte le 166 linee** (stazioni nella versione dalla mappa contro fermate dell'orario nel Drive): uguali in 53 linee; la mappa ne ha di più in 113, mai di meno: 1–2 in più in 47 linee, 3 o più in 66, fino a 28–29 in più (Aulla–Pisa 29 contro 26, Buonconvento–Firenze 20 contro 6, Cagliari–Macomer 24 contro 11, Biella–Novara 12 contro 5). Era una scelta documentata nel README delle linee ("un servizio che ferma ovunque"), ma su Trapani–Alcamo 2 fermate in più valgono il 15% del costo: da rivedere prima di usare le linee per la tesi.
+
+## Il surrogato sulle 166 linee ricostruite dai dati sorgente RINF
+
+16/11/2026. Script `fase12/11_rete_rinf.jl`, risultati in `fase12/risultati/11_rete_rinf.txt` e `11_rete_rinf_linee.csv`. Linee in `train-powertrain/dati_rete/tratte_rete_rinf/` (non in git): `profilo_rinf` (quota dalle livellette RINF, fermate e limiti della mappa) e `tutto_rinf` (quota, fermate dell'orario e limiti dal Drive), costruite dalla copia locale del Drive (`ml_treno_dati/linee_rinf_sorgente`). 166 linee su 166; in Edolo–Brescia e Sale Marasino–Brescia le fermate dell'orario finiscono a Iseo, e il capolinea è stato aggiunto a fine linea (Brescia). 288 coppie × 166 linee × 2 versioni simulate, 4,5 minuti in tutto.
+
+| tutte le 166 linee | mappa | mappa 200 m | profilo RINF | **tutto RINF** |
+|---|---:|---:|---:|---:|
+| errore idrogeno, mediana / 95° perc. | 3,0% / 11,0% | 2,6% / 9,4% | 2,8% / 9,8% | 3,0% / 10,9% |
+| errore SOC finale | 0,014 | 0,013 | 0,013 | 0,014 |
+| errore vita FC (con il segno) | 15,7% (+15,7%) | 4,2% (+1,7%) | 3,4% (−1,0%) | 3,8% (−0,6%) |
+| errore costo, mediana / 95° perc. | 2,8% / 9,5% | 1,8% / 6,2% | 2,0% / 6,3% | 2,0% / 6,7% |
+| fattibilità giusta | 98,4% | 98,5% | 98,4% | 98,4% |
+| scelta: entro +1% dalla migliore 288 / più economica | 86% / 45% | 91% / 52% | 89% / 49% | 91% / 55% |
+| scelta: oltre +3% / massimo | 11 / +11,8% | 3 / +6,5% | 8 / +8,1% | 5 / +12,9% |
+| nel progetto proposto: errore costo / vita FC | 2,2% / +27% | 1,9% / +6% | 2,3% / −0,8% | 2,0% / −0,5% |
+
+Sulle 146 linee non elettrificate oltre il 70% i numeri sono quasi uguali (tutto RINF: costo 2,0%, vita FC 3,8%, entro +1% nel 90%).
+
+**Cosa ci dicono i numeri:**
+1. **Con i dati corretti la rete sbaglia come sulla mappa lisciata**: costo 2,0% invece di 2,8%, vita FC 3,8% e senza più sovrastima (prima +16%). Il divario residuo con il DoE (costo 1,3%) viene dalla distanza delle linee vere dai dati di addestramento.
+2. **Con le fermate dell'orario cambia molto il simulatore**: la migliore delle 288 costa l'8,6% in meno in mediana, e il 35% o più in meno in una linea su dieci (quelle con molte fermate in più nella mappa). Ci sono più linee a sola batteria (109 contro 101).
+3. **Un nuovo caso difficile**: 3 linee dove l'ottimo è a sola batteria con la batteria più grande (n 0,98) e il surrogato propone una fuel cell minima (m 0,03): Edolo–Brescia +12,9%, Corteolona–Cremona +8,1%, Roccella J.–Catanzaro +6,6%. Probabilmente il margine sul SOC esclude la sola batteria al limite e le 5 verifiche restano tutte sugli ibridi. Rimedio possibile: verificare sempre anche il migliore candidato di ogni regime.
+4. Le altre 17 differenze di regime sono a favore del surrogato (ibrido con fuel cell piccola più economico della migliore delle 288, fino al −15%).
