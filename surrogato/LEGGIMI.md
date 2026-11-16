@@ -30,6 +30,16 @@ julia -t 8 --project=surrogato surrogato/usa_surrogato.jl cartella=~/Documents/l
 julia -t 8 --project=surrogato surrogato/usa_surrogato.jl cartella=~/Documents/lavoro/train-powertrain/dati_rete/archivio/tratte_rete_20261110 tratta=Trapani-Alcamo_Diramazione
 ```
 
+**Tratte DoE** (le 16 384 della campagna, nel formato `route_XXXXXX/tratta_*.csv` con il manifest):
+
+```zsh
+julia -t 8 --project=surrogato surrogato/usa_surrogato.jl doe=15000
+```
+
+- La tratta si legge da `~/Documents/lavoro/ml_treno_dati/tratte_doe_16384` (o da `cartella=…`), con `leggi_tratte_materializzate` come la campagna.
+- Lo script dice se la tratta era nell'**addestramento** (gruppi 1–6, 8–11, 13, 14: la rete l'ha vista, quindi il risultato è ottimista), nella **validazione** (gruppi 7, 12) o nel **test** (gruppi 15, 16).
+- Alla fine mostra la migliore delle 288 coppie della campagna per confronto. Per esempio, la route 15000 (test): sola batteria, n = 0,31, 2,792 €/km, cioè +0,26% rispetto alla migliore della campagna.
+
 **Opzioni:**
 - `verifiche=5`: quanti candidati far verificare al simulatore (default 5). Con una tratta "lontana" meglio 10.
 - `margine=si`: chiede alla rete un SOC finale previsto ≥ 0,21 e una probabilità di scarica < 0,1 (default sì). Con `margine=no` si trovano progetti a volte un po' più economici, ma più spesso non fattibili.

@@ -2,9 +2,15 @@
 # verifica con il simulatore.
 #
 #   julia -t 8 --project=surrogato surrogato/usa_surrogato.jl cartella=<cartella delle tratte> tratta=<nome> [verifiche=5] [margine=si]
+#   julia -t 8 --project=surrogato surrogato/usa_surrogato.jl doe=<route_id> [cartella=<tratte DoE>] [verifiche=5] [margine=si]
 #
 # es. (da ml_treno):
 #   julia -t 8 --project=surrogato surrogato/usa_surrogato.jl cartella=~/Documents/lavoro/train-powertrain/tratte_reali tratta=Firenze
+#   julia -t 8 --project=surrogato surrogato/usa_surrogato.jl doe=15000
+#
+# Tratte DoE (doe=<route_id>, 1–16384): lette da tratte_doe_16384 (default ~/Documents/lavoro/ml_treno_dati/tratte_doe_16384)
+# con leggi_tratte_materializzate, come la campagna. Lo script dice se la tratta era nell'addestramento (la rete l'ha vista),
+# nella validazione o nel test, e mostra la migliore delle 288 coppie della campagna P9_D28_16384 per confronto.
 #
 # La tratta è una cartella <nome>/ con i 4 file <nome>_progressiva.txt, _altimetria.txt, _stazioni.txt, _limiti.txt, nel formato
 # di train-powertrain/tratte_reali/README.md (lo stesso delle linee in tratte_rete). Treno di riferimento 195 t, andata e
@@ -30,12 +36,21 @@ const T0 = time()
 
 # ── argomenti ────────────────────────────────────────────────────────────────────
 arg = Dict(split(a, '='; limit = 2)[1] => split(a, '='; limit = 2)[2] for a in ARGS if occursin('=', a))
-haskey(arg, "cartella") && haskey(arg, "tratta") || error("uso: usa_surrogato.jl cartella=<cartella> tratta=<nome> [verifiche=5] [margine=si]")
-const CARTELLA = expanduser(arg["cartella"]); const NOME = arg["tratta"]
+const DOE = haskey(arg, "doe") ? parse(Int, arg["doe"]) : 0
+DOE > 0 || (haskey(arg, "cartella") && haskey(arg, "tratta")) ||
+    error("uso: usa_surrogato.jl cartella=<cartella> tratta=<nome>  oppure  doe=<route_id> [cartella=<tratte DoE>]; poi [verifiche=5] [margine=si]")
+const CARTELLA = expanduser(get(arg, "cartella", DOE > 0 ? joinpath(BASE, "tratte_doe_16384") : ""))
+const NOME = DOE > 0 ? @sprintf("route_%06d", DOE) : arg["tratta"]
 const NVER = parse(Int, get(arg, "verifiche", "5")); const MARGINE = get(arg, "margine", "si") == "si"
 
 # ── 1. la tratta e le caratteristiche ────────────────────────────────────────────
-tc = leggi_tratte_reali([NOME]; cartella = CARTELLA)[1]
+tc = DOE > 0 ? leggi_tratte_materializzate(CARTELLA; solo = [DOE])[1] : leggi_tratte_reali([NOME]; cartella = CARTELLA)[1]
+if DOE > 0
+    g = cld(DOE, 1024)
+    insieme = g in (7, 12) ? "validazione (la rete non l'ha mai vista)" : g in (15, 16) ? "test (la rete non l'ha mai vista)" :
+              "ADDESTRAMENTO: la rete l'ha vista, il risultato è ottimista"
+    println("\nTratta DoE ", DOE, ": gruppo Sobol ", g, ", insieme di ", insieme)
+end
 const CP = tc.cp
 pr = profilo_tratta(CP)
 const NOMI70 = vcat(NOMI_ORIG, NOMI_NUOVE)
@@ -115,6 +130,13 @@ else
     println(@sprintf("  costo (simulatore): %.4f €/km   (la rete prevedeva %.4f €/km)", b.costo_simulatore, b.costo_rete))
     println(@sprintf("  previsioni della rete: durata A/R %.2f h, idrogeno %.1f kg a viaggio, SOC finale %.3f, serbatoio %.0f kg",
                      p.durata[i] / 3600, p.H2[i], p.SOC[i], p.serbatoio[i]))
+end
+if DOE > 0
+    r = Arrow.Table(joinpath(BASE, "P9_D28_16384", "arrow", "tratte_riassunto.arrow"))
+    i = findfirst(==(DOE), Int.(r.tratta))
+    println(@sprintf("\nCampagna P9_D28_16384 (288 coppie simulate): migliore fattibile m = %.4f, n = %.4f, %.4f €/km%s", r.m_migliore[i],
+                     r.n_migliore[i], r.costo_migliore[i], isempty(ok) ? "" : @sprintf(" → il progetto proposto costa %+.2f%%",
+                     100 * (minimum(x.costo_simulatore for x in ok) / r.costo_migliore[i] - 1))))
 end
 println(@sprintf("\nTempo totale: %.1f s (compreso il caricamento di Julia e dei pacchetti, la prima volta più lento)", time() - T0))
 println("Candidati in ", joinpath(out, "candidati.csv"))
