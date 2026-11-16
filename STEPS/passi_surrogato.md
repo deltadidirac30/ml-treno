@@ -162,3 +162,25 @@ Numeri in `fase8/risultati/02_decisioni.txt` (script `fase8/02_decisioni.jl`).
 4. **Per la rete neurale le priorità sono idrogeno e SOC finale.**
 
 **Prossimo: passo 5b**, la scelta della coppia migliore fra le 288 di ogni tratta.
+
+## Passo 5b: la scelta della coppia migliore fra le 288
+
+16/11/2026. Report: `fase9/REPORT_FASE9_COSTO.md`, sezione "Passo 5b".
+
+**Cosa abbiamo fatto.** Per ognuna delle 2048 tratte di validazione abbiamo messo a confronto la coppia (m, n) migliore secondo il simulatore e quella scelta dal surrogato. Abbiamo misurato quanto costa di più la scelta del surrogato (il "rimpianto") e quante volte è in realtà non fattibile. Pochi secondi di calcolo.
+
+**I risultati:**
+
+| strategia | scelte non fattibili | rimpianto mediano | 95° percentile |
+|---|---:|---:|---:|
+| surrogato da solo | 18,2% delle tratte | 1,0% | 14,7% |
+| surrogato + 3 simulazioni di verifica | 2,5% | 0,35% | 12,9% |
+| surrogato + 5 simulazioni di verifica | 0,3% | 0,09% | 12,7% |
+| migliore della tratta più simile (senza surrogato) | 36% | 2,6% | 40% |
+
+**Cosa ci dicono i numeri:**
+1. **Il surrogato sceglie quasi sempre vicino alla migliore:** regime giusto nel 97% delle tratte, la sua scelta è in mediana la seconda migliore, ed è molto meglio che copiare la tratta più simile.
+2. **Ma una volta su cinque sceglie un progetto che viola di poco un vincolo**, quasi sempre il SOC finale: previsto 0,211, vero 0,173. È la "maledizione del vincitore": l'ottimo sta sul bordo dei vincoli, e cercando il più economico il surrogato finisce proprio dove un piccolo errore sbaglia la fattibilità.
+3. **Bastano poche simulazioni per rimediare.** Se il simulatore verifica le 5 coppie migliori secondo il surrogato (circa un quarto di secondo), le scelte non fattibili scendono allo 0,3% e il rimpianto mediano allo 0,09%.
+4. **I rimpianti più grandi** vengono da tratte la cui migliore è a sola batteria, dove il surrogato sceglie un ibrido con m ≈ 0,1.
+5. **Un altro rimedio da provare:** un margine di sicurezza sui vincoli, per esempio chiedere un SOC previsto un po' sopra 0,2.

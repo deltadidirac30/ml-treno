@@ -1,0 +1,37 @@
+fase9/02_scelta.jl  2026-11-16T09:25:48.935  thread: 8
+validazione: 2048 tratte; tratte segnalate presenti: Int64[]
+coppia più spesso migliore nell'addestramento: 286 (migliore in 539 tratte su 12288)
+calcolo per tratta: 1.8 s
+
+[1] la scelta fra le 288 coppie, 2048 tratte di validazione (rimpianto sulle sole scelte fattibili; le percentuali 'entro' su tutte le tratte)
+  tratte in cui il surrogato non propone nulla (nessuna coppia detta fattibile): 0
+  surrogato, scelta secca                  non fattibile   373 (18.21%) | rimpianto: mediana 1.009%, p90 9.643%, p95 14.735%, max 114.58%; entro 0,5%  33.0%, entro 1%  40.7%
+  surrogato + verifica delle prime 2       non fattibile   131 ( 6.40%) | rimpianto: mediana 0.577%, p90 8.554%, p95 13.769%, max 114.58%; entro 0,5%  45.2%, entro 1%  53.7%
+  surrogato + verifica delle prime 3       non fattibile    51 ( 2.49%) | rimpianto: mediana 0.350%, p90 8.033%, p95 12.872%, max 114.58%; entro 0,5%  52.1%, entro 1%  60.1%
+  surrogato + verifica delle prime 5       non fattibile     6 ( 0.29%) | rimpianto: mediana 0.089%, p90 7.585%, p95 12.742%, max 114.58%; entro 0,5%  57.7%, entro 1%  65.3%
+  surrogato + verifica delle prime 10      non fattibile     0 ( 0.00%) | rimpianto: mediana 0.000%, p90 6.886%, p95 12.668%, max 109.90%; entro 0,5%  61.8%, entro 1%  69.4%
+  coppia più spesso migliore (fissa)       non fattibile  1234 (60.25%) | rimpianto: mediana 39.984%, p90 64.289%, p95 71.294%, max 110.51%; entro 0,5%   6.0%, entro 1%   7.0%
+  migliore della tratta più vicina         non fattibile   739 (36.08%) | rimpianto: mediana 2.646%, p90 27.523%, p95 39.952%, max 92.53%; entro 0,5%  18.4%, entro 1%  21.5%
+
+[2] la scelta secca del surrogato, nel dettaglio
+  stessa coppia della migliore vera: 513 tratte (25.0%); regime giusto (sola batteria / ibrido): 97.3%
+  posto della scelta fra le coppie davvero fattibili (1 = la migliore): mediana 2, p90 11, max 114; fra le prime 3: 52.7%
+  costo previsto della scelta contro il suo costo vero: mediana -0.16%, p5 -10.79%, p95 +7.06% (negativo = il surrogato è ottimista)
+  migliore vera a sola batteria     526 tratte: scelta non fattibile 89, regime sbagliato 48, rimpianto mediana 0.765% p95 25.444%
+  migliore vera ibrida             1522 tratte: scelta non fattibile 284, regime sbagliato 7, rimpianto mediana 1.183% p95 13.679%
+  per lunghezza (rimpianto mediana / p95; scelte non fattibili):
+      0– 25 km:  139 tratte, 2.071% / 31.503%; non fattibili 13
+     25–100 km:  520 tratte, 0.488% / 16.245%; non fattibili 105
+    100–200 km:  702 tratte, 1.402% / 17.902%; non fattibili 100
+    200–301 km:  687 tratte, 1.147% / 6.777%; non fattibili 155
+  i 5 rimpianti più grandi: 11896 (114.6%, L 5 km, m 0.000 → 0.101), 6424 (100.4%, L 21 km, m 0.000 → 0.101), 12233 (93.8%, L 12 km, m 0.000 → 0.109), 11701 (57.8%, L 132 km, m 0.000 → 0.254), 7037 (37.1%, L 92 km, m 0.000 → 0.098)
+  scelte non fattibili, L: 6154 (283 km), 6161 (62 km), 6163 (200 km), 6165 (120 km), 6167 (296 km), 6173 (85 km), 6183 (270 km), 6186 (292 km), 6187 (174 km), 6189 (115 km)
+
+[3] le scelte non fattibili: quale vincolo violano davvero, e di quanto
+  373 scelte non fattibili; vincolo violato davvero (anche più d'uno): D3 0, massa 34, SOC 255, scarica 106
+  SOC: vero mediana 0.1729 (p5 0.1212), previsto mediana 0.2113; vero entro 0,01 sotto il limite: 52 su 255
+  massa: oltre il limite di mediana 126 kg (max 437); entro 100 kg: 14 su 34
+  scarica: probabilità prevista mediana 0.375 (max 0.497)
+  la migliore vera, in tutte le 2048 tratte: SOC finale entro 0,01 sopra 0,2 in 349 (17%); massa entro 300 kg dal limite in 144 (7%)
+
+figura: fig_rimpianto.png (le tratte con scelta non fattibile non arrivano mai: la curva si ferma sotto 1)

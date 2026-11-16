@@ -111,3 +111,49 @@ La seconda è più chiara. Con la prima nessuna grandezza da sola fa crollare l'
 1. Gli errori di costo di qualche percento contano per la scelta dell'ottimo solo se cambiano l'ordine tra le coppie della stessa tratta: lo dirà il passo 5b.
 2. Le priorità per la rete neurale sono **idrogeno** e **SOC finale** (anche la scarica per la fattibilità). Le altre grandezze sono già abbastanza buone per il costo.
 3. Il SOC vicino allo 0,8 (credito) e vicino allo 0,2 (vincolo) è dove un errore pesa di più: si può pesare di più quella zona nell'addestramento.
+
+## Passo 5b: la scelta della coppia migliore (`02_scelta.jl`, `risultati/02_scelta.txt`)
+
+Comando: `julia -t 8 --project=fase9 fase9/02_scelta.jl > $L/log_02.txt 2>&1` (≈ 10 s). Usa `surrogato_validazione.arrow` del passo 5a; nessuna simulazione. Una riga per tratta in `risultati/02_tratte.csv`.
+
+**Per ogni tratta di validazione** (2048; nessuna delle tratte segnalate):
+- la **migliore vera** è la coppia fattibile più economica secondo il simulatore, fra le 288;
+- la **scelta del surrogato** è la coppia che il surrogato dice fattibile e più economica;
+- il **rimpianto** è il costo vero della scelta diviso il costo della migliore, meno 1;
+- una scelta in realtà **non fattibile** è l'errore grave.
+
+| strategia | scelte non fattibili | rimpianto: mediana | p90 | p95 | tratte entro l'1% |
+|---|---:|---:|---:|---:|---:|
+| **surrogato, scelta secca** | **373 (18,2%)** | 1,01% | 9,6% | 14,7% | 40,7% |
+| surrogato + verifica delle prime 2 | 131 (6,4%) | 0,58% | 8,6% | 13,8% | 53,7% |
+| surrogato + verifica delle prime 3 | 51 (2,5%) | 0,35% | 8,0% | 12,9% | 60,1% |
+| surrogato + verifica delle prime 5 | 6 (0,3%) | 0,09% | 7,6% | 12,7% | 65,3% |
+| surrogato + verifica delle prime 10 | 0 | 0,00% | 6,9% | 12,7% | 69,4% |
+| migliore della tratta di addestramento più vicina | 739 (36,1%) | 2,6% | 27,5% | 40,0% | 21,5% |
+| coppia fissa più frequente (la 286) | 1234 (60,3%) | 40,0% | 64,3% | 71,3% | 7,0% |
+
+"Surrogato + verifica delle prime k": il simulatore verifica le k coppie migliori secondo il surrogato e si tiene la migliore davvero fattibile. Costa k simulazioni, circa k × 50 ms. Il rimpianto è sulle scelte fattibili; "entro l'1%" è su tutte le tratte.
+
+**La scelta secca nel dettaglio:**
+- stessa coppia della migliore vera in 513 tratte (25%);
+- regime giusto (sola batteria o ibrido) nel 97,3% delle tratte;
+- posto della scelta fra le coppie davvero fattibili: mediana 2°, p90 11°; fra le prime tre nel 52,7%;
+- il costo previsto della scelta è quasi senza distorsione in mediana (−0,16%), ma va da −10,8% a +7,1% (p5–p95);
+- per regime della migliore vera:
+  - sola batteria (526 tratte): 89 scelte non fattibili, 48 regimi sbagliati, rimpianto mediana 0,77%, p95 25%;
+  - ibrida (1522 tratte): 284 non fattibili, 7 regimi sbagliati, rimpianto mediana 1,18%, p95 13,7%;
+- i rimpianti più grandi (38–115%) sono tratte la cui migliore è a sola batteria, dove il surrogato sceglie un ibrido con m ≈ 0,1: 11896 (5 km), 6424 (21 km), 12233 (12 km), 11701, 7037.
+
+**Perché il 18% delle scelte non è fattibile: la "maledizione del vincitore".** Il surrogato sceglie la coppia più economica fra quelle che crede fattibili. Spesso è proprio sul bordo di un vincolo, dove un piccolo errore cambia la fattibilità. Delle 373 scelte non fattibili:
+- **255 violano il SOC finale:** SOC vero 0,173 in mediana, previsto 0,211, cioè appena sopra il limite di 0,2;
+- **106 violano la scarica:** probabilità prevista 0,375 in mediana e al più 0,497, appena sotto la soglia di 0,5;
+- **34 violano la massa:** oltre il limite di 126 kg in mediana;
+- nessuna viola D3.
+
+**Cosa vuol dire.** Usato da solo, il surrogato sceglie quasi sempre "vicino" alla migliore. Ma una volta su cinque la sua scelta viola di poco un vincolo, quasi sempre il SOC.
+
+Due rimedi possibili, che si possono anche combinare:
+- **verificare poche coppie con il simulatore:** con le prime 5 le scelte non fattibili scendono allo 0,3% e il rimpianto mediano allo 0,09%;
+- **un margine di sicurezza sui vincoli:** per esempio SOC previsto ≥ 0,2 + δ, e probabilità di scarica sotto una soglia più bassa di 0,5.
+
+La rete neurale dovrà essere misurata anche su questo.
