@@ -1,0 +1,40 @@
+fase12/10_profilo_rinf.jl  2026-11-16T17:17:48.710  TrainPowertrain 7c9115a1877dda0142eeb08fe25dc810bd93a544  linea Trapani-Alcamo_Diramazione
+scritte /Users/kairos/Documents/lavoro/train-powertrain/dati_rete/tratte_rete_rinf/{profilo_rinf,tutto_rinf}/Trapani-Alcamo_Diramazione: 338 punti (livellette), 13 stazioni RINF contro 15 della mappa
+profilo RINF   griglia fitta simulata in 0.7 min
+tutto RINF     griglia fitta simulata in 0.7 min
+
+                                                  mappa    mappa 100 m    mappa 200 m   profilo RINF     tutto RINF
+IL PROFILO
+  Σ|Δp| per km, a 1 m [‰/km]                      38.96          19.22          12.42          13.84          13.84
+  Σ|Δp| per km, media su 100 m                    18.03          13.67          10.88          12.58          12.58
+  Σ|Δp| per km, media su 1 km                      3.78           3.77           3.75           3.77           3.77
+  dislivello [m]                                  249.1          248.9          248.7          247.7          247.7
+  fermate intermedie                                 13             13             13             13             11
+L'OTTIMO VERO (griglia fitta simulata)
+  progetti fattibili                               5155           5152           5153           5131           5286
+  m, n                                       0.17, 0.92     0.17, 0.92     0.17, 0.92     0.17, 0.92     0.11, 0.94
+  regime                                         ibrido         ibrido         ibrido         ibrido         ibrido
+  fuel cell [kW] / batteria [kWh]            335 / 2921     335 / 2921     335 / 2921     335 / 2921     217 / 2985
+  costo [€/km]                                   3.6724         3.5991         3.5850         3.5834         3.1235
+  rispetto alla mappa                             0.00%         -2.00%         -2.38%         -2.43%        -14.95%
+  idrogeno [kg/viaggio]                           57.18          57.48          57.58          58.03           45.1
+  SOC finale                                     0.2001         0.2022         0.2017         0.2025         0.2008
+  vita FC f1 [h]                                   2298           2926           3125           3299           3680
+  sostituzioni FC                                    17             13             13             12             10
+  sostituzioni FC [€/km]                         0.3402         0.2608         0.2547         0.2368         0.1276
+  sostituzioni batteria                               3              3              3              3              2
+  durata A/R [s]                              1.302e+04      1.302e+04      1.302e+04      1.302e+04      1.231e+04
+IL MIGLIORE PER REGIME [€/km] (m, n)
+  sola batteria                                       —              —              —              —              —
+  ibrido FC piccola                                   —              —              —              —              —
+  ibrido (m ≥ 0,1)                      3.672 (0.17,0.92)3.599 (0.17,0.92)3.585 (0.17,0.92)3.583 (0.17,0.92)3.123 (0.11,0.94)
+LO STESSO TRENO (ottimo della mappa: m 0.17, n 0.92) IN OGNI VERSIONE
+  costo [€/km]                                   3.6724         3.5991         3.5850         3.5834         3.3849
+  esito                                       fattibile      fattibile      fattibile      fattibile      fattibile
+  SOC finale                                     0.2001         0.2022         0.2017         0.2025         0.2354
+  accensioni [µV/h]                                3.81           3.81           3.81           3.81           4.03
+  minimo [µV/h]                                    2.42           2.37           2.36           2.32           2.33
+  cicli di carico [µV/h]                          18.45          11.59          10.00           8.76           9.38
+  alto carico [µV/h]                               7.20           7.26           7.27           7.32           7.31
+
+Tempo 1.4 min

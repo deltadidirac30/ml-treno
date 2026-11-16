@@ -630,3 +630,23 @@ Il gradino di quota a 0,1 m ogni 50 m è solo delle linee della rete (dalla mapp
 1. **L'ottimo non si muove**: stesso progetto (m 0,17, n 0,92) in tutte le versioni, primo anche nella classifica dell'originale. Qui l'ottimo sta sul bordo della fattibilità: è la fuel cell più piccola che tiene il SOC finale sopra 0,2 (0,2001), e la lisciatura non cambia energia e idrogeno (±0,5%).
 2. **Cambia il costo**: −2% già con 100 m, quasi tutto dalle sostituzioni della fuel cell (da 17 a 13). Con 500 m e 1 km si aggiunge un salto discreto delle sostituzioni della batteria (da 3 a 2).
 3. **Con i cicli equivalenti l'effetto sull'ottimo è piccolo, ma non sul degrado**: la vita della fuel cell sale del 27% con 100 m e del 36% con 200 m. Per progetti con fuel cell più grandi il costo scende di più (fino a −8–10% per m ≈ 0,5, figura).
+
+## La stessa linea dai dati sorgente RINF (Trapani–Alcamo)
+
+16/11/2026. Script `fase12/10_profilo_rinf.jl`, risultati in `fase12/risultati/10_profilo_rinf_Trapani-Alcamo_Diramazione.txt`. Le linee della rete che usiamo vengono dalla mappa HTML (quota arrotondata a 0,1 m ogni 50 m). Nel Drive condiviso SurrogateTrains ci sono i dati sorgente di ogni linea: livellette RINF a piena precisione, fermate del servizio con le soste, velocità. Gli Excel sono solo l'elenco dei servizi. Due versioni nuove in `train-powertrain/dati_rete/tratte_rete_rinf/`: `profilo_rinf` (solo la quota dal RINF, fermate e limiti della mappa) e `tutto_rinf` (anche fermate e limiti dal Drive). Griglia fitta simulata, 1,4 minuti.
+
+| | mappa | mappa 100 m | mappa 200 m | profilo RINF | tutto RINF |
+|---|---:|---:|---:|---:|---:|
+| Σ\|Δp\| per km a 1 m / su 1 km | 39,0 / 3,78 | 19,2 / 3,77 | 12,4 / 3,75 | 13,8 / 3,77 | 13,8 / 3,77 |
+| fermate intermedie | 13 | 13 | 13 | 13 | 11 |
+| ottimo (m, n) | 0,17, 0,92 | uguale | uguale | uguale | **0,11, 0,94** |
+| costo dell'ottimo [€/km] | 3,672 | 3,599 (−2,0%) | 3,585 (−2,4%) | 3,583 (−2,4%) | **3,124 (−15%)** |
+| cicli di carico [µV/h] | 18,5 | 11,6 | 10,0 | 8,8 | 9,4 |
+| vita FC f1 [h] / sostituzioni FC | 2298 / 17 | 2926 / 13 | 3125 / 13 | 3299 / 12 | 3680 / 10 |
+| idrogeno [kg/viaggio] / durata A/R [s] | 57,2 / 13 020 | 57,5 | 57,6 | 58,0 | 45,1 / 12 310 |
+
+**Cosa ci dicono i numeri:**
+1. **I salti vengono dalla mappa HTML.** Con le livellette vere del RINF i cicli di carico scendono da 18,5 a 8,8 µV/h e il costo del 2,4%, esattamente come con la mappa lisciata a 200 m (−2,4%). L'ottimo non cambia. Le livellette RINF sono corte (mediana 180 m, 81 sotto i 100 m) ma non hanno il gradino di 0,1 m.
+2. **La lisciatura a 200 m riproduce bene il profilo vero** (stesso costo entro lo 0,05%).
+3. **Le fermate contano molto di più del profilo.** La versione dalla mappa ha 2 fermate in più del servizio reale (a 60,5 e 100,8 km). Con le fermate dell'orario l'idrogeno scende del 21%, l'ottimo passa a una fuel cell più piccola (217 kW invece di 335) e il costo scende del 15%.
+4. Le soste reali (60 s per fermata, 300–600 s in alcune) non sono rappresentabili nel formato a 4 file: il simulatore usa 120 s per fermata.
