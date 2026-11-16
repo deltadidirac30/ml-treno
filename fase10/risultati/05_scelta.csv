@@ -1,0 +1,37 @@
+regola,k,non_fattibili_pct,senza_proposta,rimpianto_mediana_pct,rimpianto_p95_pct,entro_1pct
+6b; vincoli (come 6c),1,14.4043,0,0,3.9928,70.4102
+6b; vincoli (come 6c),3,1.02539,0,0,2.7575,86.7676
+6b; vincoli (come 6c),5,0.0976562,0,0,2.2908,90.1855
+6b; vincoli + margine (SOC ≥ 0;21; scarica < 0;1),1,6.83594,0,0,6.08018,71.0449
+6b; vincoli + margine (SOC ≥ 0;21; scarica < 0;1),3,0.195312,0,0,5.37794,81.543
+6b; vincoli + margine (SOC ≥ 0;21; scarica < 0;1),5,0,0,0,4.9069,84.6191
+6e; vincoli,1,12.793,0,0,4.85497,68.0176
+6e; vincoli,3,0.634766,0,0,3.53591,84.9609
+6e; vincoli,5,0.146484,0,0,3.00237,88.2812
+6e; vincoli + margine,1,5.9082,0,0,7.3031,67.627
+6e; vincoli + margine,3,0.244141,0,0,6.28738,79.1016
+6e; vincoli + margine,5,0,0,0,6.08415,81.9336
+6e; solo probabilità di fattibilità ≥ 0.5,1,12.4023,0,0,4.74101,68.1641
+6e; solo probabilità di fattibilità ≥ 0.5,3,0.732422,0,0,4.00427,84.1797
+6e; solo probabilità di fattibilità ≥ 0.5,5,0.0976562,0,0,3.53705,87.4512
+6e; vincoli + probabilità ≥ 0.5,1,9.27734,0,0,5.58779,69.1406
+6e; vincoli + probabilità ≥ 0.5,3,0.439453,0,0,4.50006,82.7637
+6e; vincoli + probabilità ≥ 0.5,5,0.0976562,0,0,4.29113,85.9375
+6e; solo probabilità di fattibilità ≥ 0.7,1,7.17773,0,0,6.2252,68.3105
+6e; solo probabilità di fattibilità ≥ 0.7,3,0.341797,0,0,5.38261,80.6152
+6e; solo probabilità di fattibilità ≥ 0.7,5,0.0976562,0,0,5.18766,83.3008
+6e; vincoli + probabilità ≥ 0.7,1,6.44531,0,0,6.5105,67.8711
+6e; vincoli + probabilità ≥ 0.7,3,0.292969,0,0,5.8546,79.541
+6e; vincoli + probabilità ≥ 0.7,5,0.0976562,0,0,5.43753,82.4219
+6e; solo probabilità di fattibilità ≥ 0.9,1,2.7832,0,0.309427,8.08513,62.5488
+6e; solo probabilità di fattibilità ≥ 0.9,3,0.0976562,0,0,7.57444,71.3867
+6e; solo probabilità di fattibilità ≥ 0.9,5,0,0,0,7.35292,73.9746
+6e; vincoli + probabilità ≥ 0.9,1,2.68555,0,0.320867,8.08386,62.4023
+6e; vincoli + probabilità ≥ 0.9,3,0.0976562,0,0,7.57444,71.1914
+6e; vincoli + probabilità ≥ 0.9,5,0,0,0,7.35292,73.7793
+6e; solo probabilità di fattibilità ≥ 0.95,1,1.75781,0,0.532529,8.83804,57.8613
+6e; solo probabilità di fattibilità ≥ 0.95,3,0,0,0.254047,8.37142,66.2109
+6e; solo probabilità di fattibilità ≥ 0.95,5,0,0,0.157658,8.31677,68.8477
+6e; vincoli + probabilità ≥ 0.95,1,1.70898,0,0.530249,8.83589,57.9102
+6e; vincoli + probabilità ≥ 0.95,3,0,0,0.256107,8.37142,66.2109
+6e; vincoli + probabilità ≥ 0.95,5,0,0,0.162832,8.31677,68.8477

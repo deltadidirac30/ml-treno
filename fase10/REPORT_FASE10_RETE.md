@@ -224,3 +224,53 @@ La rete segue il simulatore quasi sovrapposta, anche lo scalino della soglia D25
 4. **Gli zig-zag sono spariti:** la rete è 20–40 volte più liscia del boosting. È anche 25 volte più veloce sulla griglia (10 s contro 251 s per 2,5 milioni di punti).
 
 **La strategia di riferimento per il preconfiguratore:** rete neurale sulla griglia fitta + margine piccolo (SOC ≥ 0,21, scarica < 0,1) + verifica delle 5 proposte migliori con il simulatore. Costa circa 0,04 s di rete più 5 simulazioni (circa un quarto di secondo) per tratta. I margini e la strategia sono scelti sulla validazione: vanno confermati sul test.
+
+## Passo 6e: variante con 60 epoche e testa di fattibilità (`05_variante.jl`, `risultati/05_variante.txt`, `05_scelta.csv`)
+
+Comando: `julia -t 8 --project=fase10 fase10/05_variante.jl > ~/Documents/lavoro/ml_treno_dati/fase10_log/log_05.txt 2>&1` (≈ 32 min).
+
+**Cosa cambia rispetto al 6b:**
+- passo coseno su 60 epoche invece di 40;
+- una nona testa: la probabilità che il progetto sia fattibile (sigmoide, entropia incrociata, tutte le righe; bersaglio `fattibile` della tabella).
+
+Tutto il resto è uguale, compreso il seme. `comune.jl` ora ha il numero di teste come parametro; ricaricato con il codice nuovo, il modello 6b ridà al bit le sue previsioni.
+
+**L'addestramento si è fermato all'epoca 39**, con la migliore alla 34 (perdita di validazione 0,1145, 9 teste).
+- Con il passo coseno su 60 epoche, a metà strada il passo di apprendimento è più alto che nel 6b (0,0004 invece di 0,0001 all'epoca 35). La perdita di validazione oscilla di più, soprattutto per C-rate e vita della batteria (`figure/fig_curve_6e.png`), e l'arresto anticipato (pazienza 5) è scattato su un'oscillazione.
+- **La parte "più epoche" quindi non è stata davvero provata.** Il modello ha visto 34 epoche con un passo ancora alto.
+
+**Metriche per grandezza** (validazione, mediana / p95):
+
+| grandezza | 6e | 6b | boosting |
+|---|---:|---:|---:|
+| durata | 0,181% / 0,94% | **0,159% / 0,89%** | 0,245% / 1,28% |
+| serbatoio | 1,89% / 9,4% | **1,70% / 8,8%** | 3,33% / 14,6% |
+| idrogeno | 1,87% / 9,2% | **1,68% / 8,5%** | 3,39% / 14,5% |
+| SOC finale (assoluto) | 0,012 / 0,110 | **0,012 / 0,108** | 0,031 / 0,156 |
+| vita della batteria | 2,73% / 12,1% | **2,36% / 10,8%** | 3,66% / 14,4% |
+| vita della FC | 1,81% / 6,6% | **1,73% / 6,5%** | 2,48% / 8,3% |
+| C-rate | 1,51% / 5,8% | 1,24% / 4,9% | **0,68% / 4,3%** |
+| scarica (accuratezza) | 98,96% | **99,00%** | 98,81% |
+
+La variante è un po' peggiore del 6b su tutte le grandezze.
+
+**La testa di fattibilità:**
+- giusta nel 98,78% dei casi (p ≥ 0,5), Brier 0,0088: come i vincoli calcolati dalle grandezze previste (98,83%);
+- testa e vincoli sono d'accordo nel 99,5% dei casi;
+- è ragionevolmente calibrata: nella fascia [0,8; 0,9) è fattibile l'80,5%.
+
+**Scelta fra le 288 coppie** (2048 tratte; tutte le regole in `risultati/05_variante.txt`):
+
+| regola di ammissione | scelta secca: non fattibili / rimpianto p95 | prime 5: non fattibili / rimpianto p95 / entro 1% |
+|---|---:|---:|
+| 6b, vincoli (6c) | 14,4% / 4,0% | 0,10% / 2,3% / 90,2% |
+| 6b, vincoli + margine (SOC ≥ 0,21, scarica < 0,1) | 6,8% / 6,1% | 0% / 4,9% / 84,6% |
+| 6e, vincoli | 12,8% / 4,9% | 0,15% / 3,0% / 88,3% |
+| 6e, solo probabilità ≥ 0,7 | 7,2% / 6,2% | 0,10% / 5,2% / 83,3% |
+| 6e, solo probabilità ≥ 0,9 | 2,8% / 8,1% | 0% / 7,4% / 74,0% |
+| 6e, solo probabilità ≥ 0,95 | 1,8% / 8,8% | 0% / 8,3% / 68,8% |
+
+**Cosa vuol dire:**
+1. **La testa di fattibilità non aggiunge nulla** rispetto ai vincoli calcolati dalle grandezze previste: stessa accuratezza, stesso compromesso fra scelte non fattibili e rimpianto. Con una soglia alta (0,9–0,95) la scelta secca diventa quasi sempre fattibile (1,8–2,8%), ma il progetto scelto costa di più: rimpianto mediano 0,3–0,5%, p95 8–9%.
+2. **Ogni margine sposta lo stesso compromesso.** Meno scelte non fattibili si pagano con un rimpianto più alto nei casi peggiori. Anche il margine piccolo del 6b fa salire il p95 del rimpianto dal 4,0% al 6,1% (scelta secca) e dal 2,3% al 4,9% (con 5 verifiche). Senza simulazioni non c'è un modo gratuito per evitare la maledizione del vincitore; con 5 verifiche e nessun margine il problema è già quasi risolto (0,1% di scelte non fattibili, p95 2,3%).
+3. **Il modello di riferimento resta il 6b** (8 teste, 40 epoche). Più epoche andrebbero provate con un arresto anticipato più paziente: costerebbe circa 50 minuti, e dalle curve il guadagno atteso è piccolo.

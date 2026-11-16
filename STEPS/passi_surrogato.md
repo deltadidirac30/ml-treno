@@ -353,3 +353,22 @@ Poi l'abbiamo addestrata per prova su una piccola parte dei dati: 2048 tratte, 5
 4. **La scelta senza verifica resta rischiosa** (18–41% non fattibile): fra 10 000 punti il più economico sta quasi sempre sul bordo dei vincoli. Servono sempre le poche simulazioni di verifica.
 
 **La strategia di riferimento per il preconfiguratore:** rete neurale sulla griglia fitta + margine piccolo + verifica delle 5 proposte migliori con il simulatore. Costa circa un quarto di secondo per tratta, e trova progetti in media migliori di quelli della campagna da 288 coppie. Va confermata sul test (passo 8).
+
+## Passo 6e: una variante della rete (più epoche e "probabilità di fattibilità")
+
+16/11/2026. Report: `fase10/REPORT_FASE10_RETE.md`, sezione "Passo 6e".
+
+**Cosa abbiamo provato.** Due modifiche insieme alla rete del passo 6b:
+- più epoche (60 invece di 40);
+- una nona uscita che stima direttamente la probabilità che il progetto sia fattibile, per vedere se aiuta contro la maledizione del vincitore.
+
+32 minuti di addestramento.
+
+**Cosa è successo:**
+1. **L'addestramento si è fermato prima, all'epoca 39.** Con 60 epoche in programma il passo di apprendimento resta più alto più a lungo, la misura sulla validazione oscilla di più, e l'arresto anticipato è scattato su un'oscillazione. La prova "più epoche" quindi non è riuscita davvero.
+2. **La variante è un po' peggiore della rete 6b su tutte le grandezze** (per esempio idrogeno 1,9% contro 1,7%).
+3. **La "probabilità di fattibilità" funziona bene (98,8% giusta) ma non aggiunge nulla:** è giusta quanto i vincoli calcolati dalle grandezze previste, e i due sono d'accordo nel 99,5% dei casi.
+4. **Contro la maledizione del vincitore non esiste un rimedio gratuito senza simulazioni.** Con una soglia severa (probabilità ≥ 0,95) la scelta del surrogato da solo è quasi sempre fattibile (98%), ma costa di più: rimpianto mediano 0,5%, casi peggiori +9%. Lo stesso vale per i margini: anche il margine piccolo fa salire i casi peggiori (95° percentile dal 4% al 6%).
+5. **La soluzione migliore resta quella del passo 6d:** la rete 6b e poche simulazioni di verifica (5 verifiche, nessun margine: 0,1% di scelte non fattibili, 90% delle tratte entro l'1%).
+
+**Decisione proposta:** il modello di riferimento resta la rete 6b. La testa di fattibilità non serve. Più epoche si potrebbero riprovare con un arresto anticipato più paziente (circa 50 minuti), ma dalle curve il guadagno atteso è piccolo.

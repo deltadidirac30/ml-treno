@@ -28,6 +28,10 @@ const TESTE = [
     (nome = :C_rate,    col = :y_C_rate_scarica_max,    tipo = :lin,   righe = :tutte),            # log
 ]
 const K = length(TESTE)
+# variante 6e: la nona testa, probabilità che il progetto sia fattibile (tipo_esito == fattibile), su tutte le righe
+const TESTA_FATTIBILE = (nome = :fattibile, col = :fattibile, tipo = :bin, righe = :tutte)
+const TESTE_9 = vcat(TESTE, [TESTA_FATTIBILE])
+testa(k) = k <= K ? TESTE[k] : TESTA_FATTIBILE
 
 struct Dati
     X::Matrix{Float32}       # 73 × N ingressi normalizzati
@@ -76,13 +80,13 @@ function ingressi(Xc::AbstractMatrix, m, n, norm)
 end
 
 """Dati di una tabella (fase 6) per le righe `sel` (default tutte)."""
-function prepara(t, norm; sel = nothing)
+function prepara(t, norm; sel = nothing, hs = TESTE)
     idx = sel === nothing ? collect(1:length(t.tratta)) : sel
     Xc = reduce(hcat, (Float64.(getproperty(t, c)[idx]) for c in norm.nx))
     m = Float64.(t.m[idx]); n = Float64.(t.n[idx]); L = Float64.(t.x_L_km[idx]); T = Float64.(t.x_tempo_limiti_ar_s[idx])
     st = Int8.(t.stato[idx]); N = length(idx)
-    Y = zeros(Float32, K, N); W = zeros(Float32, K, N)
-    for (k, h) in enumerate(TESTE)
+    Y = zeros(Float32, length(hs), N); W = zeros(Float32, length(hs), N)
+    for (k, h) in enumerate(hs)
         y = Float64.(getproperty(t, h.col)[idx])
         ok = h.righe === :tutte ? trues(N) : h.righe === :ibride ? m .> 0 : (m .> 0) .& (st .== 1)
         z = h.nome === :durata ? y ./ T :
@@ -97,8 +101,8 @@ end
 
 """Media e deviazione dei bersagli sulle righe con maschera (addestramento): per le teste :lin e le scale delle perdite."""
 function scale_bersagli(d::Dati)
-    μ = zeros(Float32, K); σ = ones(Float32, K)
-    for k in 1:K
+    nk = size(d.Y, 1); μ = zeros(Float32, nk); σ = ones(Float32, nk)
+    for k in 1:nk
         v = d.Y[k, d.W[k, :] .> 0]
         μ[k] = mean(v); σ[k] = std(v)
     end
@@ -106,19 +110,19 @@ function scale_bersagli(d::Dati)
 end
 
 # ── modello e perdita ────────────────────────────────────────────────────────────
-function costruisci(nin; larghezza = 256, strati = 4, seme = 1)
+function costruisci(nin; larghezza = 256, strati = 4, seme = 1, nout = K)
     rng = Xoshiro(seme)
     s = Any[Dense(nin => larghezza, gelu; init = Flux.glorot_uniform(rng))]
     for _ in 2:strati; push!(s, Dense(larghezza => larghezza, gelu; init = Flux.glorot_uniform(rng))); end
-    push!(s, Dense(larghezza => K; init = Flux.glorot_uniform(rng)))
+    push!(s, Dense(larghezza => nout; init = Flux.glorot_uniform(rng)))
     return Chain(s...)
 end
 
 """Uscite delle teste nello spazio dei bersagli, da z (K × B)."""
 function teste(z, sc)
-    rows = map(1:K) do k
+    rows = map(1:size(z, 1)) do k
         zk = z[k:k, :]
-        t = TESTE[k].tipo
+        t = testa(k).tipo
         t === :ratio ? 1f0 .+ softplus.(zk) : t === :soc ? 0.9f0 .* sigmoid.(zk) : t === :bin ? sigmoid.(zk) : sc.μ[k] .+ sc.σ[k] .* zk
     end
     return reduce(vcat, rows)
@@ -126,9 +130,9 @@ end
 
 """Perdita per testa (vettore K) e totale pesato. Regressione: errore quadratico / σ²; :bin: entropia incrociata."""
 function perdite(z, y, w, sc, pesi)
-    ls = map(1:K) do k
+    ls = map(1:size(z, 1)) do k
         zk = z[k:k, :]; yk = y[k:k, :]; wk = w[k:k, :]
-        t = TESTE[k].tipo
+        t = testa(k).tipo
         l = if t === :bin
             Flux.Losses.logitbinarycrossentropy(zk, yk; agg = identity)
         else
@@ -142,12 +146,12 @@ end
 
 """Perdite per testa su un insieme di dati, a blocchi (senza gradiente)."""
 function valuta_perdite(model, d::Dati, sc, pesi; blocco = 65536)
-    N = size(d.X, 2); tot = zeros(Float64, K); nw = zeros(Float64, K)
+    N = size(d.X, 2); nk = size(d.Y, 1); tot = zeros(Float64, nk); nw = zeros(Float64, nk)
     for a in 1:blocco:N
         b = min(a + blocco - 1, N)
         z = model(view(d.X, :, a:b)); y = view(d.Y, :, a:b); w = view(d.W, :, a:b)
-        for k in 1:K
-            zk = z[k:k, :]; t = TESTE[k].tipo
+        for k in 1:nk
+            zk = z[k:k, :]; t = testa(k).tipo
             l = if t === :bin
                 Flux.Losses.logitbinarycrossentropy(zk, y[k:k, :]; agg = identity)
             else
@@ -167,9 +171,10 @@ end
 Adam, passo coseno da `lr` a `lr_fine` sulle `epoche`, lotti mescolati con seme fisso, arresto anticipato sulla perdita
 totale di validazione (pazienza in epoche); restituisce il modello dell'epoca migliore.
 """
-function addestra(da::Dati, dv::Dati, sc; epoche = 40, lotto = 4096, lr = 1f-3, lr_fine = 1f-5, pesi = ones(Float32, K),
+function addestra(da::Dati, dv::Dati, sc; epoche = 40, lotto = 4096, lr = 1f-3, lr_fine = 1f-5, pesi = nothing,
                   larghezza = 256, strati = 4, seme = 1, pazienza = 5, say = println)
-    model = costruisci(size(da.X, 1); larghezza, strati, seme)
+    nk = size(da.Y, 1); pesi === nothing && (pesi = ones(Float32, nk))
+    model = costruisci(size(da.X, 1); larghezza, strati, seme, nout = nk)
     opt = Flux.setup(Adam(lr), model)
     rng = Xoshiro(seme + 1)
     N = size(da.X, 2)
@@ -190,7 +195,7 @@ function addestra(da::Dati, dv::Dati, sc; epoche = 40, lotto = 4096, lr = 1f-3, 
         lv, tv = valuta_perdite(model, dv, sc, pesi)
         push!(storia, (epoca = e, eta = η, perdita_add = somma / nb, perdita_val = tv, per_testa_val = lv, tempo_s = ta))
         say(@sprintf("  epoca %2d  η %.2e  addestramento %.4f  validazione %.4f  [%s]  %.1f s", e, η, somma / nb, tv,
-                     join((@sprintf("%s %.4f", TESTE[k].nome, lv[k]) for k in 1:K), " "), ta))
+                     join((@sprintf("%s %.4f", testa(k).nome, lv[k]) for k in 1:nk), " "), ta))
         if tv < migliore.perdita
             migliore = (perdita = tv, epoca = e, stato = deepcopy(Flux.state(model)))
         elseif e - migliore.epoca >= pazienza
@@ -206,7 +211,7 @@ end
 # ── previsioni nelle unità naturali ───────────────────────────────────────────────
 """Le 8 grandezze nelle unità naturali (come il banco di prova del passo 5a) per i dati `d`."""
 function previsioni(model, d::Dati, sc; blocco = 65536)
-    N = size(d.X, 2); P = zeros(Float32, K, N)
+    N = size(d.X, 2); P = zeros(Float32, size(model(d.X[:, 1:1]), 1), N)
     for a in 1:blocco:N
         b = min(a + blocco - 1, N)
         P[:, a:b] = teste(model(view(d.X, :, a:b)), sc)
@@ -217,7 +222,7 @@ function previsioni(model, d::Dati, sc; blocco = 65536)
             H2 = ifelse.(ibr, exp.(Float64.(P[3, :])) .* 2 .* d.L, 0.0),
             SOC = Float64.(P[4, :]), p_scarica = Float64.(P[5, :]),
             vita_batt = exp.(Float64.(P[6, :])), vita_FC_f1 = ifelse.(ibr, exp.(Float64.(P[7, :])), Inf),
-            C_rate = exp.(Float64.(P[8, :])))
+            C_rate = exp.(Float64.(P[8, :])), p_fattibile = size(P, 1) > K ? Float64.(P[K+1, :]) : fill(NaN, N))
 end
 
 """Metriche per grandezza come la fase 8 (sulle stesse righe), dalla tabella `t` e dalle previsioni `p`."""
@@ -262,7 +267,7 @@ salva_modello(file, model, norm, sc, info) = jldsave(file; stato = Flux.state(mo
 function carica_modello(file)
     d = load(file)
     info = d["info"]
-    model = costruisci(info.nin; larghezza = info.larghezza, strati = info.strati)
+    model = costruisci(info.nin; larghezza = info.larghezza, strati = info.strati, nout = hasproperty(info, :nout) ? info.nout : K)
     Flux.loadmodel!(model, d["stato"])
     return model, d["norm"], d["sc"], info
 end

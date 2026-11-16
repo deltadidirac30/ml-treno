@@ -1,0 +1,91 @@
+fase10/05_variante.jl  2026-11-16T12:31:32.858  thread: 8  Flux 0.16.12  julia 1.12.5
+impostazioni: (epoche = 60, lotto = 4096, lr = 0.001f0, lr_fine = 1.0f-5, larghezza = 256, strati = 4, seme = 1, pazienza = 5); teste: durata, serbatoio, H2, SOC, scarica, vita_batt, vita_FC, C_rate, fattibile
+dati: addestramento 3538939 righe, validazione 589824; fattibili nell'addestramento 42.7%
+
+[1] addestramento
+  epoca  1  η 1.00e-03  addestramento 1.0069  validazione 0.2752  [durata 0.0106 serbatoio 0.0272 H2 0.0267 SOC 0.0527 scarica 0.0429 vita_batt 0.0141 vita_FC 0.0309 C_rate 0.0098 fattibile 0.0603]  48.2 s
+  epoca  2  η 9.99e-04  addestramento 0.2277  validazione 0.2092  [durata 0.0077 serbatoio 0.0180 H2 0.0178 SOC 0.0424 scarica 0.0361 vita_batt 0.0093 vita_FC 0.0230 C_rate 0.0064 fattibile 0.0486]  39.9 s
+  epoca  3  η 9.97e-04  addestramento 0.1850  validazione 0.1813  [durata 0.0070 serbatoio 0.0146 H2 0.0143 SOC 0.0381 scarica 0.0317 vita_batt 0.0077 vita_FC 0.0201 C_rate 0.0047 fattibile 0.0432]  45.6 s
+  epoca  4  η 9.94e-04  addestramento 0.1653  validazione 0.1674  [durata 0.0054 serbatoio 0.0128 H2 0.0125 SOC 0.0362 scarica 0.0312 vita_batt 0.0073 vita_FC 0.0175 C_rate 0.0043 fattibile 0.0403]  50.3 s
+  epoca  5  η 9.89e-04  addestramento 0.1527  validazione 0.1646  [durata 0.0056 serbatoio 0.0126 H2 0.0125 SOC 0.0337 scarica 0.0302 vita_batt 0.0072 vita_FC 0.0165 C_rate 0.0059 fattibile 0.0403]  45.1 s
+  epoca  6  η 9.83e-04  addestramento 0.1439  validazione 0.1532  [durata 0.0052 serbatoio 0.0111 H2 0.0105 SOC 0.0326 scarica 0.0292 vita_batt 0.0055 vita_FC 0.0167 C_rate 0.0042 fattibile 0.0381]  44.1 s
+  epoca  7  η 9.75e-04  addestramento 0.1361  validazione 0.1532  [durata 0.0053 serbatoio 0.0123 H2 0.0120 SOC 0.0316 scarica 0.0301 vita_batt 0.0061 vita_FC 0.0149 C_rate 0.0032 fattibile 0.0377]  43.7 s
+  epoca  8  η 9.66e-04  addestramento 0.1313  validazione 0.1423  [durata 0.0054 serbatoio 0.0098 H2 0.0095 SOC 0.0301 scarica 0.0280 vita_batt 0.0048 vita_FC 0.0148 C_rate 0.0025 fattibile 0.0374]  43.8 s
+  epoca  9  η 9.56e-04  addestramento 0.1265  validazione 0.1397  [durata 0.0042 serbatoio 0.0097 H2 0.0093 SOC 0.0307 scarica 0.0280 vita_batt 0.0040 vita_FC 0.0148 C_rate 0.0018 fattibile 0.0370]  44.3 s
+  epoca 10  η 9.44e-04  addestramento 0.1217  validazione 0.1350  [durata 0.0045 serbatoio 0.0099 H2 0.0096 SOC 0.0288 scarica 0.0271 vita_batt 0.0045 vita_FC 0.0141 C_rate 0.0023 fattibile 0.0343]  44.8 s
+  epoca 11  η 9.31e-04  addestramento 0.1187  validazione 0.1361  [durata 0.0045 serbatoio 0.0097 H2 0.0093 SOC 0.0290 scarica 0.0274 vita_batt 0.0044 vita_FC 0.0140 C_rate 0.0026 fattibile 0.0351]  46.9 s
+  epoca 12  η 9.17e-04  addestramento 0.1154  validazione 0.1336  [durata 0.0041 serbatoio 0.0102 H2 0.0096 SOC 0.0281 scarica 0.0284 vita_batt 0.0038 vita_FC 0.0134 C_rate 0.0020 fattibile 0.0341]  44.8 s
+  epoca 13  η 9.02e-04  addestramento 0.1124  validazione 0.1322  [durata 0.0041 serbatoio 0.0093 H2 0.0088 SOC 0.0279 scarica 0.0267 vita_batt 0.0054 vita_FC 0.0132 C_rate 0.0043 fattibile 0.0325]  45.0 s
+  epoca 14  η 8.86e-04  addestramento 0.1103  validazione 0.1245  [durata 0.0041 serbatoio 0.0086 H2 0.0083 SOC 0.0272 scarica 0.0261 vita_batt 0.0034 vita_FC 0.0132 C_rate 0.0016 fattibile 0.0319]  44.7 s
+  epoca 15  η 8.69e-04  addestramento 0.1080  validazione 0.1287  [durata 0.0039 serbatoio 0.0093 H2 0.0089 SOC 0.0275 scarica 0.0273 vita_batt 0.0036 vita_FC 0.0134 C_rate 0.0017 fattibile 0.0331]  44.8 s
+  epoca 16  η 8.50e-04  addestramento 0.1057  validazione 0.1239  [durata 0.0043 serbatoio 0.0086 H2 0.0084 SOC 0.0270 scarica 0.0259 vita_batt 0.0033 vita_FC 0.0129 C_rate 0.0019 fattibile 0.0315]  48.0 s
+  epoca 17  η 8.31e-04  addestramento 0.1038  validazione 0.1255  [durata 0.0038 serbatoio 0.0084 H2 0.0082 SOC 0.0269 scarica 0.0271 vita_batt 0.0040 vita_FC 0.0132 C_rate 0.0018 fattibile 0.0321]  47.6 s
+  epoca 18  η 8.11e-04  addestramento 0.1019  validazione 0.1245  [durata 0.0042 serbatoio 0.0090 H2 0.0088 SOC 0.0269 scarica 0.0264 vita_batt 0.0034 vita_FC 0.0124 C_rate 0.0017 fattibile 0.0315]  52.6 s
+  epoca 19  η 7.90e-04  addestramento 0.1004  validazione 0.1203  [durata 0.0038 serbatoio 0.0085 H2 0.0083 SOC 0.0264 scarica 0.0252 vita_batt 0.0033 vita_FC 0.0121 C_rate 0.0017 fattibile 0.0311]  52.7 s
+  epoca 20  η 7.68e-04  addestramento 0.0989  validazione 0.1224  [durata 0.0039 serbatoio 0.0089 H2 0.0087 SOC 0.0266 scarica 0.0259 vita_batt 0.0033 vita_FC 0.0131 C_rate 0.0014 fattibile 0.0306]  47.0 s
+  epoca 21  η 7.45e-04  addestramento 0.0974  validazione 0.1196  [durata 0.0038 serbatoio 0.0086 H2 0.0083 SOC 0.0266 scarica 0.0252 vita_batt 0.0032 vita_FC 0.0122 C_rate 0.0016 fattibile 0.0301]  46.6 s
+  epoca 22  η 7.21e-04  addestramento 0.0958  validazione 0.1221  [durata 0.0038 serbatoio 0.0081 H2 0.0080 SOC 0.0262 scarica 0.0262 vita_batt 0.0039 vita_FC 0.0119 C_rate 0.0023 fattibile 0.0317]  46.2 s
+  epoca 23  η 6.97e-04  addestramento 0.0942  validazione 0.1201  [durata 0.0040 serbatoio 0.0085 H2 0.0083 SOC 0.0266 scarica 0.0258 vita_batt 0.0028 vita_FC 0.0121 C_rate 0.0013 fattibile 0.0307]  46.4 s
+  epoca 24  η 6.73e-04  addestramento 0.0928  validazione 0.1192  [durata 0.0037 serbatoio 0.0084 H2 0.0082 SOC 0.0266 scarica 0.0254 vita_batt 0.0030 vita_FC 0.0121 C_rate 0.0018 fattibile 0.0300]  52.0 s
+  epoca 25  η 6.48e-04  addestramento 0.0918  validazione 0.1202  [durata 0.0039 serbatoio 0.0079 H2 0.0078 SOC 0.0265 scarica 0.0267 vita_batt 0.0033 vita_FC 0.0122 C_rate 0.0017 fattibile 0.0302]  56.4 s
+  epoca 26  η 6.22e-04  addestramento 0.0904  validazione 0.1196  [durata 0.0041 serbatoio 0.0078 H2 0.0077 SOC 0.0267 scarica 0.0266 vita_batt 0.0030 vita_FC 0.0119 C_rate 0.0015 fattibile 0.0303]  58.3 s
+  epoca 27  η 5.97e-04  addestramento 0.0894  validazione 0.1179  [durata 0.0039 serbatoio 0.0078 H2 0.0077 SOC 0.0260 scarica 0.0255 vita_batt 0.0031 vita_FC 0.0119 C_rate 0.0018 fattibile 0.0303]  48.1 s
+  epoca 28  η 5.71e-04  addestramento 0.0882  validazione 0.1199  [durata 0.0039 serbatoio 0.0080 H2 0.0078 SOC 0.0265 scarica 0.0259 vita_batt 0.0033 vita_FC 0.0120 C_rate 0.0018 fattibile 0.0307]  47.4 s
+  epoca 29  η 5.44e-04  addestramento 0.0870  validazione 0.1189  [durata 0.0039 serbatoio 0.0081 H2 0.0079 SOC 0.0261 scarica 0.0259 vita_batt 0.0034 vita_FC 0.0117 C_rate 0.0015 fattibile 0.0305]  47.4 s
+  epoca 30  η 5.18e-04  addestramento 0.0856  validazione 0.1157  [durata 0.0038 serbatoio 0.0079 H2 0.0077 SOC 0.0258 scarica 0.0252 vita_batt 0.0025 vita_FC 0.0121 C_rate 0.0011 fattibile 0.0295]  45.8 s
+  epoca 31  η 4.92e-04  addestramento 0.0845  validazione 0.1159  [durata 0.0037 serbatoio 0.0076 H2 0.0074 SOC 0.0259 scarica 0.0253 vita_batt 0.0028 vita_FC 0.0119 C_rate 0.0014 fattibile 0.0299]  45.5 s
+  epoca 32  η 4.66e-04  addestramento 0.0836  validazione 0.1153  [durata 0.0038 serbatoio 0.0080 H2 0.0078 SOC 0.0261 scarica 0.0250 vita_batt 0.0026 vita_FC 0.0116 C_rate 0.0011 fattibile 0.0292]  45.5 s
+  epoca 33  η 4.39e-04  addestramento 0.0825  validazione 0.1160  [durata 0.0039 serbatoio 0.0078 H2 0.0076 SOC 0.0259 scarica 0.0255 vita_batt 0.0025 vita_FC 0.0118 C_rate 0.0012 fattibile 0.0297]  46.1 s
+  epoca 34  η 4.13e-04  addestramento 0.0813  validazione 0.1145  [durata 0.0038 serbatoio 0.0078 H2 0.0076 SOC 0.0259 scarica 0.0253 vita_batt 0.0024 vita_FC 0.0115 C_rate 0.0010 fattibile 0.0293]  45.7 s
+  epoca 35  η 3.88e-04  addestramento 0.0803  validazione 0.1173  [durata 0.0038 serbatoio 0.0079 H2 0.0078 SOC 0.0259 scarica 0.0258 vita_batt 0.0026 vita_FC 0.0119 C_rate 0.0011 fattibile 0.0305]  48.0 s
+  epoca 36  η 3.62e-04  addestramento 0.0793  validazione 0.1154  [durata 0.0037 serbatoio 0.0078 H2 0.0076 SOC 0.0257 scarica 0.0259 vita_batt 0.0024 vita_FC 0.0115 C_rate 0.0010 fattibile 0.0297]  46.8 s
+  epoca 37  η 3.37e-04  addestramento 0.0785  validazione 0.1149  [durata 0.0037 serbatoio 0.0078 H2 0.0077 SOC 0.0258 scarica 0.0256 vita_batt 0.0023 vita_FC 0.0113 C_rate 0.0010 fattibile 0.0296]  46.7 s
+  epoca 38  η 3.13e-04  addestramento 0.0774  validazione 0.1148  [durata 0.0038 serbatoio 0.0077 H2 0.0075 SOC 0.0259 scarica 0.0256 vita_batt 0.0023 vita_FC 0.0116 C_rate 0.0009 fattibile 0.0295]  46.7 s
+  epoca 39  η 2.89e-04  addestramento 0.0765  validazione 0.1168  [durata 0.0037 serbatoio 0.0078 H2 0.0076 SOC 0.0258 scarica 0.0259 vita_batt 0.0026 vita_FC 0.0113 C_rate 0.0013 fattibile 0.0307]  48.1 s
+  arresto anticipato: nessun miglioramento da 5 epoche
+  epoca migliore 34 (validazione 0.1145)
+  tempo di addestramento: 30.6 min (47.1 s per epoca)
+
+[2] metriche sulla validazione: variante 6e contro 6b e boosting
+  durata      mediana / p95: 6e 0.181 / 0.943 | 6b 0.159 / 0.888 | boosting 0.245 / 1.283
+  serbatoio   mediana / p95: 6e 1.891 / 9.361 | 6b 1.703 / 8.811 | boosting 3.334 / 14.604
+  H2          mediana / p95: 6e 1.868 / 9.152 | 6b 1.676 / 8.510 | boosting 3.386 / 14.503
+  SOC         mediana / p95: 6e 0.012 / 0.110 | 6b 0.012 / 0.108 | boosting 0.031 / 0.156
+  vita_batt   mediana / p95: 6e 2.732 / 12.073 | 6b 2.356 / 10.840 | boosting 3.659 / 14.431
+  vita_FC_f1  mediana / p95: 6e 1.809 / 6.616 | 6b 1.732 / 6.470 | boosting 2.481 / 8.344
+  C_rate      mediana / p95: 6e 1.507 / 5.812 | 6b 1.236 / 4.934 | boosting 0.676 / 4.343
+  scarica     accuratezza 6e 98.96% | 6b 99.00% | boosting 98.81%
+
+[3] fattibilità caso per caso
+  dai vincoli calcolati: 6b 98.855%, 6e 98.831% giusta
+  dalla testa di fattibilità (p ≥ 0,5): 98.783% giusta; Brier 0.0088
+  vincoli e testa d'accordo nel 99.47% dei casi; quando sono d'accordo hanno ragione nel 99.069%
+  calibrazione della testa (fascia di p: casi, frequenza vera di fattibili):
+    [0.0, 0.1):  327396, 0.002
+    [0.1, 0.2):    3156, 0.224
+    [0.2, 0.3):    2021, 0.301
+    [0.3, 0.4):    1764, 0.409
+    [0.4, 0.5):    1627, 0.462
+    [0.5, 0.6):    1652, 0.558
+    [0.6, 0.7):    1786, 0.612
+    [0.7, 0.8):    2279, 0.724
+    [0.8, 0.9):    3518, 0.805
+    [0.9, 1.0):  244625, 0.996
+  costo sui casi davvero fattibili: 6b mediana 1.257% p95 5.206% | 6e mediana 1.321% p95 5.458%
+
+[4] scelta fra le 288 coppie (2048 tratte): regole di ammissione
+  6b, vincoli (come 6c)                              secca: non fattibili 14.40%, rimpianto mediana 0.000% p95 3.99% | prime 3: 1.03%, p95 2.76% | prime 5: 0.10%, p95 2.29%, entro 1% 90.2%
+  6b, vincoli + margine (SOC ≥ 0,21, scarica < 0,1)  secca: non fattibili  6.84%, rimpianto mediana 0.000% p95 6.08% | prime 3: 0.20%, p95 5.38% | prime 5: 0.00%, p95 4.91%, entro 1% 84.6%
+  6e, vincoli                                        secca: non fattibili 12.79%, rimpianto mediana 0.000% p95 4.85% | prime 3: 0.63%, p95 3.54% | prime 5: 0.15%, p95 3.00%, entro 1% 88.3%
+  6e, vincoli + margine                              secca: non fattibili  5.91%, rimpianto mediana 0.000% p95 7.30% | prime 3: 0.24%, p95 6.29% | prime 5: 0.00%, p95 6.08%, entro 1% 81.9%
+  6e, solo probabilità di fattibilità ≥ 0.5          secca: non fattibili 12.40%, rimpianto mediana 0.000% p95 4.74% | prime 3: 0.73%, p95 4.00% | prime 5: 0.10%, p95 3.54%, entro 1% 87.5%
+  6e, vincoli + probabilità ≥ 0.5                    secca: non fattibili  9.28%, rimpianto mediana 0.000% p95 5.59% | prime 3: 0.44%, p95 4.50% | prime 5: 0.10%, p95 4.29%, entro 1% 85.9%
+  6e, solo probabilità di fattibilità ≥ 0.7          secca: non fattibili  7.18%, rimpianto mediana 0.000% p95 6.23% | prime 3: 0.34%, p95 5.38% | prime 5: 0.10%, p95 5.19%, entro 1% 83.3%
+  6e, vincoli + probabilità ≥ 0.7                    secca: non fattibili  6.45%, rimpianto mediana 0.000% p95 6.51% | prime 3: 0.29%, p95 5.85% | prime 5: 0.10%, p95 5.44%, entro 1% 82.4%
+  6e, solo probabilità di fattibilità ≥ 0.9          secca: non fattibili  2.78%, rimpianto mediana 0.309% p95 8.09% | prime 3: 0.10%, p95 7.57% | prime 5: 0.00%, p95 7.35%, entro 1% 74.0%
+  6e, vincoli + probabilità ≥ 0.9                    secca: non fattibili  2.69%, rimpianto mediana 0.321% p95 8.08% | prime 3: 0.10%, p95 7.57% | prime 5: 0.00%, p95 7.35%, entro 1% 73.8%
+  6e, solo probabilità di fattibilità ≥ 0.95         secca: non fattibili  1.76%, rimpianto mediana 0.533% p95 8.84% | prime 3: 0.00%, p95 8.37% | prime 5: 0.00%, p95 8.32%, entro 1% 68.8%
+  6e, vincoli + probabilità ≥ 0.95                   secca: non fattibili  1.71%, rimpianto mediana 0.530% p95 8.84% | prime 3: 0.00%, p95 8.37% | prime 5: 0.00%, p95 8.32%, entro 1% 68.8%
+
+tempo totale: 32.4 min
+julia -t 8 --project=fase10 fase10/05_variante.jl  6536,83s user 185,76s system 344% cpu 32:29,89 total
