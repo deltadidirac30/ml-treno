@@ -1,0 +1,36 @@
+1. griglia fitta simulata su 146 linee in questo lancio: 57.5 min (0 già pronte)
+
+2. ottimo vero (dati 17/11) contro la griglia del 16/11 (dati 11/11), 146 linee
+   costo dell'ottimo: mediana -0.00%, 10° -0.22%, 90° +0.04%, min -1.58%, max +0.35%
+   stesso progetto (m, n): 121; stesso regime: 146
+   sola batteria      16/11  99   17/11  99
+   ibrido FC piccola  16/11  20   17/11  20
+   ibrido             16/11  27   17/11  27
+   linee con il costo cambiato di oltre l'1% o con il progetto diverso:
+     Sassari-Oristano                          -1.58%   (0.16, 0.89) → (0.15, 0.92)
+     Trapani-Piraineto                         -1.12%   (0.26, 0.84) → (0.25, 0.86)
+     Ozieri_Chilivani-Porto_Torres_Marittima   -0.57%   (0.00, 0.60) → (0.00, 0.59)
+     Trapani-Castelvetrano                     -0.42%   (0.00, 0.94) → (0.00, 0.93)
+     Olbia_Terranova-Sassari                   -0.41%   (0.04, 0.98) → (0.04, 0.97)
+     Vicchio-Borgo_S_Lorenzo                   -0.38%   (0.00, 0.31) → (0.00, 0.32)
+     Faenza-Firenze_S_Maria_Novella            +0.35%   (0.15, 0.91) → (0.15, 0.92)
+     Sassari-Ozieri_Chilivani                  +0.32%   (0.00, 0.38) → (0.00, 0.41)
+     Triuggio-Ponte_Albiate-Besana             -0.29%   (0.00, 0.26) → (0.00, 0.22)
+     Foggia-Rocchetta_S_Antonio-Lacedonia      -0.19%   (0.00, 0.55) → (0.00, 0.54)
+     Vercelli-Mortara                          +0.17%   (0.00, 0.36) → (0.00, 0.37)
+     Rovigo-Verona_Porta_Nuova                 -0.12%   (0.11, 0.94) → (0.11, 0.93)
+     Gela-Siracusa                             -0.10%   (0.21, 0.87) → (0.21, 0.84)
+     Cagliari-Porto_Torres_Marittima           -0.09%   (0.39, 0.69) → (0.39, 0.68)
+     RUTIGLIANO-PUTIGNANO-L1                   -0.08%   (0.00, 0.29) → (0.00, 0.31)
+     Cagliari-Olbia_Terranova                  -0.08%   (0.36, 0.68) → (0.36, 0.69)
+     Vicchio-Firenze_S_Maria_Novella           +0.07%   (0.00, 0.61) → (0.00, 0.62)
+     Siracusa-Vittoria                         -0.05%   (0.15, 0.88) → (0.15, 0.90)
+     Modica-Caltanissetta_Xirbi                +0.04%   (0.24, 0.84) → (0.24, 0.85)
+     Sassari-Cagliari                          +0.04%   (0.39, 0.75) → (0.39, 0.76)
+     Ragusa-Modica                             +0.03%   (0.00, 0.25) → (0.00, 0.26)
+     Crotone-Lamezia_Terme_Centrale            +0.03%   (0.09, 0.94) → (0.09, 0.95)
+     Firenze_S_Maria_Novella-Ravenna           -0.01%   (0.24, 0.85) → (0.24, 0.86)
+     Cinisi_Terrasini-Trapani                  +0.01%   (0.18, 0.88) → (0.18, 0.89)
+     Civitanova_Marche-Fabriano                -0.00%   (0.05, 0.96) → (0.05, 0.95)
+
+Tempo totale 58.1 min

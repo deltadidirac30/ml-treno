@@ -774,3 +774,19 @@ Prove:
 - regimi della proposta: 99 sola batteria, 18 ibrido FC piccola, 29 ibrido (ottimo vero 99 / 20 / 27). Sotto i 60 km tutte a sola batteria (78 linee); oltre i 150 km tutte ibride; la Lombardia è tutta a sola batteria (28 linee);
 - costo mediano 2,52 €/km a sola batteria, 2,75 ibrido FC piccola, 3,83 ibrido (in tutto da 1,52 a 5,58);
 - rete contro simulatore su 1,4 milioni di progetti: fattibilità giusta 98,3% (linea peggiore 92,1%), errore sul costo nei progetti fattibili 1,9% in mediana, 6,5% al 95° percentile.
+
+## Fase 13: le linee corrette dal collega (dati del 17/11) e la nuova griglia fitta
+
+17–18/11/2026. Cartella `fase13/`. Prima di classificare gli ottimi in pochi treni standard, si rifà tutto sulle linee corrette nel Drive condiviso SurrogateTrains (`Linee Ferroviarie/01 - Italia/Linee`). Le correzioni sono due: la nuova livellazione dello script v45a e le 6 linee del bacino di Iseo, che ora finiscono a Brescia Borgo San Giovanni, 2,2 km prima di Brescia. La cartella NUOVE è stata verificata, messa in Lombardia e cancellata. Una prima versione serale della Lombardia, con il profilo decimato, era stata scartata.
+
+- **Cosa cambia nei dati**: sulle 146 linee cambia solo l'altimetria. Fermate (solo `fermate.csv`, non le stazioni), limiti e lunghezze sono uguali. Sulle 6 linee di Brescia le fermate aggiunte coincidono con il ripiego che lo script già usava (fermata a 0, capolinea a BBG). Su Brescia–Marone–Zone, Edolo–Brescia e Sale Marasino–Brescia non ci sono fermate fra BBG e Iseo (23,6 km senza fermate, fonte "orario").
+- **`01_linee.jl`**: ricostruisce le 166 linee dalla copia locale `ml_treno_dati/linee_rinf_sorgente` (versione del 17/11, uguale al Drive) in `train-powertrain/dati_rete/tratte_rete_rinf/tutto_rinf`, più `linee_non_el_70.txt` (146 linee, le stesse di prima). Nessun avviso. Le vecchie `profilo_rinf` e `tutto_rinf` e la copia dell'11/11 sono state cancellate.
+- **Surrogato** (G + bordo, 47 s, `03_confronto_surrogato.py` → `risultati/03_confronto_surrogato.txt`): rispetto ai dati dell'11/11, stesso progetto su 123 linee e stesso regime su 146. Il costo cambia in mediana dello 0,00% (fra −0,22% e +0,05% per l'80% delle linee). Oltre l'1% solo Sassari–Oristano (−1,6%), Trapani–Piraineto (−1,1%) e Cagliari–Olbia (+1,0%).
+- **Griglia fitta** (`02_griglia_fitta.jl`, 146 linee × 9702 progetti, 58 min sul Mac a 8 core; simulazioni in `ml_treno_dati/fase13/griglia_rinf`, 2,9 GB; `risultati/02_griglia_fitta.txt` e `02_ottimo_linee.csv`). È la tabella su cui si farà la classificazione. Rispetto alla griglia del 16/11:
+  - l'ottimo vero ha lo stesso progetto su 121 linee e lo stesso regime su tutte (99 sola batteria, 20 ibrido FC piccola, 27 ibrido);
+  - il costo dell'ottimo cambia in mediana dello 0,00% (10° −0,22%, 90° +0,04%, min −1,58% Sassari–Oristano, max +0,35% Faenza–Firenze);
+  - i 25 progetti che cambiano si spostano di 0,01–0,04, quasi sempre solo in n.
+  - Avvisi: i soliti 10 del ciclo dello storage che non converge (D28, peso massimo del ciclo).
+- **Surrogato contro il nuovo ottimo vero** (`04_surrogato_vs_vero.py` → `risultati/04_surrogato_vs_vero.txt`): la proposta è proprio l'ottimo su 139 linee e ha il regime giusto su 144. Media +0,07%, massimo +3,08%. Oltre il 2% restano le 3 di prima (Rovigo–Verona, Crotone–Lamezia, Buonconvento–Empoli), poi Cagliari–Olbia +1,1% e Cagliari–Macomer +1,0%. È lo stesso quadro dei dati vecchi (141 linee, +0,06%, +2,99%).
+
+Conclusione: le correzioni del collega spostano pochissimo gli ottimi. La classificazione (p-mediana, extra-costo medio, peso uguale per linea) si fa sulla nuova griglia `fase13/griglia_rinf`.

@@ -1,0 +1,13 @@
+surrogato G + bordo (surrogato/riepilogo_20261117_230954.csv) contro ottimo vero della griglia fitta (fase13_log/02_ottimo_linee.csv), dati 17/11
+146 linee; proprio l'ottimo: 139; stesso regime: 144
+costo rispetto all'ottimo vero: media +0.07%, mediana +0.00%, 90° +0.00%, max +3.08%
+entro 0,01% / 0,5% / 1%: 139 / 141 / 141; oltre 2%: 3
+
+linee in cui la proposta non è l'ottimo (ordinate per scarto):
+  Rovigo-Verona_Porta_Nuova                   +3.08%   proposta (0.15, 0.94)  ottimo (0.11, 0.93)
+  Crotone-Lamezia_Terme_Centrale              +2.75%   proposta (0.12, 0.95)  ottimo (0.09, 0.95)   ibrido / ibrido FC piccola
+  Buonconvento-Empoli                         +2.05%   proposta (0.12, 0.94)  ottimo (0.09, 0.94)   ibrido / ibrido FC piccola
+  Cagliari-Olbia_Terranova                    +1.12%   proposta (0.37, 0.75)  ottimo (0.36, 0.69)
+  Cagliari-Macomer                            +1.01%   proposta (0.34, 0.74)  ottimo (0.35, 0.84)
+  Olbia_Terranova-Golfo_Aranci                +0.06%   proposta (0.0, 0.35)  ottimo (0.0, 0.3)
+  Breno-Pisogne                               +0.05%   proposta (0.0, 0.27)  ottimo (0.0, 0.23)
