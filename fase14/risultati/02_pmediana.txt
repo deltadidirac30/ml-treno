@@ -1,0 +1,170 @@
+fase14/02_pmediana.jl  2026-11-18T09:09:10.158  JuMP 1.32.1  HiGHS 1.27.0
+1. numero minimo di treni per rispettare il tetto: +10% → 8 treni; +15% → 6 treni
+
+2. SENZA TETTO
+     K      medio    mediana   peggiore      >5%     >10%     >20%    tempo variabili
+     1    +95.40%   +103.98%   +179.60%      143      138      134   397.6s   259223
+     2    +17.10%     +7.85%   +101.12%      100       43       35     4.8s   259223
+     3     +9.03%     +6.88%    +44.74%       93       35       15     3.9s   259223
+     4     +6.88%     +3.54%    +44.74%       39       31       15     4.2s   259223
+     5     +4.74%     +3.44%    +21.11%       38       20        3     3.7s   259223
+     6     +3.91%     +1.60%    +21.11%       36       20        3     3.7s   259223
+     7     +3.19%     +1.49%    +25.99%       28       14        1    32.5s   259223
+     8     +2.59%     +1.47%    +11.55%       29        6        0     3.5s   259223
+     9     +2.20%     +1.37%    +11.61%       18        3        0     3.3s   259223
+    10     +1.91%     +0.86%    +11.61%       18        3        0     3.2s   259223
+    11     +1.68%     +0.82%    +10.53%       17        1        0    12.4s   259223
+    12     +1.50%     +0.83%     +9.53%       12        0        0    19.9s   259223
+    13     +1.34%     +0.81%     +8.90%        8        0        0    28.3s   259223
+    14     +1.20%     +0.52%     +8.90%        8        0        0    17.1s   259223
+    15     +1.07%     +0.51%     +8.64%        5        0        0    19.2s   259223
+
+2. TETTO +10% (possibile da K = 8)
+     K      medio    mediana   peggiore      >5%     >10%     >20%    tempo variabili
+     8     +3.13%     +3.15%     +9.57%       26        0        0     0.2s     7274
+     9     +2.30%     +1.41%     +9.57%       24        0        0     0.1s     7274
+    10     +2.00%     +1.34%     +9.57%       17        0        0     0.1s     7274
+    11     +1.71%     +0.85%     +9.57%       17        0        0     0.2s     7274
+    12     +1.50%     +0.83%     +9.53%       12        0        0     0.7s     7274
+    13     +1.34%     +0.81%     +8.90%        8        0        0     0.9s     7274
+    14     +1.20%     +0.52%     +8.90%        8        0        0     0.6s     7274
+    15     +1.07%     +0.51%     +8.64%        5        0        0     0.8s     7274
+
+2. TETTO +15% (possibile da K = 6)
+     K      medio    mediana   peggiore      >5%     >10%     >20%    tempo variabili
+     6     +5.56%     +5.62%    +14.78%       82       11        0     1.0s    11177
+     7     +3.43%     +3.42%    +11.55%       31        6        0     0.7s    11177
+     8     +2.59%     +1.47%    +11.55%       29        6        0     0.3s    11177
+     9     +2.20%     +1.37%    +11.61%       18        3        0     0.2s    11177
+    10     +1.91%     +0.86%    +11.61%       18        3        0     0.3s    11177
+    11     +1.68%     +0.82%    +10.53%       17        1        0     0.7s    11177
+    12     +1.50%     +0.83%     +9.53%       12        0        0     0.8s    11177
+    13     +1.34%     +0.81%     +8.90%        8        0        0     0.9s    11177
+    14     +1.20%     +0.52%     +8.90%        8        0        0     0.8s    11177
+    15     +1.07%     +0.51%     +8.64%        5        0        0     0.8s    11177
+
+3. LE FLOTTE (treni ordinati per m e n)
+
+   senza tetto, K = 3: extra-costo medio +9.03%, peggiore +44.74%
+     m 0.00 n 0.98  sola batteria      FC    0 kW  batteria 3113 kWh   99 linee  extra-costo medio +5.67%, peggiore +10.72% (Triuggio-Ponte_Albiate-Besana)
+     m 0.11 n 0.93  ibrido             FC  217 kW  batteria 2955 kWh   23 linee  extra-costo medio +12.61%, peggiore +27.80% (Siracusa-Ragusa)
+     m 0.42 n 0.68  ibrido             FC  827 kW  batteria 2161 kWh   24 linee  extra-costo medio +19.43%, peggiore +44.74% (Trapani-Alcamo_Diramazione)
+
+   senza tetto, K = 4: extra-costo medio +6.88%, peggiore +44.74%
+     m 0.00 n 0.56  sola batteria      FC    0 kW  batteria 1779 kWh   57 linee  extra-costo medio +2.45%, peggiore +4.44% (Triuggio-Ponte_Albiate-Besana)
+     m 0.00 n 0.98  sola batteria      FC    0 kW  batteria 3113 kWh   42 linee  extra-costo medio +2.58%, peggiore +5.26% (GAGLIANO-GALLIPOLI-L4_3)
+     m 0.11 n 0.93  ibrido             FC  217 kW  batteria 2955 kWh   23 linee  extra-costo medio +12.61%, peggiore +27.80% (Siracusa-Ragusa)
+     m 0.42 n 0.68  ibrido             FC  827 kW  batteria 2161 kWh   24 linee  extra-costo medio +19.43%, peggiore +44.74% (Trapani-Alcamo_Diramazione)
+
+   senza tetto, K = 5: extra-costo medio +4.74%, peggiore +21.11%
+     m 0.00 n 0.56  sola batteria      FC    0 kW  batteria 1779 kWh   57 linee  extra-costo medio +2.45%, peggiore +4.44% (Triuggio-Ponte_Albiate-Besana)
+     m 0.00 n 0.98  sola batteria      FC    0 kW  batteria 3113 kWh   42 linee  extra-costo medio +2.58%, peggiore +5.26% (GAGLIANO-GALLIPOLI-L4_3)
+     m 0.09 n 0.94  ibrido FC piccola  FC  177 kW  batteria 2985 kWh   20 linee  extra-costo medio +9.30%, peggiore +20.87% (Siracusa-Ragusa)
+     m 0.25 n 0.84  ibrido             FC  492 kW  batteria 2671 kWh   15 linee  extra-costo medio +10.56%, peggiore +21.11% (Buonconvento-Firenze_S_Maria_Novella)
+     m 0.42 n 0.68  ibrido             FC  827 kW  batteria 2161 kWh   12 linee  extra-costo medio +8.37%, peggiore +17.58% (Cagliari-Oristano)
+
+   senza tetto, K = 6: extra-costo medio +3.91%, peggiore +21.11%
+     m 0.00 n 0.40  sola batteria      FC    0 kW  batteria 1273 kWh   39 linee  extra-costo medio +0.98%, peggiore +1.72% (Triuggio-Ponte_Albiate-Besana)
+     m 0.00 n 0.72  sola batteria      FC    0 kW  batteria 2289 kWh   40 linee  extra-costo medio +1.72%, peggiore +3.98% (Chioggia-Adria)
+     m 0.00 n 0.98  sola batteria      FC    0 kW  batteria 3113 kWh   20 linee  extra-costo medio +0.97%, peggiore +2.10% (Codogno-Pavia)
+     m 0.09 n 0.94  ibrido FC piccola  FC  177 kW  batteria 2985 kWh   20 linee  extra-costo medio +9.30%, peggiore +20.87% (Siracusa-Ragusa)
+     m 0.25 n 0.84  ibrido             FC  492 kW  batteria 2671 kWh   15 linee  extra-costo medio +10.56%, peggiore +21.11% (Buonconvento-Firenze_S_Maria_Novella)
+     m 0.42 n 0.68  ibrido             FC  827 kW  batteria 2161 kWh   12 linee  extra-costo medio +8.37%, peggiore +17.58% (Cagliari-Oristano)
+
+   senza tetto, K = 8: extra-costo medio +2.59%, peggiore +11.55%
+     m 0.00 n 0.40  sola batteria      FC    0 kW  batteria 1273 kWh   39 linee  extra-costo medio +0.98%, peggiore +1.72% (Triuggio-Ponte_Albiate-Besana)
+     m 0.00 n 0.72  sola batteria      FC    0 kW  batteria 2289 kWh   40 linee  extra-costo medio +1.72%, peggiore +3.98% (Chioggia-Adria)
+     m 0.00 n 0.98  sola batteria      FC    0 kW  batteria 3113 kWh   20 linee  extra-costo medio +0.97%, peggiore +2.10% (Codogno-Pavia)
+     m 0.05 n 0.96  ibrido FC piccola  FC   98 kW  batteria 3049 kWh    9 linee  extra-costo medio +4.30%, peggiore +7.34% (Siracusa-Ragusa)
+     m 0.09 n 0.94  ibrido FC piccola  FC  177 kW  batteria 2985 kWh   11 linee  extra-costo medio +4.07%, peggiore +9.10% (LAquila-Terni)
+     m 0.18 n 0.88  ibrido             FC  354 kW  batteria 2798 kWh    8 linee  extra-costo medio +6.48%, peggiore +11.55% (Buonconvento-Firenze_S_Maria_Novella)
+     m 0.28 n 0.83  ibrido             FC  551 kW  batteria 2637 kWh   10 linee  extra-costo medio +6.41%, peggiore +10.55% (Oristano-Olbia_Terranova)
+     m 0.42 n 0.68  ibrido             FC  827 kW  batteria 2161 kWh    9 linee  extra-costo medio +5.88%, peggiore +10.14% (Empoli-Chiusi-Chianciano_Terme)
+
+   senza tetto, K = 10: extra-costo medio +1.91%, peggiore +11.61%
+     m 0.00 n 0.37  sola batteria      FC    0 kW  batteria 1176 kWh   34 linee  extra-costo medio +0.64%, peggiore +1.33% (Triuggio-Ponte_Albiate-Besana)
+     m 0.00 n 0.56  sola batteria      FC    0 kW  batteria 1779 kWh   23 linee  extra-costo medio +1.06%, peggiore +2.74% (MAGLIE-LECCE-L6)
+     m 0.00 n 0.72  sola batteria      FC    0 kW  batteria 2289 kWh   22 linee  extra-costo medio +0.84%, peggiore +1.83% (GAGLIANO-GALLIPOLI-L4_3)
+     m 0.00 n 0.98  sola batteria      FC    0 kW  batteria 3113 kWh   20 linee  extra-costo medio +0.97%, peggiore +2.10% (Codogno-Pavia)
+     m 0.03 n 0.98  ibrido FC piccola  FC   59 kW  batteria 3113 kWh    6 linee  extra-costo medio +0.32%, peggiore +0.57% (Caltanissetta_Centrale-Gela)
+     m 0.08 n 0.92  ibrido FC piccola  FC  158 kW  batteria 2921 kWh   10 linee  extra-costo medio +5.47%, peggiore +11.61% (Olbia_Terranova-Sassari)
+     m 0.11 n 0.94  ibrido             FC  217 kW  batteria 2985 kWh    8 linee  extra-costo medio +2.40%, peggiore +4.93% (Minucciano-Pieve-Casola-Pisa_Centrale)
+     m 0.21 n 0.87  ibrido             FC  413 kW  batteria 2764 kWh    7 linee  extra-costo medio +4.96%, peggiore +10.53% (Faenza-Firenze_S_Maria_Novella)
+     m 0.29 n 0.83  ibrido             FC  571 kW  batteria 2637 kWh    8 linee  extra-costo medio +5.20%, peggiore +9.57% (Parma-Brescia)
+     m 0.42 n 0.68  ibrido             FC  827 kW  batteria 2161 kWh    8 linee  extra-costo medio +5.34%, peggiore +9.53% (Reggio_di_Calabria_Centrale-Roccella_Jonica)
+
+   senza tetto, K = 15: extra-costo medio +1.07%, peggiore +8.64%
+     m 0.00 n 0.31  sola batteria      FC    0 kW  batteria  985 kWh   23 linee  extra-costo medio +0.24%, peggiore +0.73% (Porto_Torres_Marittima-Sassari)
+     m 0.00 n 0.40  sola batteria      FC    0 kW  batteria 1273 kWh   16 linee  extra-costo medio +0.47%, peggiore +1.20% (Portogruaro_Caorle-Casarsa)
+     m 0.00 n 0.59  sola batteria      FC    0 kW  batteria 1876 kWh   23 linee  extra-costo medio +0.87%, peggiore +2.05% (Chioggia-Adria)
+     m 0.00 n 0.72  sola batteria      FC    0 kW  batteria 2289 kWh   17 linee  extra-costo medio +0.58%, peggiore +1.48% (Vicchio-Firenze_S_Maria_Novella)
+     m 0.00 n 0.98  sola batteria      FC    0 kW  batteria 3113 kWh   20 linee  extra-costo medio +0.97%, peggiore +2.10% (Codogno-Pavia)
+     m 0.03 n 0.98  ibrido FC piccola  FC   59 kW  batteria 3113 kWh    6 linee  extra-costo medio +0.32%, peggiore +0.57% (Caltanissetta_Centrale-Gela)
+     m 0.05 n 0.96  ibrido FC piccola  FC   98 kW  batteria 3049 kWh    3 linee  extra-costo medio +1.03%, peggiore +3.09% (Olbia_Terranova-Sassari)
+     m 0.07 n 0.94  ibrido FC piccola  FC  138 kW  batteria 2985 kWh    5 linee  extra-costo medio +1.65%, peggiore +3.04% (Piazza_al_Serchio-Pisa_Centrale)
+     m 0.09 n 0.94  ibrido FC piccola  FC  177 kW  batteria 2985 kWh    6 linee  extra-costo medio +1.36%, peggiore +5.40% (Modica-Augusta)
+     m 0.11 n 0.94  ibrido             FC  217 kW  batteria 2985 kWh    4 linee  extra-costo medio +0.35%, peggiore +1.04% (Buonconvento-Firenze_S_Maria_Novella)
+     m 0.16 n 0.89  ibrido             FC  315 kW  batteria 2828 kWh    3 linee  extra-costo medio +1.66%, peggiore +1.78% (Siracusa-Vittoria)
+     m 0.24 n 0.85  ibrido             FC  473 kW  batteria 2701 kWh    7 linee  extra-costo medio +3.90%, peggiore +8.64% (Cinisi_Terrasini-Trapani)
+     m 0.27 n 0.85  ibrido             FC  532 kW  batteria 2701 kWh    4 linee  extra-costo medio +2.38%, peggiore +4.56% (Firenze_S_Maria_Novella-Ravenna)
+     m 0.39 n 0.69  ibrido             FC  768 kW  batteria 2191 kWh    2 linee  extra-costo medio +1.45%, peggiore +2.87% (Cagliari-Olbia_Terranova)
+     m 0.39 n 0.76  ibrido             FC  768 kW  batteria 2416 kWh    7 linee  extra-costo medio +3.70%, peggiore +7.21% (Empoli-Chiusi-Chianciano_Terme)
+
+   tetto +10%, K = 8: extra-costo medio +3.13%, peggiore +9.57%
+     m 0.00 n 0.56  sola batteria      FC    0 kW  batteria 1779 kWh   57 linee  extra-costo medio +2.45%, peggiore +4.44% (Triuggio-Ponte_Albiate-Besana)
+     m 0.00 n 0.98  sola batteria      FC    0 kW  batteria 3113 kWh   42 linee  extra-costo medio +2.58%, peggiore +5.26% (GAGLIANO-GALLIPOLI-L4_3)
+     m 0.05 n 0.96  ibrido FC piccola  FC   98 kW  batteria 3049 kWh    9 linee  extra-costo medio +4.30%, peggiore +7.34% (Siracusa-Ragusa)
+     m 0.09 n 0.94  ibrido FC piccola  FC  177 kW  batteria 2985 kWh   11 linee  extra-costo medio +4.07%, peggiore +9.10% (LAquila-Terni)
+     m 0.16 n 0.91  ibrido             FC  315 kW  batteria 2892 kWh    6 linee  extra-costo medio +4.40%, peggiore +8.32% (Buonconvento-Firenze_S_Maria_Novella)
+     m 0.21 n 0.87  ibrido             FC  413 kW  batteria 2764 kWh    5 linee  extra-costo medio +2.91%, peggiore +9.03% (Siracusa-Vittoria)
+     m 0.29 n 0.83  ibrido             FC  571 kW  batteria 2637 kWh    8 linee  extra-costo medio +5.20%, peggiore +9.57% (Parma-Brescia)
+     m 0.42 n 0.68  ibrido             FC  827 kW  batteria 2161 kWh    8 linee  extra-costo medio +5.34%, peggiore +9.53% (Reggio_di_Calabria_Centrale-Roccella_Jonica)
+
+   tetto +10%, K = 10: extra-costo medio +2.00%, peggiore +9.57%
+     m 0.00 n 0.40  sola batteria      FC    0 kW  batteria 1273 kWh   39 linee  extra-costo medio +0.98%, peggiore +1.72% (Triuggio-Ponte_Albiate-Besana)
+     m 0.00 n 0.72  sola batteria      FC    0 kW  batteria 2289 kWh   40 linee  extra-costo medio +1.72%, peggiore +3.98% (Chioggia-Adria)
+     m 0.00 n 0.98  sola batteria      FC    0 kW  batteria 3113 kWh   20 linee  extra-costo medio +0.97%, peggiore +2.10% (Codogno-Pavia)
+     m 0.03 n 0.98  ibrido FC piccola  FC   59 kW  batteria 3113 kWh    6 linee  extra-costo medio +0.32%, peggiore +0.57% (Caltanissetta_Centrale-Gela)
+     m 0.07 n 0.94  ibrido FC piccola  FC  138 kW  batteria 2985 kWh    8 linee  extra-costo medio +3.75%, peggiore +8.90% (Olbia_Terranova-Sassari)
+     m 0.09 n 0.94  ibrido FC piccola  FC  177 kW  batteria 2985 kWh    6 linee  extra-costo medio +1.36%, peggiore +5.40% (Modica-Augusta)
+     m 0.16 n 0.91  ibrido             FC  315 kW  batteria 2892 kWh    6 linee  extra-costo medio +4.40%, peggiore +8.32% (Buonconvento-Firenze_S_Maria_Novella)
+     m 0.21 n 0.87  ibrido             FC  413 kW  batteria 2764 kWh    5 linee  extra-costo medio +2.91%, peggiore +9.03% (Siracusa-Vittoria)
+     m 0.29 n 0.83  ibrido             FC  571 kW  batteria 2637 kWh    8 linee  extra-costo medio +5.20%, peggiore +9.57% (Parma-Brescia)
+     m 0.42 n 0.68  ibrido             FC  827 kW  batteria 2161 kWh    8 linee  extra-costo medio +5.34%, peggiore +9.53% (Reggio_di_Calabria_Centrale-Roccella_Jonica)
+
+   tetto +10%, K = 15: extra-costo medio +1.07%, peggiore +8.64%
+     m 0.00 n 0.31  sola batteria      FC    0 kW  batteria  985 kWh   23 linee  extra-costo medio +0.24%, peggiore +0.73% (Porto_Torres_Marittima-Sassari)
+     m 0.00 n 0.40  sola batteria      FC    0 kW  batteria 1273 kWh   16 linee  extra-costo medio +0.47%, peggiore +1.20% (Portogruaro_Caorle-Casarsa)
+     m 0.00 n 0.59  sola batteria      FC    0 kW  batteria 1876 kWh   23 linee  extra-costo medio +0.87%, peggiore +2.05% (Chioggia-Adria)
+     m 0.00 n 0.72  sola batteria      FC    0 kW  batteria 2289 kWh   17 linee  extra-costo medio +0.58%, peggiore +1.48% (Vicchio-Firenze_S_Maria_Novella)
+     m 0.00 n 0.98  sola batteria      FC    0 kW  batteria 3113 kWh   20 linee  extra-costo medio +0.97%, peggiore +2.10% (Codogno-Pavia)
+     m 0.03 n 0.98  ibrido FC piccola  FC   59 kW  batteria 3113 kWh    6 linee  extra-costo medio +0.32%, peggiore +0.57% (Caltanissetta_Centrale-Gela)
+     m 0.05 n 0.96  ibrido FC piccola  FC   98 kW  batteria 3049 kWh    3 linee  extra-costo medio +1.03%, peggiore +3.09% (Olbia_Terranova-Sassari)
+     m 0.07 n 0.94  ibrido FC piccola  FC  138 kW  batteria 2985 kWh    5 linee  extra-costo medio +1.65%, peggiore +3.04% (Piazza_al_Serchio-Pisa_Centrale)
+     m 0.09 n 0.94  ibrido FC piccola  FC  177 kW  batteria 2985 kWh    6 linee  extra-costo medio +1.36%, peggiore +5.40% (Modica-Augusta)
+     m 0.11 n 0.94  ibrido             FC  217 kW  batteria 2985 kWh    4 linee  extra-costo medio +0.35%, peggiore +1.04% (Buonconvento-Firenze_S_Maria_Novella)
+     m 0.16 n 0.89  ibrido             FC  315 kW  batteria 2828 kWh    3 linee  extra-costo medio +1.66%, peggiore +1.78% (Siracusa-Vittoria)
+     m 0.24 n 0.85  ibrido             FC  473 kW  batteria 2701 kWh    7 linee  extra-costo medio +3.90%, peggiore +8.64% (Cinisi_Terrasini-Trapani)
+     m 0.27 n 0.85  ibrido             FC  532 kW  batteria 2701 kWh    4 linee  extra-costo medio +2.38%, peggiore +4.56% (Firenze_S_Maria_Novella-Ravenna)
+     m 0.39 n 0.69  ibrido             FC  768 kW  batteria 2191 kWh    2 linee  extra-costo medio +1.45%, peggiore +2.87% (Cagliari-Olbia_Terranova)
+     m 0.39 n 0.76  ibrido             FC  768 kW  batteria 2416 kWh    7 linee  extra-costo medio +3.70%, peggiore +7.21% (Empoli-Chiusi-Chianciano_Terme)
+
+   tetto +15%, K = 6: extra-costo medio +5.56%, peggiore +14.78%
+     m 0.00 n 0.95  sola batteria      FC    0 kW  batteria 3019 kWh   96 linee  extra-costo medio +5.49%, peggiore +10.31% (Triuggio-Ponte_Albiate-Besana)
+     m 0.03 n 0.98  ibrido FC piccola  FC   59 kW  batteria 3113 kWh    9 linee  extra-costo medio +3.48%, peggiore +13.57% (Edolo-Brescia)
+     m 0.09 n 0.94  ibrido FC piccola  FC  177 kW  batteria 2985 kWh   14 linee  extra-costo medio +6.01%, peggiore +14.78% (Olbia_Terranova-Sassari)
+     m 0.18 n 0.88  ibrido             FC  354 kW  batteria 2798 kWh    8 linee  extra-costo medio +6.48%, peggiore +11.55% (Buonconvento-Firenze_S_Maria_Novella)
+     m 0.28 n 0.83  ibrido             FC  551 kW  batteria 2637 kWh   10 linee  extra-costo medio +6.41%, peggiore +10.55% (Oristano-Olbia_Terranova)
+     m 0.42 n 0.68  ibrido             FC  827 kW  batteria 2161 kWh    9 linee  extra-costo medio +5.88%, peggiore +10.14% (Empoli-Chiusi-Chianciano_Terme)
+
+   tetto +15%, K = 8: extra-costo medio +2.59%, peggiore +11.55%
+     m 0.00 n 0.40  sola batteria      FC    0 kW  batteria 1273 kWh   39 linee  extra-costo medio +0.98%, peggiore +1.72% (Triuggio-Ponte_Albiate-Besana)
+     m 0.00 n 0.72  sola batteria      FC    0 kW  batteria 2289 kWh   40 linee  extra-costo medio +1.72%, peggiore +3.98% (Chioggia-Adria)
+     m 0.00 n 0.98  sola batteria      FC    0 kW  batteria 3113 kWh   20 linee  extra-costo medio +0.97%, peggiore +2.10% (Codogno-Pavia)
+     m 0.05 n 0.96  ibrido FC piccola  FC   98 kW  batteria 3049 kWh    9 linee  extra-costo medio +4.30%, peggiore +7.34% (Siracusa-Ragusa)
+     m 0.09 n 0.94  ibrido FC piccola  FC  177 kW  batteria 2985 kWh   11 linee  extra-costo medio +4.07%, peggiore +9.10% (LAquila-Terni)
+     m 0.18 n 0.88  ibrido             FC  354 kW  batteria 2798 kWh    8 linee  extra-costo medio +6.48%, peggiore +11.55% (Buonconvento-Firenze_S_Maria_Novella)
+     m 0.28 n 0.83  ibrido             FC  551 kW  batteria 2637 kWh   10 linee  extra-costo medio +6.41%, peggiore +10.55% (Oristano-Olbia_Terranova)
+     m 0.42 n 0.68  ibrido             FC  827 kW  batteria 2161 kWh    9 linee  extra-costo medio +5.88%, peggiore +10.14% (Empoli-Chiusi-Chianciano_Terme)
+
+Tabelle: /Users/kairos/Documents/lavoro/ml_treno_dati/fase14_log/02_flotte.csv, /Users/kairos/Documents/lavoro/ml_treno_dati/fase14_log/02_assegnazioni.csv. Tempo totale 9.7 min
