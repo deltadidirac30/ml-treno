@@ -19,8 +19,8 @@ Obiettivo: oggi ogni linea ha il suo treno ottimo (146 linee non elettrificate o
 2. p-mediana per K = 1…15, senza e con tetto. **Fatto il 18/11.**
 3. Grafici (curva extra-costo contro K, piano (m, n)) e confronto con le fasce. **Fatto il 18/11.**
 4. Treni modulari. **Fatto il 18/11.**
-5. Criterio geografico. **Fatto il 18/11 (versione a); da decidere se provare una versione più morbida.**
-6. Report finale.
+5. Criterio geografico. **Fatto il 18/11 (versione a).** Deciso con l'utente di fermarsi qui: il risultato è già indicativo.
+6. Report finale: i dati per la presentazione e il prompt per Cowork. **Fatto il 18/11.** Poi l'articolo.
 
 A ogni passo: questo diario, i risultati in `fase14/risultati/` e un commit.
 
@@ -174,3 +174,21 @@ Figure: `fase14/figure/fig_geografico_curva.png` e `fig_geografico_mappa_K8.png`
 - (b) **al più 2 tipi di treno per gruppo** (per esempio uno a batteria per le linee corte e un ibrido per le lunghe);
 - (c) gruppi solo fra linee "quasi uguali" (soglia alta, per esempio 75–90%, servizi che sono varianti della stessa relazione);
 - (d) il criterio come penalità invece che come vincolo.
+
+**Decisione (18/11):** ci si ferma alla versione (a). Il risultato basta a dire che il vincolo rigido è troppo forte; le versioni morbide restano idee per il futuro.
+
+## Passo 6: dati per la presentazione e prompt per Cowork (18/11/2026)
+
+- `fase14/03_grafici_fasce.jl` ora scrive anche `03_fasce.csv`, la tabella di tutti i 22 schemi a fasce, con le taglie di componenti.
+- `fase14/06_dati_presentazione.jl` raccoglie i risultati dei passi 1–5 in `fase14/presentazione/`, già pronti per i grafici, e scrive il `LEGGIMI.md` che spiega le colonne:
+  - `curve.csv`: tutte le flotte calcolate, con treni, taglie ed extra-costi;
+  - `flotte_scelte.csv`: i treni di 9 flotte rappresentative;
+  - `linee.csv`: per ogni linea l'ottimo, i gruppi geografici e il treno in ogni flotta scelta;
+  - `fasce.csv`, `modulari.csv`, `km_in_comune.csv`, `riduzione.csv` e le figure.
+- Controllo: l'extra-costo medio della flotta consigliata, ricalcolato da `linee.csv`, è +3,13%, come al passo 2.
+- Il prompt per far aggiungere a Cowork la seconda parte della presentazione (circa 15 slide con grafici interattivi): `STEPS/prompt_cowork_presentazione_flotta.md`. Fa anche ricontrollare i numeri della prima parte, che nella presentazione del 18/11 mattina risultano aggiornati solo in parte.
+
+**Le flotte migliori, in sintesi:**
+- **consigliata: p-mediana con tetto +10%, 8 treni**: medio +3,1%, nessuna linea oltre +9,6%;
+- la più semplice con un buon medio: 5 treni senza tetto (+4,7%, ma linee fino a +21%);
+- se contano le taglie di componenti: catalogo modulare 6 FC × 5 batterie (11 taglie, 16 versioni; +2,8%, peggiore +10,0%).

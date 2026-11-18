@@ -69,6 +69,16 @@ for K in sort(unique(r.K for r in righe_f))
     say(@sprintf("   K = %2d: fasce %s (Δm %s, Δn %.2f), p-mediana %s, cioè %.1f volte", K, pct(mean(r.ex)), isinf(r.dm) ? "—" : @sprintf("%.2f", r.dm), r.dn,
                  pct(medio("senza", K)), mean(r.ex) / medio("senza", K)))
 end
+# tabella di tutti gli schemi (per la presentazione, fase14/06)
+open(joinpath(LOG, "03_fasce.csv"), "w") do io
+    println(io, "dm,dn,K,taglie_componenti,extra_medio_pct,extra_mediano_pct,extra_peggiore_pct,linee_oltre_5,linee_oltre_10,scelta_libera_medio_pct,pmediana_medio_pct,treni_m_n")
+    for r in righe_f
+        tg = length(unique(m[j] for j in r.treni if m[j] > 0)) + length(unique(n[j] for j in r.treni))
+        println(io, join((isinf(r.dm) ? "regime" : r.dm, r.dn, r.K, tg, @sprintf("%.3f", 100mean(r.ex)), @sprintf("%.3f", 100median(r.ex)), @sprintf("%.3f", 100maximum(r.ex)),
+                          count(>(0.05), r.ex), count(>(0.1), r.ex), @sprintf("%.3f", 100mean(r.ex_lib)), r.K in Ks("senza") ? @sprintf("%.3f", 100medio("senza", r.K)) : "",
+                          join((@sprintf("%.2f/%.2f", m[j], n[j]) for j in r.treni), ' ')), ','))
+    end
+end
 
 # ── 2. la curva extra-costo contro K ─────────────────────────────────────────────
 colori = Dict("senza" => :black, "10" => :firebrick, "15" => :darkorange)

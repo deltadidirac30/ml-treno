@@ -1,0 +1,111 @@
+strada,variante,K_treni,taglie_FC,taglie_batteria,taglie_componenti,extra_medio_pct,extra_mediano_pct,extra_peggiore_pct,linee_oltre_5pct,linee_oltre_10pct
+p-mediana,senza tetto,1,1,1,2,95.402,103.979,179.602,143,138
+p-mediana,senza tetto,2,1,2,3,17.097,7.852,101.121,100,43
+p-mediana,senza tetto,3,2,3,5,9.027,6.877,44.742,93,35
+p-mediana,senza tetto,4,2,4,6,6.878,3.543,44.742,39,31
+p-mediana,senza tetto,5,3,5,8,4.744,3.437,21.111,38,20
+p-mediana,senza tetto,6,3,6,9,3.912,1.598,21.111,36,20
+p-mediana,senza tetto,7,4,6,10,3.188,1.489,25.987,28,14
+p-mediana,senza tetto,8,5,8,13,2.593,1.469,11.554,29,6
+p-mediana,senza tetto,9,6,8,14,2.200,1.366,11.605,18,3
+p-mediana,senza tetto,10,6,9,15,1.911,0.861,11.605,18,3
+p-mediana,senza tetto,11,7,8,15,1.677,0.818,10.534,17,1
+p-mediana,senza tetto,12,8,9,17,1.499,0.828,9.531,12,0
+p-mediana,senza tetto,13,8,9,17,1.345,0.809,8.903,8,0
+p-mediana,senza tetto,14,8,10,18,1.196,0.523,8.903,8,0
+p-mediana,senza tetto,15,9,11,20,1.068,0.508,8.640,5,0
+p-mediana,tetto +10%,8,6,8,14,3.128,3.151,9.571,26,0
+p-mediana,tetto +10%,9,6,9,15,2.296,1.413,9.571,24,0
+p-mediana,tetto +10%,10,7,8,15,1.998,1.344,9.571,17,0
+p-mediana,tetto +10%,11,7,9,16,1.710,0.851,9.571,17,0
+p-mediana,tetto +10%,12,8,9,17,1.499,0.828,9.531,12,0
+p-mediana,tetto +10%,13,8,9,17,1.345,0.809,8.903,8,0
+p-mediana,tetto +10%,14,8,10,18,1.196,0.523,8.903,8,0
+p-mediana,tetto +10%,15,9,11,20,1.068,0.508,8.640,5,0
+p-mediana,tetto +15%,6,5,6,11,5.556,5.621,14.775,82,11
+p-mediana,tetto +15%,7,5,7,12,3.425,3.416,11.554,31,6
+p-mediana,tetto +15%,8,5,8,13,2.593,1.469,11.554,29,6
+p-mediana,tetto +15%,9,6,8,14,2.200,1.366,11.605,18,3
+p-mediana,tetto +15%,10,6,9,15,1.911,0.861,11.605,18,3
+p-mediana,tetto +15%,11,7,8,15,1.677,0.818,10.534,17,1
+p-mediana,tetto +15%,12,8,9,17,1.499,0.828,9.531,12,0
+p-mediana,tetto +15%,13,8,9,17,1.345,0.809,8.903,8,0
+p-mediana,tetto +15%,14,8,10,18,1.196,0.523,8.903,8,0
+p-mediana,tetto +15%,15,9,11,20,1.068,0.508,8.640,5,0
+fasce,fasce di m per regime, Δn 1.0,3,,,5,9.094,6.865,45.053,95,32
+fasce,fasce di m per regime, Δn 0.5,4,,,6,6.950,3.032,45.053,47,28
+fasce,fasce di m per regime, Δn 0.34,6,,,8,5.910,1.955,43.095,36,27
+fasce,fasce di m per regime, Δn 0.25,7,,,9,5.571,1.880,42.349,35,27
+fasce,fasce di m per regime, Δn 0.2,8,,,11,5.088,1.400,39.383,36,26
+fasce,fasce di m per regime, Δn 0.1,14,,,16,3.781,0.544,33.146,33,25
+fasce,Δm 0.2, Δn 1.0,4,,,7,7.101,6.433,26.800,91,24
+fasce,Δm 0.2, Δn 0.5,5,,,8,4.956,3.009,26.800,43,20
+fasce,Δm 0.2, Δn 0.34,7,,,10,4.225,1.886,26.800,32,20
+fasce,Δm 0.2, Δn 0.25,8,,,11,4.020,1.872,26.800,31,20
+fasce,Δm 0.2, Δn 0.2,9,,,13,3.823,1.372,26.800,32,20
+fasce,Δm 0.2, Δn 0.1,15,,,19,2.975,0.535,20.894,29,20
+fasce,Δm 0.1, Δn 1.0,5,,,9,6.294,6.008,20.868,89,18
+fasce,Δm 0.1, Δn 0.5,6,,,10,4.150,2.995,20.868,41,14
+fasce,Δm 0.1, Δn 0.34,8,,,12,3.418,1.840,20.868,30,14
+fasce,Δm 0.1, Δn 0.25,9,,,13,3.213,1.859,20.868,29,14
+fasce,Δm 0.1, Δn 0.2,10,,,14,3.016,1.347,20.868,30,14
+fasce,Δm 0.05, Δn 1.0,8,,,13,5.741,5.438,20.868,81,13
+fasce,Δm 0.05, Δn 0.5,9,,,14,3.597,2.697,20.868,33,9
+fasce,Δm 0.05, Δn 0.34,11,,,16,2.878,1.552,20.868,22,9
+fasce,Δm 0.05, Δn 0.25,12,,,17,2.679,1.635,20.868,21,9
+fasce,Δm 0.05, Δn 0.2,13,,,18,2.505,1.255,20.868,23,9
+modulare,tetto +10%,16,6,5,11,2.826,2.463,9.984,18,0
+modulare,tetto +10%,18,6,6,12,1.967,1.289,9.858,13,0
+modulare,tetto +10%,15,7,5,12,1.948,1.321,9.730,14,0
+modulare,tetto +15%,11,5,3,8,4.088,3.759,14.889,54,13
+modulare,tetto +15%,12,5,4,9,3.070,1.376,14.889,35,13
+modulare,tetto +15%,10,6,3,9,3.376,2.313,14.764,26,15
+modulare,tetto +20%,10,4,3,7,4.577,3.216,19.594,35,23
+modulare,tetto +20%,13,4,4,8,3.576,2.280,19.618,27,16
+modulare,tetto +20%,9,5,3,8,3.693,2.313,19.354,27,17
+modulare,senza tetto,3,1,2,3,15.145,4.420,101.121,63,39
+modulare,senza tetto,5,1,3,4,13.203,2.285,93.144,40,38
+modulare,senza tetto,7,1,4,5,12.487,1.475,89.646,40,38
+modulare,senza tetto,9,1,5,6,12.144,1.074,88.831,40,38
+modulare,senza tetto,5,2,2,4,8.096,4.420,44.905,63,33
+modulare,senza tetto,7,2,3,5,6.894,2.289,42.269,40,32
+modulare,senza tetto,8,2,4,6,5.827,2.292,42.269,33,30
+modulare,senza tetto,10,2,5,7,5.227,1.303,40.328,33,29
+modulare,senza tetto,6,3,2,5,6.555,4.420,37.227,63,29
+modulare,senza tetto,8,3,3,6,5.234,2.489,33.313,37,29
+modulare,senza tetto,9,3,4,7,4.357,2.280,25.045,32,21
+modulare,senza tetto,10,3,5,8,3.666,1.376,21.280,35,21
+modulare,senza tetto,7,4,2,6,5.464,3.978,31.798,55,23
+modulare,senza tetto,8,4,3,7,4.321,2.322,25.045,34,21
+modulare,senza tetto,10,4,4,8,3.547,1.417,21.949,33,19
+modulare,senza tetto,12,4,5,9,2.827,1.321,16.703,27,14
+geografico,stesso treno se in comune ≥ 25%,1,1,1,2,95.402,103.979,179.602,143,138
+geografico,stesso treno se in comune ≥ 25%,10,8,9,17,28.436,9.685,152.019,98,70
+geografico,stesso treno se in comune ≥ 25%,11,8,10,18,28.187,9.685,152.019,96,70
+geografico,stesso treno se in comune ≥ 25%,12,9,10,19,28.022,9.638,152.019,95,70
+geografico,stesso treno se in comune ≥ 25%,13,10,11,21,27.883,9.638,152.019,94,70
+geografico,stesso treno se in comune ≥ 25%,14,10,11,21,27.747,9.638,152.019,94,70
+geografico,stesso treno se in comune ≥ 25%,15,10,12,22,27.615,9.638,152.019,94,70
+geografico,stesso treno se in comune ≥ 25%,2,2,2,4,49.421,24.458,160.685,142,135
+geografico,stesso treno se in comune ≥ 25%,3,2,3,5,38.106,17.366,152.019,123,81
+geografico,stesso treno se in comune ≥ 25%,4,3,4,7,32.733,10.680,152.019,120,78
+geografico,stesso treno se in comune ≥ 25%,5,4,5,9,31.608,10.248,152.019,119,75
+geografico,stesso treno se in comune ≥ 25%,6,5,6,11,30.760,10.484,152.019,118,76
+geografico,stesso treno se in comune ≥ 25%,7,5,7,12,29.988,10.484,152.019,103,75
+geografico,stesso treno se in comune ≥ 25%,8,6,8,14,29.343,9.940,152.019,101,73
+geografico,stesso treno se in comune ≥ 25%,9,7,9,16,28.717,9.685,152.019,98,70
+geografico,stesso treno se in comune ≥ 50%,1,1,1,2,95.402,103.979,179.602,143,138
+geografico,stesso treno se in comune ≥ 50%,10,7,10,17,16.004,3.903,123.128,65,45
+geografico,stesso treno se in comune ≥ 50%,11,8,11,19,15.778,3.672,123.128,64,44
+geografico,stesso treno se in comune ≥ 50%,12,8,12,20,15.600,3.050,123.128,62,44
+geografico,stesso treno se in comune ≥ 50%,13,9,13,22,15.458,2.643,123.128,61,44
+geografico,stesso treno se in comune ≥ 50%,14,9,14,23,15.334,2.643,123.128,61,44
+geografico,stesso treno se in comune ≥ 50%,15,9,13,22,15.227,2.580,123.128,61,43
+geografico,stesso treno se in comune ≥ 50%,2,1,2,3,31.532,9.459,146.426,117,63
+geografico,stesso treno se in comune ≥ 50%,3,2,3,5,23.184,8.864,123.128,114,57
+geografico,stesso treno se in comune ≥ 50%,4,3,4,7,20.525,8.782,123.128,111,53
+geografico,stesso treno se in comune ≥ 50%,5,3,5,8,19.004,4.854,123.128,72,50
+geografico,stesso treno se in comune ≥ 50%,6,4,6,10,17.868,4.600,123.128,70,50
+geografico,stesso treno se in comune ≥ 50%,7,5,7,12,17.281,4.525,123.128,68,48
+geografico,stesso treno se in comune ≥ 50%,8,5,8,13,16.761,4.365,123.128,68,48
+geografico,stesso treno se in comune ≥ 50%,9,6,9,15,16.267,4.084,123.128,66,45
