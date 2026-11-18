@@ -1,0 +1,111 @@
+fase14/05_geografico.jl  2026-11-18T11:10:33.366  JuMP 1.32.1  HiGHS 1.27.0
+1. km in comune: 346 coppie di linee con almeno una sezione in comune; quota della più lunga ≥ 10%: 331, ≥ 25%: 270, ≥ 50%: 128
+
+2. SOGLIA 25%: 40 gruppi (18 linee da sole); i gruppi con più di 2 linee:
+   18 linee,   7.9–276.1 km, ottimi: 8 sola batteria, 2 FC piccola, 8 ibridi: Cagliari-Decimomannu, Cagliari-Macomer, Cagliari-Olbia_Terranova, Cagliari-Oristano, Cagliari-Porto_Torres_Marittima, Cagliari_Elmas-Cagliari, Macomer-Olbia_Terranova, Macomer-Oristano, Olbia_Terranova-Ozieri_Chilivani, Olbia_Terranova-Sassari, Oristano-Olbia_Terranova, Oristano-Porto_Torres_Marittima, Ozieri_Chilivani-Porto_Torres_Marittima, Porto_Torres_Marittima-Sassari, S_Gavino-Cagliari, Sassari-Cagliari, Sassari-Oristano, Sassari-Ozieri_Chilivani
+   12 linee,  19.5–206.8 km, ottimi: 5 sola batteria, 4 FC piccola, 3 ibridi: Caltanissetta_Centrale-Gela, Gela-Siracusa, Modica-Augusta, Modica-Caltanissetta_Xirbi, Modica-Gela, Modica-Siracusa, Ragusa-Modica, Siracusa-Donnafugata, Siracusa-Ragusa, Siracusa-Rosolini, Siracusa-Vittoria, Vittoria-Modica
+   11 linee,  14.8–100.6 km, ottimi: 11 sola batteria, 0 FC piccola, 0 ibridi: Breno-Brescia, Breno-Pisogne, Brescia-Iseo, Brescia-Marone-Zone, Edolo-Brescia, Iseo-Edolo, Pisogne-Brescia, Pisogne-Edolo, Pisogne-Rovato_Fn, Rovato_Fn-Iseo, Sale_Marasino-Brescia
+   11 linee,  28.8–194.2 km, ottimi: 3 sola batteria, 4 FC piccola, 4 ibridi: Buonconvento-Empoli, Buonconvento-Firenze_S_Maria_Novella, Buonconvento-Granaiolo, Buonconvento-Siena, Empoli-Chiusi-Chianciano_Terme, Empoli-Siena, Granaiolo-Chiusi-Chianciano_Terme, Granaiolo-Siena, Grosseto-Firenze_S_Maria_Novella, Grosseto-Siena, Siena-Chiusi-Chianciano_Terme
+   10 linee,   6.9– 56.5 km, ottimi: 10 sola batteria, 0 FC piccola, 0 ibridi: Albate-Trecallo-Lecco, Cantu-Lecco, Lecco-Besana, Lecco-Monza, Lecco-Triuggio-Ponte_Albiate, Milano_Porta_Garibaldi-Lecco, Molteno-Albate-Trecallo, Monza-Molteno, Triuggio-Ponte_Albiate-Besana, Triuggio-Ponte_Albiate-Molteno
+    9 linee,  22.0– 85.0 km, ottimi: 8 sola batteria, 1 FC piccola, 0 ibridi: CASARANO-GALLIPOLI-L4, CASARANO-LECCE-L3, GAGLIANO-GALLIPOLI-L4_3, GAGLIANO-LECCE-L3, GAGLIANO-LECCE-L6, GAGLIANO-ZOLLINO-L6, GALLIPOLI-LECCE-L5, LECCE-GALLIPOLI-L3_5, MAGLIE-LECCE-L6
+    8 linee,  32.0–134.1 km, ottimi: 6 sola batteria, 0 FC piccola, 2 ibridi: Faenza-Borgo_S_Lorenzo, Faenza-Firenze_S_Maria_Novella, Firenze_Campo_Marte-Borgo_S_Lorenzo, Firenze_S_Maria_Novella-Marradi, Firenze_S_Maria_Novella-Ravenna, Marradi-Borgo_S_Lorenzo, Vicchio-Firenze_Campo_Marte, Vicchio-Firenze_S_Maria_Novella
+    7 linee,  32.5–113.0 km, ottimi: 3 sola batteria, 3 FC piccola, 1 ibridi: Aulla_Lunigiana-Lucca, Aulla_Lunigiana-Pisa_Centrale, Lucca-Minucciano-Pieve-Casola, Lucca-Piazza_al_Serchio, Minucciano-Pieve-Casola-Pisa_Centrale, Piazza_al_Serchio-Aulla_Lunigiana, Piazza_al_Serchio-Pisa_Centrale
+    5 linee,  66.0–177.5 km, ottimi: 1 sola batteria, 1 FC piccola, 3 ibridi: Catanzaro_Lido-Locri, Reggio_di_Calabria_Centrale-Catanzaro_Lido, Reggio_di_Calabria_Centrale-Roccella_Jonica, Roccella_Jonica-Catanzaro_Lido, Soverato-Reggio_di_Calabria_Centrale
+    5 linee,  74.4–162.5 km, ottimi: 2 sola batteria, 0 FC piccola, 3 ibridi: Cinisi_Terrasini-Trapani, Piraineto-Castelvetrano, Trapani-Alcamo_Diramazione, Trapani-Castelvetrano, Trapani-Piraineto
+    4 linee,  39.7– 91.1 km, ottimi: 2 sola batteria, 0 FC piccola, 2 ibridi: Brescia-Piadena, Parma-Brescia, Parma-Montirone, Piadena-Parma
+    4 linee,   7.0– 32.7 km, ottimi: 4 sola batteria, 0 FC piccola, 0 ibridi: Dicomano-Pontassieve, Pontassieve-Borgo_S_Lorenzo, Rufina-Borgo_S_Lorenzo, Vicchio-Borgo_S_Lorenzo
+    3 linee,  24.6– 55.8 km, ottimi: 3 sola batteria, 0 FC piccola, 0 ibridi: Adria-Rovigo, Chioggia-Adria, Chioggia-Rovigo
+    3 linee,  27.2– 94.9 km, ottimi: 2 sola batteria, 1 FC piccola, 0 ibridi: Civitanova_Marche-Fabriano, Fabriano-Macerata, Macerata-Civitanova_Marche
+    3 linee,  43.2–102.9 km, ottimi: 2 sola batteria, 1 FC piccola, 0 ibridi: Crotone-Catanzaro_Lido, Crotone-Lamezia_Terme_Centrale, Lamezia_Terme_Centrale-Catanzaro_Lido
+    3 linee,  27.5– 64.9 km, ottimi: 3 sola batteria, 0 FC piccola, 0 ibridi: Mortara-Pavia, Pavia-Vercelli, Vercelli-Mortara
+   con un treno per gruppo (K = 40 gruppi) l'extra-costo medio è già +27.23%: è il prezzo minimo dei gruppi
+
+   senza tetto —   K      medio   peggiore   >10%   senza criterio geografico
+                   1    +95.40%   +179.60%    138                  +95.40%
+                   2    +49.42%   +160.69%    135                  +17.10%
+                   3    +38.11%   +152.02%     81                   +9.03%
+                   4    +32.73%   +152.02%     78                   +6.88%
+                   5    +31.61%   +152.02%     75                   +4.74%
+                   6    +30.76%   +152.02%     76                   +3.91%
+                   7    +29.99%   +152.02%     75                   +3.19%
+                   8    +29.34%   +152.02%     73                   +2.59%
+                   9    +28.72%   +152.02%     70                   +2.20%
+                  10    +28.44%   +152.02%     70                   +1.91%
+                  11    +28.19%   +152.02%     70                   +1.68%
+                  12    +28.02%   +152.02%     70                   +1.50%
+                  13    +27.88%   +152.02%     70                   +1.34%
+                  14    +27.75%   +152.02%     70                   +1.20%
+                  15    +27.62%   +152.02%     70                   +1.07%
+   tetto +10%: impossibile, 15 gruppi non hanno un treno entro il tetto su tutte le loro linee (per esempio Cagliari-Decimomannu, Cagliari-Macomer, Cagliari-Olbia_Terranova)
+   tetto +15%: impossibile, 14 gruppi non hanno un treno entro il tetto su tutte le loro linee (per esempio Cagliari-Decimomannu, Cagliari-Macomer, Cagliari-Olbia_Terranova)
+   tetto +20%: impossibile, 14 gruppi non hanno un treno entro il tetto su tutte le loro linee (per esempio Cagliari-Decimomannu, Cagliari-Macomer, Cagliari-Olbia_Terranova)
+
+2. SOGLIA 50%: 71 gruppi (45 linee da sole); i gruppi con più di 2 linee:
+   12 linee,  49.6–276.1 km, ottimi: 2 sola batteria, 2 FC piccola, 8 ibridi: Cagliari-Macomer, Cagliari-Olbia_Terranova, Cagliari-Oristano, Cagliari-Porto_Torres_Marittima, Macomer-Olbia_Terranova, Olbia_Terranova-Ozieri_Chilivani, Olbia_Terranova-Sassari, Oristano-Olbia_Terranova, Oristano-Porto_Torres_Marittima, S_Gavino-Cagliari, Sassari-Cagliari, Sassari-Oristano
+    9 linee,  23.6–100.6 km, ottimi: 9 sola batteria, 0 FC piccola, 0 ibridi: Breno-Brescia, Brescia-Iseo, Brescia-Marone-Zone, Edolo-Brescia, Iseo-Edolo, Pisogne-Brescia, Pisogne-Edolo, Pisogne-Rovato_Fn, Sale_Marasino-Brescia
+    7 linee,  52.5–194.2 km, ottimi: 2 sola batteria, 3 FC piccola, 2 ibridi: Buonconvento-Empoli, Buonconvento-Firenze_S_Maria_Novella, Buonconvento-Granaiolo, Empoli-Siena, Granaiolo-Siena, Grosseto-Firenze_S_Maria_Novella, Grosseto-Siena
+    7 linee,  33.2–134.1 km, ottimi: 5 sola batteria, 0 FC piccola, 2 ibridi: Faenza-Borgo_S_Lorenzo, Faenza-Firenze_S_Maria_Novella, Firenze_Campo_Marte-Borgo_S_Lorenzo, Firenze_S_Maria_Novella-Marradi, Firenze_S_Maria_Novella-Ravenna, Vicchio-Firenze_Campo_Marte, Vicchio-Firenze_S_Maria_Novella
+    7 linee,  47.7–181.4 km, ottimi: 2 sola batteria, 3 FC piccola, 2 ibridi: Gela-Siracusa, Modica-Augusta, Modica-Siracusa, Siracusa-Donnafugata, Siracusa-Ragusa, Siracusa-Rosolini, Siracusa-Vittoria
+    6 linee,  57.4–113.0 km, ottimi: 2 sola batteria, 3 FC piccola, 1 ibridi: Aulla_Lunigiana-Lucca, Aulla_Lunigiana-Pisa_Centrale, Lucca-Minucciano-Pieve-Casola, Lucca-Piazza_al_Serchio, Minucciano-Pieve-Casola-Pisa_Centrale, Piazza_al_Serchio-Pisa_Centrale
+    6 linee,  17.6– 56.5 km, ottimi: 6 sola batteria, 0 FC piccola, 0 ibridi: Lecco-Besana, Lecco-Monza, Lecco-Triuggio-Ponte_Albiate, Milano_Porta_Garibaldi-Lecco, Monza-Molteno, Triuggio-Ponte_Albiate-Molteno
+    5 linee,  74.4–162.5 km, ottimi: 2 sola batteria, 0 FC piccola, 3 ibridi: Cinisi_Terrasini-Trapani, Piraineto-Castelvetrano, Trapani-Alcamo_Diramazione, Trapani-Castelvetrano, Trapani-Piraineto
+    3 linee,  19.8– 34.5 km, ottimi: 3 sola batteria, 0 FC piccola, 0 ibridi: Albate-Trecallo-Lecco, Cantu-Lecco, Molteno-Albate-Trecallo
+    3 linee,  51.4– 91.1 km, ottimi: 1 sola batteria, 0 FC piccola, 2 ibridi: Brescia-Piadena, Parma-Brescia, Parma-Montirone
+    3 linee,  53.3– 85.0 km, ottimi: 2 sola batteria, 1 FC piccola, 0 ibridi: CASARANO-LECCE-L3, GAGLIANO-LECCE-L3, LECCE-GALLIPOLI-L3_5
+    3 linee,  18.1– 32.7 km, ottimi: 3 sola batteria, 0 FC piccola, 0 ibridi: Dicomano-Pontassieve, Pontassieve-Borgo_S_Lorenzo, Rufina-Borgo_S_Lorenzo
+    3 linee,  89.0–152.0 km, ottimi: 0 sola batteria, 1 FC piccola, 2 ibridi: Empoli-Chiusi-Chianciano_Terme, Granaiolo-Chiusi-Chianciano_Terme, Siena-Chiusi-Chianciano_Terme
+    3 linee, 111.6–177.5 km, ottimi: 0 sola batteria, 0 FC piccola, 3 ibridi: Reggio_di_Calabria_Centrale-Catanzaro_Lido, Reggio_di_Calabria_Centrale-Roccella_Jonica, Soverato-Reggio_di_Calabria_Centrale
+   con un treno per gruppo (K = 71 gruppi) l'extra-costo medio è già +14.64%: è il prezzo minimo dei gruppi
+
+   senza tetto —   K      medio   peggiore   >10%   senza criterio geografico
+                   1    +95.40%   +179.60%    138                  +95.40%
+                   2    +31.53%   +146.43%     63                  +17.10%
+                   3    +23.18%   +123.13%     57                   +9.03%
+                   4    +20.52%   +123.13%     53                   +6.88%
+                   5    +19.00%   +123.13%     50                   +4.74%
+                   6    +17.87%   +123.13%     50                   +3.91%
+                   7    +17.28%   +123.13%     48                   +3.19%
+                   8    +16.76%   +123.13%     48                   +2.59%
+                   9    +16.27%   +123.13%     45                   +2.20%
+                  10    +16.00%   +123.13%     45                   +1.91%
+                  11    +15.78%   +123.13%     44                   +1.68%
+                  12    +15.60%   +123.13%     44                   +1.50%
+                  13    +15.46%   +123.13%     44                   +1.34%
+                  14    +15.33%   +123.13%     44                   +1.20%
+                  15    +15.23%   +123.13%     43                   +1.07%
+   tetto +10%: impossibile, 12 gruppi non hanno un treno entro il tetto su tutte le loro linee (per esempio Cagliari-Macomer, Cagliari-Olbia_Terranova, Cagliari-Oristano)
+   tetto +15%: impossibile, 12 gruppi non hanno un treno entro il tetto su tutte le loro linee (per esempio Cagliari-Macomer, Cagliari-Olbia_Terranova, Cagliari-Oristano)
+   tetto +20%: impossibile, 11 gruppi non hanno un treno entro il tetto su tutte le loro linee (per esempio Cagliari-Macomer, Cagliari-Olbia_Terranova, Cagliari-Oristano)
+
+3. FLOTTE CON IL CRITERIO GEOGRAFICO (soglia 25%)
+
+   senza tetto, K = 5: extra-costo medio +31.61%, peggiore +152.02%
+     m 0.00 n 0.97  sola batteria      FC    0 kW  batteria 3083 kWh   54 linee  medio +6.56%, peggiore +10.56% (Triuggio-Ponte_Albiate-Besana)
+     m 0.05 n 0.96  ibrido FC piccola  FC   98 kW  batteria 3049 kWh   14 linee  medio +21.43%, peggiore +35.44% (CASARANO-GALLIPOLI-L4)
+     m 0.11 n 0.93  ibrido             FC  217 kW  batteria 2955 kWh    8 linee  medio +22.74%, peggiore +50.33% (Rieti-Terni)
+     m 0.26 n 0.82  ibrido             FC  512 kW  batteria 2607 kWh   36 linee  medio +49.45%, peggiore +113.44% (Ragusa-Modica)
+     m 0.42 n 0.67  ibrido             FC  827 kW  batteria 2127 kWh   34 linee  medio +58.77%, peggiore +152.02% (Porto_Torres_Marittima-Sassari)
+
+   senza tetto, K = 8: extra-costo medio +29.34%, peggiore +152.02%
+     m 0.00 n 0.43  sola batteria      FC    0 kW  batteria 1367 kWh   15 linee  medio +1.38%, peggiore +2.22% (Vicchio-Borgo_S_Lorenzo)
+     m 0.00 n 0.97  sola batteria      FC    0 kW  batteria 3083 kWh   39 linee  medio +5.67%, peggiore +10.56% (Triuggio-Ponte_Albiate-Besana)
+     m 0.03 n 0.92  ibrido FC piccola  FC   59 kW  batteria 2921 kWh    9 linee  medio +15.51%, peggiore +24.31% (CASARANO-GALLIPOLI-L4)
+     m 0.09 n 0.94  ibrido FC piccola  FC  177 kW  batteria 2985 kWh   11 linee  medio +24.48%, peggiore +49.44% (Trento-Borgo_Valsugana_Est)
+     m 0.24 n 0.85  ibrido             FC  473 kW  batteria 2701 kWh   25 linee  medio +45.36%, peggiore +105.87% (Ragusa-Modica)
+     m 0.25 n 0.86  ibrido             FC  492 kW  batteria 2734 kWh   13 linee  medio +45.81%, peggiore +88.01% (Marradi-Borgo_S_Lorenzo)
+     m 0.35 n 0.79  ibrido             FC  689 kW  batteria 2509 kWh   11 linee  medio +47.49%, peggiore +121.39% (Buonconvento-Siena)
+     m 0.42 n 0.67  ibrido             FC  827 kW  batteria 2127 kWh   23 linee  medio +60.06%, peggiore +152.02% (Porto_Torres_Marittima-Sassari)
+
+   senza tetto, K = 10: extra-costo medio +28.44%, peggiore +152.02%
+     m 0.00 n 0.43  sola batteria      FC    0 kW  batteria 1367 kWh   15 linee  medio +1.38%, peggiore +2.22% (Vicchio-Borgo_S_Lorenzo)
+     m 0.00 n 0.97  sola batteria      FC    0 kW  batteria 3083 kWh   39 linee  medio +5.67%, peggiore +10.56% (Triuggio-Ponte_Albiate-Besana)
+     m 0.03 n 0.92  ibrido FC piccola  FC   59 kW  batteria 2921 kWh    9 linee  medio +15.51%, peggiore +24.31% (CASARANO-GALLIPOLI-L4)
+     m 0.06 n 0.96  ibrido FC piccola  FC  118 kW  batteria 3049 kWh    7 linee  medio +18.44%, peggiore +34.72% (Trento-Borgo_Valsugana_Est)
+     m 0.11 n 0.93  ibrido             FC  217 kW  batteria 2955 kWh    6 linee  medio +19.51%, peggiore +42.84% (Lamezia_Terme_Centrale-Catanzaro_Lido)
+     m 0.21 n 0.84  ibrido             FC  413 kW  batteria 2671 kWh    7 linee  medio +36.51%, peggiore +66.91% (Piazza_al_Serchio-Aulla_Lunigiana)
+     m 0.24 n 0.84  ibrido             FC  473 kW  batteria 2671 kWh   16 linee  medio +48.08%, peggiore +105.77% (Ragusa-Modica)
+     m 0.25 n 0.86  ibrido             FC  492 kW  batteria 2734 kWh   13 linee  medio +45.81%, peggiore +88.01% (Marradi-Borgo_S_Lorenzo)
+     m 0.35 n 0.79  ibrido             FC  689 kW  batteria 2509 kWh   11 linee  medio +47.49%, peggiore +121.39% (Buonconvento-Siena)
+     m 0.42 n 0.67  ibrido             FC  827 kW  batteria 2127 kWh   23 linee  medio +60.06%, peggiore +152.02% (Porto_Torres_Marittima-Sassari)
+
+Tabelle: 05_km_in_comune.csv, 05_assegnazioni.csv; figure: fase14/figure/fig_geografico_*.png. Tempo totale 7.0 min

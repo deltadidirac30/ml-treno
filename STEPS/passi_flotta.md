@@ -19,7 +19,7 @@ Obiettivo: oggi ogni linea ha il suo treno ottimo (146 linee non elettrificate o
 2. p-mediana per K = 1…15, senza e con tetto. **Fatto il 18/11.**
 3. Grafici (curva extra-costo contro K, piano (m, n)) e confronto con le fasce. **Fatto il 18/11.**
 4. Treni modulari. **Fatto il 18/11.**
-5. Criterio geografico.
+5. Criterio geografico. **Fatto il 18/11 (versione a); da decidere se provare una versione più morbida.**
 6. Report finale.
 
 A ogni passo: questo diario, i risultati in `fase14/risultati/` e un commit.
@@ -141,3 +141,36 @@ Qui la riduzione ai treni non dominati del passo 1 non vale, perché un treno do
 
 - Quindi la scelta dipende da cosa costa di più nella realtà: omologare e gestire tante **versioni di treno** (allora flotta libera) oppure produrre e tenere a magazzino tante **taglie di componenti** (allora modulare). Da discutere con il relatore.
 - Un catalogo con **1 sola fuel cell** non funziona: le linee con l'ottimo a FC piccola o grande pagano fino al +90–100%. Servono almeno 2–3 taglie di FC: una piccola (60–220 kW, "range extender") e una o due grandi (500–890 kW).
+
+## Passo 5: il criterio geografico (18/11/2026)
+
+Script `fase14/05_geografico.jl` (7 min). Risultati in `fase14/risultati/`:
+- `05_geografico.txt`: riassunto;
+- `05_km_in_comune.csv`: i km in comune di ogni coppia di linee;
+- `05_assegnazioni.csv`: le assegnazioni.
+
+Figure: `fase14/figure/fig_geografico_curva.png` e `fig_geografico_mappa_K8.png`.
+
+**I km in comune.** Vengono dai `sezioni.csv` del Drive: ogni sezione va da una località RINF a un'altra (`codice_da`, `codice_a`), e due linee condividono una sezione se hanno la stessa coppia di codici. 346 coppie di linee hanno almeno una sezione in comune; 270 superano il 25% della lunghezza della più lunga, 128 il 50%.
+
+**Il problema della transitività.** "Stesso treno" è transitivo: se A–B e B–C devono avere lo stesso treno, anche A e C. Le linee si raggruppano quindi in gruppi connessi, e ogni gruppo usa un solo treno, che deve funzionare su tutte le sue linee:
+- al 25%: 40 gruppi (18 linee da sole), con gruppi molto grandi e misti: tutta la Sardegna in un gruppo di 18 linee (da 8 a 276 km; 8 ottimi a sola batteria e 8 ibridi), il Sud-Est siciliano (12), il bacino di Iseo (11), Siena–Empoli–Chiusi (11), Lecco–Monza (10);
+- al 50%: 71 gruppi (45 da sole); la Sardegna resta un gruppo di 12 linee.
+
+**Risultato: così com'è, il vincolo costa moltissimo.**
+
+| | soglia 25% | soglia 50% | senza criterio |
+|---|---:|---:|---:|
+| un treno per gruppo (il minimo possibile) | +27,2% (K = 40) | +14,6% (K = 71) | — |
+| K = 5 | +31,6% | +19,0% | +4,7% |
+| K = 8 | +29,3% | +16,8% | +2,6% |
+| K = 15 | +27,6% | +15,2% | +1,1% |
+
+- Il costo viene quasi tutto dai gruppi stessi, non dal numero di treni. Anche con un treno diverso per ogni gruppo l'extra-costo medio resta +27% (25%) o +15% (50%). Aggiungere treni oltre 5 serve poco.
+- **Nessun tetto è rispettabile** (+10%, +15%, +20%): 14–15 gruppi non hanno nessun treno che stia entro il tetto su tutte le loro linee.
+- Il motivo è che nei gruppi stanno insieme linee corte, che vorrebbero un treno a sola batteria, e linee lunghe, che vorrebbero un ibrido grande. Il treno comune è l'ibrido grande, e sulle linee corte costa fino a +150%. Esempio: Porto Torres–Sassari, 19 km, con il treno da 827 kW della Sardegna: +152%.
+
+**Da decidere.** Il criterio, preso alla lettera, è troppo forte. Versioni più morbide possibili:
+- (b) **al più 2 tipi di treno per gruppo** (per esempio uno a batteria per le linee corte e un ibrido per le lunghe);
+- (c) gruppi solo fra linee "quasi uguali" (soglia alta, per esempio 75–90%, servizi che sono varianti della stessa relazione);
+- (d) il criterio come penalità invece che come vincolo.
