@@ -1,0 +1,44 @@
+146 linee non elettrificate oltre il 70% (dati RINF del 17/11), treno di 195 t, andata e ritorno. Surrogato = strategia G con il bordo (default).
+
+REGIMI (proposta del surrogato | ottimo vero)
+  sola batteria       99 |  99   costo €/km min 1.53 mediana 2.52 max 4.34   lunghezza km mediana 41 (7–101)   FC kW 0–0   batteria kWh 607–3112
+  ibrido FC piccola   18 |  20   costo €/km min 2.03 mediana 2.75 max 3.83   lunghezza km mediana 96 (80–131)   FC kW 59–177   batteria kWh 2892–3112
+  ibrido              29 |  27   costo €/km min 2.58 mediana 3.85 max 5.58   lunghezza km mediana 152 (80–276)   FC kW 197–768   batteria kWh 2161–3019
+  costo di tutte: min 1.53, mediana 2.72, max 5.58 €/km
+
+PER REGIONE (sola batteria / ibrido FC piccola / ibrido)
+  Abruzzo                  3:  2 / 1 / 0
+  Basilicata               2:  2 / 0 / 0
+  Calabria                 9:  4 / 1 / 4
+  Emilia-Romagna           4:  1 / 0 / 3
+  Friuli-Venezia Giulia    1:  1 / 0 / 0
+  Lazio                    2:  1 / 1 / 0
+  Liguria                  1:  1 / 0 / 0
+  Lombardia               28:  28 / 0 / 0
+  Marche                   3:  2 / 1 / 0
+  Piemonte                 4:  4 / 0 / 0
+  Puglia                  15:  14 / 1 / 0
+  Sardegna                19:  9 / 2 / 8
+  Sicilia                 18:  8 / 4 / 6
+  Toscana                 28:  15 / 6 / 7
+  Trentino-Alto Adige      2:  1 / 1 / 0
+  Veneto                   7:  6 / 0 / 1
+
+PER LUNGHEZZA (sola batteria / ibrido FC piccola / ibrido)
+    0– 30 km  30:  30 / 0 / 0
+   30– 60 km  48:  48 / 0 / 0
+   60– 90 km  27:  19 / 7 / 1
+   90–150 km  25:  2 / 11 / 12
+  150–    km  16:  0 / 0 / 16
+
+SCELTA RISPETTO ALL'OTTIMO VERO (griglia fitta simulata)
+  surrogato: ottimo in 139, media +0.07%, peggiore +3.08%, stesso regime 144
+
+RETE CONTRO SIMULATORE SU TUTTA LA GRIGLIA (146 linee × 9702 progetti = 1416492 progetti)
+  fattibilità giusta: 98.3% in media (linea peggiore 92.0%)
+  errore sul costo nei progetti fattibili (948792): mediana 2.0%, 90° percentile 5.4%, 95° 6.5%
+  nel progetto proposto: |errore| della rete sul costo mediana 2.0%, 90° percentile 5.6%, massimo 16.3% (per questo il costo finale viene sempre dal simulatore)
+
+TEMPI (Mac M4, 8 core)
+  griglia fitta simulata: 57,5 min per le 146 linee (23,6 s per linea); somma dei tempi dei singoli progetti 5.0 h
+  surrogato: ~0,2 s per linea, 146 linee in 29 s + 5 s di avvio; 55 simulazioni per linea invece di 9702

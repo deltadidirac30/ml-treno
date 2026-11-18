@@ -790,3 +790,21 @@ Prove:
 - **Surrogato contro il nuovo ottimo vero** (`04_surrogato_vs_vero.py` → `risultati/04_surrogato_vs_vero.txt`): la proposta è proprio l'ottimo su 139 linee e ha il regime giusto su 144. Media +0,07%, massimo +3,08%. Oltre il 2% restano le 3 di prima (Rovigo–Verona, Crotone–Lamezia, Buonconvento–Empoli), poi Cagliari–Olbia +1,1% e Cagliari–Macomer +1,0%. È lo stesso quadro dei dati vecchi (141 linee, +0,06%, +2,99%).
 
 Conclusione: le correzioni del collega spostano pochissimo gli ottimi. La classificazione (p-mediana, extra-costo medio, peso uguale per linea) si fa sulla nuova griglia `fase13/griglia_rinf`.
+
+### Tutti i confronti sui dati nuovi (per la presentazione)
+
+18/11/2026. Rifatti sulle linee del 17/11 i confronti della fase 12 che la presentazione usa. Il codice è lo stesso, cambiano solo i percorsi.
+- `fase13/05_coppie_288.jl`: le 288 coppie della campagna sulle 146 linee (1 min; `ml_treno_dati/fase13/sim_288`).
+- `06_riassunto_non_el.jl` (= fase12/12): errori della rete sulle 42 048 coppie, quasi identici a prima. Costo 1,99% in mediana, 6,78% al 95°; SOC 0,014 / 0,096; errore di costo oltre il 10% in 1 caso su 89, oltre il 20% in 1 su 25 730; 21 linee "lontane" (prima 20).
+- `07_verifica_locale.jl` (= fase12/13): le varianti C…G.
+- `08_ottimo_vero.jl` (= fase12/15, solo il confronto; aggiunta la colonna G + bordo):
+
+  | | migliore 288 | semplice | C | G senza bordo | G + bordo |
+  |---|---:|---:|---:|---:|---:|
+  | media | +2,19% | +1,13% | +0,83% | +0,31% | +0,07% |
+  | massimo | +18,0% | +13,0% | +7,0% | +4,6% | +3,1% |
+  | proprio l'ottimo | 20 | 14 | 33 | 126 | 139 |
+  | entro 1% / oltre 2% | 102 / 40 | 100 / 32 | 109 / 25 | 129 / 13 | 141 / 3 |
+
+- `09_dati_presentazione.py` (= fase12/18) → `fase13/presentazione_146/`. Surrogato rilanciato con `griglia=si`: stesse proposte del 17/11. Unico cambiamento visibile negli esempi: su Cagliari–Olbia la proposta (0,37; 0,75) è a +1,12% dall'ottimo (0,36; 0,69), prima coincidevano.
+- Prompt per far aggiornare la presentazione da Cowork: `STEPS/prompt_cowork_aggiorna_presentazione.md`.

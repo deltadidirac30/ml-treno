@@ -1,0 +1,147 @@
+linea,L_km,ottimo_m,ottimo_n,ottimo_costo,ottimo_regime,fattibili,entro_0.5pct,G_m,G_n,G_regime,G_vs_ottimo_pct,Gbordo_posizione,C_vs_ottimo_pct,semplice_vs_ottimo_pct,migliore288_vs_ottimo_pct,t_griglia_cpu_s,Gbordo_m,Gbordo_n,Gbordo_vs_ottimo_pct
+Adria-Rovigo,24.557,0.0,0.25,1.99601,sola batteria,8290,8,0.0,0.25,sola batteria,0.0000,1,0.1429,0.1266,0.3000,41.0,0.0,0.25,0.0000
+Alba-Asti,33.558,0.0,0.37,2.17548,sola batteria,7799,4,0.0,0.37,sola batteria,0.0000,1,0.0000,-0.0005,0.5753,53.0,0.0,0.37,0.0000
+Albate-Trecallo-Lecco,34.475,0.0,0.5,2.9224,sola batteria,7534,3,0.0,0.5,sola batteria,0.0000,1,0.1652,0.1679,0.0206,93.0,0.0,0.5,0.0000
+Aulla_Lunigiana-Lucca,89.923,0.07,0.94,3.59741,ibrido FC piccola,5335,2,0.08,0.89,ibrido FC piccola,2.5154,1,2.9269,2.9283,8.9396,261.6,0.07,0.94,0.0000
+Aulla_Lunigiana-Pisa_Centrale,113.017,0.21,0.89,4.68119,ibrido,4640,4,0.21,0.89,ibrido,0.0000,1,1.5820,3.0770,6.2978,312.1,0.21,0.89,0.0000
+BARI_CENTRO-PUTIGNANO-L1,43.754,0.0,0.59,2.74595,sola batteria,7181,5,0.0,0.59,sola batteria,0.0000,1,0.3361,0.6529,0.3297,94.6,0.0,0.59,0.0000
+Biella_S_Paolo-Novara,50.766,0.0,0.43,1.67807,sola batteria,7338,6,0.0,0.43,sola batteria,0.0000,1,0.0000,0.2419,0.1151,66.1,0.0,0.43,0.0000
+Breno-Brescia,69.96,0.0,0.95,2.7811,sola batteria,6803,4,0.0,0.95,sola batteria,0.0000,1,0.3896,0.4032,0.5358,226.2,0.0,0.95,0.0000
+Breno-Pisogne,24.67,0.0,0.23,1.78858,sola batteria,8207,11,0.0,0.27,sola batteria,0.0455,2,0.0609,0.0748,0.0793,37.4,0.0,0.27,0.0455
+Brescia-Iseo,23.626,0.0,0.32,2.66948,sola batteria,8083,6,0.0,0.32,sola batteria,0.0000,1,0.0015,0.0451,-0.0180,58.1,0.0,0.32,0.0000
+Brescia-Marone-Zone,35.653,0.0,0.31,1.7262,sola batteria,8195,6,0.0,0.31,sola batteria,0.0000,1,0.3758,0.3666,0.1620,65.1,0.0,0.31,0.0000
+Brescia-Piadena,51.404,0.0,0.84,3.32562,sola batteria,6152,5,0.0,0.84,sola batteria,0.0000,1,0.2298,0.2300,0.3421,89.0,0.0,0.84,0.0000
+Buonconvento-Empoli,91.791,0.09,0.94,3.40454,ibrido FC piccola,5170,2,0.12,0.94,ibrido,2.0524,3,2.0524,2.0505,3.4208,143.0,0.12,0.94,2.0524
+Buonconvento-Firenze_S_Maria_Novella,122.341,0.1,0.95,2.57821,ibrido,4998,1,0.1,0.95,ibrido,0.0000,1,1.2229,1.2314,9.1843,128.7,0.1,0.95,0.0000
+Buonconvento-Granaiolo,81.253,0.03,0.98,2.895,ibrido FC piccola,5561,1,0.03,0.98,ibrido FC piccola,0.0000,1,0.0000,0.0077,18.0310,114.5,0.03,0.98,0.0000
+Buonconvento-Siena,28.781,0.0,0.27,1.80519,sola batteria,8057,5,0.0,0.27,sola batteria,0.0000,1,0.2561,0.2305,0.2109,31.4,0.0,0.27,0.0000
+CASARANO-GALLIPOLI-L4,22.003,0.0,0.27,2.41188,sola batteria,8168,9,0.0,0.27,sola batteria,0.0000,1,0.0000,-0.0172,0.0051,48.5,0.0,0.27,0.0000
+CASARANO-LECCE-L3,59.508,0.0,0.7,2.39222,sola batteria,7232,4,0.0,0.7,sola batteria,0.0000,1,0.1497,0.1589,0.2415,124.0,0.0,0.7,0.0000
+Cagliari-Decimomannu,16.241,0.0,0.36,4.33956,sola batteria,7670,5,0.0,0.36,sola batteria,0.0000,1,1.7438,1.7403,0.0102,38.8,0.0,0.36,0.0000
+Cagliari-Macomer,152.737,0.35,0.84,4.05235,ibrido,3820,1,0.34,0.74,ibrido,1.0077,6,2.6400,2.6282,1.8421,179.0,0.34,0.74,1.0077
+Cagliari-Olbia_Terranova,276.104,0.36,0.69,3.72346,ibrido,3164,2,0.37,0.75,ibrido,1.1242,5,1.7680,3.2827,1.5722,329.8,0.37,0.75,1.1242
+Cagliari-Oristano,93.03,0.25,0.9,4.58228,ibrido,4188,2,0.25,0.9,ibrido,0.0000,1,4.2674,4.2569,1.3906,112.2,0.25,0.9,0.0000
+Cagliari-Porto_Torres_Marittima,271.928,0.39,0.68,4.81957,ibrido,2720,4,0.39,0.68,ibrido,0.0000,1,0.0000,-0.0043,0.5275,432.9,0.39,0.68,0.0000
+Cagliari_Elmas-Cagliari,7.928,0.0,0.31,3.59875,sola batteria,8182,4,0.0,0.31,sola batteria,0.0000,1,0.2420,0.2494,0.4236,11.3,0.0,0.31,0.0000
+Caltagirone-Catania_Centrale,89.162,0.0,0.95,2.18054,sola batteria,5615,4,0.0,0.95,sola batteria,0.0000,1,0.0000,-0.0166,0.4338,112.0,0.0,0.95,0.0000
+Caltanissetta_Centrale-Gela,110.779,0.03,0.92,2.02589,ibrido FC piccola,5645,6,0.03,0.92,ibrido FC piccola,0.0000,1,0.4291,0.4292,2.5227,118.9,0.03,0.92,0.0000
+Cantu-Lecco,30.508,0.0,0.28,1.82276,sola batteria,7986,7,0.0,0.28,sola batteria,0.0000,1,0.0140,0.0273,0.0133,41.2,0.0,0.28,0.0000
+Capistrello-Avezzano,8.685,0.0,0.25,2.07843,sola batteria,8480,19,0.0,0.25,sola batteria,0.0000,1,0.3552,0.3440,0.0276,9.4,0.0,0.25,0.0000
+Casale_Monferrato-Mortara,28.441,0.0,0.22,1.52509,sola batteria,8422,8,0.0,0.22,sola batteria,0.0000,1,0.0896,0.0631,0.0598,40.5,0.0,0.22,0.0000
+Cassino-Avezzano,96.444,0.08,0.94,3.63448,ibrido FC piccola,5752,4,0.08,0.94,ibrido FC piccola,0.0000,1,0.1500,2.5345,6.1225,284.5,0.08,0.94,0.0000
+Catanzaro_Lido-Locri,82.54,0.03,0.95,2.64383,ibrido FC piccola,5539,4,0.03,0.95,ibrido FC piccola,0.0000,1,0.2225,0.2192,15.0226,85.7,0.03,0.95,0.0000
+Chioggia-Adria,31.235,0.0,0.45,2.83857,sola batteria,7379,3,0.0,0.45,sola batteria,0.0000,1,0.4395,0.4263,-0.0554,47.6,0.0,0.45,0.0000
+Chioggia-Rovigo,55.792,0.0,0.72,2.59129,sola batteria,6816,4,0.0,0.72,sola batteria,0.0000,1,0.0721,0.0717,-0.0110,100.8,0.0,0.72,0.0000
+Cinisi_Terrasini-Trapani,156.228,0.18,0.89,3.14135,ibrido,5065,3,0.19,0.84,ibrido,1.6176,1,1.9123,1.9160,6.2920,302.6,0.18,0.89,0.0000
+Civitanova_Marche-Fabriano,94.857,0.05,0.95,2.89577,ibrido FC piccola,6008,3,0.06,0.91,ibrido FC piccola,2.6435,1,2.7239,2.7131,14.8917,198.1,0.05,0.95,0.0000
+Codogno-Pavia,46.478,0.0,0.8,3.49909,sola batteria,6620,7,0.0,0.8,sola batteria,0.0000,1,0.2394,0.2311,0.0261,98.4,0.0,0.8,0.0000
+Corteolona-Codogno,27.384,0.0,0.49,3.53577,sola batteria,7371,4,0.0,0.49,sola batteria,0.0000,1,1.4631,1.4643,0.0348,57.1,0.0,0.49,0.0000
+Crotone-Catanzaro_Lido,59.754,0.0,0.65,2.16808,sola batteria,6462,5,0.0,0.65,sola batteria,0.0000,1,0.0637,0.0500,0.0884,53.5,0.0,0.65,0.0000
+Crotone-Lamezia_Terme_Centrale,102.914,0.09,0.95,2.85871,ibrido FC piccola,5091,3,0.12,0.95,ibrido,2.7509,4,2.9747,2.9600,3.3684,117.2,0.12,0.95,2.7509
+Dicomano-Pontassieve,18.092,0.0,0.27,2.27704,sola batteria,8269,15,0.0,0.27,sola batteria,0.0000,1,0.0112,0.0029,0.0423,31.8,0.0,0.27,0.0000
+Edolo-Brescia,100.622,0.0,0.97,1.98466,sola batteria,6257,3,0.0,0.97,sola batteria,0.0000,1,0.0613,13.0031,0.1180,212.4,0.0,0.97,0.0000
+Empoli-Chiusi-Chianciano_Terme,152.006,0.29,0.81,4.54727,ibrido,4347,5,0.29,0.81,ibrido,0.0000,1,0.1229,1.0091,0.4559,285.7,0.29,0.81,0.0000
+Empoli-Siena,63.01,0.0,0.88,2.83191,sola batteria,6111,6,0.0,0.88,sola batteria,0.0000,1,0.1634,0.1592,0.1092,96.7,0.0,0.88,0.0000
+FRANCAVILLA_FONTANA-MARTINA_FRANCA-L2,40.818,0.0,0.38,1.84595,sola batteria,7892,5,0.0,0.38,sola batteria,0.0000,1,0.1163,0.2643,0.3279,75.8,0.0,0.38,0.0000
+Fabriano-Macerata,67.675,0.0,0.67,2.0103,sola batteria,7095,5,0.0,0.67,sola batteria,0.0000,1,0.1794,0.1551,0.0350,115.2,0.0,0.67,0.0000
+Faenza-Borgo_S_Lorenzo,66.334,0.0,0.89,2.75267,sola batteria,6073,4,0.0,0.89,sola batteria,0.0000,1,0.2291,0.2145,-0.0245,108.3,0.0,0.89,0.0000
+Faenza-Firenze_S_Maria_Novella,100.664,0.15,0.92,3.84603,ibrido,4856,2,0.17,0.86,ibrido,3.0858,1,3.4843,3.4765,2.6254,171.1,0.15,0.92,0.0000
+Firenze_Campo_Marte-Borgo_S_Lorenzo,33.153,0.0,0.52,3.1218,sola batteria,7055,6,0.0,0.52,sola batteria,0.0000,1,0.0000,0.0036,0.0063,55.8,0.0,0.52,0.0000
+Firenze_S_Maria_Novella-Marradi,66.334,0.0,0.82,2.51894,sola batteria,6071,6,0.0,0.82,sola batteria,0.0000,1,0.0000,0.0096,0.2008,86.0,0.0,0.82,0.0000
+Firenze_S_Maria_Novella-Ravenna,134.073,0.24,0.86,4.2892,ibrido,4105,2,0.24,0.86,ibrido,0.0000,1,0.0958,0.1020,7.6423,230.8,0.24,0.86,0.0000
+Foggia-Rocchetta_S_Antonio-Lacedonia,49.294,0.0,0.54,2.17209,sola batteria,7141,7,0.0,0.54,sola batteria,0.0000,1,0.0757,0.0880,0.0880,58.8,0.0,0.54,0.0000
+GAGLIANO-GALLIPOLI-L4_3,47.533,0.0,0.58,2.44615,sola batteria,7396,5,0.0,0.58,sola batteria,0.0000,1,0.3352,0.3541,0.4844,103.9,0.0,0.58,0.0000
+GAGLIANO-LECCE-L3,85.038,0.03,0.92,2.78327,ibrido FC piccola,6457,7,0.03,0.92,ibrido FC piccola,0.0000,1,0.0735,0.0675,2.9724,200.5,0.03,0.92,0.0000
+GAGLIANO-LECCE-L6,65.218,0.0,0.93,2.93527,sola batteria,6692,5,0.0,0.93,sola batteria,0.0000,1,0.3146,0.3189,-0.0772,171.8,0.0,0.93,0.0000
+GAGLIANO-ZOLLINO-L6,46.502,0.0,0.65,2.83867,sola batteria,7275,5,0.0,0.65,sola batteria,0.0000,1,0.2987,0.2912,0.2229,107.5,0.0,0.65,0.0000
+GALLIPOLI-LECCE-L5,52.961,0.0,0.66,2.53939,sola batteria,7363,4,0.0,0.66,sola batteria,0.0000,1,0.3006,0.3102,0.1817,128.0,0.0,0.66,0.0000
+Gela-Siracusa,181.356,0.21,0.84,3.50086,ibrido,4178,4,0.23,0.78,ibrido,3.3513,1,3.6473,3.6565,6.1738,372.3,0.21,0.84,0.0000
+Granaiolo-Chiusi-Chianciano_Terme,141.468,0.27,0.84,4.35477,ibrido,4532,3,0.27,0.84,ibrido,0.0000,1,1.0267,1.0321,2.9217,258.3,0.27,0.84,0.0000
+Granaiolo-Siena,52.472,0.0,0.72,2.7759,sola batteria,6555,5,0.0,0.72,sola batteria,0.0000,1,0.0000,-0.0148,0.1478,76.1,0.0,0.72,0.0000
+Grosseto-Firenze_S_Maria_Novella,194.202,0.35,0.79,4.42912,ibrido,3668,1,0.36,0.74,ibrido,0.9661,1,2.2183,2.2108,1.9165,331.3,0.35,0.79,0.0000
+Grosseto-Siena,100.642,0.06,0.97,2.72011,ibrido FC piccola,5588,1,0.08,0.91,ibrido FC piccola,4.5820,1,7.0278,7.0406,9.8483,147.7,0.06,0.97,0.0000
+Iseo-Edolo,76.996,0.0,0.91,2.43497,sola batteria,6730,5,0.0,0.91,sola batteria,0.0000,1,0.5641,0.5608,0.2474,211.1,0.0,0.91,0.0000
+LAquila-Sulmona,60.27,0.0,0.59,1.95555,sola batteria,7180,4,0.0,0.59,sola batteria,0.0000,1,0.3281,0.3533,0.4322,87.6,0.0,0.59,0.0000
+LAquila-Terni,103.228,0.06,0.96,2.95374,ibrido FC piccola,5200,1,0.07,0.93,ibrido FC piccola,2.7302,1,3.0470,5.9737,12.5692,217.4,0.06,0.96,0.0000
+LECCE-GALLIPOLI-L3_5,53.256,0.0,0.61,2.2976,sola batteria,7447,5,0.0,0.61,sola batteria,0.0000,1,0.2709,0.2910,0.1042,104.4,0.0,0.61,0.0000
+LECCE-NOVOLI-L2,10.844,0.0,0.19,1.62085,sola batteria,8599,18,0.0,0.19,sola batteria,0.0000,1,0.0087,0.0164,0.0093,13.1,0.0,0.19,0.0000
+Lamezia_Terme_Centrale-Catanzaro_Lido,43.16,0.0,0.49,2.25799,sola batteria,7115,5,0.0,0.49,sola batteria,0.0000,1,0.0000,0.0120,0.1333,54.8,0.0,0.49,0.0000
+Lecco-Besana,25.358,0.0,0.36,2.84678,sola batteria,7989,4,0.0,0.36,sola batteria,0.0000,1,0.1179,0.3684,0.6050,72.6,0.0,0.36,0.0000
+Lecco-Monza,43.929,0.0,0.7,3.24666,sola batteria,7256,5,0.0,0.7,sola batteria,0.0000,1,0.0000,0.4802,0.1954,153.2,0.0,0.7,0.0000
+Lecco-Triuggio-Ponte_Albiate,32.265,0.0,0.48,2.99297,sola batteria,7747,4,0.0,0.48,sola batteria,0.0000,1,0.0000,0.2875,0.3018,97.4,0.0,0.48,0.0000
+Legnago-Rovigo,47.064,0.0,0.68,2.90338,sola batteria,6680,4,0.0,0.68,sola batteria,0.0000,1,0.4718,0.4888,0.5380,65.5,0.0,0.68,0.0000
+Locri-Roccella_Jonica,16.589,0.0,0.32,3.33649,sola batteria,7686,9,0.0,0.32,sola batteria,0.0000,1,0.1382,0.1495,0.2252,22.0,0.0,0.32,0.0000
+Lucca-Minucciano-Pieve-Casola,65.717,0.0,0.85,2.63895,sola batteria,6500,4,0.0,0.85,sola batteria,0.0000,1,0.0000,0.5099,0.1533,158.3,0.0,0.85,0.0000
+Lucca-Piazza_al_Serchio,57.383,0.0,0.7,2.48621,sola batteria,6831,4,0.0,0.7,sola batteria,0.0000,1,0.2213,0.3629,0.3535,136.2,0.0,0.7,0.0000
+MAGLIE-LECCE-L6,28.517,0.0,0.39,2.68934,sola batteria,7883,4,0.0,0.39,sola batteria,0.0000,1,0.0000,0.0027,0.2103,64.7,0.0,0.39,0.0000
+MAGLIE-OTRANTO-L7,18.271,0.0,0.24,2.39759,sola batteria,8193,12,0.0,0.24,sola batteria,0.0000,1,0.0000,0.0112,0.0170,34.3,0.0,0.24,0.0000
+Macerata-Civitanova_Marche,27.182,0.0,0.35,2.46826,sola batteria,7355,6,0.0,0.35,sola batteria,0.0000,1,0.0000,0.2236,0.0704,36.5,0.0,0.35,0.0000
+Macomer-Olbia_Terranova,123.367,0.09,0.93,2.58115,ibrido FC piccola,4977,3,0.09,0.93,ibrido FC piccola,0.0000,1,0.2677,4.7689,3.6361,146.6,0.09,0.93,0.0000
+Macomer-Oristano,59.707,0.0,0.66,2.23286,sola batteria,6229,5,0.0,0.66,sola batteria,0.0000,1,0.1266,0.1226,0.1407,58.5,0.0,0.66,0.0000
+Maniago-Sacile,32.217,0.0,0.37,2.26086,sola batteria,7323,3,0.0,0.37,sola batteria,0.0000,1,2.0247,2.0111,0.7139,36.7,0.0,0.37,0.0000
+Marradi-Borgo_S_Lorenzo,32.004,0.0,0.37,2.27475,sola batteria,7381,3,0.0,0.37,sola batteria,0.0000,1,3.5419,3.5360,0.8022,37.6,0.0,0.37,0.0000
+Melfi-Potenza_Centrale,52.872,0.0,0.67,2.56953,sola batteria,7002,7,0.0,0.67,sola batteria,0.0000,1,0.3112,0.2945,-0.0597,97.7,0.0,0.67,0.0000
+Milano_Porta_Garibaldi-Lecco,56.504,0.0,0.94,3.41307,sola batteria,6698,5,0.0,0.94,sola batteria,0.0000,1,0.0963,0.0943,-0.0020,198.2,0.0,0.94,0.0000
+Minucciano-Pieve-Casola-Pisa_Centrale,88.811,0.09,0.92,3.83325,ibrido FC piccola,5257,4,0.09,0.92,ibrido FC piccola,0.0000,1,0.1128,4.7869,4.4807,205.8,0.09,0.92,0.0000
+Modica-Augusta,118.614,0.07,0.96,2.62972,ibrido FC piccola,5369,1,0.07,0.96,ibrido FC piccola,0.0000,1,0.0000,-0.0106,9.0231,206.7,0.07,0.96,0.0000
+Modica-Caltanissetta_Xirbi,206.771,0.24,0.85,3.35833,ibrido,3785,2,0.24,0.85,ibrido,0.0000,1,0.0000,-0.0046,6.5708,304.5,0.24,0.85,0.0000
+Modica-Gela,89.658,0.0,0.93,2.12906,sola batteria,5543,5,0.0,0.93,sola batteria,0.0000,1,0.0000,-0.0031,-0.0030,111.8,0.0,0.93,0.0000
+Modica-Siracusa,91.698,0.0,0.88,1.97066,sola batteria,6195,5,0.0,0.88,sola batteria,0.0000,1,0.2952,0.3038,0.0678,159.1,0.0,0.88,0.0000
+Molteno-Albate-Trecallo,19.76,0.0,0.31,3.12956,sola batteria,7956,5,0.0,0.31,sola batteria,0.0000,1,0.0000,-0.0002,0.0780,45.3,0.0,0.31,0.0000
+Monza-Molteno,29.214,0.0,0.5,3.44251,sola batteria,7597,5,0.0,0.5,sola batteria,0.0000,1,0.1171,0.1197,0.0143,99.2,0.0,0.5,0.0000
+Mortara-Pavia,37.404,0.0,0.56,2.98082,sola batteria,7121,4,0.0,0.56,sola batteria,0.0000,1,2.2117,2.2180,0.0059,62.6,0.0,0.56,0.0000
+Olbia_Terranova-Golfo_Aranci,21.664,0.0,0.3,2.71279,sola batteria,7903,7,0.0,0.35,sola batteria,0.0572,2,3.2894,3.2902,0.1185,39.0,0.0,0.35,0.0572
+Olbia_Terranova-Ozieri_Chilivani,70.106,0.0,0.64,1.84804,sola batteria,7007,5,0.0,0.64,sola batteria,0.0000,1,0.5287,0.7495,-0.0020,85.1,0.0,0.64,0.0000
+Olbia_Terranova-Sassari,116.694,0.04,0.97,2.18347,ibrido FC piccola,5926,3,0.04,0.97,ibrido FC piccola,0.0000,1,0.0405,5.8992,17.5195,160.8,0.04,0.97,0.0000
+Oristano-Olbia_Terranova,183.074,0.21,0.86,2.91454,ibrido,4163,3,0.21,0.86,ibrido,0.0000,1,0.0990,1.3977,5.8486,214.5,0.21,0.86,0.0000
+Oristano-Porto_Torres_Marittima,178.898,0.24,0.86,3.55592,ibrido,4169,3,0.24,0.86,ibrido,0.0000,1,0.0000,1.3865,7.7078,259.9,0.24,0.86,0.0000
+Ozieri_Chilivani-Porto_Torres_Marittima,65.93,0.0,0.59,1.81386,sola batteria,6930,3,0.0,0.59,sola batteria,0.0000,1,0.5451,0.6364,0.5037,72.8,0.0,0.59,0.0000
+Parma-Brescia,91.142,0.21,0.91,4.64552,ibrido,4975,1,0.21,0.91,ibrido,0.0000,1,2.5008,2.4974,5.2842,182.1,0.21,0.91,0.0000
+Parma-Montirone,80.414,0.11,0.9,4.11832,ibrido,5281,5,0.11,0.9,ibrido,0.0000,1,0.0000,-0.0079,-0.2020,155.0,0.11,0.9,0.0000
+Pavia-Vercelli,64.919,0.0,0.96,3.00894,sola batteria,6130,4,0.0,0.96,sola batteria,0.0000,1,0.0000,0.0116,0.2345,105.9,0.0,0.96,0.0000
+Piadena-Parma,39.738,0.0,0.53,2.6677,sola batteria,7259,4,0.0,0.53,sola batteria,0.0000,1,0.3170,0.2996,0.4611,58.3,0.0,0.53,0.0000
+Piazza_al_Serchio-Aulla_Lunigiana,32.54,0.0,0.45,2.77965,sola batteria,6816,5,0.0,0.45,sola batteria,0.0000,1,0.0000,0.0066,0.5521,54.6,0.0,0.45,0.0000
+Piazza_al_Serchio-Pisa_Centrale,80.477,0.06,0.94,3.59088,ibrido FC piccola,5434,3,0.07,0.9,ibrido FC piccola,2.6557,1,3.0398,3.0316,12.0896,186.3,0.06,0.94,0.0000
+Piraineto-Castelvetrano,88.169,0.0,0.84,1.93897,sola batteria,6754,4,0.0,0.84,sola batteria,0.0000,1,0.0000,0.7691,-0.0503,157.2,0.0,0.84,0.0000
+Pisogne-Brescia,45.29,0.0,0.56,2.52515,sola batteria,7594,4,0.0,0.56,sola batteria,0.0000,1,0.1423,0.1362,-0.0061,116.8,0.0,0.56,0.0000
+Pisogne-Edolo,55.332,0.0,0.54,1.98781,sola batteria,7369,4,0.0,0.54,sola batteria,0.0000,1,1.4332,1.4530,0.2609,116.9,0.0,0.54,0.0000
+Pisogne-Rovato_Fn,36.432,0.0,0.37,2.02576,sola batteria,8074,4,0.0,0.37,sola batteria,0.0000,1,0.1869,0.2043,0.5054,82.1,0.0,0.37,0.0000
+Pontassieve-Borgo_S_Lorenzo,32.683,0.0,0.4,2.40607,sola batteria,7875,5,0.0,0.4,sola batteria,0.0000,1,0.0687,0.0558,0.0387,70.3,0.0,0.4,0.0000
+Porto_Torres_Marittima-Sassari,19.342,0.0,0.27,2.00188,sola batteria,8091,9,0.0,0.27,sola batteria,0.0000,1,0.0000,-0.0093,0.2056,22.3,0.0,0.27,0.0000
+Portogruaro_Caorle-Casarsa,21.116,0.0,0.35,3.28618,sola batteria,7643,3,0.0,0.35,sola batteria,0.0000,1,0.0000,0.0116,0.1770,36.3,0.0,0.35,0.0000
+RUTIGLIANO-PUTIGNANO-L1,25.767,0.0,0.31,2.207,sola batteria,7923,8,0.0,0.31,sola batteria,0.0000,1,6.9725,6.9848,0.2265,44.3,0.0,0.31,0.0000
+Ragusa-Modica,19.545,0.0,0.26,2.00334,sola batteria,7849,11,0.0,0.26,sola batteria,0.0000,1,0.4726,0.4658,0.0330,19.8,0.0,0.26,0.0000
+Reggio_di_Calabria_Centrale-Catanzaro_Lido,177.55,0.38,0.8,4.3818,ibrido,3830,4,0.38,0.8,ibrido,0.0000,1,0.8633,1.4027,2.1041,232.0,0.38,0.8,0.0000
+Reggio_di_Calabria_Centrale-Roccella_Jonica,111.599,0.32,0.84,5.58185,ibrido,4175,1,0.32,0.84,ibrido,0.0000,1,3.0764,3.0836,4.9293,206.9,0.32,0.84,0.0000
+Rieti-Terni,40.879,0.0,0.43,2.10394,sola batteria,7537,7,0.0,0.43,sola batteria,0.0000,1,0.0000,-0.0035,0.1931,57.3,0.0,0.43,0.0000
+Rionero_Atella_Ripacandita-Potenza_Centrale,43.611,0.0,0.47,2.12843,sola batteria,7463,6,0.0,0.47,sola batteria,0.0000,1,0.0618,0.0699,0.2145,58.9,0.0,0.47,0.0000
+Roccella_Jonica-Catanzaro_Lido,65.951,0.0,0.98,3.00233,sola batteria,5561,2,0.0,0.98,sola batteria,0.0000,1,6.7532,6.7563,0.1222,80.3,0.0,0.98,0.0000
+Rovato_Fn-Iseo,14.768,0.0,0.28,2.31538,sola batteria,8432,14,0.0,0.28,sola batteria,0.0000,1,0.8072,0.7972,-0.0165,33.7,0.0,0.28,0.0000
+Rovigo-Verona_Porta_Nuova,94.641,0.11,0.93,3.57796,ibrido,5089,2,0.16,0.91,ibrido,4.4780,3,4.6932,4.6847,5.2834,148.2,0.15,0.94,3.0794
+Rufina-Borgo_S_Lorenzo,25.175,0.0,0.32,2.53515,sola batteria,8018,6,0.0,0.32,sola batteria,0.0000,1,0.0288,0.0191,-0.0058,50.0,0.0,0.32,0.0000
+S_Gavino-Cagliari,49.621,0.0,0.81,3.28195,sola batteria,5796,5,0.0,0.81,sola batteria,0.0000,1,0.0298,0.0221,-0.0594,62.3,0.0,0.81,0.0000
+Sale_Marasino-Brescia,32.267,0.0,0.27,1.63897,sola batteria,8221,8,0.0,0.27,sola batteria,0.0000,1,0.0721,0.0972,0.0627,48.8,0.0,0.27,0.0000
+Sassari-Cagliari,252.586,0.39,0.76,3.78714,ibrido,2916,2,0.39,0.76,ibrido,0.0000,1,1.4754,1.4766,2.3992,283.1,0.39,0.76,0.0000
+Sassari-Oristano,159.556,0.15,0.92,2.58291,ibrido,4658,1,0.15,0.92,ibrido,0.0000,1,1.7556,1.7625,2.8299,174.1,0.15,0.92,0.0000
+Sassari-Ozieri_Chilivani,46.588,0.0,0.41,1.64699,sola batteria,7629,6,0.0,0.41,sola batteria,0.0000,1,0.0920,0.0639,-0.0603,50.1,0.0,0.41,0.0000
+Schio-Vicenza,31.184,0.0,0.56,3.60785,sola batteria,6685,6,0.0,0.56,sola batteria,0.0000,1,0.2515,0.2556,0.0041,49.8,0.0,0.56,0.0000
+Siena-Chiusi-Chianciano_Terme,88.996,0.03,0.97,2.60031,ibrido FC piccola,5779,2,0.04,0.94,ibrido FC piccola,2.2434,1,2.6349,2.6261,17.9475,119.7,0.03,0.97,0.0000
+Siracusa-Donnafugata,130.771,0.07,0.94,2.46873,ibrido FC piccola,5441,3,0.08,0.9,ibrido FC piccola,2.6968,1,2.6968,2.6922,9.6108,204.7,0.07,0.94,0.0000
+Siracusa-Ragusa,111.243,0.03,0.91,2.10395,ibrido FC piccola,6006,6,0.03,0.91,ibrido FC piccola,0.0000,1,0.1145,0.0949,3.0917,170.9,0.03,0.91,0.0000
+Siracusa-Rosolini,47.739,0.0,0.4,1.68393,sola batteria,7944,5,0.0,0.4,sola batteria,0.0000,1,1.5888,1.5725,0.0636,75.8,0.0,0.4,0.0000
+Siracusa-Vittoria,152.219,0.15,0.9,3.21414,ibrido,4811,5,0.15,0.9,ibrido,0.0000,1,0.0555,0.0427,2.9203,293.5,0.15,0.9,0.0000
+Soverato-Reggio_di_Calabria_Centrale,159.34,0.36,0.83,4.22283,ibrido,4003,3,0.36,0.83,ibrido,0.0000,1,1.2181,1.2297,3.9587,195.9,0.36,0.83,0.0000
+Torreberetti-Pavia,43.059,0.0,0.72,3.35082,sola batteria,6550,5,0.0,0.72,sola batteria,0.0000,1,0.0000,0.0146,0.0053,71.2,0.0,0.72,0.0000
+Trapani-Alcamo_Diramazione,116.118,0.11,0.94,3.1172,ibrido,5311,1,0.11,0.94,ibrido,0.0000,1,0.0000,0.0116,7.4042,203.3,0.11,0.94,0.0000
+Trapani-Castelvetrano,74.363,0.0,0.93,2.54493,sola batteria,6097,5,0.0,0.93,sola batteria,0.0000,1,0.4666,0.4494,0.1208,104.6,0.0,0.93,0.0000
+Trapani-Piraineto,162.532,0.25,0.86,3.9796,ibrido,4669,1,0.26,0.83,ibrido,1.2015,1,2.4868,2.4976,5.0859,334.2,0.25,0.86,0.0000
+Trento-Bassano_del_Grappa,95.711,0.05,0.96,3.16409,ibrido FC piccola,6039,1,0.06,0.91,ibrido FC piccola,3.0987,1,3.1044,3.1050,17.2847,293.9,0.05,0.96,0.0000
+Trento-Borgo_Valsugana_Est,44.544,0.0,0.56,2.54787,sola batteria,7439,4,0.0,0.56,sola batteria,0.0000,1,0.0000,0.2788,0.0052,121.7,0.0,0.56,0.0000
+Triuggio-Ponte_Albiate-Besana,6.907,0.0,0.22,3.56815,sola batteria,8405,13,0.0,0.22,sola batteria,0.0000,1,0.1108,0.1064,-0.0321,15.7,0.0,0.22,0.0000
+Triuggio-Ponte_Albiate-Molteno,17.55,0.0,0.29,3.24921,sola batteria,8069,7,0.0,0.29,sola batteria,0.0000,1,0.0000,-0.0065,-0.0065,48.2,0.0,0.29,0.0000
+Ventimiglia-Limone,66.769,0.0,0.8,2.47491,sola batteria,6409,4,0.0,0.8,sola batteria,0.0000,1,0.2857,0.2833,0.0845,154.7,0.0,0.8,0.0000
+Vercelli-Mortara,27.515,0.0,0.37,2.61166,sola batteria,7626,4,0.0,0.37,sola batteria,0.0000,1,0.1725,0.1827,0.3960,35.7,0.0,0.37,0.0000
+Vicchio-Borgo_S_Lorenzo,7.046,0.0,0.32,2.99451,sola batteria,8462,15,0.0,0.32,sola batteria,0.0000,1,0.0475,0.0366,-0.0170,12.6,0.0,0.32,0.0000
+Vicchio-Firenze_Campo_Marte,40.199,0.0,0.59,2.94931,sola batteria,6888,4,0.0,0.59,sola batteria,0.0000,1,0.2436,0.2529,0.4301,65.3,0.0,0.59,0.0000
+Vicchio-Firenze_S_Maria_Novella,41.376,0.0,0.62,2.99543,sola batteria,6808,4,0.0,0.62,sola batteria,0.0000,1,0.0000,-0.0135,-0.0145,67.7,0.0,0.62,0.0000
+Vittoria-Modica,60.521,0.0,0.67,2.18044,sola batteria,6616,6,0.0,0.67,sola batteria,0.0000,1,0.1605,0.1688,0.0255,79.1,0.0,0.67,0.0000

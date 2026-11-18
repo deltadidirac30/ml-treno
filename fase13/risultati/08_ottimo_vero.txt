@@ -1,0 +1,40 @@
+fase13/08_ottimo_vero.jl  2026-11-18T08:52:48.185  thread: 1  TrainPowertrain 7c9115a1877dda0142eeb08fe25dc810bd93a544
+linee: 146
+
+2. controllo: costo delle proposte C, G e G + bordo riletto dalla griglia contro quello delle verifiche, scarto massimo 3.0e-05 (deve essere ~0)
+
+IL COSTO RISPETTO ALL'OTTIMO VERO (griglia fitta simulata), 146 linee
+                                    migliore delle 288  surrogato semplice         surrogato C       G senza bordo           G + bordo
+  media                                        +2.187%             +1.130%             +0.827%             +0.308%             +0.069%
+  mediana                                      +0.226%             +0.289%             +0.176%             +0.000%             +0.000%
+  90° percentile                               +7.523%             +3.194%             +2.825%             +1.163%             +0.000%
+  massimo                                     +18.031%            +13.003%             +7.028%             +4.582%             +3.079%
+  esattamente l'ottimo                              20                  14                  33                 126                 139
+  entro 0,1%                                        50                  45                  56                 128                 141
+  entro 0,5%                                        92                  93                 104                 128                 141
+  entro 1%                                         102                 100                 109                 129                 141
+  oltre 2%                                          40                  32                  25                  13                   3
+  oltre 5%                                          25                   6                   3                   0                   0
+
+IL REGIME: ottimo vero (righe) contro surrogato G + bordo (colonne)
+  sola batteria         99 → sola batteria 99, ibrido FC piccola 0, ibrido 0
+  ibrido FC piccola     20 → sola batteria 0, ibrido FC piccola 18, ibrido 2
+  ibrido                27 → sola batteria 0, ibrido FC piccola 0, ibrido 27
+  stesso regime: 144 su 146
+  distanza della proposta G + bordo dall'ottimo: m mediana 0.00 (max 0.04), n mediana 0.00 (max 0.10); stesso punto in 139 linee
+  posizione della proposta G + bordo nella classifica dei progetti fattibili: mediana 1°, 90° percentile 1°, peggiore 6°
+
+QUANTO È PIATTO IL COSTO VICINO ALL'OTTIMO (progetti fattibili entro lo 0,1 / 0,5 / 1% dall'ottimo, mediana sulle linee)
+  2 / 4 / 8 progetti su 6778 fattibili (mediana)
+
+LE LINEE CON IL SURROGATO G + BORDO OLTRE LO 0,5% DALL'OTTIMO
+  Rovigo-Verona_Porta_Nuova              L   94.6 km: ottimo (0.11, 0.93) 3.5780 €/km ibrido             | G+bordo (0.15, 0.94) +3.08% ibrido             | 288 +5.28%, semplice +4.68%
+  Crotone-Lamezia_Terme_Centrale         L  102.9 km: ottimo (0.09, 0.95) 2.8587 €/km ibrido FC piccola  | G+bordo (0.12, 0.95) +2.75% ibrido             | 288 +3.37%, semplice +2.96%
+  Buonconvento-Empoli                    L   91.8 km: ottimo (0.09, 0.94) 3.4045 €/km ibrido FC piccola  | G+bordo (0.12, 0.94) +2.05% ibrido             | 288 +3.42%, semplice +2.05%
+  Cagliari-Olbia_Terranova               L  276.1 km: ottimo (0.36, 0.69) 3.7235 €/km ibrido             | G+bordo (0.37, 0.75) +1.12% ibrido             | 288 +1.57%, semplice +3.28%
+  Cagliari-Macomer                       L  152.7 km: ottimo (0.35, 0.84) 4.0524 €/km ibrido             | G+bordo (0.34, 0.74) +1.01% ibrido             | 288 +1.84%, semplice +2.63%
+
+I TEMPI
+  griglia fitta simulata: 5.0 h di calcolo sommando i singoli progetti (8 in parallelo); di orologio 57,5 min per le 146 linee (fase13/02), 23.6 s per linea
+
+Tempo totale 0.1 min. Tabella: /Users/kairos/Documents/lavoro/ml_treno_dati/fase13_log/08_ottimo_vero_linee.csv; figura: fase13/figure/fig_ottimo_vero.png
