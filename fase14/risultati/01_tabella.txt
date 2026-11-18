@@ -1,0 +1,15 @@
+fase14/01_tabella.jl  2026-11-18T09:06:30.575  TrainPowertrain 7c9115a1877dda0142eeb08fe25dc810bd93a544
+1. griglia letta: 146 linee × 9702 progetti in 3.7 s; progetti fattibili per linea: mediana 6778 (da 2720 a 8599)
+   taglie uguali su tutte le linee: differenza massima 0 kW (fuel cell), 0 kWh (batteria)
+
+2. su quante linee funziona ogni treno: nessuna 1071, tutte le 146 linee 2318, mediana 123
+   il miglior treno unico (K = 1): m 0.42, n 0.67 (ibrido, FC 827 kW, batteria 2127 kWh): extra-costo medio +95.4%, peggiore +179.6% (Capistrello-Avezzano)
+   ottimi per regime: sola batteria 99, ibrido FC piccola 20, ibrido 27; ottimi distinti: 97
+
+3. riduzione (3.3 s): 9702 progetti → 8631 fattibili su almeno una linea → 1985 non dominati
+   per regime: sola batteria 76, ibrido FC piccola 30, ibrido 1879
+   controllo: l'ottimo di ogni linea è fra i treni tenuti (o un treno con lo stesso costo)
+
+4. serbatoio (treni ibridi tenuti, sulle linee dove funzionano): rapporto fra il più grande e il più piccolo, mediana 56.1, 90° percentile 112.3
+
+Scritto /Users/kairos/Documents/lavoro/ml_treno_dati/fase14/tabella.jld2 (C, R, S: 146 × 9702; tenuti: 1985). Tempo totale 9.5 s
