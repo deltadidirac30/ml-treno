@@ -18,7 +18,7 @@ Obiettivo: oggi ogni linea ha il suo treno ottimo (146 linee non elettrificate o
 1. Tabella dell'extra-costo e riduzione dei treni inutili. **Fatto il 18/11.**
 2. p-mediana per K = 1…15, senza e con tetto. **Fatto il 18/11.**
 3. Grafici (curva extra-costo contro K, piano (m, n)) e confronto con le fasce. **Fatto il 18/11.**
-4. Treni modulari.
+4. Treni modulari. **Fatto il 18/11.**
 5. Criterio geografico.
 6. Report finale.
 
@@ -102,3 +102,42 @@ Per ogni fascia si prende il treno che funziona su tutte le sue linee con l'extr
 - Le linee a sola batteria si dividono semplicemente per taglia di batteria.
 - Gli ibridi stanno lungo una curva, da "FC piccola + batteria piena" a "FC grande + batteria più piccola". I treni della flotta si dispongono lungo questa curva.
 - Sulla mappa, linee vicine o che condividono binari spesso hanno treni diversi (per esempio nel nodo di Firenze, in Sardegna e in Sicilia): è il motivo del criterio geografico del passo 5.
+
+## Passo 4: treni modulari (18/11/2026)
+
+Script `fase14/04_modulari.jl` (20 min); risultati in `fase14/risultati/04_modulari.txt` e `04_modulari.csv`.
+
+**Il modello.** Si sceglie un catalogo di **a taglie di fuel cell** e **b taglie di batteria**. I treni disponibili sono tutte le combinazioni, più i treni a sola batteria con le stesse b batterie ("nessuna fuel cell" è sempre possibile). Ogni linea usa la combinazione che le costa meno fra quelle che funzionano, e si minimizza l'extra-costo medio.
+
+Qui la riduzione ai treni non dominati del passo 1 non vale, perché un treno dominato può servire a completare il catalogo: si usa la tabella intera. Per tenere il modello piccolo una linea considera solo i treni entro +50% dal suo ottimo. Controllo: con 2 × 3 il risultato è identico senza soglia (949 085 variabili, 94 s); dove la soglia lascia una linea senza scelta (a = 1) si rifà senza soglia.
+
+**Senza tetto** (extra-costo medio; tra parentesi la p-mediana libera con lo stesso numero di treni usati):
+
+| FC × batterie | taglie | treni usati | medio | peggiore |
+|---|---:|---:|---:|---:|
+| 1 × 3 | 4 | 5 | +13,2% (+4,7%) | +93% |
+| 2 × 3 | 5 | 7 | +6,9% (+3,2%) | +42% |
+| 3 × 3 | 6 | 8 | +5,2% (+2,6%) | +33% |
+| 3 × 5 | 8 | 10 | +3,7% (+1,9%) | +21% |
+| 4 × 5 | 9 | 12 | +2,8% (+1,5%) | +17% |
+
+**Con il tetto**, il catalogo più piccolo che tiene ogni linea entro il tetto:
+
+| tetto | catalogo minimo | treni usati | medio | peggiore |
+|---|---|---:|---:|---:|
+| +10% | 6 FC × 5 batterie (11 taglie) | 16 | +2,8% | +10,0% |
+| +15% | 5 FC × 3 batterie (8 taglie) | 11 | +4,1% | +14,9% |
+| +20% | 4 FC × 3 batterie (7 taglie) | 10 | +4,6% | +19,6% |
+
+**Cosa si vede: dipende da cosa si conta.**
+- **A parità di treni diversi, i modulari costano di più**: circa il doppio dell'extra-costo della p-mediana libera. Le combinazioni non sono scelte una per una: per servire bene gli ibridi servono coppie (m, n) precise lungo la curva del passo 3, e un catalogo a griglia ne copre poche.
+- **A parità di taglie di componenti, i modulari costano di meno.** Le flotte libere usano molte taglie diverse: per esempio K = 8 con tetto +10% ha 6 fuel cell e 8 batterie diverse, cioè 14 taglie, per +3,1%. Il catalogo modulare minimo con lo stesso tetto ha 11 taglie e fa +2,8%, ma con 16 versioni di treno.
+
+  | taglie di componenti | p-mediana libera (K) | modulare |
+  |---:|---:|---:|
+  | 6 | +6,9% (K = 4) | +5,2% (3 × 3) |
+  | 8 | +4,7% (K = 5) | +3,7% (3 × 5) |
+  | 9 | +3,9% (K = 6) | +2,8% (4 × 5) |
+
+- Quindi la scelta dipende da cosa costa di più nella realtà: omologare e gestire tante **versioni di treno** (allora flotta libera) oppure produrre e tenere a magazzino tante **taglie di componenti** (allora modulare). Da discutere con il relatore.
+- Un catalogo con **1 sola fuel cell** non funziona: le linee con l'ottimo a FC piccola o grande pagano fino al +90–100%. Servono almeno 2–3 taglie di FC: una piccola (60–220 kW, "range extender") e una o due grandi (500–890 kW).
