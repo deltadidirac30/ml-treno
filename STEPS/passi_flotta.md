@@ -17,7 +17,7 @@ Obiettivo: oggi ogni linea ha il suo treno ottimo (146 linee non elettrificate o
 
 1. Tabella dell'extra-costo e riduzione dei treni inutili. **Fatto il 18/11.**
 2. p-mediana per K = 1…15, senza e con tetto. **Fatto il 18/11.**
-3. Grafici (curva extra-costo contro K, piano (m, n)) e confronto con le fasce.
+3. Grafici (curva extra-costo contro K, piano (m, n)) e confronto con le fasce. **Fatto il 18/11.**
 4. Treni modulari.
 5. Criterio geografico.
 6. Report finale.
@@ -70,3 +70,35 @@ Cosa si vede:
 - **Ottimizzare solo la media lascia linee lontane.** Senza tetto, con 5–7 treni il caso peggiore è ancora +21–26% e 14–20 linee pagano oltre il 10%. Con K = 7 il peggiore è più alto che con K = 6: la media scende, ma una linea viene sacrificata.
 - **Com'è fatta una flotta.** I treni a sola batteria (99 linee) si coprono bene con 2–3 taglie di batteria (per esempio 1273, 2289 e 3113 kWh, extra-costo medio sotto il 2%). Gli ibridi (47 linee) chiedono più treni: con 5–8 treni di flotta sono gli ibridi a pagare l'extra-costo maggiore (+4–10% in media). Il treno ibrido più grande (m 0,42, n 0,68: FC 827 kW, batteria 2161 kWh) c'è in quasi tutte le flotte.
 - Esempio, **tetto +10%, K = 8** (medio +3,1%, peggiore +9,6%): 2 a sola batteria (1779 e 3113 kWh, 99 linee), 2 ibridi con FC piccola (98 e 177 kW, 20 linee), 4 ibridi (FC 315, 413, 571, 827 kW, 27 linee).
+
+## Passo 3: grafici e confronto con le fasce (18/11/2026)
+
+Script `fase14/03_grafici_fasce.jl` (meno di 1 min); risultati in `fase14/risultati/03_grafici_fasce.txt`. Figure in `fase14/figure/`:
+- `fig_curva.png`: extra-costo medio e della linea peggiore contro K, per la p-mediana (senza tetto, +10%, +15%) e per le fasce;
+- `fig_piano_mn.png`: nel piano (m, n) l'ottimo di ogni linea, colorato secondo il treno assegnato, e i treni della flotta (stelle), per K = 5, K = 8 con tetto +10%, e K = 15;
+- `fig_mappa_K8.png`: la mappa delle 146 linee colorate secondo il treno, flotta di 8 treni con tetto +10%.
+
+**Il metodo delle fasce.** Le linee si dividono in fasce secondo il loro ottimo (m, n):
+- in m: sola batteria, FC piccola (m < 0,1), poi fasce larghe Δm;
+- in n: fasce larghe Δn.
+
+Per ogni fascia si prende il treno che funziona su tutte le sue linee con l'extra-costo medio più basso sulla fascia: è la versione migliore possibile del metodo. Ogni linea usa il treno della sua fascia. Provati 24 schemi (Δm: nessuna, 0,2, 0,1, 0,05; Δn da 1 a 0,1); tutti hanno, per ogni fascia, almeno un treno che funziona su tutte le linee.
+
+| K | migliori fasce | p-mediana | rapporto |
+|---:|---:|---:|---:|
+| 3 | +9,1% | +9,0% | 1,0 |
+| 5 | +5,0% | +4,7% | 1,0 |
+| 6 | +4,2% | +3,9% | 1,1 |
+| 8 | +3,4% | +2,6% | 1,3 |
+| 10 | +3,0% | +1,9% | 1,6 |
+| 13 | +2,5% | +1,3% | 1,9 |
+
+- **Con pochi treni (3–6) le fasce sono buone quasi quanto la p-mediana.** Con 3 treni le fasce "per regime" (sola batteria / FC piccola / ibrido) danno praticamente la stessa flotta.
+- **Con più treni le fasce perdono**: da 8 treni in su l'extra-costo medio è 1,3–1,9 volte quello della p-mediana. Il confine di una fascia è arbitrario: due linee con ottimi vicini ma ai due lati del confine prendono treni diversi, e una fascia larga deve prendere il treno che va bene per la linea più esigente.
+- **Il caso peggiore non scende mai sotto il +21%**: nessuno schema a fasce rispetta il tetto del +10%. Con 9–25 linee oltre il 10% sono molto lontane dalla p-mediana con tetto, che a 8 treni tiene tutte le linee sotto il +9,6%.
+- Lasciare a ogni linea la scelta libera fra i treni delle fasce migliora poco (al più 0,2 punti). Il problema sono i treni scelti, non l'assegnazione.
+
+**Dal piano (m, n) e dalla mappa.**
+- Le linee a sola batteria si dividono semplicemente per taglia di batteria.
+- Gli ibridi stanno lungo una curva, da "FC piccola + batteria piena" a "FC grande + batteria più piccola". I treni della flotta si dispongono lungo questa curva.
+- Sulla mappa, linee vicine o che condividono binari spesso hanno treni diversi (per esempio nel nodo di Firenze, in Sardegna e in Sicilia): è il motivo del criterio geografico del passo 5.
