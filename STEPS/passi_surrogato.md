@@ -808,3 +808,15 @@ Conclusione: le correzioni del collega spostano pochissimo gli ottimi. La classi
 
 - `09_dati_presentazione.py` (= fase12/18) → `fase13/presentazione_146/`. Surrogato rilanciato con `griglia=si`: stesse proposte del 17/11. Unico cambiamento visibile negli esempi: su Cagliari–Olbia la proposta (0,37; 0,75) è a +1,12% dall'ottimo (0,36; 0,69), prima coincidevano.
 - Prompt per far aggiornare la presentazione da Cowork: `STEPS/prompt_cowork_aggiorna_presentazione.md`.
+
+## Fase 15: quanto contano profondità e larghezza della rete
+
+19–20/11/2026. Cartella `fase15/`, report `fase15/REPORT_FASE15_ARCHITETTURA.md`. Serve a giustificare nell'articolo la scelta della rete 6b (4 strati × 256), non a cambiarla. Regola decisa prima: si resta sulla 6b, a meno di differenze molto più grandi della variabilità del seme.
+
+- **Cosa si è fatto** (`01_architettura.jl`, 3 h sul Mac): stesse impostazioni del 6b, cambiano solo strati e neuroni. Profondità 2, 3, 6 strati da 256; larghezza 128 e 512 con 4 strati; la 4 × 256 con semi 2 e 3 per misurare la variabilità. Tutto sulla validazione, come i passi 6b e 6c; nessuna simulazione.
+- **Il seme** sposta pochissimo gli errori (perdita ±0,6%, costo 1,26–1,28%), ma molto la scelta secca (14–16% di scelte non fattibili, rimpianto p95 3,4–4,0%).
+- **Profondità:** 2 strati sono nettamente peggio (costo 1,64% / 7,0% contro 1,26% / 5,2%; con 5 verifiche 79% di tratte entro l'1% contro 90%). 3 strati sono un po' peggio. 6 strati sono un po' meglio: perdita −1,2%, sul bordo del seme; costo 1,19%; scelta uguale entro il rumore. Costano però il 36% in più di tempo di previsione.
+- **Larghezza:** 128 è peggio (costo 1,40%, prime 5 entro l'1% 86%). 512 si ferma presto (epoca 24, migliore 19): passo ancora alto e adattamento eccessivo ai dati di addestramento. Grandezze peggiori, scelta pari. Con la stessa ricetta non conviene.
+- **Rugosità:** tutte le reti sono 6–30 volte più lisce del simulatore, senza differenze oltre il seme.
+
+Conclusione: 4 × 256 sta al ginocchio fra precisione e costo. **Il modello resta la 6b.** Nel report c'è una frase in inglese pronta da adattare per l'articolo.
