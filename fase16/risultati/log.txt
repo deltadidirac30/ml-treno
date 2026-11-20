@@ -1,0 +1,15 @@
+== 2026-11-20 09:44:15 fase16/lancia.sh
+01_tratte: 256 tratte del test (su 2047), uguali a quelle di fase12 passo 8a, da 14340 a 16380
+surrogato/: 16 cartelle già presenti copiate in fase16/surrogato_prima
+== 2026-11-20 09:44:17 surrogato, strategia G
+256 tratte analizzate, 256 con un progetto proposto, 0 senza, 0 errori; 100.5 s per le tratte (0.39 s a tratta, compresa la compilazione del codice durante la prima) + 5.2 s di avvio
+rispetto alla migliore delle 288 coppie della campagna: mediana -1.83%, più economico in 230 tratte, entro +1% in 254
+Riepilogo in /Users/kairos/Documents/lavoro/ml_treno_dati/surrogato/riepilogo_20261120_094606.csv
+== 2026-11-20 09:46:07 surrogato, strategia semplice
+256 tratte analizzate, 256 con un progetto proposto, 0 senza, 0 errori; 24.8 s per le tratte (0.10 s a tratta, compresa la compilazione del codice durante la prima) + 5.2 s di avvio
+rispetto alla migliore delle 288 coppie della campagna: mediana -0.50%, più economico in 170 tratte, entro +1% in 234
+Riepilogo in /Users/kairos/Documents/lavoro/ml_treno_dati/surrogato/riepilogo_20261120_094640.csv
+surrogato/: cartelle di prima rimesse al loro posto
+== 2026-11-20 09:46:42 griglia fitta
+griglia fitta: 256 tratte simulate in questo lancio in 238.4 min; complete 256 su 256
+== 2026-11-20 13:45:08 confronto

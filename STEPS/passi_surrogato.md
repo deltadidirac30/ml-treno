@@ -820,3 +820,18 @@ Conclusione: le correzioni del collega spostano pochissimo gli ottimi. La classi
 - **Rugosità:** tutte le reti sono 6–30 volte più lisce del simulatore, senza differenze oltre il seme.
 
 Conclusione: 4 × 256 sta al ginocchio fra precisione e costo. **Il modello resta la 6b.** Nel report c'è una frase in inglese pronta da adattare per l'articolo.
+
+## Fase 16: la strategia G sulle tratte del test, contro l'ottimo vero
+
+20/11/2026. Cartella `fase16/`, report `fase16/REPORT_FASE16_G_TEST.md`. Serve a vedere se il risultato di G + bordo sulle 146 linee (fase13/08) regge su tratte mai usate per svilupparla. `usa_surrogato.jl` non è stato toccato.
+
+- **Tratte:** le 256 del test DoE del passo 8a della fase 12 (gruppi 15 e 16, seme 20261117, senza la 14664). Sono più lunghe e più spesso ibride delle linee: L mediana 147 km contro 56.
+- **Ottimo vero:** griglia fitta di 9702 progetti simulata per ogni tratta (`02_griglia.jl`, 4 h sul Mac, 56 s a tratta con 8 thread).
+- **G + bordo**:
+  - esattamente l'ottimo in 230 tratte su 256 (linee: 139 su 146), entro l'1% in 249;
+  - media +0,055% (linee +0,069%), massimo +1,74% (linee +3,08%), nessuna oltre il 2% (linee 3);
+  - regime giusto 256 su 256; 56 simulazioni a tratta, 0,39 s.
+- **I riferimenti peggiorano sul test:** la migliore delle 288 sale a +1,87% di mediana, la semplice a +0,57%.
+- **Gli scarti di G** sono 9 ibridi lunghi (170–295 km), fra +0,56% e +1,74%. G si ferma in un'altra valle del costo, con n lontana ma costo quasi uguale.
+
+Conclusione: **il risultato delle linee si conferma su tratte indipendenti.**

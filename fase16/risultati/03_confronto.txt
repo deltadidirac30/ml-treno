@@ -1,0 +1,58 @@
+fase16/03_confronto.jl  2026-11-20T13:46:25.979  TrainPowertrain 7c9115a1877dda0142eeb08fe25dc810bd93a544
+tratte: 256; proposte nei riepiloghi: G 256, semplice 256
+tratte senza alcun progetto fattibile nella griglia (escluse): 0 
+controllo: costo delle proposte riletto dalla griglia contro quello del surrogato, scarto massimo 2.7e-07 (deve essere ~0); anomalie 0
+
+IL COSTO RISPETTO ALL'OTTIMO VERO (griglia fitta simulata): 256 tratte DoE del test (mai viste) e 146 linee reali (fase 13)
+                                 test: migliore 288       test: semplice      test: G + bordo  |  linee: migliore 288      linee: semplice     linee: G + bordo
+  media                                     +3.623%              +1.444%              +0.055%  |              +2.187%              +1.130%              +0.069%
+  mediana                                   +1.868%              +0.572%              +0.000%  |              +0.226%              +0.289%              +0.000%
+  90° percentile                            +9.814%              +3.795%              +0.001%  |              +7.523%              +3.194%              +0.000%
+  massimo                                  +23.782%             +11.910%              +1.742%  |             +18.031%             +13.003%              +3.079%
+  esattamente l'ottimo                           20                   37                  230  |                   20                   14                  139
+  entro 0,1%                                     43                   65                  237  |                   50                   45                  141
+  entro 0,5%                                     77                  126                  247  |                   92                   93                  141
+  entro 1%                                      106                  154                  249  |                  102                  100                  141
+  oltre 2%                                      124                   59                    0  |                   40                   32                    3
+  oltre 5%                                       65                   20                    0  |                   25                    6                    0
+  nessuna proposta fattibile                      0                    0                    0  |                    0                    0                    0
+  regime giusto                                 237                  247                  256  |                  132                    —                  144
+  simulazioni per tratta (media)                  288                  5.0        56.2 (max 81)  |                  288                    —        55.0 (max 80)
+  tempo per tratta                       (campagna)               0.10 s               0.39 s  |           (campagna)                    —               0.28 s
+  (i conteggi sono su 256 tratte a sinistra e 146 linee a destra; la migliore delle 288 può costare meno dell'ottimo della griglia, perché le 288 coppie non stanno sulla griglia a passo 0,01. Tempo del surrogato: a tratta, sul Mac, compresa la compilazione durante la prima tratta; avvio a parte: test G 5.2 s, semplice 5.2 s)
+
+IL REGIME: ottimo vero (righe) contro surrogato G + bordo (colonne), tratte del test
+  sola batteria         59 → sola batteria 59, ibrido FC piccola 0, ibrido 0
+  ibrido FC piccola     50 → sola batteria 0, ibrido FC piccola 50, ibrido 0
+  ibrido               147 → sola batteria 0, ibrido FC piccola 0, ibrido 147
+  stesso regime: 256 su 256
+  distanza della proposta G dall'ottimo: m mediana 0.00 (max 0.27), n mediana 0.00 (max 0.49); stesso punto in 230 tratte
+  posizione della proposta G nella classifica dei progetti fattibili: mediana 1°, 90° percentile 2°, peggiore 86°
+
+PER REGIME DELL'OTTIMO E PER LUNGHEZZA (G + bordo, tratte del test)
+  sola batteria         59 tratte: esattamente l'ottimo  59, entro 1%  59, oltre 2%  0; media +0.000%, massimo +0.000%
+  ibrido FC piccola     50 tratte: esattamente l'ottimo  49, entro 1%  50, oltre 2%  0; media +0.000%, massimo +0.017%
+  ibrido               147 tratte: esattamente l'ottimo 122, entro 1% 140, oltre 2%  0; media +0.095%, massimo +1.742%
+  L < 100 km            90 tratte: esattamente l'ottimo  90, entro 1%  90, oltre 2%  0; media +0.000%, massimo +0.000%
+  L 100–200 km          91 tratte: esattamente l'ottimo  84, entro 1%  88, oltre 2%  0; media +0.061%, massimo +1.742%
+  L ≥ 200 km            75 tratte: esattamente l'ottimo  56, entro 1%  71, oltre 2%  0; media +0.112%, massimo +1.709%
+
+QUANTO È PIATTO IL COSTO VICINO ALL'OTTIMO (progetti fattibili entro lo 0,1 / 0,5 / 1% dall'ottimo, mediana sulle tratte)
+  2 / 4 / 6 progetti su 4912 fattibili (mediana)
+
+LE TRATTE CON IL SURROGATO G + BORDO OLTRE LO 0,5% DALL'OTTIMO (o senza proposta)
+  route_015190 L  171.6 km: ottimo (0.65, 0.32) 6.2011 €/km ibrido             | G (0.50, 0.65) +1.742% ibrido             81 sim. | 288 +0.758%, semplice +2.650%
+  route_015066 L  272.1 km: ottimo (0.99, 0.12) 5.7500 €/km ibrido             | G (0.72, 0.55) +1.709% ibrido             60 sim. | 288 +0.608%, semplice +2.764%
+  route_014606 L  194.7 km: ottimo (0.78, 0.14) 6.4556 €/km ibrido             | G (0.57, 0.63) +1.459% ibrido             63 sim. | 288 +1.507%, semplice +2.098%
+  route_015758 L  196.9 km: ottimo (0.57, 0.32) 5.4421 €/km ibrido             | G (0.53, 0.58) +1.283% ibrido             38 sim. | 288 +0.193%, semplice +1.387%
+  route_016062 L  222.8 km: ottimo (0.53, 0.25) 4.5142 €/km ibrido             | G (0.50, 0.33) +1.256% ibrido             34 sim. | 288 +1.465%, semplice +1.780%
+  route_015191 L  294.4 km: ottimo (0.77, 0.48) 6.6126 €/km ibrido             | G (0.81, 0.45) +1.198% ibrido             34 sim. | 288 +1.602%, semplice +1.198%
+  route_016111 L  223.4 km: ottimo (0.40, 0.50) 4.7420 €/km ibrido             | G (0.35, 0.76) +1.091% ibrido             58 sim. | 288 +1.399%, semplice +1.091%
+  route_014490 L  265.4 km: ottimo (0.53, 0.49) 5.4891 €/km ibrido             | G (0.62, 0.26) +0.655% ibrido             35 sim. | 288 +0.897%, semplice +0.698%
+  route_014394 L  275.2 km: ottimo (0.68, 0.27) 4.6349 €/km ibrido             | G (0.60, 0.59) +0.555% ibrido             36 sim. | 288 +0.092%, semplice +0.661%
+
+I TEMPI
+  griglia fitta simulata: 55.9 s di orologio per tratta (mediana 51.2, 8 thread), 20.2 h di calcolo sommando i singoli progetti;
+  surrogato G: 0.39 s per tratta (56.2 simulazioni), cioè circa 143 volte meno della griglia simulata
+
+Tabella: /Users/kairos/Documents/lavoro/ml_treno_dati/fase16_log/03_ottimo_tratte.csv; figura: fig_ottimo_test.png
